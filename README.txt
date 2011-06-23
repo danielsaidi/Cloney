@@ -2,10 +2,11 @@ Cloney
 ======
 
 Cloney is a Windows application that lets you clone .NET
-solutions with a few clicks. Just select a source folder
-that contains the original solution, as well as a target
-folder that should contain the clone, click a button and
-you're done.
+solutions with a few clicks.
+
+To use Cloney, just select a source folder that contains
+the original solution, a target folder to which it is to
+be cloned, then click a button and you're done.
 
 Cloney is currently being developed and fine-tuned a bit,
 but will soon be available for download.
