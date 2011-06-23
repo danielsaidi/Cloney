@@ -1,8 +1,39 @@
 ﻿<Window x:Class="Cloney.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:uc="clr-namespace:Cloney.Controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        xmlns:Resources="clr-namespace:Cloney.Resources"
+        SizeToContent="WidthAndHeight" Title="MainWindow" Width="525" MinWidth="525" Background="#000">
+    
+    <Window.Resources>
+
+        <Style TargetType="StackPanel" x:Key="Main">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <Style TargetType="Border" x:Key="Box">
+            <Setter Property="Margin" Value="0 0 0 10"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="Box2">
+            <Setter Property="Background" Value="#fff"></Setter>
+            <Setter Property="BorderBrush" Value="#f0f0f0"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="Margin" Value="0 0 0 10"></Setter>
+            <Setter Property="CornerRadius" Value="8"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Style="{StaticResource Main}">
+        <Border Style="{StaticResource Box}">
+            <uc:FolderSelector x:Name="sourceFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+        </Border>
+
+        <Border Style="{StaticResource Box}">
+            <uc:FolderSelector x:Name="targetFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+        </Border>
+
+        <Button Name="btnInstall" IsEnabled="False" Content="{x:Static Resources:Language.Install}" />
+    </StackPanel>
 </Window>

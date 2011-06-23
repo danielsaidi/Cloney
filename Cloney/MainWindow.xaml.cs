@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Cloney.Domain.Cloning;
 
 namespace Cloney
 {
@@ -22,6 +12,25 @@ namespace Cloney
         public MainWindow()
         {
             InitializeComponent();
+
+            sourceFolderSelector.Initialize(new FolderNamespaceExtractor(), "");
+            targetFolderSelector.Initialize(new FolderNamespaceExtractor(), "");
+        }
+
+
+        public bool CanInstall
+        {
+            get
+            {
+                return sourceFolderSelector.IsComplete && targetFolderSelector.IsComplete;
+            }
+        }
+
+
+        private void folderSelector_OnChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.
+            btnInstall.IsEnabled = CanInstall;
         }
     }
 }
