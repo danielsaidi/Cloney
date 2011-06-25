@@ -120,8 +120,8 @@
   <data name="Folder" xml:space="preserve">
     <value>Folder:</value>
   </data>
-  <data name="Install" xml:space="preserve">
-    <value>Install</value>
+  <data name="Clone" xml:space="preserve">
+    <value>Clone</value>
   </data>
   <data name="Namespace" xml:space="preserve">
     <value>Namespace:</value>

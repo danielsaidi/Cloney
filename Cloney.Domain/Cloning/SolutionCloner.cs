@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using Cloney.Domain.Cloning.Abstractions;
 using Cloney.Domain.Extensions;
+using Cloney.Domain.IO;
+using Cloney.Domain.IO.Abstractions;
 
 namespace Cloney.Domain.Cloning
 {
@@ -17,16 +19,33 @@ namespace Cloney.Domain.Cloning
     /// </remarks>
     public class SolutionCloner : ICanCloneSolution
     {
-        public SolutionCloner(IEnumerable<string> excludeFolderNames, IEnumerable<string> excludeFileNames, IEnumerable<string> excludeFileTypes, IEnumerable<string> plainCopyFileTypes)
+        public SolutionCloner(IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns)
+            : this(excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns, new PathPatternMatcher(), new NamespaceReplacer())
         {
-            ExcludeFolderNames = excludeFolderNames;
-            ExcludeFileNames = excludeFileNames;
-            ExcludeFileTypes = excludeFileTypes;
-            PlainCopyFileTypes = plainCopyFileTypes;
+        }
+
+        public SolutionCloner(IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns, ICanMatchPathPattern pathPatternMatcher, ICanReplaceNamespace namespaceReplacer)
+        {
+            ExcludeFolderPatterns = excludeFolderPatterns;
+            ExcludeFilePatterns = excludeFilePatterns;
+            PlainCopyFilePatterns = plainCopyFilePatterns;
+
+            PathPatternMatcher = pathPatternMatcher;
+            NamespaceReplacer = namespaceReplacer;
         }
 
 
         public string CurrentPath { get; private set; }
+
+        public IEnumerable<string> ExcludeFolderPatterns { get; private set; }
+
+        public IEnumerable<string> ExcludeFilePatterns { get; private set; }
+
+        public ICanReplaceNamespace NamespaceReplacer { get; private set; }
+
+        public ICanMatchPathPattern PathPatternMatcher { get; private set; }
+
+        public IEnumerable<string> PlainCopyFilePatterns { get; private set; }
 
 
         public event EventHandler CloningBegun;
@@ -34,62 +53,58 @@ namespace Cloney.Domain.Cloning
         public event EventHandler CloningEnded;
 
 
+        public string AdjustPath(string path, string sourcePath, string sourceNamespace, string targetNamespace)
+        {
+            path = path.Replace(sourcePath, "");
+            return NamespaceReplacer.ReplaceNamespace(path, sourceNamespace, targetNamespace);
+        }
+
+        public bool IsExcludedFolder(string folderPath)
+        {
+            return PathPatternMatcher.IsAnyMatch(folderPath, ExcludeFolderPatterns);
+        }
+
+        public bool IsExcludedFile(string filePath)
+        {
+            return PathPatternMatcher.IsAnyMatch(filePath, ExcludeFilePatterns);
+        }
+
+        public bool IsPlainCopyFile(string filePath)
+        {
+            return PathPatternMatcher.IsAnyMatch(filePath, PlainCopyFilePatterns);
+        }
+
+
         public void CloneSolution(string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
         {
             OnCloningBegun(null);
-
-            SourceFolder = sourcePath;
-            SourceNamespace = sourceNamespace;
-            TargetFolder = targetPath;
-            TargetNamespace = targetNamespace;
-
-            CopyFolders(SourceFolder);
-            CopyFiles(SourceFolder);
+            
+            CopySubFolders(sourcePath, sourcePath, sourceNamespace, targetPath, targetNamespace);
+            CopyFolderFiles(sourcePath, sourcePath, sourceNamespace, targetPath, targetNamespace);
+            CurrentPath = "";
 
             OnCloningEnded(null);
         }
-
-
-        private IEnumerable<string> ExcludeFolderNames { get; set; }
-
-        private IEnumerable<string> ExcludeFileNames { get; set; }
-
-        private IEnumerable<string> ExcludeFileTypes { get; set; }
-
-        private IEnumerable<string> PlainCopyFileTypes { get; set; }
         
-        private string SourceFolder { get; set; }
-        
-        private string SourceNamespace { get; set; }
-        
-        private string TargetFolder { get; set; }
-        
-        private string TargetNamespace { get; set; }
-
-
-        private string AdjustPath(string path)
+        private void CopyFolderFiles(string folderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            path = path.Replace(SourceFolder, "");
-            path = ReplaceNamespace(path);
+            if (folderPath.IsNullOrEmpty())
+                return;
 
-            return path;
-        }
-
-        private void CopyFiles(string folderPath)
-        {
             foreach (var filePath in Directory.GetFiles(folderPath))
             {
                 CurrentPath = filePath;
-
-                var fileInfo = new FileInfo(filePath);
-                if (IsExcluded(fileInfo))
+                
+                var fileName = new FileInfo(filePath).Name;
+                if (IsExcludedFile(fileName))
                     continue;
 
-                var targetPath = TargetFolder + AdjustPath(filePath);
+                var adjustedFilePath = AdjustPath(filePath, sourcePath, sourceNamespace, targetNamespace);
+                var targetFilePath = targetPath + adjustedFilePath;
 
-                if (IsPlainCopyFileType(fileInfo))
+                if (IsPlainCopyFile(fileName))
                 {
-                    File.Copy(filePath, targetPath);
+                    File.Copy(filePath, targetFilePath, true);
                     continue;
                 }
 
@@ -97,48 +112,40 @@ namespace Cloney.Domain.Cloning
                 var sourceContent = sourceStream.ReadToEnd();
                 sourceStream.Close();
 
-                if (!sourceContent.Contains(TargetNamespace))
+                if (!sourceContent.Contains(sourceNamespace))
                 {
-                    File.Copy(filePath, targetPath);
+                    File.Copy(filePath, targetFilePath, true);
                     continue;
                 }
 
-                var targetStream = new StreamWriter(targetPath);
-                targetStream.Write(ReplaceNamespace(sourceContent));
+                var targetStream = new StreamWriter(targetFilePath);
+                targetStream.Write(NamespaceReplacer.ReplaceNamespace(sourceContent, sourceNamespace, targetNamespace));
                 targetStream.Close();
             }
         }
 
-        private void CopyFolders(string sourceFolder)
+        private void CopySubFolders(string parentFolderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            foreach (var directory in Directory.GetDirectories(sourceFolder))
+            if (parentFolderPath.IsNullOrEmpty())
+                return;
+
+            foreach (var directory in Directory.GetDirectories(parentFolderPath))
             {
                 CurrentPath = directory;
 
-                var dirInfo = new DirectoryInfo(directory);
-                if (IsExcluded(dirInfo))
+                var folderName = new DirectoryInfo(directory).Name;
+                if (IsExcludedFolder(folderName))
                     continue;
 
-                Directory.CreateDirectory(TargetFolder + AdjustPath(directory));
+                var adjustedFolderPath = AdjustPath(directory, sourcePath, sourceNamespace, targetNamespace);
+                var targetFolderPath = targetPath + adjustedFolderPath;
 
-                CopyFolders(directory);
-                CopyFiles(directory);
+                if (!Directory.Exists(targetFolderPath))
+                    Directory.CreateDirectory(targetFolderPath);
+
+                CopySubFolders(directory, sourcePath, sourceNamespace, targetPath, targetNamespace);
+                CopyFolderFiles(directory, sourcePath, sourceNamespace, targetPath, targetNamespace);
             }
-        }
-
-        private bool IsExcluded(DirectoryInfo dirInfo)
-        {
-            return ExcludeFolderNames.Contains(dirInfo.Name, true);
-        }
-
-        private bool IsExcluded(FileInfo fileInfo)
-        {
-            return ExcludeFileNames.Contains(fileInfo.Name, true) || ExcludeFileTypes.Contains(fileInfo.Extension.Replace(".", ""), true);
-        }
-
-        private bool IsPlainCopyFileType(FileInfo fileInfo)
-        {
-            return PlainCopyFileTypes.Contains(fileInfo.Extension.Replace(".", ""), true);
         }
 
         private void OnCloningBegun(EventArgs e)
@@ -149,20 +156,8 @@ namespace Cloney.Domain.Cloning
 
         private void OnCloningEnded(EventArgs e)
         {
-            CurrentPath = "";
-            
             if (CloningEnded != null)
                 CloningEnded(this, e);
-        }
-
-        private string ReplaceNamespace(string str)
-        {
-            str = str.Replace(SourceNamespace, TargetNamespace);
-            str = str.Replace(SourceNamespace.ToLower(), TargetNamespace.ToLower());
-            str = str.Replace(SourceNamespace.Replace(".", ""), TargetNamespace.Replace(".", ""));
-            str = str.Replace(SourceNamespace.ToLower().Replace(".", ""), TargetNamespace.Replace(".", "").ToLower());
-
-            return str;
         }
     }
 }

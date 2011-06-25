@@ -53,11 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cloning\FolderNamespaceExtractorBehavior.cs" />
+    <Compile Include="Cloning\NamespaceReplacerBehavior.cs" />
+    <Compile Include="Cloning\SolutionClonerBehavior.cs" />
     <Compile Include="Cloning\ThreadedSolutionClonerBehavior.cs" />
     <Compile Include="Extensions\IEnumerableExtensionsBehavior.cs" />
     <Compile Include="Extensions\StringCollectionExtensionsBehavior.cs" />
     <Compile Include="Extensions\StringExtensionsBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IO\PathPatternMatcherBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cloney.Domain\Cloney.Domain.csproj">

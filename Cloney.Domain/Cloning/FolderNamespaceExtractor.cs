@@ -4,9 +4,9 @@ using Cloney.Domain.Extensions;
 
 namespace Cloney.Domain.Cloning
 {
-    public class FolderNamespaceExtractor : ICanExtractFolderNamespace
+    public class FolderNamespaceExtractor : ICanExtractNamespace
     {
-        public string ExtractFolderNamespace(string folderPath)
+        public string ExtractNamespace(string folderPath)
         {
             if (folderPath.IsNullOrEmpty())
                 return String.Empty;

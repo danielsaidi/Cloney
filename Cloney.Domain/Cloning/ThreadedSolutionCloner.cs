@@ -6,7 +6,7 @@ namespace Cloney.Domain.Cloning
 {
     /// <summary>
     /// This class can be used to clone a Visual Studio solution
-    /// by running another ICanCloneSolution implementation in a
+    /// by running another ICanCloneSolution implementation on a
     /// separate thread.
     /// </summary>
     public class ThreadedSolutionCloner : ICanCloneSolution
@@ -21,6 +21,7 @@ namespace Cloney.Domain.Cloning
 
 
         public event EventHandler CloningBegun;
+
         public event EventHandler CloningEnded;
 
 

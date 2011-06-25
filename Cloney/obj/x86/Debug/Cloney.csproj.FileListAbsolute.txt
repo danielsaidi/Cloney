@@ -18,3 +18,4 @@ c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney\obj\x8
 c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney\obj\x86\Debug\Cloney.exe
 c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney\obj\x86\Debug\Cloney.pdb
 c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney\obj\x86\Debug\Cloney.Resources.Language.resources
+c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney\bin\Debug\Cloney.exe.config

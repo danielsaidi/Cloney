@@ -6,14 +6,8 @@ using Cloney.Domain.Extensions;
 
 namespace Cloney.Controls
 {
-    /// <summary>
-    /// Interaction logic for FolderSelector.xaml
-    /// </summary>
     public partial class FolderSelector
     {
-        private ICanExtractFolderNamespace _folderNamespaceExtractor;
-
-
         public FolderSelector()
         {
             InitializeComponent();
@@ -23,36 +17,51 @@ namespace Cloney.Controls
         public event EventHandler Changed;
 
 
-        public void Initialize(ICanExtractFolderNamespace folderFolderNamespaceExtractor, string initialFolderPath)
+        public bool IsValid
         {
-            _folderNamespaceExtractor = folderFolderNamespaceExtractor;
-            FolderPath = initialFolderPath;
-
-            btnSelect.IsEnabled = _folderNamespaceExtractor != null;
+            get { return !Path.IsNullOrEmpty() && !Namespace.IsNullOrEmpty(); }
         }
 
-        public void OnChanged(EventArgs e)
+        public string Namespace
+        {
+            get { return txtNamespace.Text; }
+            private set { txtNamespace.Text = value; }
+        }
+
+        public ICanExtractNamespace NamespaceExtractor { get; private set; }
+
+        public string Path
+        {
+            get { return txtFolder.Text; }
+            private set
+            {
+                txtFolder.Text = value;
+                Namespace = NamespaceExtractor.ExtractNamespace(value);
+            }
+        }
+
+
+        public void Initialize(ICanExtractNamespace namespaceExtractor, string initialFolderPath)
+        {
+            NamespaceExtractor = namespaceExtractor;
+            Path = initialFolderPath;
+            btnSelect.IsEnabled = NamespaceExtractor != null;
+        }
+
+        private void OnChanged(EventArgs e)
         {
             var handler = Changed;
             if (handler != null) handler(this, e);
         }
 
 
-        public string FolderPath { get { return txtFolder.Text; } set { txtFolder.Text = value; } }
-
-        public bool IsComplete { get { return !FolderPath.IsNullOrEmpty() && !Namespace.IsNullOrEmpty(); } }
-
-        public string Namespace { get { return txtNamespace.Text; } set { txtNamespace.Text = value; } }
-
-
         private void btnSelect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = FolderPath};
+            var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = Path};
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
                 return;
 
-            FolderPath = folderBrowserDialog.SelectedPath;
-            Namespace = _folderNamespaceExtractor.ExtractFolderNamespace(FolderPath);
+            Path = folderBrowserDialog.SelectedPath;
 
             OnChanged(new EventArgs());
         }

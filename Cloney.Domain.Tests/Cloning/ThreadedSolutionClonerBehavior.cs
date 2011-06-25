@@ -69,7 +69,7 @@ namespace Cloney.Domain.Tests.Cloning
         }
 
         [Test]
-        public void CloneSolution_ShouldRaiseEvents()
+        public void CloneSolution_ShouldTriggerEvents()
         {
             Assert.That(begunCount, Is.EqualTo(0));
             Assert.That(endedCount, Is.EqualTo(0));

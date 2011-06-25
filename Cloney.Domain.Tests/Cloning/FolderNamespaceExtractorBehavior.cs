@@ -17,36 +17,36 @@ namespace Cloney.Domain.Tests.Cloning
 
 
         [Test]
-        public void ExtractFolderNamespace_ShouldReturnEmptyStringForNullOrEmptyPath()
+        public void ExtractNamespace_ShouldReturnEmptyStringForNullOrEmptyPath()
         {
             string str = null;
 
-            Assert.That(extractor.ExtractFolderNamespace(str), Is.EqualTo(string.Empty));
-            Assert.That(extractor.ExtractFolderNamespace(""), Is.EqualTo(string.Empty));
+            Assert.That(extractor.ExtractNamespace(str), Is.EqualTo(string.Empty));
+            Assert.That(extractor.ExtractNamespace(""), Is.EqualTo(string.Empty));
         }
 
         [Test]
-        public void ExtractFolderNamespace_ShouldHandleMissingSlash()
+        public void ExtractNamespace_ShouldHandleMissingSlash()
         {
             const string str = "Foo.Bar";
 
-            Assert.That(extractor.ExtractFolderNamespace(str), Is.EqualTo("Foo.Bar"));
+            Assert.That(extractor.ExtractNamespace(str), Is.EqualTo("Foo.Bar"));
         }
 
         [Test]
-        public void ExtractFolderNamespace_ShouldHandleSingleSlash()
+        public void ExtractNamespace_ShouldHandleSingleSlash()
         {
             const string str = "c:\\Foo.Bar";
 
-            Assert.That(extractor.ExtractFolderNamespace(str), Is.EqualTo("Foo.Bar"));
+            Assert.That(extractor.ExtractNamespace(str), Is.EqualTo("Foo.Bar"));
         }
 
         [Test]
-        public void ExtractFolderNamespace_ShouldHandleMultipleSlashes()
+        public void ExtractNamespace_ShouldHandleMultipleSlashes()
         {
             const string str = "c:\\Development\\MyProject\\Foo.Bar";
 
-            Assert.That(extractor.ExtractFolderNamespace(str), Is.EqualTo("Foo.Bar"));
+            Assert.That(extractor.ExtractNamespace(str), Is.EqualTo("Foo.Bar"));
         }
     }
 }

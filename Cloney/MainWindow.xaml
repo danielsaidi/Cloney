@@ -3,13 +3,9 @@
         xmlns:uc="clr-namespace:Cloney.Controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Resources="clr-namespace:Cloney.Resources"
-        SizeToContent="WidthAndHeight" Title="MainWindow" Width="525" MinWidth="525" Background="#000">
+        SizeToContent="WidthAndHeight" Title="MainWindow" Width="525" MinWidth="525" Background="#fff">
     
     <Window.Resources>
-
-        <Style TargetType="StackPanel" x:Key="Main">
-            <Setter Property="Margin" Value="10" />
-        </Style>
 
         <Style TargetType="Border" x:Key="Box">
             <Setter Property="Margin" Value="0 0 0 10"></Setter>
@@ -25,7 +21,7 @@
         </Style>
     </Window.Resources>
 
-    <StackPanel Style="{StaticResource Main}">
+    <StackPanel>
         <Border Style="{StaticResource Box}">
             <uc:FolderSelector x:Name="sourceFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
         </Border>
@@ -34,6 +30,12 @@
             <uc:FolderSelector x:Name="targetFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
         </Border>
 
-        <Button Name="btnInstall" IsEnabled="False" Content="{x:Static Resources:Language.Install}" />
+        <Button Name="btnClone" IsEnabled="False" Content="{x:Static Resources:Language.Clone}" Click="btnClone_Click" />
+        
+        <Separator></Separator>
+        
+        <StatusBar>
+            <Label Name="lblCurrentPath">APA</Label>
+        </StatusBar>
     </StackPanel>
 </Window>

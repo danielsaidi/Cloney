@@ -61,20 +61,20 @@ namespace Cloney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone.
+        /// </summary>
+        public static string Clone {
+            get {
+                return ResourceManager.GetString("Clone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder:.
         /// </summary>
         public static string Folder {
             get {
                 return ResourceManager.GetString("Folder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Install.
-        /// </summary>
-        public static string Install {
-            get {
-                return ResourceManager.GetString("Install", resourceCulture);
             }
         }
         
