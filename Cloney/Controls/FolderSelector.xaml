@@ -9,25 +9,21 @@
     <Control.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10 0 0 0"></Setter>
-            <Setter Property="Padding" Value="5 0 5 0"></Setter>
         </Style>
         <Style TargetType="DockPanel">
             <Setter Property="Margin" Value="0 0 0 5"></Setter>
         </Style>
-        <Style TargetType="Label">
-            <Setter Property="Padding" Value="0 0 0 3"></Setter>
-        </Style>
-        <Style TargetType="TextBox">
-        </Style>
     </Control.Resources>
 
     <StackPanel>
-        <Label Content="{x:Static Resources:Language.Folder}" />
         <DockPanel>
-            <Button Name="btnSelect" DockPanel.Dock="Right" Content="{x:Static Resources:Language.Select}" IsEnabled="False" Click="btnSelect_Click"></Button>
+            <Button Name="btnSelect" DockPanel.Dock="Right" Click="btnSelect_Click">
+                <Button.Content>
+                    <Label Content="{x:Static Resources:Language.Select}" Style="{StaticResource ButtonLabel}" />
+                </Button.Content>
+            </Button>
             <TextBox Name="txtFolder" IsReadOnly="True"></TextBox>
         </DockPanel>
-        <Label Content="{x:Static Resources:Language.Namespace}" />
         <TextBox Name="txtNamespace" TextChanged="txtNamespace_Changed"></TextBox>
     </StackPanel>
 </UserControl>

@@ -70,6 +70,24 @@ namespace Cloney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cloning operation succeeded..
+        /// </summary>
+        public static string CloningEndedMessage {
+            get {
+                return ResourceManager.GetString("CloningEndedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloning done!.
+        /// </summary>
+        public static string CloningEndedTitle {
+            get {
+                return ResourceManager.GetString("CloningEndedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder:.
         /// </summary>
         public static string Folder {
@@ -93,6 +111,24 @@ namespace Cloney.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate your .NET solutions in no time..
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select source and target folder/namespace:.
+        /// </summary>
+        public static string TitleDescription {
+            get {
+                return ResourceManager.GetString("TitleDescription", resourceCulture);
             }
         }
     }

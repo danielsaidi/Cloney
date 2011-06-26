@@ -3,39 +3,39 @@
         xmlns:uc="clr-namespace:Cloney.Controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Resources="clr-namespace:Cloney.Resources"
-        SizeToContent="WidthAndHeight" Title="MainWindow" Width="525" MinWidth="525" Background="#fff">
-    
-    <Window.Resources>
+        Height="660" Width="525" MinHeight="660" MinWidth="525"
+        Title="MainWindow" Background="Black">
 
-        <Style TargetType="Border" x:Key="Box">
-            <Setter Property="Margin" Value="0 0 0 10"></Setter>
-        </Style>
+    <DockPanel Style="{StaticResource Main}">
+        <Border Style="{StaticResource MainBody}" DockPanel.Dock="Top">
+            <StackPanel>
+                <Image Style="{StaticResource Logo}" />
 
-        <Style TargetType="Border" x:Key="Box2">
-            <Setter Property="Background" Value="#fff"></Setter>
-            <Setter Property="BorderBrush" Value="#f0f0f0"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
-            <Setter Property="Padding" Value="10"></Setter>
-            <Setter Property="Margin" Value="0 0 0 10"></Setter>
-            <Setter Property="CornerRadius" Value="8"></Setter>
-        </Style>
-    </Window.Resources>
+                <Label Style="{StaticResource Title}" Content="{x:Static Resources:Language.Title}" />
 
-    <StackPanel>
-        <Border Style="{StaticResource Box}">
-            <uc:FolderSelector x:Name="sourceFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                <Label Style="{StaticResource TitleDescription}" Content="{x:Static Resources:Language.TitleDescription}" />
+
+                <Border Style="{StaticResource Box}">
+                    <uc:FolderSelector x:Name="sourceFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                </Border>
+                
+                <Image Style="{StaticResource Arrow}" />
+
+                <Border Style="{StaticResource Box}">
+                    <uc:FolderSelector x:Name="targetFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                </Border>
+
+                <Image Style="{StaticResource Arrow}" />
+                
+                <Border Style="{StaticResource Box}">
+                    <Button Name="btnClone" IsEnabled="False" Content="{x:Static Resources:Language.Clone}" Click="btnClone_Click" />
+                </Border>
+            </StackPanel>
         </Border>
-
-        <Border Style="{StaticResource Box}">
-            <uc:FolderSelector x:Name="targetFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
-        </Border>
-
-        <Button Name="btnClone" IsEnabled="False" Content="{x:Static Resources:Language.Clone}" Click="btnClone_Click" />
         
-        <Separator></Separator>
         
         <StatusBar>
-            <Label Name="lblCurrentPath">APA</Label>
+            <StatusBarItem Name="lblCurrentPath">{CurrentPath}</StatusBarItem>
         </StatusBar>
-    </StackPanel>
+    </DockPanel>
 </Window>

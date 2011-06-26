@@ -3,6 +3,121 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="35" />    
+        </Style>
+        
+        <Style TargetType="Label">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Opacity="0.4" BlurRadius="2" RenderingBias="Quality" ShadowDepth="3" ></DropShadowEffect>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Padding" Value="0 5 0 5"></Setter>
+        </Style>
+
+        <Style TargetType="StatusBar">
+            <Setter Property="DockPanel.Dock" Value="Bottom" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="35" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="FocusedOn">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="FocusedOff">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="#339999" BorderThickness="1" CornerRadius="5" IsHitTestVisible="False" Opacity="1" />
+                            <Border Background="{TemplateBinding Background}" BorderBrush="#339999" BorderThickness="2" CornerRadius="5" IsHitTestVisible="False" Opacity="0" x:Name="FocusVisualElement" />
+                            <Label Foreground="DimGray" Grid.Column="1" Margin="3" x:Name="TextPrompt" Content="{TemplateBinding Tag}" Visibility="Collapsed" Focusable="False"></Label>
+                            <ScrollViewer Margin="3" x:Name="PART_ContentHost" Foreground="{TemplateBinding Foreground}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FocusedOff}" x:Name="FocusedOff_BeginStoryboard" />
+                                </Trigger.ExitActions>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource FocusedOn}" x:Name="FocusedOn_BeginStoryboard" />
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
+        
+
+        <Style TargetType="Border" x:Key="Box">
+            <Setter Property="Background" Value="#18FFFFFF"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="CornerRadius" Value="8"></Setter>
+        </Style>
+
+        <Style TargetType="Label" x:Key="ButtonLabel">
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Logo">
+            <Setter Property="Margin" Value="0 30 0 10"></Setter>
+            <Setter Property="Source" Value="/Cloney;component/Resources/Images/logo_sml.png"></Setter>
+            <Setter Property="Stretch" Value="Uniform"></Setter>
+            <Setter Property="Width" Value="300"></Setter>
+        </Style>
+
+        <Style TargetType="Image" x:Key="Arrow">
+            <Setter Property="Source" Value="/Cloney;component/Resources/Images/arrow_down.png"></Setter>
+            <Setter Property="Stretch" Value="Uniform"></Setter>
+            <Setter Property="Width" Value="25"></Setter>
+        </Style>
+
+        <Style TargetType="DockPanel" x:Key="Main">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Cloney;component/Resources/Images/bg.png" Stretch="None" TileMode="FlipX" Viewport="0,0,90,720" AlignmentY="Top" ViewportUnits="Absolute" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="LastChildFill" Value="False"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="MainBody">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Cloney;component/Resources/Images/bg_glow.png" Stretch="Uniform" TileMode="None" AlignmentY="Top" Opacity="0.4" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}" x:Key="Title">
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="0 0 0 25"></Setter>
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource Title}" x:Key="TitleDescription">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Margin" Value="0 0 0 10"></Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

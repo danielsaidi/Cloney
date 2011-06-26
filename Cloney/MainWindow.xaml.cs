@@ -23,7 +23,8 @@ namespace Cloney
             var settings = Properties.Settings.Default;
 
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(settings.ExcludeFolderPatterns.AsEnumerable(), settings.ExcludeFilePatterns.AsEnumerable(), settings.PlainCopyFilePatterns.AsEnumerable()));
-            
+            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+
             refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
             refreshTimer.Tick += refreshTimer_Tick;
             refreshTimer.IsEnabled = true;
@@ -33,6 +34,14 @@ namespace Cloney
             targetFolderSelector.Initialize(new FolderNamespaceExtractor(), LastTargetPath);
         }
 
+
+        public bool CanInstall
+        {
+            get
+            {
+                return sourceFolderSelector.IsValid && targetFolderSelector.IsValid && solutionCloner.CurrentPath.IsNullOrEmpty();
+            }
+        }
 
         public string LastSourcePath
         {
@@ -51,14 +60,6 @@ namespace Cloney
             {
                 Properties.Settings.Default.LastTargetPath = value;
                 Properties.Settings.Default.Save();
-            }
-        }
-
-        public bool CanInstall
-        {
-            get
-            {
-                return sourceFolderSelector.IsValid && targetFolderSelector.IsValid && solutionCloner.CurrentPath.IsNullOrEmpty();
             }
         }
 
@@ -82,6 +83,11 @@ namespace Cloney
         {
             btnClone.IsEnabled = CanInstall;
             lblCurrentPath.Content = solutionCloner.CurrentPath;
+        }
+
+        static void solutionCloner_CloningEnded(object sender, EventArgs e)
+        {
+            MessageBox.Show(Cloney.Resources.Language.CloningEndedMessage, Cloney.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
