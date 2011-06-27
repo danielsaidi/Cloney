@@ -1,5 +1,0 @@
-c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney.Domain\bin\Debug\Cloney.Domain.dll
-c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney.Domain\bin\Debug\Cloney.Domain.pdb
-c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney.Domain\obj\Debug\ResolveAssemblyReference.cache
-c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney.Domain\obj\Debug\Cloney.Domain.dll
-c:\users\daniel saidi\documents\visual studio 2010\Projects\Cloney\Cloney.Domain\obj\Debug\Cloney.Domain.pdb
