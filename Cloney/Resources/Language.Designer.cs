@@ -124,7 +124,7 @@ namespace Cloney.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select source and target folder/namespace:.
+        ///   Looks up a localized string similar to Just select a source and a target folder, then press &quot;clone&quot;:.
         /// </summary>
         public static string TitleDescription {
             get {

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/arrow_down.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("icon.ico")]
 
 

@@ -30,7 +30,7 @@ namespace Cloney
             refreshTimer.IsEnabled = true;
             refreshTimer.Start();
 
-            sourceFolderSelector.Initialize(new FolderNamespaceExtractor(), LastSourcePath);
+            sourceFolderSelector.Initialize(new SolutionFileNamespaceExtractor(), LastSourcePath);
             targetFolderSelector.Initialize(new FolderNamespaceExtractor(), LastTargetPath);
         }
 

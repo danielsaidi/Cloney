@@ -3,8 +3,8 @@
         xmlns:uc="clr-namespace:Cloney.Controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Resources="clr-namespace:Cloney.Resources"
-        Height="660" Width="525" MinHeight="660" MinWidth="525"
-        Title="MainWindow" Background="Black">
+        Height="590" Width="525" MinHeight="590" MinWidth="525" MaxHeight="590"
+        Title="Cloney" Background="Black" Icon="/Cloney;component/Resources/Images/icon.ico">
 
     <DockPanel Style="{StaticResource Main}">
         <Border Style="{StaticResource MainBody}" DockPanel.Dock="Top">
@@ -16,13 +16,13 @@
                 <Label Style="{StaticResource TitleDescription}" Content="{x:Static Resources:Language.TitleDescription}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="sourceFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="sourceFolderSelector" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
                 </Border>
                 
                 <Image Style="{StaticResource Arrow}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="targetFolderSelector" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="targetFolderSelector" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
                 </Border>
 
                 <Image Style="{StaticResource Arrow}" />

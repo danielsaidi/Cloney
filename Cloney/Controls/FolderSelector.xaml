@@ -10,9 +10,6 @@
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10 0 0 0"></Setter>
         </Style>
-        <Style TargetType="DockPanel">
-            <Setter Property="Margin" Value="0 0 0 5"></Setter>
-        </Style>
     </Control.Resources>
 
     <StackPanel>
@@ -24,6 +21,6 @@
             </Button>
             <TextBox Name="txtFolder" IsReadOnly="True"></TextBox>
         </DockPanel>
-        <TextBox Name="txtNamespace" TextChanged="txtNamespace_Changed"></TextBox>
+        <TextBox Name="txtNamespace" Margin="0 5 0 0 " TextChanged="txtNamespace_Changed"></TextBox>
     </StackPanel>
 </UserControl>

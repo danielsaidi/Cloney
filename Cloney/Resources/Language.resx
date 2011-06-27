@@ -139,6 +139,6 @@
     <value>Duplicate your .NET solutions in no time.</value>
   </data>
   <data name="TitleDescription" xml:space="preserve">
-    <value>Select source and target folder/namespace:</value>
+    <value>Just select a source and a target folder, then press "clone":</value>
   </data>
 </root>

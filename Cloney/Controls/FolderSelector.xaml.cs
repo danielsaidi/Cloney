@@ -40,6 +40,12 @@ namespace Cloney.Controls
             }
         }
 
+        public bool ShowNamespaceTextbox
+        {
+            get { return txtNamespace.IsVisible; }
+            set { txtNamespace.Visibility = value ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
+        }
+
 
         public void Initialize(ICanExtractNamespace namespaceExtractor, string initialFolderPath)
         {

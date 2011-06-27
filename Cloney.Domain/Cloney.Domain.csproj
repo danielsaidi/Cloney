@@ -43,6 +43,7 @@
     <Compile Include="Cloning\Abstractions\ICanReplaceNamespace.cs" />
     <Compile Include="Cloning\Abstractions\ICanCloneSolution.cs" />
     <Compile Include="Cloning\Abstractions\ICanExtractNamespace.cs" />
+    <Compile Include="Cloning\SolutionFileNamespaceExtractor.cs" />
     <Compile Include="Cloning\NamespaceReplacer.cs" />
     <Compile Include="Cloning\OldSolutionCloner.cs" />
     <Compile Include="Cloning\FolderNamespaceExtractor.cs" />
