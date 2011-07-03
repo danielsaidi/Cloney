@@ -130,13 +130,13 @@
     <value>Select...</value>
   </data>
   <data name="CloningEndedMessage" xml:space="preserve">
-    <value>The cloning operation succeeded.</value>
+    <value>The cloning operation finished.</value>
   </data>
   <data name="CloningEndedTitle" xml:space="preserve">
     <value>Cloning done!</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Duplicate your .NET solutions in no time.</value>
+    <value>Clone your .NET solutions in no time.</value>
   </data>
   <data name="TitleDescription" xml:space="preserve">
     <value>Just select a source and a target folder, then press "clone":</value>

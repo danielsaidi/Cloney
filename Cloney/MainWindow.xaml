@@ -9,26 +9,26 @@
     <DockPanel Style="{StaticResource Main}">
         <Border Style="{StaticResource MainBody}" DockPanel.Dock="Top">
             <StackPanel>
-                <Image Style="{StaticResource Logo}" />
+                <Image Style="{StaticResource Logo}" Source="/Cloney;component/Resources/Images/logo_sml.png" />
 
                 <Label Style="{StaticResource Title}" Content="{x:Static Resources:Language.Title}" />
 
                 <Label Style="{StaticResource TitleDescription}" Content="{x:Static Resources:Language.TitleDescription}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="sourceFolderSelector" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="sourceFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
                 </Border>
                 
                 <Image Style="{StaticResource Arrow}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="targetFolderSelector" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="targetFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
                 </Border>
 
                 <Image Style="{StaticResource Arrow}" />
                 
                 <Border Style="{StaticResource Box}">
-                    <Button Name="btnClone" IsEnabled="False" Content="{x:Static Resources:Language.Clone}" Click="btnClone_Click" />
+                    <Button Name="btnClone" IsEnabled="False" FontSize="15" Content="{x:Static Resources:Language.Clone}" Click="btnClone_Click" />
                 </Border>
             </StackPanel>
         </Border>

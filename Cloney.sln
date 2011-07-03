@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloney.Domain.Tests", "Clon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloney", "Cloney\Cloney.csproj", "{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Cloney.Setup", "Cloney.Setup\Cloney.Setup.vdproj", "{45F1EC3F-F800-4115-A665-F6DE55B315CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,18 @@ Global
 		{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}.Release|x86.ActiveCfg = Release|x86
 		{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}.Release|x86.Build.0 = Release|x86
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|Any CPU.ActiveCfg = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|Any CPU.Build.0 = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|Mixed Platforms.Build.0 = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|x86.ActiveCfg = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Debug|x86.Build.0 = Debug
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|Any CPU.ActiveCfg = Release
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|Any CPU.Build.0 = Release
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|Mixed Platforms.ActiveCfg = Release
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|Mixed Platforms.Build.0 = Release
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|x86.ActiveCfg = Release
+		{45F1EC3F-F800-4115-A665-F6DE55B315CE}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -50,7 +50,8 @@ namespace Cloney.Controls
         public void Initialize(ICanExtractNamespace namespaceExtractor, string initialFolderPath)
         {
             NamespaceExtractor = namespaceExtractor;
-            Path = initialFolderPath;
+            try { Path = initialFolderPath; }
+            catch {}
             btnSelect.IsEnabled = NamespaceExtractor != null;
         }
 
