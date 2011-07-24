@@ -7,8 +7,9 @@
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;bin&lt;/string&gt;
   &lt;string&gt;obj&lt;/string&gt;
-  &lt;string&gt;_Resharper*&lt;/string&gt;
   &lt;string&gt;.git&lt;/string&gt;
+  &lt;string&gt;.svn&lt;/string&gt;
+  &lt;string&gt;_Resharper*&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="ExcludeFilePatterns" Type="System.Collections.Specialized.StringCollection" Scope="Application">

@@ -29,8 +29,9 @@ namespace Cloney.Properties {
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>bin</string>
   <string>obj</string>
-  <string>_Resharper*</string>
   <string>.git</string>
+  <string>.svn</string>
+  <string>_Resharper*</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection ExcludeFolderPatterns {
             get {
