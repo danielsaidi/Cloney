@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
+using Cloney.Core;
+using Cloney.Core.Abstractions;
 using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
 using Cloney.Core.Extensions;
@@ -12,7 +14,10 @@ namespace Cloney.Wizard
     /// </summary>
     public partial class MainWindow
     {
+        private readonly ISettings coreSettings;
+        private readonly ICanExtractNamespace folderNamespaceExtractor;
         private readonly ICanCloneSolution solutionCloner;
+        private readonly ICanExtractNamespace solutionFileNamespaceExtractor;
         private readonly DispatcherTimer refreshTimer;
 
 
@@ -20,9 +25,10 @@ namespace Cloney.Wizard
         {
             InitializeComponent();
 
-            var settings = Properties.Settings.Default;
-
-            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(settings.ExcludeFolderPatterns.AsEnumerable(), settings.ExcludeFilePatterns.AsEnumerable(), settings.PlainCopyFilePatterns.AsEnumerable()));
+            coreSettings = new SettingsFacade();
+            folderNamespaceExtractor = new FolderNamespaceExtractor();
+            solutionFileNamespaceExtractor = new SolutionFileNamespaceExtractor();
+            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(coreSettings.ExcludeFolderPatterns.AsEnumerable(), coreSettings.ExcludeFilePatterns.AsEnumerable(), coreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
 
             refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
@@ -30,9 +36,10 @@ namespace Cloney.Wizard
             refreshTimer.IsEnabled = true;
             refreshTimer.Start();
 
-            sourceFolderSelector.Initialize(new SolutionFileNamespaceExtractor(), LastSourcePath);
-            targetFolderSelector.Initialize(new FolderNamespaceExtractor(), LastTargetPath);
+            sourceFolderSelector.Initialize(solutionFileNamespaceExtractor, LastSourcePath);
+            targetFolderSelector.Initialize(folderNamespaceExtractor, LastTargetPath);
         }
+
 
 
         public bool CanInstall

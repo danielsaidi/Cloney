@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Threading;
+using Cloney.Wizard.Resources;
 
 namespace Cloney.Wizard
 {
@@ -12,8 +13,8 @@ namespace Cloney.Wizard
 
         static void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            var errorMessage = string.Format("An unhandled exception occurred: {0}", e.Exception.Message);
-            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            var errorMessage = string.Format(Language.UnhandledExceptionPattern, e.Exception.Message);
+            MessageBox.Show(errorMessage, Language.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
         }
     }

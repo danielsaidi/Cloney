@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 
 namespace Cloney.Core.CommandLine.Abstractions
 {
-    interface ICanParseArguments
+    public interface ICanParseArguments
     {
         StringDictionary ParseArguments(IEnumerable<string> args);
     }

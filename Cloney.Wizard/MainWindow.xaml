@@ -31,7 +31,7 @@
         
         
         <StatusBar>
-            <StatusBarItem Name="lblCurrentPath">{CurrentPath}</StatusBarItem>
+            <StatusBarItem Name="lblCurrentPath"></StatusBarItem>
         </StatusBar>
     </DockPanel>
 </Window>

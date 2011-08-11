@@ -1,0 +1,35 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Cloney.Core.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ExcludeFolderPatterns" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;bin&lt;/string&gt;
+  &lt;string&gt;obj&lt;/string&gt;
+  &lt;string&gt;.git&lt;/string&gt;
+  &lt;string&gt;.svn&lt;/string&gt;
+  &lt;string&gt;_Resharper*&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ExcludeFilePatterns" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;*.suo&lt;/string&gt;
+  &lt;string&gt;*.user&lt;/string&gt;
+  &lt;string&gt;*.vssscc&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="PlainCopyFilePatterns" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;*.dll&lt;/string&gt;
+  &lt;string&gt;*.exe&lt;/string&gt;
+  &lt;string&gt;*.gif&lt;/string&gt;
+  &lt;string&gt;*.jpg&lt;/string&gt;
+  &lt;string&gt;*.png&lt;/string&gt;
+  &lt;string&gt;*.zip&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

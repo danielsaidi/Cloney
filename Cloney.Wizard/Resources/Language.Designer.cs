@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Cloney.Wizard.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -85,6 +88,15 @@ namespace Cloney.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder:.
         /// </summary>
         public static string Folder {
@@ -126,6 +138,15 @@ namespace Cloney.Wizard.Resources {
         public static string TitleDescription {
             get {
                 return ResourceManager.GetString("TitleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception occured: {0}.
+        /// </summary>
+        public static string UnhandledExceptionPattern {
+            get {
+                return ResourceManager.GetString("UnhandledExceptionPattern", resourceCulture);
             }
         }
     }

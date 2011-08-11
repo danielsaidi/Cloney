@@ -141,4 +141,10 @@
   <data name="TitleDescription" xml:space="preserve">
     <value>Just select a source and a target folder, then press "clone":</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="UnhandledExceptionPattern" xml:space="preserve">
+    <value>An unhandled exception occured: {0}</value>
+  </data>
 </root>

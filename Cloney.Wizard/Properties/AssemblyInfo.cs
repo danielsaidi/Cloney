@@ -5,8 +5,8 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cloney.Core.Tests")]
-[assembly: AssemblyDescription("Unit tests for Cloney.Core")]
+[assembly: AssemblyTitle("Cloney.Wizard")]
+[assembly: AssemblyDescription("Graphical Cloney GUI application        ")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
 
