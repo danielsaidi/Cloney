@@ -2,20 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C461DC76-BB7B-47CC-8690-99E22E6A9C10}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cloney</RootNamespace>
-    <AssemblyName>Cloney</AssemblyName>
+    <RootNamespace>Cloney.Core</RootNamespace>
+    <AssemblyName>Cloney.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,8 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="..\Resources\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Cloning\Abstractions\ICanReplaceNamespace.cs" />
+    <Compile Include="Cloning\Abstractions\ICanCloneSolution.cs" />
+    <Compile Include="Cloning\Abstractions\ICanExtractNamespace.cs" />
+    <Compile Include="Cloning\SolutionFileNamespaceExtractor.cs" />
+    <Compile Include="Cloning\NamespaceReplacer.cs" />
+    <Compile Include="Cloning\OldSolutionCloner.cs" />
+    <Compile Include="Cloning\FolderNamespaceExtractor.cs" />
+    <Compile Include="Cloning\SolutionCloner.cs" />
+    <Compile Include="Cloning\ThreadedSolutionCloner.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\StringCollectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="IO\NativePatternMatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IO\Abstractions\ICanMatchPathPattern.cs" />
+    <Compile Include="IO\PathPatternMatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
