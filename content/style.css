@@ -1,0 +1,89 @@
+body
+{
+	font-size: 0.625em;
+	color: white;
+	font-family: helvetica,verdana,arial;
+	background-color: black;
+	background-image: url(img/bg.png);
+	background-repeat: repeat-x; margin:0px;
+}
+
+a { color: white; }
+h1 { display: none; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 1.6em; line-height: 1.4em; }
+h2,h3 { font-weight: normal; }
+h2, h3, #footer { text-shadow: rgba(0, 0, 0, 0.6) 0px 2px 2px; }
+h2 b, h3 b, #footer b { font-size: 0.95em; }
+h2 + img { margin: 15px 0;}
+
+#main
+{
+	width: 525px;
+	margin: 0 auto;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-image: url(img/bg_glow.png);
+}
+
+#header { padding-top: 50px; }
+
+
+.button
+{
+   margin: 20px 0px 40px 0px;
+   width: 346px; 
+   border: 1px solid #157275;
+   
+   color: #ffffff;
+   padding:  6px 0;
+   display: inline-block;
+   text-decoration: none;
+   
+   font-size: 2.0em;
+   text-shadow: rgba(0, 0, 0, 0.6) 0px -1px -1px;
+   
+   border-radius: 6px;
+   -moz-border-radius: 6px;
+   -webkit-border-radius: 6px;
+   
+   box-shadow: inset 0px 1px 0px 0px #54b6b9;
+   -moz-box-shadow: inset 0px 1px 0px 0px #54b6b9;
+   -webkit-box-shadow: inset 0px 1px 0px 0px #54b6b9;
+
+   background-color: #1a9ca0;
+   background: -moz-linear-gradient( center top, #1a9ca0 5%, #157275 100% );
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a9ca0', endColorstr='#157275');
+   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1a9ca0), color-stop(1, #157275) );
+}
+
+.button:hover
+{
+   background-color: #157275;
+   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #157275), color-stop(1, #1a9ca0) );
+   background: -moz-linear-gradient( center top, #157275 5%, #1a9ca0 100% );
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#157275', endColorstr='#1a9ca0');
+}
+
+.button:hover,
+.button:focus
+{
+  outline:  0 none;
+  border: 1px solid #258285;
+  box-shadow:  0px 0px 7px rgba(255, 255, 255, 0.5);  
+  -moz-box-shadow:  0px 0px 7px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow:  0px 0px 7px rgba(255, 255, 255, 0.5);  
+}
+
+.button:active { margin-top: 23px; }
+
+.likes { margin-left:75px; }
+.likes > div { float:left; }
+.likes > div.twitter { margin-right:20px; }
+.likes + div { clear:both; }
+form { position:relative; display:inline-block; }
+form > div { top:-11px; position:absolute; left:-80px; }
+
+.license { margin-top:30px }
+.copyright { margin:30px 0; }
