@@ -2,17 +2,35 @@ Cloney
 ======
 
 Cloney is a Windows application that lets you clone .NET
-solutions with a few clicks. 
+solutions in no time, with just a few clicks. It is also
+possible to use Cloney as a console application. 
 
 Cloney copies all files and folders from a source folder
-to a a target folder and replaces the old namespace with
-the new one. It ignores some folders and files (e.g. git
-and svn) and leaves you with a solution, without a trace
-of unwanted old stuff.
+to a a target folder. When doing so, it will replace the
+old namespace with the new one and ignore some files and
+folders that should not be cloned (like git, tfs and svn
+files and folders).
 
-To use Cloney, just select a source folder that contains
-the original solution, a target folder to which it is to
-be cloned, then click a button and you're done.
+Cloney leaves you with a clones solution that is free of
+any old, unwanted old stuff.
+
+
+How to use Cloney
+=================
+
+When you execute Cloney.exe without any arguments, it is
+started as a GUI application. If so, select a source and
+a target folder, press "Clone" and you are done.
+
+However, if you execute Cloney.exe from the console, and
+with arguments, Cloney launches as a console application.
+Launch it as such:
+
+> Cloney.exe --source xxxxx --target yyyyy
+
+For now, the console app is a nice-to-have feature, that
+I have not put that much effort in. It could be extended
+quite a lot.
 
 
 Contact & downloads
@@ -23,7 +41,7 @@ at the GitHub page; http://github.com/danielsaidi/cloney
 
 If you want to provide me with feedback or if you have a
 lot of coool ideas, contact me at daniel.saidi@gmail.com
-or visit http://cloney.saidi.se
+or visit the site - http://danielsaidi.github.com/Cloney
 
 
 License
