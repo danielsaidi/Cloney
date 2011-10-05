@@ -6,9 +6,11 @@ using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
 using Cloney.Core.CommandLine;
 using Cloney.Core.CommandLine.Abstractions;
-using Cloney.Core.Diagnostics;
-using Cloney.Core.Diagnostics.Abstractions;
 using Cloney.Core.Extensions;
+using NExtra;
+using NExtra.Abstractions;
+using NExtra.Diagnostics;
+using NExtra.Diagnostics.Abstractions;
 
 namespace Cloney
 {
@@ -30,46 +32,14 @@ namespace Cloney
             try
             {
                 Initialize();
-                var arguments = argumentParser.ParseArguments(args);
-                HandleWizard(arguments);
-                Start(arguments);
+                Start(argumentParser.ParseArguments(args));
             }
             catch (Exception e)
             {
-                console.Write(String.Format("Error: {0}", e.Message));
+                console.Write(String.Format(Resources.MainErrorExpression, e.Message));
             }
         }
 
-
-        private static void AssertFolderArgument(StringDictionary arguments, string folderArgument, string folderType)
-        {
-            if (!arguments.ContainsKey(folderArgument) || arguments[folderArgument].Trim().IsNullOrEmpty())
-                throw new ArgumentException(String.Format("Use --{0} <path> to specify a {1} folder", folderArgument, folderType));
-        }
-
-        private static void AssertNamespace(string @namespace, string folderType)
-        {
-            if (@namespace.IsNullOrEmpty())
-                throw new ArgumentException(String.Format("The {0} folder does not contain a solution file", folderType));
-        }
-
-        private static void HandleCurrentPath()
-        {
-            if (solutionCloner.CurrentPath == currentPath)
-                return;
-
-            currentPath = solutionCloner.CurrentPath;
-            console.WriteLine(currentPath);
-        }
-
-        private static void HandleWizard(StringDictionary arguments)
-        {
-            if (arguments.Count > 0)
-                return;
-
-            console.WriteLine("Starting the Cloney Wizard...");
-            process.Start("Cloney.Wizard.exe");
-        }
 
         private static void Initialize()
         {
@@ -78,33 +48,66 @@ namespace Cloney
             coreSettings = new SettingsFacade();
             folderNamespaceExtractor = new FolderNamespaceExtractor();
             process = new ProcessFacade();
+
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(coreSettings.ExcludeFolderPatterns.AsEnumerable(), coreSettings.ExcludeFilePatterns.AsEnumerable(), coreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningBegun += solutionCloner_CloningBegun;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+
             solutionNamespaceExtractor = new SolutionFileNamespaceExtractor();
         }
 
         private static void Start(StringDictionary arguments)
         {
-            if (arguments.Count == 0)
+            if (StartWizard(arguments))
                 return;
 
-            AssertFolderArgument(arguments, ArgumentConstants.SourceFolder, "source");
-            AssertFolderArgument(arguments, ArgumentConstants.TargetFolder, "target");
+            ValidateFolderArgument(arguments, Resources.SourceFolderArgumentKey, Resources.Source);
+            ValidateFolderArgument(arguments, Resources.TargetFolderArgumentKey, Resources.Target);
 
-            var sourceFolder = arguments[ArgumentConstants.SourceFolder];
-            var targetFolder = arguments[ArgumentConstants.TargetFolder];
+            var sourceFolder = arguments[Resources.SourceFolderArgumentKey];
+            var targetFolder = arguments[Resources.TargetFolderArgumentKey];
             var sourceNamespace = solutionNamespaceExtractor.ExtractNamespace(sourceFolder);
             var targetNamespace = folderNamespaceExtractor.ExtractNamespace(targetFolder);
 
-            AssertNamespace(sourceNamespace, "source");
-            AssertNamespace(targetNamespace, "target");
+            ValidateNamespace(sourceNamespace, Resources.Source);
+            ValidateNamespace(targetNamespace, Resources.Target);
 
             solutionCloner.CloneSolution(sourceFolder, sourceNamespace, targetFolder, targetNamespace);
 
             cloningInProgress = true;
             while (cloningInProgress)
-                HandleCurrentPath();
+                UpdateCurrentPath();
+        }
+
+        private static bool StartWizard(StringDictionary arguments)
+        {
+            if (arguments.Count > 0)
+                return false;
+
+            console.WriteLine(Resources.StartingWizardMessage);
+            process.Start(Resources.WizardExecutable);
+            return true;
+        }
+
+        private static void UpdateCurrentPath()
+        {
+            if (solutionCloner.CurrentPath == currentPath)
+                return;
+
+            currentPath = solutionCloner.CurrentPath;
+            console.WriteLine(currentPath);
+        }
+
+        private static void ValidateFolderArgument(StringDictionary arguments, string folderArgument, string folderType)
+        {
+            if (!arguments.ContainsKey(folderArgument) || arguments[folderArgument].Trim().IsNullOrEmpty())
+                throw new ArgumentException(String.Format(Resources.MissingFolderExpression, folderArgument, folderType));
+        }
+
+        private static void ValidateNamespace(string @namespace, string folderType)
+        {
+            if (@namespace.IsNullOrEmpty())
+                throw new ArgumentException(String.Format(Resources.InvalidSolutionFolderExpression, folderType));
         }
 
         static void solutionCloner_CloningBegun(object sender, EventArgs e)

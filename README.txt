@@ -51,4 +51,5 @@ Cloney is released under the MIT License. In short, feel
 free to do whatever you want with it, but also feel free
 to spread the word.
 
-Read more here: http://en.wikipedia.org/wiki/MIT_License
+Check out the License text file for more information, or
+read more here: http://en.wikipedia.org/wiki/MIT_License

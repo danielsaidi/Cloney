@@ -43,7 +43,6 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Abstractions\IConsole.cs" />
     <Compile Include="Abstractions\ISettings.cs" />
     <Compile Include="Cloning\Abstractions\ICanReplaceNamespace.cs" />
     <Compile Include="Cloning\Abstractions\ICanCloneSolution.cs" />
@@ -55,9 +54,6 @@
     <Compile Include="Cloning\ThreadedSolutionCloner.cs" />
     <Compile Include="CommandLine\Abstractions\ICanParseArguments.cs" />
     <Compile Include="CommandLine\ArgumentParser.cs" />
-    <Compile Include="ConsoleFacade.cs" />
-    <Compile Include="Diagnostics\Abstractions\IProcess.cs" />
-    <Compile Include="Diagnostics\ProcessFacade.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\StringCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
