@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using Cloney.Core;
-using Cloney.Core.Abstractions;
 using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
 using Cloney.Core.CommandLine;
 using Cloney.Core.CommandLine.Abstractions;
-using Cloney.Core.Extensions;
 using NExtra;
 using NExtra.Abstractions;
+using NExtra.Extensions;
 using NExtra.Diagnostics;
 using NExtra.Diagnostics.Abstractions;
 
@@ -17,12 +17,14 @@ namespace Cloney
     class Program
     {
         private static ICanParseArguments argumentParser;
+        private static IArgumentValidator argumentValidator;
+        private static StringDictionary arguments;
         private static bool cloningInProgress;
         private static IConsole console;
         private static string currentPath;
         private static ICanExtractNamespace folderNamespaceExtractor;
+        private static INamespaceArgumentValidator namespaceArgumentValidator;
         private static IProcess process;
-        private static ISettings coreSettings;
         private static ICanCloneSolution solutionCloner;
         private static ICanExtractNamespace solutionNamespaceExtractor;
 
@@ -31,8 +33,8 @@ namespace Cloney
         {
             try
             {
-                Initialize();
-                Start(argumentParser.ParseArguments(args));
+                Initialize(args);
+                Start();
             }
             catch (Exception e)
             {
@@ -41,36 +43,36 @@ namespace Cloney
         }
 
 
-        private static void Initialize()
+        private static void Initialize(IEnumerable<string> args)
         {
             argumentParser = new ArgumentParser();
+            argumentValidator = new RequiredArgumentValidator();
+            arguments = argumentParser.ParseArguments(args);
             console = new ConsoleFacade();
-            coreSettings = new SettingsFacade();
             folderNamespaceExtractor = new FolderNamespaceExtractor();
             process = new ProcessFacade();
-
-            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(coreSettings.ExcludeFolderPatterns.AsEnumerable(), coreSettings.ExcludeFilePatterns.AsEnumerable(), coreSettings.PlainCopyFilePatterns.AsEnumerable()));
+            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningBegun += solutionCloner_CloningBegun;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
-
             solutionNamespaceExtractor = new SolutionFileNamespaceExtractor();
         }
 
-        private static void Start(StringDictionary arguments)
+        private static void Start()
         {
-            if (StartWizard(arguments))
+            if (StartWizard())
                 return;
 
-            ValidateFolderArgument(arguments, Resources.SourceFolderArgumentKey, Resources.Source);
-            ValidateFolderArgument(arguments, Resources.TargetFolderArgumentKey, Resources.Target);
+            argumentValidator.Validate(arguments, Resources.SourceFolderArgumentKey, "TODO: Create this message");
+            argumentValidator.Validate(arguments, Resources.TargetFolderArgumentKey, "TODO: Create this message");
 
             var sourceFolder = arguments[Resources.SourceFolderArgumentKey];
             var targetFolder = arguments[Resources.TargetFolderArgumentKey];
             var sourceNamespace = solutionNamespaceExtractor.ExtractNamespace(sourceFolder);
             var targetNamespace = folderNamespaceExtractor.ExtractNamespace(targetFolder);
 
-            ValidateNamespace(sourceNamespace, Resources.Source);
-            ValidateNamespace(targetNamespace, Resources.Target);
+            //String.Format(Resources.InvalidSolutionFolderExpression, folderType)
+            namespaceArgumentValidator.Validate(sourceNamespace, "TODO");
+            namespaceArgumentValidator.Validate(targetNamespace, "TODO");
 
             solutionCloner.CloneSolution(sourceFolder, sourceNamespace, targetFolder, targetNamespace);
 
@@ -79,14 +81,10 @@ namespace Cloney
                 UpdateCurrentPath();
         }
 
-        private static bool StartWizard(StringDictionary arguments)
+        private static bool StartWizard()
         {
-            if (arguments.Count > 0)
-                return false;
-
-            console.WriteLine(Resources.StartingWizardMessage);
-            process.Start(Resources.WizardExecutable);
-            return true;
+            var wizard = new WizardApplicationFacade(console, process, arguments, Resources.StartingWizardMessage);
+            return wizard.Start();
         }
 
         private static void UpdateCurrentPath()
@@ -98,17 +96,6 @@ namespace Cloney
             console.WriteLine(currentPath);
         }
 
-        private static void ValidateFolderArgument(StringDictionary arguments, string folderArgument, string folderType)
-        {
-            if (!arguments.ContainsKey(folderArgument) || arguments[folderArgument].Trim().IsNullOrEmpty())
-                throw new ArgumentException(String.Format(Resources.MissingFolderExpression, folderArgument, folderType));
-        }
-
-        private static void ValidateNamespace(string @namespace, string folderType)
-        {
-            if (@namespace.IsNullOrEmpty())
-                throw new ArgumentException(String.Format(Resources.InvalidSolutionFolderExpression, folderType));
-        }
 
         static void solutionCloner_CloningBegun(object sender, EventArgs e)
         {

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
-using Cloney.Core.Abstractions;
 using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
 using Cloney.Core.Extensions;
@@ -14,7 +13,6 @@ namespace Cloney.Wizard
     /// </summary>
     public partial class MainWindow
     {
-        private readonly ISettings coreSettings;
         private readonly ICanExtractNamespace folderNamespaceExtractor;
         private readonly ICanCloneSolution solutionCloner;
         private readonly ICanExtractNamespace solutionFileNamespaceExtractor;
@@ -25,10 +23,9 @@ namespace Cloney.Wizard
         {
             InitializeComponent();
 
-            coreSettings = new SettingsFacade();
             folderNamespaceExtractor = new FolderNamespaceExtractor();
             solutionFileNamespaceExtractor = new SolutionFileNamespaceExtractor();
-            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(coreSettings.ExcludeFolderPatterns.AsEnumerable(), coreSettings.ExcludeFilePatterns.AsEnumerable(), coreSettings.PlainCopyFilePatterns.AsEnumerable()));
+            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
 
             refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };

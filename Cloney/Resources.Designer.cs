@@ -131,14 +131,5 @@ namespace Cloney {
                 return ResourceManager.GetString("TargetFolderArgumentKey", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cloney.exe.
-        /// </summary>
-        internal static string WizardExecutable {
-            get {
-                return ResourceManager.GetString("WizardExecutable", resourceCulture);
-            }
-        }
     }
 }

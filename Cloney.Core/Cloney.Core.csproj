@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NExtra">
+      <HintPath>..\packages\NExtra.2.4.0.0\NExtra.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,7 +46,6 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Abstractions\ISettings.cs" />
     <Compile Include="Cloning\Abstractions\ICanReplaceNamespace.cs" />
     <Compile Include="Cloning\Abstractions\ICanCloneSolution.cs" />
     <Compile Include="Cloning\Abstractions\ICanExtractNamespace.cs" />
@@ -52,11 +54,16 @@
     <Compile Include="Cloning\FolderNamespaceExtractor.cs" />
     <Compile Include="Cloning\SolutionCloner.cs" />
     <Compile Include="Cloning\ThreadedSolutionCloner.cs" />
+    <Compile Include="CommandLine\Abstractions\INamespaceArgumentValidator.cs" />
+    <Compile Include="CommandLine\Abstractions\IArgumentValidator.cs" />
     <Compile Include="CommandLine\Abstractions\ICanParseArguments.cs" />
+    <Compile Include="CommandLine\Abstractions\IWizardApplication.cs" />
     <Compile Include="CommandLine\ArgumentParser.cs" />
+    <Compile Include="CommandLine\RequiredNamespaceArgumentValidator.cs" />
+    <Compile Include="CommandLine\RequiredArgumentValidator.cs" />
+    <Compile Include="CommandLine\WizardApplicationFacade.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\StringCollectionExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Facades\FacadeBase.cs" />
     <Compile Include="IO\NativePatternMatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,7 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFacade.cs" />
+    <Compile Include="CoreSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -76,6 +83,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

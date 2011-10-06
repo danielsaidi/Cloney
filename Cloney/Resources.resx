@@ -141,7 +141,4 @@
   <data name="TargetFolderArgumentKey" xml:space="preserve">
     <value>target</value>
   </data>
-  <data name="WizardExecutable" xml:space="preserve">
-    <value>Cloney.exe</value>
-  </data>
 </root>
