@@ -5,6 +5,7 @@ using NExtra.Extensions;
 
 namespace Cloney.Core.CommandLine
 {
+    //TODO:Test
     public class FolderNamespaceRetriever : IFolderNamespaceRetriever
     {
         public string GetFolderNamespace(ICanExtractNamespace namespaceExtractor, string folderPath, string errorMessagePattern)

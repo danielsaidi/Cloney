@@ -5,6 +5,7 @@ using NExtra.Extensions;
 
 namespace Cloney.Core.CommandLine
 {
+    //TODO:Test
     public class FolderArgumentRetriever : IFolderArgumentRetriever
     {
         public string GetFolderArgumentValue(IDictionary<string, string> applicationArguments, string folderArgumentName, string folderDisplayName, string errorMessagePattern)
@@ -23,7 +24,7 @@ namespace Cloney.Core.CommandLine
                 throw new ArgumentException(errorMessage);
             }
 
-            return result;
+            return result.Replace("/", "\\");
         }
     }
 }

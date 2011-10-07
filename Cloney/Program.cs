@@ -41,6 +41,7 @@ namespace Cloney
             }
         }
 
+
         private static void Initialize(IEnumerable<string> args)
         {
             argumentParser = new CommandLineArgumentParser();
