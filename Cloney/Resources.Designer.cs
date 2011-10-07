@@ -61,11 +61,29 @@ namespace Cloney {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use --{0}:&lt;path&gt; to specify a {1} folder.
+        /// </summary>
+        internal static string FolderArgumentErrorMessage {
+            get {
+                return ResourceManager.GetString("FolderArgumentErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} folder does not contain a solution file.
         /// </summary>
         internal static string InvalidSolutionFolderExpression {
             get {
                 return ResourceManager.GetString("InvalidSolutionFolderExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} folder does not exist.
+        /// </summary>
+        internal static string InvalidTargetFolderExpression {
+            get {
+                return ResourceManager.GetString("InvalidTargetFolderExpression", resourceCulture);
             }
         }
         
@@ -79,29 +97,20 @@ namespace Cloney {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use --{0} &lt;path&gt; to specify a {1} folder.
+        ///   Looks up a localized string similar to source.
         /// </summary>
-        internal static string MissingFolderExpression {
+        internal static string SourceFolderArgumentName {
             get {
-                return ResourceManager.GetString("MissingFolderExpression", resourceCulture);
+                return ResourceManager.GetString("SourceFolderArgumentName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to source.
         /// </summary>
-        internal static string Source {
+        internal static string SourceFolderDisplayName {
             get {
-                return ResourceManager.GetString("Source", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to source.
-        /// </summary>
-        internal static string SourceFolderArgumentKey {
-            get {
-                return ResourceManager.GetString("SourceFolderArgumentKey", resourceCulture);
+                return ResourceManager.GetString("SourceFolderDisplayName", resourceCulture);
             }
         }
         
@@ -117,18 +126,27 @@ namespace Cloney {
         /// <summary>
         ///   Looks up a localized string similar to target.
         /// </summary>
-        internal static string Target {
+        internal static string TargetFolderArgumentName {
             get {
-                return ResourceManager.GetString("Target", resourceCulture);
+                return ResourceManager.GetString("TargetFolderArgumentName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to target.
         /// </summary>
-        internal static string TargetFolderArgumentKey {
+        internal static string TargetFolderDisplayName {
             get {
-                return ResourceManager.GetString("TargetFolderArgumentKey", resourceCulture);
+                return ResourceManager.GetString("TargetFolderDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloney.Wizard.exe.
+        /// </summary>
+        internal static string WizardExecutable {
+            get {
+                return ResourceManager.GetString("WizardExecutable", resourceCulture);
             }
         }
     }

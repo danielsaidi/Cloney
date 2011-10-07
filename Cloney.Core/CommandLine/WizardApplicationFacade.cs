@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using Cloney.Core.CommandLine.Abstractions;
 using NExtra.Abstractions;
 using NExtra.Diagnostics.Abstractions;
@@ -9,23 +9,20 @@ namespace Cloney.Core.CommandLine
     {
         private readonly IConsole console;
         private readonly IProcess process;
-        private readonly StringDictionary startingArguments;
+        private readonly string executable;
+        private readonly IDictionary<string, string> startingArguments;
         private readonly string startingMessage;
 
 
-        public WizardApplicationFacade(IConsole console, IProcess process, StringDictionary startingArguments, string startingMessage)
+        public WizardApplicationFacade(IConsole console, IProcess process, string executable, IDictionary<string,string> startingArguments, string startingMessage)
         {
             this.console = console;
             this.process = process;
+            this.executable = executable;
             this.startingArguments = startingArguments;
             this.startingMessage = startingMessage;
         }
 
-
-        public string Executable
-        {
-            get { return "Cloney.Wizard.exe"; }
-        }
 
         public bool ShouldStart
         {
@@ -39,7 +36,7 @@ namespace Cloney.Core.CommandLine
                 return false;
 
             console.WriteLine(startingMessage);
-            process.Start(Executable);
+            process.Start(executable);
             return true;
         }
     }

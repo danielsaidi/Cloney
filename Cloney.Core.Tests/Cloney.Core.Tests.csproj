@@ -56,15 +56,11 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CommandLine\RequiredNamespaceArgumentValidatorBehavior.cs" />
-    <Compile Include="CommandLine\RequiredArgumentValidatorBehavior.cs" />
     <Compile Include="CommandLine\WizardApplicationConsoleFacadeBehavior.cs" />
     <Compile Include="Cloning\FolderNamespaceExtractorBehavior.cs" />
     <Compile Include="Cloning\NamespaceReplacerBehavior.cs" />
     <Compile Include="Cloning\SolutionClonerBehavior.cs" />
     <Compile Include="Cloning\ThreadedSolutionClonerBehavior.cs" />
-    <Compile Include="Extensions\IEnumerableExtensionsBehavior.cs" />
-    <Compile Include="Extensions\StringCollectionExtensionsBehavior.cs" />
     <Compile Include="Facades\FacadeBaseBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />

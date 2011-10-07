@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.Extensions;
 using Cloney.Core.IO;
 using Cloney.Core.IO.Abstractions;
+using NExtra.Extensions;
 
 namespace Cloney.Core.Cloning
 {

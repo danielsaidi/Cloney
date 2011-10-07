@@ -1,5 +1,9 @@
-*/obj
-*/bin
+_ReSharper*
+*.ReSharper.user
 
-*ReSharper*
+*.user
 *.suo
+
+**/.git
+**/bin
+**/obj

@@ -4,7 +4,7 @@ using System.Windows.Threading;
 using Cloney.Core;
 using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.Extensions;
+using NExtra.Extensions;
 
 namespace Cloney.Wizard
 {

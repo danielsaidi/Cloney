@@ -117,28 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FolderArgumentErrorMessage" xml:space="preserve">
+    <value>Use --{0}:&lt;path&gt; to specify a {1} folder</value>
+  </data>
   <data name="InvalidSolutionFolderExpression" xml:space="preserve">
     <value>The {0} folder does not contain a solution file</value>
+  </data>
+  <data name="InvalidTargetFolderExpression" xml:space="preserve">
+    <value>The {0} folder does not exist</value>
   </data>
   <data name="MainErrorExpression" xml:space="preserve">
     <value>Error: {0}</value>
   </data>
-  <data name="MissingFolderExpression" xml:space="preserve">
-    <value>Use --{0} &lt;path&gt; to specify a {1} folder</value>
-  </data>
-  <data name="Source" xml:space="preserve">
+  <data name="SourceFolderArgumentName" xml:space="preserve">
     <value>source</value>
   </data>
-  <data name="SourceFolderArgumentKey" xml:space="preserve">
+  <data name="SourceFolderDisplayName" xml:space="preserve">
     <value>source</value>
   </data>
   <data name="StartingWizardMessage" xml:space="preserve">
     <value>Starting the Cloney wizard...</value>
   </data>
-  <data name="Target" xml:space="preserve">
+  <data name="TargetFolderArgumentName" xml:space="preserve">
     <value>target</value>
   </data>
-  <data name="TargetFolderArgumentKey" xml:space="preserve">
+  <data name="TargetFolderDisplayName" xml:space="preserve">
     <value>target</value>
+  </data>
+  <data name="WizardExecutable" xml:space="preserve">
+    <value>Cloney.Wizard.exe</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿using System;
 using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.Extensions;
+using NExtra.Extensions;
 
 namespace Cloney.Core.Cloning
 {

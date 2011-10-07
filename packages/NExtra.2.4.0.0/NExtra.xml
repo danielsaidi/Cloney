@@ -672,11 +672,11 @@
             This class is a generic version of the native System.EventArgs.
             It embeds an object that can be accessed within a raised event.
             </summary>
-            <typeparam name="T">The type to embed.</typeparam>
             <remarks>
             Author:     Daniel Saidi [daniel.saidi@gmail.com]
             Link:       http://www.saidi.se/nextra
             </remarks>
+            <typeparam name="T">The type to embed.</typeparam>
         </member>
         <member name="M:NExtra.EventArgs`1.#ctor(`0)">
             <summary>
@@ -1186,10 +1186,11 @@
             <summary>
              Add a range of items to a dictionary.
             </summary>
-            <param name="dictionary">The dictionary to add the range to.</param>
-            <param name="range">The range of items to add.</param>
-            <typeparam name="T">The key type.</typeparam>
-            <typeparam name="K">The value type.</typeparam>
+        </member>
+        <member name="M:NExtra.Extensions.IDictionaryExtensions.Get``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Retrieve a value from the dictionary.
+            </summary>
         </member>
         <member name="T:NExtra.ValidationAttributes.UrlAttribute">
             <summary>
@@ -1958,271 +1959,79 @@
         </member>
         <member name="T:NExtra.Abstractions.IConsole">
             <summary>
-            This interface can be implemented by classes that
-            provides console services.
+             This interface can be implemented by classes
+             that can be used to work towards the Console.
             </summary>
-            <remarks>
-            Author:     Daniel Saidi [daniel.saidi@gmail.com]
-            Link:       http://www.saidi.se/nextra
-            </remarks>
-        </member>
-        <member name="M:NExtra.Abstractions.IConsole.Write(System.String)">
-            <summary>
-            Write a string.
-            </summary>
-            <param name="value">The string to write.</param>
-        </member>
-        <member name="M:NExtra.Abstractions.IConsole.WriteLine(System.String)">
-            <summary>
-            Write a string to a new line.
-            </summary>
-            <param name="value">The string to write.</param>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
         </member>
         <member name="T:NExtra.ConsoleFacade">
             <summary>
-            This class can be used as a facade for the static
-            Console class.
+            This class can be used as a facade for the static Console class.
             </summary>
             <remarks>
             Author:     Daniel Saidi [daniel.saidi@gmail.com]
             Link:       http://www.saidi.se/nextra
             </remarks>
-        </member>
-        <member name="M:NExtra.ConsoleFacade.Write(System.String)">
-            <summary>
-            Write to the Console.
-            </summary>
-            <param name="value">Thee string to write.</param>
-        </member>
-        <member name="M:NExtra.ConsoleFacade.WriteLine(System.String)">
-            <summary>
-            Write a line to the Console.
-            </summary>
-            <param name="value">The string to write.</param>
         </member>
         <member name="T:NExtra.Diagnostics.Abstractions.IProcess">
             <summary>
-            This interface can be implemented by classes that
-            provides process services.
+             This interface can be implemented by classes
+             that can be used to work towards the Console.
             </summary>
-            <remarks>
-            Author:     Daniel Saidi [daniel.saidi@gmail.com]
-            Link:       http://www.saidi.se/nextra
-            </remarks>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.EnterDebugMode">
-            <summary>
-            Enter debug mode.
-            </summary>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetCurrentProcess">
-            <summary>
-            Get the currently running process.
-            </summary>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcessById(System.Int32)">
-            <summary>
-            Get a certain process by ID.
-            </summary>
-            <param name="processId">The ID of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcessById(System.Int32,System.String)">
-            <summary>
-            Get a certain process by ID from a computer on the network.
-            </summary>
-            <param name="processId">The ID of interest.</param>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcesses">
-            <summary>
-            Get all process recources from the local computer.
-            </summary>
-            <returns>Process instances.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcesses(System.String)">
-            <summary>
-            Get all process recources from a computer on the network.
-            </summary>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instances.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcessesByName(System.String)">
-            <summary>
-            Get a certain process by name from the local computer.
-            </summary>
-            <param name="processName">The name of the process of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.GetProcessesByName(System.String,System.String)">
-            <summary>
-            Get a certain process by name from the local computer.
-            </summary>
-            <param name="processName">The name of the process of interest.</param>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.LeaveDebugMode">
-            <summary>
-            Leave debug mode.
-            </summary>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.Start(System.Diagnostics.ProcessStartInfo)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="startInfo">Process start info.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.Start(System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.Start(System.String,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="arguments">Process arguments.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.Start(System.String,System.String,System.String,System.Security.SecureString,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="arguments">Process arguments.</param>
-            <param name="userName">The user name to use when starting the process.</param>
-            <param name="password">The password of the process user.</param>
-            <param name="domain">The domain of the process user.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.Abstractions.IProcess.Start(System.String,System.String,System.Security.SecureString,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="userName">The user name to use when starting the process.</param>
-            <param name="password">The password of the process user.</param>
-            <param name="domain">The domain of the process user.</param>
-            <returns>Process instance.</returns>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
         </member>
         <member name="T:NExtra.Diagnostics.ProcessFacade">
             <summary>
-            This class can be used as a facade for the static
-            Process class.
+            This class can be used as a facade for the static Process class.
             </summary>
             <remarks>
             Author:     Daniel Saidi [daniel.saidi@gmail.com]
             Link:       http://www.saidi.se/nextra
             </remarks>
         </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.EnterDebugMode">
+        <member name="T:NExtra.CommandLineArgumentParser">
             <summary>
-            Make Process enter debug mode.
+            This class can be used to parse any arguments that
+            are passed into a command line application. It can
+            be used to parse any argument collection where the
+            argument names follow any of the following formats:
+            
+            /name=Stefan
+            --name=Stefan
+            --name="Multiple words"
+            -name 'Stefan'
             </summary>
+            <remarks>
+            The original implementation, made by Richard Lopes,
+            has been refactored to fit the code conventions of
+            the .NExtra library. It implements an interface so
+            that it can be replaced with other implementations.
+            The original implementation can be found here:
+            http://www.codeproject.com/KB/recipes/command_line.aspx 
+            </remarks>
         </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetCurrentProcess">
+        <member name="T:NExtra.Abstractions.ICommandLineArgumentParser">
             <summary>
-            Get the currently running process.
+             This interface can be implemented by classes
+             that can be used to parse command line args.
             </summary>
-            <returns>Process instance.</returns>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
         </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcessById(System.Int32)">
+        <member name="M:NExtra.CommandLineArgumentParser.ParseCommandLineArguments(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            Get a certain process by ID from the local computer.
+            Parse an argument collection.
             </summary>
-            <param name="processId">The ID of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcessById(System.Int32,System.String)">
-            <summary>
-            Get a certain process by ID from a computer on the network.
-            </summary>
-            <param name="processId">The ID of interest.</param>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcesses">
-            <summary>
-            Get all process recources from the local computer.
-            </summary>
-            <returns>Process instances.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcesses(System.String)">
-            <summary>
-            Get all process recources from a computer on the network.
-            </summary>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instances.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcessesByName(System.String)">
-            <summary>
-            Get a certain process by name from the local computer.
-            </summary>
-            <param name="processName">The name of the process of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.GetProcessesByName(System.String,System.String)">
-            <summary>
-            Get a certain process by name from the local computer.
-            </summary>
-            <param name="processName">The name of the process of interest.</param>
-            <param name="machineName">The name of the computer of interest.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.LeaveDebugMode">
-            <summary>
-            Make Process leave debug mode.
-            </summary>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.Start(System.Diagnostics.ProcessStartInfo)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="startInfo">Process start info.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.Start(System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.Start(System.String,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="arguments">Process arguments.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.Start(System.String,System.String,System.String,System.Security.SecureString,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="arguments">Process arguments.</param>
-            <param name="userName">The user name to use when starting the process.</param>
-            <param name="password">The password of the process user.</param>
-            <param name="domain">The domain of the process user.</param>
-            <returns>Process instance.</returns>
-        </member>
-        <member name="M:NExtra.Diagnostics.ProcessFacade.Start(System.String,System.String,System.Security.SecureString,System.String)">
-            <summary>
-            Start a process.
-            </summary>
-            <param name="fileName">The file name of the process.</param>
-            <param name="userName">The user name to use when starting the process.</param>
-            <param name="password">The password of the process user.</param>
-            <param name="domain">The domain of the process user.</param>
-            <returns>Process instance.</returns>
+            <param name="args">The argument collection to parse.</param>
+            <returns>The resulting argument dictionary.</returns>
         </member>
     </members>
 </doc>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using Cloney.Core;
 using Cloney.Core.Cloning;
 using Cloney.Core.Cloning.Abstractions;
@@ -16,14 +15,14 @@ namespace Cloney
 {
     class Program
     {
-        private static ICanParseArguments argumentParser;
-        private static IArgumentValidator argumentValidator;
-        private static StringDictionary arguments;
+        private static ICommandLineArgumentParser argumentParser;
+        private static IDictionary<string,string> arguments;
         private static bool cloningInProgress;
         private static IConsole console;
         private static string currentPath;
+        private static IFolderArgumentRetriever folderArgumentRetriever;
         private static ICanExtractNamespace folderNamespaceExtractor;
-        private static INamespaceArgumentValidator namespaceArgumentValidator;
+        private static IFolderNamespaceRetriever folderNamespaceRetriever;
         private static IProcess process;
         private static ICanCloneSolution solutionCloner;
         private static ICanExtractNamespace solutionNamespaceExtractor;
@@ -42,14 +41,14 @@ namespace Cloney
             }
         }
 
-
         private static void Initialize(IEnumerable<string> args)
         {
-            argumentParser = new ArgumentParser();
-            argumentValidator = new RequiredArgumentValidator();
-            arguments = argumentParser.ParseArguments(args);
+            argumentParser = new CommandLineArgumentParser();
+            arguments = argumentParser.ParseCommandLineArguments(args);
             console = new ConsoleFacade();
+            folderArgumentRetriever = new FolderArgumentRetriever();
             folderNamespaceExtractor = new FolderNamespaceExtractor();
+            folderNamespaceRetriever = new FolderNamespaceRetriever();
             process = new ProcessFacade();
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningBegun += solutionCloner_CloningBegun;
@@ -62,17 +61,10 @@ namespace Cloney
             if (StartWizard())
                 return;
 
-            argumentValidator.Validate(arguments, Resources.SourceFolderArgumentKey, "TODO: Create this message");
-            argumentValidator.Validate(arguments, Resources.TargetFolderArgumentKey, "TODO: Create this message");
-
-            var sourceFolder = arguments[Resources.SourceFolderArgumentKey];
-            var targetFolder = arguments[Resources.TargetFolderArgumentKey];
-            var sourceNamespace = solutionNamespaceExtractor.ExtractNamespace(sourceFolder);
-            var targetNamespace = folderNamespaceExtractor.ExtractNamespace(targetFolder);
-
-            //String.Format(Resources.InvalidSolutionFolderExpression, folderType)
-            namespaceArgumentValidator.Validate(sourceNamespace, "TODO");
-            namespaceArgumentValidator.Validate(targetNamespace, "TODO");
+            var sourceFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Resources.SourceFolderArgumentName, Resources.SourceFolderDisplayName, Resources.FolderArgumentErrorMessage);
+            var targetFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Resources.TargetFolderArgumentName, Resources.TargetFolderDisplayName, Resources.FolderArgumentErrorMessage);
+            var sourceNamespace = folderNamespaceRetriever.GetFolderNamespace(solutionNamespaceExtractor, sourceFolder, Resources.InvalidSolutionFolderExpression);
+            var targetNamespace = folderNamespaceRetriever.GetFolderNamespace(folderNamespaceExtractor, targetFolder, Resources.InvalidTargetFolderExpression);
 
             solutionCloner.CloneSolution(sourceFolder, sourceNamespace, targetFolder, targetNamespace);
 
@@ -83,7 +75,7 @@ namespace Cloney
 
         private static bool StartWizard()
         {
-            var wizard = new WizardApplicationFacade(console, process, arguments, Resources.StartingWizardMessage);
+            var wizard = new WizardApplicationFacade(console, process, Resources.WizardExecutable, arguments, Resources.StartingWizardMessage);
             return wizard.Start();
         }
 

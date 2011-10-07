@@ -1,5 +1,5 @@
 ﻿using System;
-using Cloney.Core.Extensions;
+using NExtra.Extensions;
 
 namespace Cloney.Core.IO
 {

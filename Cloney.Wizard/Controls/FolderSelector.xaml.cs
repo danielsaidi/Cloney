@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Forms;
 using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.Extensions;
+using NExtra.Extensions;
 
 namespace Cloney.Wizard.Controls
 {

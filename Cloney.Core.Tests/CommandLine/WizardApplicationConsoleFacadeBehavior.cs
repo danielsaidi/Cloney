@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using Cloney.Core.CommandLine;
 using NExtra.Abstractions;
 using NExtra.Diagnostics.Abstractions;
@@ -14,36 +14,25 @@ namespace Cloney.Core.Tests.CommandLine
         private IConsole console;
         private IProcess process;
 
+
         [SetUp]
         public void SetUp()
         {
             console = Substitute.For<IConsole>();
             process = Substitute.For<IProcess>();
 
-            SetUpFacadeWithArguments();
+            obj = new WizardApplicationFacade(console, process, "exe" ,new Dictionary<string, string> { { "foo", "bar" } }, "foo");
         }
 
-        private void SetUpFacadeWithArguments()
-        {
-            obj = new WizardApplicationFacade(console, process, new StringDictionary { { "foo", "bar" } }, "foo");
-        }
         private void SetUpFacadeWithoutArguments()
         {
-            obj = new WizardApplicationFacade(console, process, new StringDictionary(), "foo");
+            obj = new WizardApplicationFacade(console, process, "exe", new Dictionary<string, string>(), "foo");
         }
 
-
-        [Test]
-        public void Executable_ShouldPointToValidExecutable()
-        {
-            Assert.That(obj.Executable, Is.EqualTo("Cloney.Wizard.exe"));
-        }
 
         [Test]
         public void ShouldStart_ShouldReturnFalseForApplicationWithArguments()
         {
-            SetUpFacadeWithArguments();
-
             Assert.That(obj.ShouldStart, Is.False);
         }
 
@@ -75,7 +64,7 @@ namespace Cloney.Core.Tests.CommandLine
 
             Assert.That(result, Is.True);
             console.Received().WriteLine("foo");
-            process.Received().Start(obj.Executable);
+            process.Received().Start("exe");
         }
     }
 }
