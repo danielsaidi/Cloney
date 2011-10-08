@@ -2,35 +2,35 @@ Cloney
 ======
 
 Cloney is a Windows application that lets you clone .NET
-solutions in no time, with just a few clicks. It is also
-possible to use Cloney as a console application. 
+solutions in no time. Cloney can be run as both a wizard
+as well as a GUI application.
 
 Cloney copies all files and folders from a source folder
 to a a target folder. When doing so, it will replace the
-old namespace with the new one and ignore some files and
-folders that should not be cloned (like git, tfs and svn
-files and folders).
+old namespace with the new one. It will also ignore some
+files and folders that should not be cloned (such as git,
+tfs, svn and ReSharper-related files and folders).
 
-Cloney leaves you with a clones solution that is free of
-any old, unwanted old stuff.
+The result of a Cloney clone operation is a new solution
+where the new namespace is applied everywhere, and where
+stuff that strictly belong to the old one is ignored.
 
 
 How to use Cloney
 =================
 
-When you execute Cloney.exe without any arguments, it is
-started as a GUI application. If so, select a source and
-a target folder, press "Clone" and you are done.
+If you execute Cloney.exe without arguments, it launches
+a GUI wizard, that lets you clone solutions by selecting
+a source and a target folder then press a "Clone" button.
 
-However, if you execute Cloney.exe from the console, and
-with arguments, Cloney launches as a console application.
-Launch it as such:
+If you execute Cloney.exe from the command line, you can
+provid eit with arguments to make it launch as a console
+application. For now, two arguments are required:
 
-> Cloney.exe --source xxxxx --target yyyyy
+	> Cloney.exe --source:xxxxx --target:yyyyy
 
-For now, the console app is a nice-to-have feature, that
-I have not put that much effort in. It could be extended
-quite a lot.
+Both the console application and the GUI application can
+be extended quite a lot.
 
 
 Contact & downloads
