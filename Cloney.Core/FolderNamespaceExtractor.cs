@@ -1,8 +1,8 @@
 ﻿using System;
-using Cloney.Core.Cloning.Abstractions;
+using Cloney.Core.Abstractions;
 using NExtra.Extensions;
 
-namespace Cloney.Core.Cloning
+namespace Cloney.Core
 {
     public class FolderNamespaceExtractor : ICanExtractNamespace
     {

@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Cloney.Core.Cloning.Abstractions
+namespace Cloney.Core.Abstractions
 {
     public interface ICanCloneSolution
     {

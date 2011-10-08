@@ -46,31 +46,29 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Cloning\Abstractions\ICanReplaceNamespace.cs" />
-    <Compile Include="Cloning\Abstractions\ICanCloneSolution.cs" />
-    <Compile Include="Cloning\Abstractions\ICanExtractNamespace.cs" />
-    <Compile Include="Cloning\SolutionFileNamespaceExtractor.cs" />
-    <Compile Include="Cloning\NamespaceReplacer.cs" />
-    <Compile Include="Cloning\FolderNamespaceExtractor.cs" />
-    <Compile Include="Cloning\SolutionCloner.cs" />
-    <Compile Include="Cloning\ThreadedSolutionCloner.cs" />
+    <Compile Include="Abstractions\ICanCloneSolution.cs" />
+    <Compile Include="Abstractions\ICanExtractNamespace.cs" />
+    <Compile Include="Abstractions\ICanMatchPathPattern.cs" />
+    <Compile Include="Abstractions\ICanReplaceNamespace.cs" />
     <Compile Include="CommandLine\Abstractions\IFolderArgumentRetriever.cs" />
     <Compile Include="CommandLine\Abstractions\IFolderNamespaceRetriever.cs" />
     <Compile Include="CommandLine\Abstractions\IWizardApplication.cs" />
     <Compile Include="CommandLine\FolderNamespaceRetriever.cs" />
     <Compile Include="CommandLine\FolderArgumentRetriever.cs" />
     <Compile Include="CommandLine\WizardApplicationFacade.cs" />
-    <Compile Include="Facades\FacadeBase.cs" />
-    <Compile Include="IO\NativePatternMatcher.cs" />
+    <Compile Include="FolderNamespaceExtractor.cs" />
+    <Compile Include="NamespaceReplacer.cs" />
+    <Compile Include="PathPatternMatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IO\Abstractions\ICanMatchPathPattern.cs" />
-    <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="CoreSettings.cs" />
+    <Compile Include="SolutionCloner.cs" />
+    <Compile Include="SolutionFileNamespaceExtractor.cs" />
+    <Compile Include="ThreadedSolutionCloner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

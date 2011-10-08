@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Cloney.Core.IO.Abstractions
+namespace Cloney.Core.Abstractions
 {
     public interface ICanMatchPathPattern
     {

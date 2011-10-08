@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Threading;
-using Cloney.Core.Cloning.Abstractions;
+using Cloney.Core.Abstractions;
 
-namespace Cloney.Core.Cloning
+namespace Cloney.Core
 {
     /// <summary>
     /// This class can be used to clone a Visual Studio solution

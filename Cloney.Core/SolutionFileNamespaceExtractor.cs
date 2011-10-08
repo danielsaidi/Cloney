@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using Cloney.Core.Cloning.Abstractions;
+using Cloney.Core.Abstractions;
 
-namespace Cloney.Core.Cloning
+namespace Cloney.Core
 {
     public class SolutionFileNamespaceExtractor : ICanExtractNamespace
     {

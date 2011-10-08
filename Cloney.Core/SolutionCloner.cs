@@ -1,12 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.IO;
-using Cloney.Core.IO.Abstractions;
+using Cloney.Core.Abstractions;
 using NExtra.Extensions;
 
-namespace Cloney.Core.Cloning
+namespace Cloney.Core
 {
     /// <summary>
     /// This class can be used to clone a Visual Studio solution.

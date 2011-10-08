@@ -1,7 +1,6 @@
-﻿using Cloney.Core.Cloning;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Cloney.Core.Tests.Cloning
+namespace Cloney.Core.Tests
 {
     [TestFixture]
     public class FolderNamespaceExtractorBehavior

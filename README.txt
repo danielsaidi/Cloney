@@ -1,5 +1,11 @@
-Cloney
-======
+About Cloney
+============
+
+Author:		Daniel Saidi [daniel.saidi@gmail.com]
+Web site:	http://danielsaidi.github.com/Cloney
+Project:	http://github.com/danielsaidi/Cloney
+Blog:		http://danielsaidi.wordpress.com
+
 
 Cloney is a Windows application that lets you clone .NET
 solutions in no time. Cloney can be run as both a wizard

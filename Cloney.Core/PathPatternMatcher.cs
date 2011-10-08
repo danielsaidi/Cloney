@@ -1,11 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cloney.Core.Abstractions;
 using NExtra.Extensions;
 
-namespace Cloney.Core.IO
+namespace Cloney.Core
 {
-    public static class NativePatternMatcher
+    public class PathPatternMatcher : ICanMatchPathPattern
     {
-        public static bool StrictMatchPattern(string path, string pattern)
+        public bool IsMatch(string path, string pattern)
+        {
+            return MatchPattern(path, pattern);
+        }
+
+        public bool IsAnyMatch(string path, IEnumerable<string> patterns)
+        {
+            return patterns.Any(pattern => IsMatch(path, pattern));
+        }
+
+
+        /// <summary>
+        /// This method was found at a blog somewhere. I
+        /// can not remember where, though. Kudos to the
+        /// author, whoever you might be.
+        /// </summary>
+        private static bool MatchPattern(string path, string pattern)
         {
             if (pattern.IsNullOrEmpty() || path.IsNullOrEmpty())
                 return false;
@@ -60,7 +79,7 @@ namespace Cloney.Core.IO
                     var num2 = (sourceArray[index++] + 1) / 2;
                     var num3 = 0;
 
-                    Label_00F2:
+                Label_00F2:
                     if (num2 != pattern.Length)
                     {
                         num2 += num3;
@@ -119,7 +138,7 @@ namespace Cloney.Core.IO
                             }
 
                             num9 += num3 * 2;
-                            
+
                             switch (ch2)
                             {
                                 case '<':
@@ -153,7 +172,7 @@ namespace Cloney.Core.IO
                         }
                     }
 
-                    Label_028D:
+                Label_028D:
                     if ((index >= num7) || (num6 >= num5))
                         continue;
 
@@ -178,7 +197,7 @@ namespace Cloney.Core.IO
             }
 
             num9 = sourceArray[num7 - 1];
-            
+
             return (num9 == num8);
         }
     }

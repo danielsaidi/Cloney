@@ -1,0 +1,24 @@
+Release notes
+=============
+
+Author:		Daniel Saidi [daniel.saidi@gmail.com]
+Web site:	http://danielsaidi.github.com/Cloney
+Project:	http://github.com/danielsaidi/Cloney
+Blog:		http://danielsaidi.wordpress.com
+
+
+
+Cloney 0.4.0.0		2011-10-09
+==============================
+
+In this version, focus has been on structural changes and some
+minor UI changes. The two applications should work like before,
+except that the command line application is more tolerant when
+it handles input arguments. It is now possible to use either /
+or \\ when specifying folder paths. In earlier versions, / did
+cause the application to crash.
+
+If you download the source code, you will probably notice that
+Cloney has less classes now than before. The reason to this is
+that Cloney now uses the NExtra library instead of duplicating
+the classes that already exists there.

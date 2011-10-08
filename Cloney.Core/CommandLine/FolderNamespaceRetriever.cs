@@ -1,5 +1,5 @@
 ﻿using System;
-using Cloney.Core.Cloning.Abstractions;
+using Cloney.Core.Abstractions;
 using Cloney.Core.CommandLine.Abstractions;
 using NExtra.Extensions;
 

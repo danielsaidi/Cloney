@@ -1,4 +1,4 @@
-﻿namespace Cloney.Core.Cloning.Abstractions
+﻿namespace Cloney.Core.Abstractions
 {
     public interface ICanExtractNamespace
     {

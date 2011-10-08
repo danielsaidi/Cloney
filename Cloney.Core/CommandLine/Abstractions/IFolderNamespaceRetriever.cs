@@ -1,4 +1,4 @@
-﻿using Cloney.Core.Cloning.Abstractions;
+﻿using Cloney.Core.Abstractions;
 
 namespace Cloney.Core.CommandLine.Abstractions
 {

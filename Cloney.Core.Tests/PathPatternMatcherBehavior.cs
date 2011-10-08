@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Cloney.Core.IO;
 using NUnit.Framework;
 
-namespace Cloney.Core.Tests.IO
+namespace Cloney.Core.Tests
 {
     public class PathPatternMatcherBehavior
     {

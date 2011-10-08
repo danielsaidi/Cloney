@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Cloney.Core.Cloning;
-using Cloney.Core.Cloning.Abstractions;
-using Cloney.Core.IO.Abstractions;
+using Cloney.Core.Abstractions;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Cloney.Core.Tests.Cloning
+namespace Cloney.Core.Tests
 {
     [TestFixture]
     public class SolutionClonerBehavior

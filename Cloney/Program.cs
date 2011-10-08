@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cloney.Core;
-using Cloney.Core.Cloning;
-using Cloney.Core.Cloning.Abstractions;
+using Cloney.Core.Abstractions;
 using Cloney.Core.CommandLine;
 using Cloney.Core.CommandLine.Abstractions;
 using NExtra;
@@ -42,6 +41,7 @@ namespace Cloney
         }
 
 
+
         private static void Initialize(IEnumerable<string> args)
         {
             argumentParser = new CommandLineArgumentParser();
@@ -52,7 +52,6 @@ namespace Cloney
             folderNamespaceRetriever = new FolderNamespaceRetriever();
             process = new ProcessFacade();
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
-            solutionCloner.CloningBegun += solutionCloner_CloningBegun;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
             solutionNamespaceExtractor = new SolutionFileNamespaceExtractor();
         }
@@ -89,10 +88,6 @@ namespace Cloney
             console.WriteLine(currentPath);
         }
 
-
-        static void solutionCloner_CloningBegun(object sender, EventArgs e)
-        {
-        }
 
         static void solutionCloner_CloningEnded(object sender, EventArgs e)
         {

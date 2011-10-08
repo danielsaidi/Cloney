@@ -57,13 +57,12 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CommandLine\WizardApplicationConsoleFacadeBehavior.cs" />
-    <Compile Include="Cloning\FolderNamespaceExtractorBehavior.cs" />
-    <Compile Include="Cloning\NamespaceReplacerBehavior.cs" />
-    <Compile Include="Cloning\SolutionClonerBehavior.cs" />
-    <Compile Include="Cloning\ThreadedSolutionClonerBehavior.cs" />
-    <Compile Include="Facades\FacadeBaseBehavior.cs" />
+    <Compile Include="FolderNamespaceExtractorBehavior.cs" />
+    <Compile Include="NamespaceReplacerBehavior.cs" />
+    <Compile Include="PathPatternMatcherBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IO\PathPatternMatcherBehavior.cs" />
+    <Compile Include="SolutionClonerBehavior.cs" />
+    <Compile Include="ThreadedSolutionClonerBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cloney.Core\Cloney.Core.csproj">
@@ -71,6 +70,7 @@
       <Name>Cloney.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
