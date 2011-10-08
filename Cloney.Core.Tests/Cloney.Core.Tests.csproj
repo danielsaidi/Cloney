@@ -31,7 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NExtra, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="NExtra, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NExtra.2.4.0.0\NExtra.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
     </Reference>
