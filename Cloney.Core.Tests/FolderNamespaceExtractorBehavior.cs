@@ -33,6 +33,14 @@ namespace Cloney.Core.Tests
         }
 
         [Test]
+        public void ExtractNamespace_ShouldHandleForwardSlash()
+        {
+            const string str = "c:/Foo.Bar";
+
+            Assert.That(extractor.ExtractNamespace(str), Is.EqualTo("Foo.Bar"));
+        }
+
+        [Test]
         public void ExtractNamespace_ShouldHandleSingleSlash()
         {
             const string str = "c:\\Foo.Bar";

@@ -60,6 +60,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CommandLine\WizardApplicationConsoleFacadeBehavior.cs" />
+    <Compile Include="Extensions\StringExtensionsBehavior.cs" />
     <Compile Include="FolderNamespaceExtractorBehavior.cs" />
     <Compile Include="NamespaceReplacerBehavior.cs" />
     <Compile Include="PathPatternMatcherBehavior.cs" />

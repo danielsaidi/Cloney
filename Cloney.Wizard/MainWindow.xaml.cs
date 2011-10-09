@@ -12,30 +12,17 @@ namespace Cloney.Wizard
     /// </summary>
     public partial class MainWindow
     {
-        private readonly ICanExtractNamespace folderNamespaceExtractor;
-        private readonly ICanCloneSolution solutionCloner;
-        private readonly ICanExtractNamespace solutionFileNamespaceExtractor;
-        private readonly DispatcherTimer refreshTimer;
+        private ICanExtractNamespace folderNamespaceExtractor;
+        private ICanCloneSolution solutionCloner;
+        private ICanExtractNamespace solutionFileNamespaceExtractor;
+        private DispatcherTimer refreshTimer;
 
 
         public MainWindow()
         {
             InitializeComponent();
-
-            folderNamespaceExtractor = new FolderNamespaceExtractor();
-            solutionFileNamespaceExtractor = new SolutionFileNamespaceExtractor();
-            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
-            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
-
-            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
-            refreshTimer.Tick += refreshTimer_Tick;
-            refreshTimer.IsEnabled = true;
-            refreshTimer.Start();
-
-            sourceFolderSelector.Initialize(solutionFileNamespaceExtractor, LastSourcePath);
-            targetFolderSelector.Initialize(folderNamespaceExtractor, LastTargetPath);
+            Initialize();
         }
-
 
 
         public bool CanInstall
@@ -64,6 +51,23 @@ namespace Cloney.Wizard
                 Properties.Settings.Default.LastTargetPath = value;
                 Properties.Settings.Default.Save();
             }
+        }
+
+
+        private void Initialize()
+        {
+            folderNamespaceExtractor = new FolderNamespaceExtractor();
+            solutionFileNamespaceExtractor = new SolutionFileNamespaceExtractor();
+            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
+            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+
+            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
+            refreshTimer.Tick += refreshTimer_Tick;
+            refreshTimer.IsEnabled = true;
+            refreshTimer.Start();
+
+            sourceFolderSelector.Initialize(solutionFileNamespaceExtractor, LastSourcePath);
+            targetFolderSelector.Initialize(folderNamespaceExtractor, LastTargetPath);
         }
 
 

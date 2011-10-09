@@ -33,16 +33,12 @@ namespace Cloney.Wizard.Controls
         public string Path
         {
             get { return txtFolder.Text; }
-            private set
-            {
-                txtFolder.Text = value;
-                Namespace = NamespaceExtractor.ExtractNamespace(value);
-            }
+            private set { txtFolder.Text = value; }
         }
 
         public bool ShowNamespaceTextbox
         {
-            get { return txtNamespace.IsVisible; }
+            get { return txtNamespace.Visibility == System.Windows.Visibility.Visible; }
             set { txtNamespace.Visibility = value ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
         }
 
@@ -50,8 +46,7 @@ namespace Cloney.Wizard.Controls
         public void Initialize(ICanExtractNamespace namespaceExtractor, string initialFolderPath)
         {
             NamespaceExtractor = namespaceExtractor;
-            try { Path = initialFolderPath; }
-            catch {}
+            Path = initialFolderPath;
             btnSelect.IsEnabled = NamespaceExtractor != null;
         }
 
@@ -69,12 +64,11 @@ namespace Cloney.Wizard.Controls
                 return;
 
             Path = folderBrowserDialog.SelectedPath;
-
-            OnChanged(new EventArgs());
         }
 
-        private void txtNamespace_Changed(object sender, TextChangedEventArgs e)
+        private void textBox_Changed(object sender, TextChangedEventArgs e)
         {
+            Namespace = NamespaceExtractor.ExtractNamespace(txtFolder.Text);
             OnChanged(new EventArgs());
         }
     }

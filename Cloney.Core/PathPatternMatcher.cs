@@ -20,9 +20,8 @@ namespace Cloney.Core
 
 
         /// <summary>
-        /// This method was found at a blog somewhere. I
-        /// can not remember where, though. Kudos to the
-        /// author, whoever you might be.
+        /// This method was found at a blog somewhere. I can not
+        /// remember where. Kudos to the author, whoever you are.
         /// </summary>
         private static bool MatchPattern(string path, string pattern)
         {

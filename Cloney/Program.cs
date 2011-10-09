@@ -36,7 +36,7 @@ namespace Cloney
             }
             catch (Exception e)
             {
-                console.Write(String.Format(Resources.MainErrorExpression, e.Message));
+                console.Write(String.Format(Language.MainErrorExpression, e.Message));
             }
         }
 
@@ -61,10 +61,10 @@ namespace Cloney
             if (StartWizard())
                 return;
 
-            var sourceFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Resources.SourceFolderArgumentName, Resources.SourceFolderDisplayName, Resources.FolderArgumentErrorMessage);
-            var targetFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Resources.TargetFolderArgumentName, Resources.TargetFolderDisplayName, Resources.FolderArgumentErrorMessage);
-            var sourceNamespace = folderNamespaceRetriever.GetFolderNamespace(solutionNamespaceExtractor, sourceFolder, Resources.InvalidSolutionFolderExpression);
-            var targetNamespace = folderNamespaceRetriever.GetFolderNamespace(folderNamespaceExtractor, targetFolder, Resources.InvalidTargetFolderExpression);
+            var sourceFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Language.SourceFolderArgumentName, Language.SourceFolderDisplayName, Language.FolderArgumentErrorMessage);
+            var targetFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Language.TargetFolderArgumentName, Language.TargetFolderDisplayName, Language.FolderArgumentErrorMessage);
+            var sourceNamespace = folderNamespaceRetriever.GetFolderNamespace(solutionNamespaceExtractor, sourceFolder, Language.InvalidSolutionFolderExpression);
+            var targetNamespace = folderNamespaceRetriever.GetFolderNamespace(folderNamespaceExtractor, targetFolder, Language.InvalidTargetFolderExpression);
 
             solutionCloner.CloneSolution(sourceFolder, sourceNamespace, targetFolder, targetNamespace);
 
@@ -75,7 +75,7 @@ namespace Cloney
 
         private static bool StartWizard()
         {
-            var wizard = new WizardApplicationFacade(console, process, Resources.WizardExecutable, arguments, Resources.StartingWizardMessage);
+            var wizard = new WizardApplicationFacade(console, process, Language.WizardExecutable, arguments, Language.StartingWizardMessage);
             return wizard.Start();
         }
 

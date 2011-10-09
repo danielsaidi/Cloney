@@ -8,6 +8,9 @@ namespace Cloney.Core
     {
         public string ExtractNamespace(string folderPath)
         {
+            if (!Directory.Exists(folderPath))
+                return string.Empty;
+
             foreach (var file in Directory.GetFiles(folderPath))
             {
                 var fileInfo = new FileInfo(file);

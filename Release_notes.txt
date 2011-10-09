@@ -13,12 +13,19 @@ Cloney 0.4.0.0		2011-10-09
 
 In this version, focus has been on structural changes and some
 minor UI changes. The two applications should work like before,
-except that the command line application is more tolerant when
-it handles input arguments. It is now possible to use either /
-or \\ when specifying folder paths. In earlier versions, / did
-cause the application to crash.
+except some small improvements.
 
-If you download the source code, you will probably notice that
-Cloney has less classes now than before. The reason to this is
-that Cloney now uses the NExtra library instead of duplicating
-the classes that already exists there.
+If you download the source code and compare it to any previous
+version, you will notice that Cloney has less classes now than
+before. The reason to this, is that Cloney now uses the NExtra
+library instead of duplicating the classes that exists in it.
+
+The console application has been improved, to be more tolerant
+when handling input arguments. It's now possible to use either
+/ or \\ when specifying folder paths. earlier, / did cause the
+application to crash.
+
+The wizard has some small UI improvements. It is also possible
+to enter text by hand into the text boxes, which will probably
+make handling the application easier.
+

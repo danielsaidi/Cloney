@@ -10,7 +10,7 @@ namespace Cloney.Core
     /// removed in favor of a separate app.config section in each
     /// application.
     /// </summary>
-    public class CoreSettings
+    public abstract class CoreSettings
     {
         public static StringCollection ExcludeFilePatterns
         {

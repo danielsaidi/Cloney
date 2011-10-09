@@ -18,8 +18,8 @@
                     <Label Content="{x:Static Resources:Language.Select}" Style="{StaticResource ButtonLabel}" />
                 </Button.Content>
             </Button>
-            <TextBox Name="txtFolder" IsReadOnly="True"></TextBox>
+            <TextBox Name="txtFolder" TextChanged="textBox_Changed"></TextBox>
         </DockPanel>
-        <TextBox Name="txtNamespace" Margin="0 5 0 0 " TextChanged="txtNamespace_Changed"></TextBox>
+        <TextBox Name="txtNamespace" Margin="0 5 0 0 " TextChanged="textBox_Changed"></TextBox>
     </StackPanel>
 </UserControl>
