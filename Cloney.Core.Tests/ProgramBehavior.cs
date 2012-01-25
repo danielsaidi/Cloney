@@ -19,21 +19,37 @@ namespace Cloney.Core.Tests
             program = new Program();
             program.Console = Substitute.For<IConsole>();
             program.Translator = Substitute.For<ITranslator>();
+            program.Wizard = Substitute.For<IWizard>();
 
             args = new List<string>{ "foo", "bar" };
+
+            SetUpLanguage();
+        }
+
+        private void SetUpLanguage()
+        {
+            program.Translator.Translate("StartErrorMessage").Returns("StartErrorMessage");
         }
 
 
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            program.Translator.Translate("StartErrorMessage").Returns("Foo bar");
+            
 
             program.Start(args);
 
             program.Translator.Received().Translate("StartErrorMessage");
-            program.Console.Received().WriteLine("Foo bar");
+            program.Console.Received().WriteLine("StartErrorMessage");
             program.Console.Received().WriteLine("foo");
+        }
+
+        [Test]
+        public void Start_ShouldStartWizardWhenNoArgumentsAreProvided()
+        {
+            program.Start(new List<string>());
+
+            program.Wizard.Received().Start();
         }
     }
 }

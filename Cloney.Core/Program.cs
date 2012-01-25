@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NExtra;
 using NExtra.Localization;
 
 namespace Cloney.Core
 {
-    public class Program
+    public class Program : IProgram
     {
         /*private static ICommandLineArgumentParser argumentParser;
         private static IDictionary<string,string> arguments;
@@ -24,6 +25,7 @@ namespace Cloney.Core
         {
             Console = new ConsoleFacade();
             Translator = new ResourceManagerFacade(Language.ResourceManager);
+            Wizard = new Wizard();
         }
 
 
@@ -31,14 +33,17 @@ namespace Cloney.Core
 
         public ITranslator Translator { get; set; }
 
+        public IWizard Wizard { get; set; }
+
 
 
         public void Start(IEnumerable<string> args)
         {
             try
             {
-                //Start(args);
-                throw new Exception("foo");
+                if (StartWizard(args))
+                    return;
+                StartConsole(args);
             }
             catch (Exception e)
             {
@@ -57,6 +62,26 @@ namespace Cloney.Core
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
             solutionNamespaceExtractor = new SolutionFileNamespaceExtractor();*/
+        }
+
+        private bool StartConsole(IEnumerable<string> args)
+        {
+            if (args.Count() == 0)
+                return false;
+
+            //Start
+            throw new Exception("foo");
+
+            return true;
+        }
+
+        private bool StartWizard(IEnumerable<string> args)
+        {
+            if (args.Count() > 0)
+                return false;
+
+            Wizard.Start();
+            return true;
         }
         /*
         private static void Start()
