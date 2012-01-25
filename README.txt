@@ -8,35 +8,38 @@ Blog:		http://danielsaidi.wordpress.com
 
 
 Cloney is a Windows application that lets you clone .NET
-solutions in no time. Cloney can be run as both a wizard
+solutions in no time. Cloney can be run as a console app
 as well as a GUI application.
 
 Cloney copies all files and folders from a source folder
-to a a target folder. When doing so, it will replace the
-old namespace with the new one. It will also ignore some
-files and folders that should not be cloned (such as git,
-tfs, svn and ReSharper-related files and folders).
+to a a target folder and replaces the old namespace with
+the name of the target folder.
 
-The result of a Cloney clone operation is a new solution
-where the new namespace is applied everywhere, and where
-stuff that strictly belong to the old one is ignored.
+Cloney will also ignore files and folders that shouldn't
+be cloned (like git, tfs, svn files/folders). This means
+that a cloned solution does not contain parts of the old
+solution that does not apply to the new one.
 
 
 How to use Cloney
 =================
 
 If you execute Cloney.exe without arguments, it launches
-a GUI wizard, that lets you clone solutions by selecting
-a source and a target folder then press a "Clone" button.
+a GUI application where you clone solutions by selecting
+a source and target folder and then press a biiig button.
 
 If you execute Cloney.exe from the command line, you can
-provid eit with arguments to make it launch as a console
-application. For now, two arguments are required:
+provide it with arguments to make it launch as a console
+application. It supports the following arguments:
 
-	> Cloney.exe --source:xxxxx --target:yyyyy
+	> Cloney.exe --help
+	  Prints out a help text (much like this one)
 
-Both the console application and the GUI application can
-be extended quite a lot.
+	> Cloney.exe --clone xxxxx yyyyy
+	  Clone a solution from the xxxxx folder to yyyyy
+
+To modify the core behavior of Cloney, such as the files
+and folders that it ignores, modify the config file.
 
 
 Contact & downloads
@@ -45,17 +48,18 @@ Contact & downloads
 You will always find the latest source code and releases
 at the GitHub page; http://github.com/danielsaidi/cloney
 
-If you want to provide me with feedback or if you have a
-lot of coool ideas, contact me at daniel.saidi@gmail.com
-or visit the site - http://danielsaidi.github.com/Cloney
+If you want to provide me with feedback or so, just send
+me an e-mail to daniel.saidi@gmail.com or visit the site
+http://danielsaidi.github.com/Cloney
 
 
 License
 =======
 
-Cloney is released under the MIT License. In short, feel
-free to do whatever you want with it, but also feel free
-to spread the word.
+Cloney is released under the MIT License which basically
+means that you can do much anything you want with it. It
+also means that you are also free to spread the word, if
+you happen to like it :)
 
 Check out the License text file for more information, or
 read more here: http://en.wikipedia.org/wiki/MIT_License

@@ -8,7 +8,20 @@ Blog:		http://danielsaidi.wordpress.com
 
 
 
-Cloney 0.4.0.0		2011-10-09
+Cloney 0.6.0.0		2011-10-09
+==============================
+
+In this version, Cloney has been rewritten from scratch simply
+because I am stupid in the entire head. Cloney should now work
+just like before, but with more consistent features and a more
+complete internal test suite.
+
+In the command prompt, you can now type "cloney --help" to get
+a list of commands that you can use. If you run cloney without
+
+
+
+Cloney 0.5.0.0		2011-10-09
 ==============================
 
 In this version, focus has been on structural changes and some

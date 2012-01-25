@@ -1,0 +1,1941 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NExtra</name>
+    </assembly>
+    <members>
+        <member name="T:NExtra.Extensions.IComparableExtensions">
+            <summary>
+            Extension methods for System.IComparable.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.IComparableExtensions.Limit``1(``0,``0,``0)">
+            <summary>
+            Limit a value to a certain min/max interval.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.PositionHandler">
+            <summary>
+            This class can be used to calculate the distance
+            and bearing between two positions.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            Link:       http://myxaab.wordpress.com/2010/09/02/calculate-distance-bearing-between-geolocation/
+            </remarks>
+        </member>
+        <member name="T:NExtra.Geo.IBearingCalculator">
+            <summary>
+            This interface can be implemented by classes that
+            can calculate the bearing between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IBearingCalculator.CalculateBearing(NExtra.Geo.Position,NExtra.Geo.Position)">
+            <summary>
+            Calculate the bearing between two positions.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.IDistanceCalculator">
+            <summary>
+            This interface can be implemented by classes that
+            can calculate the distance between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IDistanceCalculator.CalculateDistance(NExtra.Geo.Position,NExtra.Geo.Position,NExtra.Geo.DistanceUnit)">
+            <summary>
+            Calculate the distance between two positions.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.IRhumbBearingCalculator">
+            <summary>
+            This interface can be implemented by classes that
+            can calculate the rhumb bearing between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IRhumbBearingCalculator.CalculateRhumbBearing(NExtra.Geo.Position,NExtra.Geo.Position)">
+            <summary>
+            Calculate the rhumb bearing between two positions.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.IRhumbDistanceCalculator">
+            <summary>
+            This interface can be implemented by classes that
+            can calculate the rhumb bearing between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IRhumbDistanceCalculator.CalculateRhumbDistance(NExtra.Geo.Position,NExtra.Geo.Position,NExtra.Geo.DistanceUnit)">
+            <summary>
+            Calculate the rhumb distance between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.PositionHandler.#ctor">
+            <summary>
+            Create an instance of the class.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.PositionHandler.CalculateBearing(NExtra.Geo.Position,NExtra.Geo.Position)">
+            <summary>
+            Calculate the bearing between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.PositionHandler.CalculateDistance(NExtra.Geo.Position,NExtra.Geo.Position,NExtra.Geo.DistanceUnit)">
+            <summary>
+            Calculate the distance between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.PositionHandler.CalculateRhumbBearing(NExtra.Geo.Position,NExtra.Geo.Position)">
+            <summary>
+            Calculate the rhumb bearing between two positions.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.PositionHandler.CalculateRhumbDistance(NExtra.Geo.Position,NExtra.Geo.Position,NExtra.Geo.DistanceUnit)">
+            <summary>
+            Calculate the rhumb distance between two positions.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.AssemblyExtensions">
+            <summary>
+            Extension methods for System.Reflection.Assembly.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetCompanyName(System.Reflection.Assembly)">
+            <summary>
+            Get the company name of a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetCopyrightHolder(System.Reflection.Assembly)">
+            <summary>
+            Get the copyright holder of a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetDescription(System.Reflection.Assembly)">
+            <summary>
+            Get the description of a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetNamespaces(System.Reflection.Assembly)">
+            <summary>
+            Get all namespaces that are defined within a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetNamespaceTypes(System.Reflection.Assembly,System.String)">
+            <summary>
+            Get all types that belong to a certain namespace.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetProductName(System.Reflection.Assembly)">
+            <summary>
+            Get the product name of a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetTitle(System.Reflection.Assembly)">
+            <summary>
+            Get the title of a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetTypesThatInherit(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Get all types within a certain assembly that inherit a certain base type.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetTypesThatInherit(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Type)">
+            <summary>
+            Get all types within certain assemblies that inherit a certain base type.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetTypesThatImplement(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Get all types within a certain assembly that implement a certain interface.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetTypesThatImplement(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Type)">
+            <summary>
+            Get all types within certain assemblies that implement a certain interface.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.AssemblyExtensions.GetVersion(System.Reflection.Assembly)">
+            <summary>
+            Get the version of a certain assembly.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.XmlDocumentationHandler">
+            <summary>
+            This class can be used to extract documentation for assemblies that
+            are shipped with a corresponding XML documentation file, as well as
+            types, members and methods within such assemblies.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            This class wraps the various XML extractor classes that are defined
+            in the Extractors sub namespace. It makes it easier to work with an
+            XML documented assembly and its components, since all functionality
+            is gathered in one class.
+            </remarks>
+        </member>
+        <member name="T:NExtra.Documentation.IAssemblyDocumentationExtractor">
+            <summary>
+            This interface can be implemented by classes that can
+            be used to extract XML documentation from assemblies.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.IAssemblyDocumentationExtractor.ExtractDocumentation(System.Reflection.Assembly)">
+            <summary>
+            Extract XML documentation for an assembly, using
+            a default documentation file location.
+            </summary>
+        </member>
+        <member name="M:NExtra.Documentation.IAssemblyDocumentationExtractor.ExtractDocumentation(System.Reflection.Assembly,System.String)">
+            <summary>
+            Extract XML documentation for an assembly, using
+            a custom documentation file location.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.IMemberInfoDocumentationExtractor">
+            <summary>
+            This interface can be implemented by classes that can
+            extract XML documentation data for MemberInfo instances.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.IMemberInfoDocumentationExtractor.ExtractDocumentation(System.Reflection.MemberInfo)">
+            <summary>
+            Extract XML documentation for a certain MemberInfo instance.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.IMethodInfoDocumentationExtractor">
+            <summary>
+            This interface can be implemented by classes that should
+            be able to locate and extract XML documentation data for
+            MethodInfo instances.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.IMethodInfoDocumentationExtractor.ExtractDocumentation(System.Reflection.MethodInfo)">
+            <summary>
+            Extract XML documentation for a certain MethodInfo instance.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.ITypeDocumentationExtractor">
+            <summary>
+            This interface can be implemented by classes that should
+            be able to locate and extract XML documentation data for
+            Type instances.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.ITypeDocumentationExtractor.ExtractDocumentation(System.Type)">
+            <summary>
+            Extract XML documentation for a certain type.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.IDocumentationElementExtractor">
+            <summary>
+            This interface can be implemented by classes that should
+            be able to locate and extract XML documentation elements.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.IDocumentationElementExtractor.ExtractDocumentationElement(System.Type,System.Char,System.String)">
+            <summary>
+            Extract documentation for an XML element.
+            </summary>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.#ctor">
+            <summary>
+            Create a default instance of the class.
+            </summary>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.#ctor(NExtra.Documentation.IAssemblyDocumentationExtractor)">
+            <summary>
+            Create a custom instance of the class.
+            </summary>
+            <param name="assemblyExtractor">Custom ICanExtractAssemblyXmlDocumentation implementation.</param>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.#ctor(NExtra.Documentation.IAssemblyDocumentationExtractor,NExtra.Documentation.IDocumentationElementExtractor)">
+            <summary>
+            Create a custom instance of the class.
+            </summary>
+            <param name="assemblyExtractor">Custom ICanExtractAssemblyXmlDocumentation implementation.</param>
+            <param name="elementExtractor">Custom ICanExtractXmlDocumentationElement implementation.</param>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.#ctor(NExtra.Documentation.IAssemblyDocumentationExtractor,NExtra.Documentation.IDocumentationElementExtractor,NExtra.Documentation.IMemberInfoDocumentationExtractor,NExtra.Documentation.IMethodInfoDocumentationExtractor,NExtra.Documentation.ITypeDocumentationExtractor)">
+            <summary>
+            Create a custom instance of the class.
+            </summary>
+            <param name="assemblyExtractor">Custom ICanExtractAssemblyXmlDocumentation implementation.</param>
+            <param name="elementExtractor">Custom ICanExtractXmlDocumentationElement implementation.</param>
+            <param name="memberExtractor">Custom ICanExtractMemberInfoXmlDocumentation implementation.</param>
+            <param name="methodExtractor">Custom ICanExtractMethodInfoXmlDocumentation implementation.</param>
+            <param name="typeExtractor">Custom ICanExtractTypeXmlDocumentation implementation.</param>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentation(System.Reflection.Assembly)">
+            <summary>
+            Extract XML documentation for an assembly.
+            </summary>
+            <param name="assembly">The assembly of interest.</param>
+            <returns>XML documentation document.</returns>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentation(System.Reflection.Assembly,System.String)">
+            <summary>
+            Extract XML documentation for an assembly.
+            </summary>
+            <param name="assembly">The assembly of interest.</param>
+            <param name="xmlFilePath">The path to the XML documentation file.</param>
+            <returns>XML documentation document.</returns>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentation(System.Reflection.MemberInfo)">
+            <summary>
+            Extract XML documentation for a MemberInfo instance.
+            </summary>
+            <param name="memberInfo">The MemberInfo instance of interest.</param>
+            <returns>XML documentation element.</returns>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentation(System.Reflection.MethodInfo)">
+            <summary>
+            Extract XML documentation for a MethodInfo instance.
+            </summary>
+            <param name="methodInfo">The MethodInfo instance of interest.</param>
+            <returns>XML documentation element.</returns>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentation(System.Type)">
+            <summary>
+            Extract XML documentation for a Type.
+            </summary>
+            <param name="type">The Type of interest.</param>
+            <returns>XML documentation element.</returns>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationHandler.ExtractDocumentationElement(System.Type,System.Char,System.String)">
+            <summary>
+            Extract an XML documentation element.
+            </summary>
+            <param name="type">The type of interest.</param>
+            <param name="prefix">The type's documentation prefix.</param>
+            <param name="subElementName">The sub element name, if any.</param>
+            <returns>XML documentation element.</returns>
+        </member>
+        <member name="T:NExtra.Validation.GuidAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string represents a valid GUID.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.IValidator">
+            <summary>
+            This interface can be implemented by classes
+            that can be used to validate an object.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Testing.MetadataValidator">
+            <summary>
+             This class can be used to validate metadata
+             conditions that has been placed on any type.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.MetadataValidator.#ctor(System.Object)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+            <param name="obj">The object to validate.</param>
+        </member>
+        <member name="P:NExtra.Testing.MetadataValidator.ValidationContext">
+            <summary>
+            The resulting validation context.
+            </summary>
+        </member>
+        <member name="P:NExtra.Testing.MetadataValidator.ValidationErrors">
+            <summary>
+            The resulting validation errors.
+            </summary>
+        </member>
+        <member name="P:NExtra.Testing.MetadataValidator.ValidationResult">
+            <summary>
+            The resulting validation result.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.DistanceConverter">
+            <summary>
+            This class can be used to convert distance units.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Geo.IDistanceConverter">
+            <summary>
+            This interface can be implemented by all classes
+            that can convert distances in various ways.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Geo.IDistanceConverter.ConvertKilometersToMiles(System.Double)">
+            <summary>
+            Convert kilometers to miles.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IDistanceConverter.ConvertMilesToKilometers(System.Double)">
+            <summary>
+            Convert miles to kilometers.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.DistanceConverter.ConvertKilometersToMiles(System.Double)">
+            <summary>
+            Convert kilometers to miles.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.DistanceConverter.ConvertMilesToKilometers(System.Double)">
+            <summary>
+            Convert miles to kilometers.
+            </summary>
+        </member>
+        <member name="T:NExtra.ConsoleFacade">
+            <summary>
+            This class can be used as a facade for the static Console class.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.IConsole">
+            <summary>
+             This interface can be implemented by classes that
+             can be used to work with the static Console class.
+            </summary>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="T:NExtra.Extensions.IEnumerableExtensions">
+            <summary>
+            Extension methods for System.Collections.Generic.IEnumerable.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.Contains``1(System.Collections.Generic.IEnumerable{``0},``0,System.Boolean)">
+            <summary>
+            Check whether or not an IEnumerable contains a certain value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether or not an IEnumerable is null or empty.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.IsSingle``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether or not an IEnumerable contains exactly one element.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.OrderBy``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Sort an IEnumerable, ascending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.OrderByDescending``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Sort an IEnumerable, descending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.Paginate``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Paginate an IEnumerable.
+            </summary>
+            <param name="source">The IEnumerable to paginate.</param>
+            <param name="pageNumber">The page number for the items to retrieve, starting at 1.</param>
+            <param name="pageSize">The max numbers of items that are displayed per page.</param>
+            <returns>The resulting value.</returns>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.ThenBy``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Continue sorting an IQueryable, ascending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IEnumerableExtensions.ThenByDescending``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Continue sorting an IQueryable, descending by any property.
+            </summary>
+        </member>
+        <member name="T:NExtra.Email.EmailNonSender">
+            <summary>
+            This class implements the ICanSendEmail interface. It simulates
+            sending e-mail messages, but does not actually send anything.
+            
+            If you use IoC/DI, you can easily replace the EmailSender class
+            with this one to disable e-mails from being sent.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Email.IEmailSender">
+            <summary>
+            This interface can be implemented by classes
+            that can send e-mail messages.
+            </summary>
+        </member>
+        <member name="M:NExtra.Email.IEmailSender.SendEmail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send an e-mail message.
+            </summary>
+        </member>
+        <member name="M:NExtra.Email.IEmailSender.SendEmail(System.Net.Mail.MailMessage)">
+            <summary>
+            Send an e-mail message.
+            </summary>
+        </member>
+        <member name="M:NExtra.Email.EmailNonSender.SendEmail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Mimic an e-mail message send operation.
+            </summary>
+        </member>
+        <member name="M:NExtra.Email.EmailNonSender.SendEmail(System.Net.Mail.MailMessage)">
+            <summary>
+            Mimic an e-mail message send operation.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.ObjectExtensions">
+            <summary>
+            Extension methods for System.object.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.ObjectExtensions.Clone(System.Object)">
+            <summary>
+            Clone a serializable object.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.ObjectExtensions.Clone``1(System.Object)">
+            <summary>
+            Clone a serializable object to a copy of the same type.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.NorwegianSsnAttribute">
+            <summary>
+            This attribute can be used to validate whether or not a string
+            represents a valid Norwegian Social Security Number.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            To validate more complex scenarios, like correct sex or region,
+            create a separate class and override the IsValid method.
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.IpAddressAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string represents a valid IP address.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Geo.GeoConstants">
+            <summary>
+            This static class contains geo-related constants.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="F:NExtra.Geo.GeoConstants.EarthRadiusInKilometers">
+            <summary>
+            The rough earth radius in kilometers.
+            </summary>
+        </member>
+        <member name="F:NExtra.Geo.GeoConstants.EarthRadiusInMiles">
+            <summary>
+            The rough earth radius in miles.
+            </summary>
+        </member>
+        <member name="T:NExtra.EventArgs`1">
+            <summary>
+            This class is a generic version of the native System.EventArgs.
+            It embeds an object that can be accessed within a raised event.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.EventArgs`1.#ctor(`0)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+        </member>
+        <member name="P:NExtra.EventArgs`1.Object">
+            <summary>
+            The embedded object.
+            </summary>
+        </member>
+        <member name="T:NExtra.Nullable`1">
+            <summary>
+            This class can be used to make non-nullable reference types
+            behave like nullable reference types, such as int? and bool?
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+            <typeparam name="T">The type that is handled by the class.</typeparam>
+        </member>
+        <member name="M:NExtra.Nullable`1.#ctor">
+            <summary>
+            Create an instance of the class with no initial value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Nullable`1.#ctor(`0)">
+            <summary>
+            Create an instance of the class with an initial value.
+            </summary>
+        </member>
+        <member name="P:NExtra.Nullable`1.Value">
+            <summary>
+            The object value, if any.
+            </summary>
+        </member>
+        <member name="P:NExtra.Nullable`1.HasValue">
+            <summary>
+            Whether or not the Value property has a value.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.StringCollectionExtensions">
+            <summary>
+            Extension methods for System.Collections.Specialized.StringCollection.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.StringCollectionExtensions.AsEnumerable(System.Collections.Specialized.StringCollection)">
+            <summary>
+            Convert a string collection to an IEnumerable.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringCollectionExtensions.IsNullOrEmpty(System.Collections.Specialized.StringCollection)">
+            <summary>
+            Check whether or not a string collection is null or empty.
+            </summary>
+        </member>
+        <member name="T:NExtra.Security.Md5Generator">
+            <summary>
+            This class can be used to generate MD5 hash values.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Security.IHashValueGenerator">
+            <summary>
+            This interface can be implemented by classes that
+            can generate a hash value for any kind of objects.
+            </summary>
+        </member>
+        <member name="M:NExtra.Security.IHashValueGenerator.GenerateHashValue(System.Object)">
+            <summary>
+            Generate a hash value for an object.
+            </summary>
+        </member>
+        <member name="M:NExtra.Security.Md5Generator.GenerateHashValue(System.Object)">
+            <summary>
+            Generate an MD5 hash value for an object.
+            </summary>
+        </member>
+        <member name="T:NExtra.Logging.DoNothingLogWriter">
+            <summary>
+            This class can be used to handle log messages. It
+            will swallow all messages, without doing anything.
+            </summary>
+        </member>
+        <member name="T:NExtra.Logging.ILogWriter">
+            <summary>
+            This interface can be implemented by any class that
+            can log messages in various ways. It can be used as
+            a facade for e.g. log4net.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Logging.ILogWriter.Log(NExtra.Logging.LogLevel,System.String)">
+            <summary>
+            Log a message.
+            </summary>
+            <param name="logLevel">Message log level.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:NExtra.Logging.DoNothingLogWriter.Log(NExtra.Logging.LogLevel,System.String)">
+            <summary>
+            Swallow a log message without doing anything.
+            </summary>
+        </member>
+        <member name="T:NExtra.CommandLineArgumentParser">
+            <summary>
+            This class can be used to parse any arguments that
+            are passed into a command line application. It can
+            be used to parse any argument collection where the
+            argument names follow any of the following formats:
+            
+            /name=Stefan
+            --name=Stefan
+            --name="Multiple words"
+            -name 'Stefan'
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            The original implementation, made by Richard Lopes,
+            has been refactored to implement an interface that
+            replaced with other implementations.
+            
+            The original implementation can be found at:
+            http://www.codeproject.com/KB/recipes/command_line.aspx 
+            </remarks>
+        </member>
+        <member name="T:NExtra.ICommandLineArgumentParser">
+            <summary>
+             This interface can be implemented by classes
+             that can be used to handle command line args.
+            </summary>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.ICommandLineArgumentParser.ParseCommandLineArguments(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Parse a collection of command line arguments.
+            </summary>
+        </member>
+        <member name="M:NExtra.CommandLineArgumentParser.ParseCommandLineArguments(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Parse a collection of command line arguments.
+            </summary>
+        </member>
+        <member name="T:NExtra.Facades.FacadeBase`1">
+            <summary>
+            This class is the base class of all .NET Extension
+            facade classes. It can wrap any base class and has
+            a property that returns the base instance.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+            <typeparam name="T">The type that is to be wrapped.</typeparam>
+        </member>
+        <member name="M:NExtra.Facades.FacadeBase`1.#ctor(`0)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+        </member>
+        <member name="P:NExtra.Facades.FacadeBase`1.BaseInstance">
+            <summary>
+            The base instance that the class is a facade for.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.DateTimeExtensions">
+            <summary>
+            Extension methods for System.DateTime.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetFirstDateOfMonth(System.DateTime)">
+            <summary>
+            Get the first date of the month for a certain date.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetFirstDateOfWeek(System.DateTime,System.Boolean,System.Globalization.CalendarWeekRule,System.DayOfWeek)">
+            <summary>
+            Get the first date of the week for a certain date.
+            </summary>
+            <param name="date">DateTime instance.</param>
+            <param name="iso8601">Whether or not the date is an ISO 8601 date; by default false.</param>
+            <param name="weekRule">The week rule to use; by default CalendarWeekRule.FirstFourDayWeek.</param>
+            <param name="firstDayOfWeek">Which day that is the first day of the week; by defaul DayOfWeek.Monday.</param>
+            <returns>The first date of the week for the date.</returns>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetLastDateOfMonth(System.DateTime)">
+            <summary>
+            Get the last date of the month for a certain date.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetLastDateOfWeek(System.DateTime,System.Boolean,System.Globalization.CalendarWeekRule,System.DayOfWeek)">
+            <summary>
+            Get the last date of the week for a certain date.
+            
+            Note that for ISO 8601 dates, iso8601 must be set to true.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetWeekNumber(System.DateTime,System.Boolean,System.Globalization.CalendarWeekRule,System.DayOfWeek)">
+            <summary>
+            Get the week number of a certain date.
+            
+            Note that for ISO 8601 dates, iso8601 must be set to true.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.GetWeekNumber_Iso8601(System.DateTime)">
+            <summary>
+            Get the week number of a certain ISO 8601 date.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.DateTimeExtensions.IsSameDate(System.DateTime,System.DateTime)">
+            <summary>
+            Check if two DateTime instances represent the same date, regardless of the time.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.NorwegianSsnChecksumValidator">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string has a format that results in a valid
+            Norwegian checksum.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Extensions.StringExtensions">
+            <summary>
+            Extension methods for System.String.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.CountSubstring(System.String,System.String)">
+            <summary>
+            Count how many times a certain pattern appears within a string.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Check whether or not a string is empty, using String.IsNullOrEmpty.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.Shorten(System.String,System.Int32,System.String)">
+            <summary>
+            Shorten a string to a maximum length, if necessary.
+            </summary>
+            <param name="str">The string to shorten.</param>
+            <param name="maxLength">The max length.</param>
+            <param name="overflowReplacement">The string that should replace the overflowing text; default empty.</param>
+            <returns>The resulting string.</returns>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.Split(System.String,System.String)">
+            <summary>
+            Split a string by a string rather than by a char.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.Split_CalculateOffsets(System.String,System.String,System.Int32@)">
+            <summary>
+            Calculate split offset data.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.Split_CalculateResult(System.String,System.String,System.Int32,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Calculate the final split result, using
+            previously calculated offset data.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.Split``1(System.String,System.String,System.Boolean)">
+            <summary>
+            Split a string by a string rather than by a char,
+            then convert each list element to a certain type.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.To``1(System.String)">
+            <summary>
+            Try to convert a string to any struct type.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.StringExtensions.ToEnum``1(System.String,``0)">
+            <summary>
+            Try to covnert a string to any enum type.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.EnumExtensions">
+            <summary>
+            Extension methods for System.UInt32 / System.Int32 that
+            can be used for flag enum operations.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.EnumExtensions.AddFlag``1(System.Enum,``0)">
+            <summary>
+            Add a flag value to an enum value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.EnumExtensions.RemoveFlag``1(System.Enum,``0)">
+            <summary>
+            Remove a flag value from an enum.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.StructExtensions">
+            <summary>
+            Extension methods for struct.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.StructExtensions.IsDefault``1(``0)">
+            <summary>
+            Check whether or not a struct has its default value.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.UrlAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string represents a valid URL.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.SwedishSsnChecksumValidator">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string has a format that results in a valid
+            Swedish checksum.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Diagnostics.ProcessFacade">
+            <summary>
+            This class can be used as a facade for the static Process class.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Diagnostics.IProcess">
+            <summary>
+             This interface can be implemented by classes that
+             can be used to work with the static Process class.
+            </summary>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="T:NExtra.IO.FileSizePresenter">
+            <summary>
+            This class can be used to present a file size in a
+            readable fashion, e.g. "100 kB". It handles string
+            formatting for file sizes up to TB.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.IO.IFileSizePresenter">
+            <summary>
+            This interface can be implemented by classes
+            that can present file sizes textually.
+            </summary>
+        </member>
+        <member name="M:NExtra.IO.IFileSizePresenter.PresentFileSize(System.Double,System.String)">
+            <summary>
+            Present the size (in bytes) of a file.
+            </summary>
+        </member>
+        <member name="M:NExtra.IO.FileSizePresenter.PresentFileSize(System.Double,System.String)">
+            <summary>
+            Present the size (in bytes) of a file, e.g. 10000 => 10kB.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.IntExtensions">
+            <summary>
+            Extension methods for System.Int32.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.IntExtensions.IsEven(System.Int32)">
+            <summary>
+            Check whether or not a value is even.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IntExtensions.IsOdd(System.Int32)">
+            <summary>
+            Check whether or not a value is odd.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.IDictionaryExtensions">
+            <summary>
+            Extension methods for System.Collections.Generic.IDictionary.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.IDictionaryExtensions.AddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+             Add a range of items to a dictionary.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IDictionaryExtensions.Get``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <summary>
+            Retrieve a value from the dictionary.
+            </summary>
+        </member>
+        <member name="T:NExtra.Cache.MemoryCacheFacade">
+            <summary>
+            This class can be used as a facade for the default
+            System.Runtime.Caching.MemoryCache instance.
+            </summary>
+        </member>
+        <member name="T:NExtra.Cache.ICache">
+            <summary>
+            This interface can be implemented by classes that
+            can cache data. The interface is, as of now, very
+            simple and may be extended in future versions.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Clear">
+            <summary>
+            Clear the entire cache.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Contains(System.String)">
+            <summary>
+            Check whether or not a certain cache key exists.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Get(System.String)">
+            <summary>
+            Retrieve a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Get``1(System.String)">
+            <summary>
+            Retrieve a certain, typed cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Remove(System.String)">
+            <summary>
+            Remove a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Set(System.String,System.Object)">
+            <summary>
+            Insert a value into the cache, using a default timeout.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            Insert a value into the cache, using a custom timeout.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.ICache.TryGet``1(System.String,``0)">
+            <summary>
+            Try to retrieve a certain, typed cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Clear">
+            <summary>
+            Clear the entire cache.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Contains(System.String)">
+            <summary>
+            Check whether or not a certain cache key exists.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Get(System.String)">
+            <summary>
+            Retrieve a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Get``1(System.String)">
+            <summary>
+            Retrieve a certain, typed cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Remove(System.String)">
+            <summary>
+            Remove a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Set(System.String,System.Object)">
+            <summary>
+            Insert a value into the cache, using a default timeout of one hour.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            Insert a value into the cache, using a custom timeout.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.MemoryCacheFacade.TryGet``1(System.String,``0)">
+            <summary>
+            Retrieve a certain, typed cached value with a fallback value.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.SwedishSsnAttribute">
+            <summary>
+            This attribute can be used to validate whether or not a string
+            represents a valid Swedish Social Security Number, on the form
+            yymmdd-xxxx or yymmddxxxx.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            The SSN must conform to the Luhn algorithm. To validate a more
+            complex scenario like correct sex or region, create a separate
+            class and override the IsValid method.
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.FinnishSsnAttribute">
+            <summary>
+            This attribute can be used to validate whether or not a string
+            represents a valid Finnish Social Security Number.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            To validate more complex scenarios, like correct sex or region,
+            create a separate class and override the IsValid method.
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.MinLengthAttribute">
+            <summary>
+            This attribute can be used to validate if a string
+            is long enough, given a minimum length. 
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.LuhnAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string conforms to the LUHN algorithm.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Testing.CrossThreadTestRunner">
+            <summary>
+            This class can be used to test components that depend
+            on STA, like WPF controls.
+            
+            To use this class when testing, create an instance of
+            it and call the RunInSTA or RunInMTA methods.
+            </summary>
+            <remarks>
+            Author:         Daniel Saidi [daniel.saidi@gmail.com]
+            Link:           http://www.saidi.se/nextra
+            Original code:  http://www.hedgate.net/articles/2007/01/08/instantiating-a-wpf-control-from-an-nunit-test/
+            </remarks>
+        </member>
+        <member name="M:NExtra.Testing.CrossThreadTestRunner.Run(System.Threading.ThreadStart,System.Threading.ApartmentState)">
+            <summary>
+            Run an operation in a certain apartment state.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.CrossThreadTestRunner.RunInMTA(System.Threading.ThreadStart)">
+            <summary>
+            Run an operation in MTA apartment state.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.CrossThreadTestRunner.RunInSTA(System.Threading.ThreadStart)">
+            <summary>
+            Run an operation in STA apartment state.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.CrossThreadTestRunner.ThrowExceptionPreservingStack(System.Exception)">
+            <summary>
+            Operation that is called as soon as an exception is thrown.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.Position">
+            <summary>
+            This class represents a position with a latitude and longitude.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Geo.Position.#ctor(System.Double,System.Double)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+        </member>
+        <member name="P:NExtra.Geo.Position.Latitude">
+            <summary>
+            The latitude of the position.
+            </summary>
+        </member>
+        <member name="P:NExtra.Geo.Position.Longitude">
+            <summary>
+            The longitude of the position.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.DistanceUnit">
+            <summary>
+            This enum represents distance units that are
+            currently used by the Geo namespace classes.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="F:NExtra.Geo.DistanceUnit.Kilometers">
+            <summary>
+            1 kilometer = 0,62137119 miles
+            </summary>
+        </member>
+        <member name="F:NExtra.Geo.DistanceUnit.Miles">
+            <summary>
+            1 mile = 1,609344 kilometers.
+            </summary>
+        </member>
+        <member name="T:NExtra.Geo.AngleConverter">
+            <summary>
+            This class can be used to convert angles in
+            various ways.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Geo.IAngleConverter">
+            <summary>
+            This interface can be implemented by all classes
+            that can convert angles in various ways.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Geo.IAngleConverter.ConvertDegreesToRadians(System.Double)">
+            <summary>
+            Convert degrees to radians.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.IAngleConverter.ConvertRadiansToDegrees(System.Double)">
+            <summary>
+            Convert radians to degrees.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.AngleConverter.ConvertDegreesToRadians(System.Double)">
+            <summary>
+            Convert degrees to radians.
+            </summary>
+        </member>
+        <member name="M:NExtra.Geo.AngleConverter.ConvertRadiansToDegrees(System.Double)">
+            <summary>
+            Convert radians to degrees.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.Ssn.FinnishSsnChecksumValidator">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string has a format that results in a valid
+            Finnish checksum.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Pagination.PaginationContext`1">
+            <summary>
+            This class can handle the pagination for any IEnumerable
+            or IQueryable collection. It can calculate the number of
+            pages for collection, given a certain page size. It also
+            determines how it can be paginated.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Pagination.PaginationContext`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+            <param name="collection">The collection to base the pagination context on.</param>
+            <param name="pageNumber">The current page number, starting at 1.</param>
+            <param name="pageSize">The max number of items to display per page.</param>
+            <param name="pageLinkMaxCount">The max number of page links to display in a pagination UI component.</param>
+        </member>
+        <member name="M:NExtra.Pagination.PaginationContext`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create an instance of the class.
+            </summary>
+            <param name="collection">The collection to base the context on.</param>
+            <param name="pageNumber">The current page number.</param>
+            <param name="pageSize">The max number of items to display per page.</param>
+            <param name="pageLinkMaxCount">The max number of page links to display in a pagination UI component.</param>
+        </member>
+        <member name="M:NExtra.Pagination.PaginationContext`1.GetPaginationResult">
+            <summary>
+            The paginated, resulting collection, based on the context setup.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.Collection">
+            <summary>
+            Get the original collection that was used to initialize the context.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.NextPageLink">
+            <summary>
+            The page index for a "next" page; -1 if none exists.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageCount">
+            <summary>
+            The total number of available pages.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageLinkCount">
+            <summary>
+            The total number of page links to display.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageLinkMaxCount">
+            <summary>
+            The max number of page links to display; minimum 1.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageLinks">
+            <summary>
+            The page links to display in a pagination component.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageNumber">
+            <summary>
+            The current page number; minimum 1 and maximum PageCount.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PageSize">
+            <summary>
+            The max number of items to display per page; minimum 1.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.PreviousPageLink">
+            <summary>
+            The page index for a "previous" page; -1 if none exists.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.ShowNextPageLink">
+            <summary>
+            Whether or not a "next" page link should be displayed.
+            </summary>
+        </member>
+        <member name="P:NExtra.Pagination.PaginationContext`1.ShowPreviousPageLink">
+            <summary>
+            Whether or not a "previous" page link should be displayed.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.UriExtensions">
+            <summary>
+            Extension methods for System.Uri.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.UriExtensions.GetRootUri(System.Uri)">
+            <summary>
+            Get the root url for a web-based Uri, e.g. http://www.foobar.com:8080
+            for http://www.foobar.com:8080/foo/bar.
+            </summary>
+            <param name="uri">The Uri of interest.</param>
+            <returns>The root url for the Uri.</returns>
+        </member>
+        <member name="T:NExtra.Email.EmailSender">
+            <summary>
+            This class implements the ICanSendEmail interface. It can be
+            used to send e-mail messages, using the default SmtpClient.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Email.EmailSender.SendEmail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send an e-mail message.
+            </summary>
+        </member>
+        <member name="M:NExtra.Email.EmailSender.SendEmail(System.Net.Mail.MailMessage)">
+            <summary>
+            Send an e-mail message.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.IQueryableExtensions">
+            <summary>
+            Extension methods for System.Linq.IQueryableExtensions.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            
+            The various OrderBy methods were made by Mark Gravell:
+            http://stackoverflow.com/users/23354/marc-gravell
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.ApplyOrder``1(System.Linq.IQueryable{``0},System.String,System.String)">
+            <summary>
+            Apply any given sorting on an IQueryable.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Sort an IQueryable, ascending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.OrderByDescending``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Sort an IQueryable, descending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.Paginate``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Paginate a certain collection.
+            </summary>
+            <param name="source">The IQueryable to paginate.</param>
+            <param name="pageNumber">The page number for the items to retrieve, starting at 1.</param>
+            <param name="pageSize">The max numbers of items that are displayed per page.</param>
+            <returns>The resulting value.</returns>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.ThenBy``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Continue sorting an IQueryable, ascending by any property.
+            </summary>
+        </member>
+        <member name="M:NExtra.Extensions.IQueryableExtensions.ThenByDescending``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Continue sorting an IQueryable, descending by any property.
+            </summary>
+        </member>
+        <member name="T:NExtra.Logging.LogLevel">
+            <summary>
+            This enum defines log levels that can be used
+            when working with ILogWriter implementations.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="F:NExtra.Logging.LogLevel.Debug">
+            <summary>
+            Debug level - use for debugging.
+            </summary>
+        </member>
+        <member name="F:NExtra.Logging.LogLevel.Info">
+            <summary>
+            Info level - use for non-error info messages.
+            </summary>
+        </member>
+        <member name="F:NExtra.Logging.LogLevel.Warn">
+            <summary>
+            Warn level - use for non-critical errors.
+            </summary>
+        </member>
+        <member name="F:NExtra.Logging.LogLevel.Error">
+            <summary>
+            Error level - use for critical errors.
+            </summary>
+        </member>
+        <member name="F:NExtra.Logging.LogLevel.Fatal">
+            <summary>
+            Fatal - use for fatal errors.
+            </summary>
+        </member>
+        <member name="T:NExtra.Localization.ResourceManagerFacade">
+            <summary>
+             This class can be used to translate language keys
+             using a resource file. It requires an exact match
+             to translate a language key.
+            </summary>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="T:NExtra.Localization.ITranslator">
+            <summary>
+            This interface can be implemented by classes that
+            can be used to translate language keys, e.g. from
+            resource or XML files.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Localization.ITranslator.Translate(System.String)">
+            <summary>
+            Translate a certain language key for the current culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ITranslator.Translate(System.String,System.Globalization.CultureInfo)">
+            <summary>
+             Translate a certain language key for a certain culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ITranslator.TranslationExists(System.String)">
+            <summary>
+            Check whether or not a translation exists for
+            a certain language key and the current culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ITranslator.TranslationExists(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Check whether or not a translation exists for
+            a certain language key and culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ResourceManagerFacade.#ctor(System.Resources.ResourceManager)">
+            <summary>
+            Create an instance of the class, using a
+            custom resource manager.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ResourceManagerFacade.Translate(System.String)">
+            <summary>
+            Translate a certain language key for the current culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ResourceManagerFacade.Translate(System.String,System.Globalization.CultureInfo)">
+            <summary>
+             Translate a certain language key for a certain culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ResourceManagerFacade.TranslationExists(System.String)">
+            <summary>
+            Check whether or not a translation exists for
+            a certain language key and the current culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.ResourceManagerFacade.TranslationExists(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Check whether or not a translation exists for
+            a certain language key and culture.
+            </summary>
+        </member>
+        <member name="T:NExtra.Localization.HierarchicalResourceManagerFacade">
+            <summary>
+             This class can translate language keys hierarchically,
+             using a resource file. Unlike its base class, it will
+             strip language keys, piece by piece, until it finds a
+             translation, if one exists.
+            </summary>
+             <remarks>
+             If we take the key Domain_User_UserName, for instance,
+             the class uses it directly, without any stripping. If
+             no translation is found and we use _ as key separator,
+             it then uses User_UserName, then finally UserName.
+             
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.Localization.HierarchicalResourceManagerFacade.#ctor(System.Resources.ResourceManager,System.String)">
+            <summary>
+            Create an instance of the class, using a
+            custom resource manager and key separator.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.HierarchicalResourceManagerFacade.GetKeys(System.String)">
+            <summary>
+            Retrieve all translation keys for a certain key.
+            For instance, "User_UserName" will result in an
+            IEnumerable with "User" and "UserName".
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.HierarchicalResourceManagerFacade.Translate(System.String)">
+            <summary>
+            Translate a certain language key for the current culture.
+            </summary>
+        </member>
+        <member name="M:NExtra.Localization.HierarchicalResourceManagerFacade.Translate(System.String,System.Globalization.CultureInfo)">
+            <summary>
+             Translate a certain language key for a certain culture.
+            </summary>
+        </member>
+        <member name="T:NExtra.Cache.DictionaryCache">
+            <summary>
+            This is a really simple cache that stores data
+            in a dictionary. It should only be used for an
+            extremely trivial caching scenario.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Clear">
+            <summary>
+            Clear the entire cache.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Contains(System.String)">
+            <summary>
+            Check whether or not a certain cache key exists.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Get(System.String)">
+            <summary>
+            Retrieve a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Get``1(System.String)">
+            <summary>
+            Retrieve a certain, typed cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.IsValid(System.String)">
+            <summary>
+            Check whether or not a cache key is valid.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Remove(System.String)">
+            <summary>
+            Remove a certain cached value.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.RemoveIfInvalid(System.String)">
+            <summary>
+            Remove a cached value, if it is invalid.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Set(System.String,System.Object)">
+            <summary>
+            Insert a value into the cache, using a default timeout of one hour.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            Insert a value into the cache, using a custom timeout.
+            </summary>
+        </member>
+        <member name="M:NExtra.Cache.DictionaryCache.TryGet``1(System.String,``0)">
+            <summary>
+            Try to retrieve a certain, typed cached value.
+            </summary>
+        </member>
+        <member name="T:NExtra.Cache.DictionaryCacheItem">
+            <summary>
+            This internal class is what is stored by this cache.
+            </summary>
+        </member>
+        <member name="T:NExtra.Validation.PostalCode.SwedishPostalCodeAttribute">
+            <summary>
+            This attribute can be used to validate whether or not
+            a string represents a valid Swedish postal code, with
+            five digits and an optional space after the 3rd digit.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.EmailAddressAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string represents a valid e-mail address.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Validation.PhoneNumberAttribute">
+            <summary>
+            This attribute can be used to validate whether or
+            not a string represents a valid phone number. The
+            expression allows one initial, optional plus sign
+            and two ranges of digits and spaces, separated by
+            one optional dash.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="T:NExtra.Extensions.WebRequestExtensions">
+            <summary>
+            Extension methods for System.Net.WebRequest.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.WebRequestExtensions.AdjustContent(System.Net.WebRequest,System.String)">
+            <summary>
+            Adjust content that has been received from a web request.
+            </summary>
+            <todo>
+            The method should also handle non-absolute, local paths.
+            </todo>
+        </member>
+        <member name="M:NExtra.Extensions.WebRequestExtensions.GetResponseString(System.Net.WebRequest)">
+            <summary>
+            Get the response string (the content) of a web request.
+            </summary>
+        </member>
+        <member name="T:NExtra.Testing.MetadataRegistrator">
+            <summary>
+            This class can be used to register metadata for a
+            certain type, or for all all types in an assembly.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Testing.MetadataRegistrator.IsAssemblyRegistered(System.Reflection.Assembly)">
+            <summary>
+            Check whether or not a certain assembly is registered.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.MetadataRegistrator.Register">
+            <summary>
+            Register all the MetadataType classes that are defined in
+            the assemblies in AppDomain.CurrentDomain.GetAssemblies().
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.MetadataRegistrator.Register(System.Reflection.Assembly)">
+            <summary>
+            Register all the MetadataType classes that are defined in
+            a certain assembly.
+            </summary>
+        </member>
+        <member name="M:NExtra.Testing.MetadataRegistrator.Register(System.Type)">
+            <summary>
+            Register the MetadataType class for a certain type.
+            </summary>
+        </member>
+        <member name="T:NExtra.Extensions.XmlElementExtensions">
+            <summary>
+            Extension methods for System.Xml.XmlElement.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Extensions.XmlElementExtensions.GetElementInnerText(System.Xml.XmlElement,System.String)">
+            <summary>
+            Get the inner text of any tag, or an empty string if the tag is not found.
+            </summary>
+        </member>
+        <member name="T:NExtra.Security.Sha1Generator">
+            <summary>
+            This class can be used to generate SHA1 hash values.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Security.Sha1Generator.GenerateHashValue(System.Object)">
+            <summary>
+            Generate an SHA1 hash value.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.XmlDocumentationElementExtractor">
+            <summary>
+             This class can be used to extract documentation elements for
+             any type, constructor, member, method etc. It is intended to
+             be used indirectly by the extractors in this namespace.
+             </summary>
+             <remarks>
+             Author:         Daniel Saidi [daniel.saidi@gmail.com]
+             Link:           http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.XmlDocumentationElementExtractor.ExtractDocumentationElement(System.Type,System.Char,System.String)">
+            <summary>
+            Extract documentation for an XML element.
+            </summary>
+            <param name="type">The type of interest.</param>
+            <param name="prefix">The type's documentation prefix.</param>
+            <param name="subElementName">The sub element name, if any.</param>
+            <returns>XML documentation element.</returns>
+        </member>
+        <member name="T:NExtra.Documentation.AssemblyXmlDocumentationExtractor">
+            <summary>
+             This class can be used to extract documentation for
+             assemblies that have an XML documentation file.
+            </summary>
+             <remarks>
+             Author:     Daniel Saidi [daniel.saidi@gmail.com]
+             Link:       http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.AssemblyXmlDocumentationExtractor.#ctor">
+            <summary>
+            Create an instance of the class.
+            </summary>
+        </member>
+        <member name="M:NExtra.Documentation.AssemblyXmlDocumentationExtractor.ExtractDocumentation(System.Reflection.Assembly)">
+            <summary>
+            Extract XML documentation for an assembly, using
+            the default documentation file location (next to
+            the assembly, but with an .xml file type).
+            </summary>
+        </member>
+        <member name="M:NExtra.Documentation.AssemblyXmlDocumentationExtractor.ExtractDocumentation(System.Reflection.Assembly,System.String)">
+            <summary>
+            Extract XML documentation for an assembly using
+            a custom documentation file location.
+            </summary>
+        </member>
+        <member name="T:NExtra.Documentation.MemberInfoXmlDocumentationExtractor">
+            <summary>
+             This class can be used to extract XML documentation
+             data for MemberInfo instances.
+            </summary>
+             <remarks>
+             Author:         Daniel Saidi [daniel.saidi@gmail.com]
+             Link:           http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.MemberInfoXmlDocumentationExtractor.#ctor(NExtra.Documentation.IDocumentationElementExtractor)">
+            <param name="xmlDocumentationElementExtractor">The element documentation extractor to use.</param>
+        </member>
+        <member name="T:NExtra.Documentation.MethodInfoXmlDocumentationExtractor">
+            <summary>
+             This class can be used to extract XML documentation
+             data for MethodInfo instances.
+            </summary>
+             <remarks>
+             Author:         Daniel Saidi [daniel.saidi@gmail.com]
+             Link:           http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="M:NExtra.Documentation.MethodInfoXmlDocumentationExtractor.#ctor(NExtra.Documentation.IDocumentationElementExtractor)">
+            <param name="xmlDocumentationElementExtractor">The element documentation extractor to use.</param>
+        </member>
+        <member name="T:NExtra.Documentation.TypeXmlDocumentationExtractor">
+            <summary>
+             This class can be used to extract XML documentation for types.
+            </summary>
+             <remarks>
+             Author:         Daniel Saidi [daniel.saidi@gmail.com]
+             Link:           http://www.saidi.se/nextra
+             </remarks>
+        </member>
+        <member name="T:NExtra.Syndication.ISyndicationFeedLoader">
+            <summary>
+            This interface can be implemented by classes that
+            can load syndication feeds like RSS, ATOM etc.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Syndication.ISyndicationFeedLoader.Load(System.String)">
+            <summary>
+            Load a feed from a certain URL.
+            </summary>
+        </member>
+        <member name="T:NExtra.Syndication.SyndicationFeedLoader">
+            <summary>
+            This class can be used to load Syndication feeds (RSS
+            feeds) from any URL, using the non-abstract, built-in
+            System.ServiceModel.Syndication.SyndicationFeed class.
+            </summary>
+            <remarks>
+            Author:     Daniel Saidi [daniel.saidi@gmail.com]
+            Link:       http://www.saidi.se/nextra
+            </remarks>
+        </member>
+        <member name="M:NExtra.Syndication.SyndicationFeedLoader.Load(System.String)">
+            <summary>
+            Load a syndication feed from any public URL.
+            </summary>
+        </member>
+    </members>
+</doc>

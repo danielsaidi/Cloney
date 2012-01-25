@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using Cloney.Core;
-using Cloney.Core.Abstractions;
-using NExtra.Extensions;
+
 
 namespace Cloney.Wizard
 {
@@ -12,7 +10,7 @@ namespace Cloney.Wizard
     /// </summary>
     public partial class MainWindow
     {
-        private ICanExtractNamespace folderNamespaceExtractor;
+        /*private ICanExtractNamespace folderNamespaceExtractor;
         private ICanCloneSolution solutionCloner;
         private ICanExtractNamespace solutionFileNamespaceExtractor;
         private DispatcherTimer refreshTimer;
@@ -95,6 +93,6 @@ namespace Cloney.Wizard
         static void solutionCloner_CloningEnded(object sender, EventArgs e)
         {
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+        }*/
     }
 }
