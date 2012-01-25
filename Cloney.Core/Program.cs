@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using NExtra;
 using NExtra.Localization;
 
@@ -24,31 +23,35 @@ namespace Cloney.Core
         public Program()
         {
             Console = new ConsoleFacade();
+            ConsoleApplication = new ConsoleApplication();
+            GuiApplication = new GuiApplication();
             Translator = new ResourceManagerFacade(Language.ResourceManager);
-            Wizard = new Wizard();
         }
 
 
         public IConsole Console { get; set; }
 
+        public IProgram ConsoleApplication { get; set; }
+
         public ITranslator Translator { get; set; }
 
-        public IWizard Wizard { get; set; }
+        public IProgram GuiApplication { get; set; }
 
 
 
-        public void Start(IEnumerable<string> args)
+        public bool Start(IEnumerable<string> args)
         {
             try
             {
-                if (StartWizard(args))
-                    return;
-                StartConsole(args);
+                ConsoleApplication.Start(args);
+                GuiApplication.Start(args);
+                throw new Exception("foo");
             }
             catch (Exception e)
             {
                 Console.WriteLine(Translator.Translate("StartErrorMessage"));
                 Console.WriteLine(e.Message);
+                return false;
             }
 
 
@@ -62,26 +65,6 @@ namespace Cloney.Core
             solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
             solutionNamespaceExtractor = new SolutionFileNamespaceExtractor();*/
-        }
-
-        private bool StartConsole(IEnumerable<string> args)
-        {
-            if (args.Count() == 0)
-                return false;
-
-            //Start
-            throw new Exception("foo");
-
-            return true;
-        }
-
-        private bool StartWizard(IEnumerable<string> args)
-        {
-            if (args.Count() > 0)
-                return false;
-
-            Wizard.Start();
-            return true;
         }
         /*
         private static void Start()

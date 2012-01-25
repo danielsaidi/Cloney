@@ -18,8 +18,9 @@ namespace Cloney.Core.Tests
         {
             program = new Program();
             program.Console = Substitute.For<IConsole>();
+            program.ConsoleApplication = Substitute.For<IProgram>();
+            program.GuiApplication = Substitute.For<IProgram>();
             program.Translator = Substitute.For<ITranslator>();
-            program.Wizard = Substitute.For<IWizard>();
 
             args = new List<string>{ "foo", "bar" };
 
@@ -35,21 +36,22 @@ namespace Cloney.Core.Tests
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            
+            program.ConsoleApplication = null;
 
             program.Start(args);
 
             program.Translator.Received().Translate("StartErrorMessage");
             program.Console.Received().WriteLine("StartErrorMessage");
-            program.Console.Received().WriteLine("foo");
+            program.Console.Received().WriteLine("Object reference not set to an instance of an object.");
         }
 
         [Test]
-        public void Start_ShouldStartWizardWhenNoArgumentsAreProvided()
+        public void Start_ShouldStartAllSubPrograms()
         {
-            program.Start(new List<string>());
+            program.Start(args);
 
-            program.Wizard.Received().Start();
+            program.ConsoleApplication.Received().Start(args);
+            program.GuiApplication.Received().Start(args);
         }
     }
 }

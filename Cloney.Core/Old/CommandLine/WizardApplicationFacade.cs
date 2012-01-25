@@ -18,7 +18,7 @@ namespace Cloney.Core.Old.CommandLine
         {
             this.console = console;
             this.process = process;
-            this.executable = executable;
+            this.executable = executable;   
             this.startingArguments = startingArguments;
             this.startingMessage = startingMessage;
         }
