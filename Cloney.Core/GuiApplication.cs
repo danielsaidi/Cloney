@@ -11,7 +11,7 @@ namespace Cloney.Core
         }
 
 
-        public IProcess Process { get; set; }
+        private IProcess Process { get; set; }
 
 
         public bool Start(IEnumerable<string> args)

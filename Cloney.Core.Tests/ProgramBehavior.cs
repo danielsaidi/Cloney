@@ -11,17 +11,22 @@ namespace Cloney.Core.Tests
     {
         private Program program;
         private List<string> args;
+
+        private IConsole console;
+        private IProgram consoleApplication;
+        private IProgram guiApplication;
+        private ITranslator translator;
  
 
         [SetUp]
         public void SetUp()
         {
-            program = new Program();
-            program.Console = Substitute.For<IConsole>();
-            program.ConsoleApplication = Substitute.For<IProgram>();
-            program.GuiApplication = Substitute.For<IProgram>();
-            program.Translator = Substitute.For<ITranslator>();
+            console = Substitute.For<IConsole>();
+            consoleApplication = Substitute.For<IProgram>();
+            guiApplication = Substitute.For<IProgram>();
+            translator = Substitute.For<ITranslator>();
 
+            program = new Program(console, consoleApplication, guiApplication, translator);
             args = new List<string>{ "foo", "bar" };
 
             SetUpLanguage();
@@ -29,44 +34,44 @@ namespace Cloney.Core.Tests
 
         private void SetUpLanguage()
         {
-            program.Translator.Translate("StartErrorMessage").Returns("StartErrorMessage");
+            translator.Translate("StartErrorMessage").Returns("StartErrorMessage");
         }
 
 
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            program.ConsoleApplication = null;
+            program = new Program(console, null, guiApplication, translator);
 
             program.Start(args);
 
-            program.Translator.Received().Translate("StartErrorMessage");
-            program.Console.Received().WriteLine("StartErrorMessage");
-            program.Console.Received().WriteLine("Object reference not set to an instance of an object.");
+            translator.Received().Translate("StartErrorMessage");
+            console.Received().WriteLine("StartErrorMessage");
+            console.Received().WriteLine("Object reference not set to an instance of an object.");
         }
 
         [Test]
         public void Start_ShouldNotStartGuiApplicationIfConsoleApplicationStarts()
         {
-            program.ConsoleApplication.Start(args).Returns(true);
+            consoleApplication.Start(args).Returns(true);
 
             var result = program.Start(args);
 
-            program.ConsoleApplication.Received().Start(args);
-            program.GuiApplication.DidNotReceive().Start(args);
+            consoleApplication.Received().Start(args);
+            guiApplication.DidNotReceive().Start(args);
             Assert.That(result, Is.True);
         }
 
         [Test]
         public void Start_ShouldStartGuiApplicationIfConsoleApplicationDoesNotStart()
         {
-            program.ConsoleApplication.Start(args).Returns(false);
-            program.GuiApplication.Start(args).Returns(true);
+            consoleApplication.Start(args).Returns(false);
+            guiApplication.Start(args).Returns(true);
 
             var result = program.Start(args);
 
-            program.ConsoleApplication.Received().Start(args);
-            program.GuiApplication.Received().Start(args);
+            consoleApplication.Received().Start(args);
+            guiApplication.Received().Start(args);
             Assert.That(result, Is.True);
         }
 
@@ -75,8 +80,8 @@ namespace Cloney.Core.Tests
         {
             var result = program.Start(args);
 
-            program.ConsoleApplication.Received().Start(args);
-            program.GuiApplication.Received().Start(args);
+            consoleApplication.Received().Start(args);
+            guiApplication.Received().Start(args);
             Assert.That(result, Is.False);
         }
     }

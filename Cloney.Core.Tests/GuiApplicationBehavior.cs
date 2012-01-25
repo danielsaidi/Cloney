@@ -10,11 +10,15 @@ namespace Cloney.Core.Tests
     {
         private GuiApplication program;
 
+        private IProcess process;
+
 
         [SetUp]
         public void SetUp()
         {
-            program = new GuiApplication(Substitute.For<IProcess>());
+            process = Substitute.For<IProcess>();
+
+            program = new GuiApplication(process);
         }
 
 
@@ -23,7 +27,7 @@ namespace Cloney.Core.Tests
         {
             program.Start(new List<string>());
 
-            program.Process.Received().Start("Cloney.Wizard.exe");
+            process.Received().Start("Cloney.Wizard.exe");
         }
 
         [Test]
@@ -31,7 +35,7 @@ namespace Cloney.Core.Tests
         {
             program.Start(new List<string> { "foo", "bar" });
 
-            program.Process.Received().Start("Cloney.Wizard.exe");
+            process.Received().Start("Cloney.Wizard.exe");
         }
     }
 }

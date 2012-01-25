@@ -12,7 +12,7 @@ namespace Cloney.Core
         }
 
 
-        public IConsole Console { get; set; }
+        private IConsole Console { get; set; }
 
 
         public bool Start(IEnumerable<string> args)
