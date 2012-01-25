@@ -19,16 +19,17 @@ namespace Cloney.Core.Tests
 
 
         [Test]
-        public void Start_ShouldAbortForProvidedArguments()
-        {
-            program.Start(new List<string> { "foo", "bar" });
-
-            program.Process.DidNotReceive().Start(Arg.Any<string>());
-        }
-        [Test]
         public void Start_ShouldLaunchExternalProgramForNoArguments()
         {
             program.Start(new List<string>());
+
+            program.Process.Received().Start("Cloney.Wizard.exe");
+        }
+
+        [Test]
+        public void Start_ShouldLaunchExternalProgramForArguments()
+        {
+            program.Start(new List<string> { "foo", "bar" });
 
             program.Process.Received().Start("Cloney.Wizard.exe");
         }

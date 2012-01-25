@@ -11,12 +11,10 @@ namespace Cloney.Core
         /*private static ICommandLineArgumentParser argumentParser;
         private static IDictionary<string,string> arguments;
         private static bool cloningInProgress;
-        private static IConsole console;
         private static string currentPath;
         private static IFolderArgumentRetriever folderArgumentRetriever;
         private static ICanExtractNamespace folderNamespaceExtractor;
         private static IFolderNamespaceRetriever folderNamespaceRetriever;
-        private static IProcess process;
         private static ICanCloneSolution solutionCloner;
         private static ICanExtractNamespace solutionNamespaceExtractor;*/
 
@@ -43,9 +41,7 @@ namespace Cloney.Core
         {
             try
             {
-                ConsoleApplication.Start(args);
-                GuiApplication.Start(args);
-                return true;
+                return ConsoleApplication.Start(args) || GuiApplication.Start(args);
             }
             catch (Exception e)
             {

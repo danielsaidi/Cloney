@@ -46,12 +46,38 @@ namespace Cloney.Core.Tests
         }
 
         [Test]
-        public void Start_ShouldStartAllSubPrograms()
+        public void Start_ShouldNotStartGuiApplicationIfConsoleApplicationStarts()
         {
-            program.Start(args);
+            program.ConsoleApplication.Start(args).Returns(true);
+
+            var result = program.Start(args);
+
+            program.ConsoleApplication.Received().Start(args);
+            program.GuiApplication.DidNotReceive().Start(args);
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Start_ShouldStartGuiApplicationIfConsoleApplicationDoesNotStart()
+        {
+            program.ConsoleApplication.Start(args).Returns(false);
+            program.GuiApplication.Start(args).Returns(true);
+
+            var result = program.Start(args);
 
             program.ConsoleApplication.Received().Start(args);
             program.GuiApplication.Received().Start(args);
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Start_ShouldReturnFalseIfNoApplicationStarted()
+        {
+            var result = program.Start(args);
+
+            program.ConsoleApplication.Received().Start(args);
+            program.GuiApplication.Received().Start(args);
+            Assert.That(result, Is.False);
         }
     }
 }
