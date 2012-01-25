@@ -144,7 +144,4 @@
   <data name="TargetFolderDisplayName" xml:space="preserve">
     <value>target</value>
   </data>
-  <data name="WizardExecutable" xml:space="preserve">
-    <value>Cloney.Wizard.exe</value>
-  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NExtra;
+using NExtra.Diagnostics;
 using NExtra.Localization;
 
 namespace Cloney.Core
@@ -24,7 +25,7 @@ namespace Cloney.Core
         {
             Console = new ConsoleFacade();
             ConsoleApplication = new ConsoleApplication();
-            GuiApplication = new GuiApplication();
+            GuiApplication = new GuiApplication(new ProcessFacade());
             Translator = new ResourceManagerFacade(Language.ResourceManager);
         }
 
@@ -36,7 +37,6 @@ namespace Cloney.Core
         public ITranslator Translator { get; set; }
 
         public IProgram GuiApplication { get; set; }
-
 
 
         public bool Start(IEnumerable<string> args)
