@@ -26,7 +26,7 @@ namespace Cloney.Core
             Console = new ConsoleFacade();
             ConsoleApplication = new ConsoleApplication();
             GuiApplication = new GuiApplication(new ProcessFacade());
-            Translator = new ResourceManagerFacade(Language.ResourceManager);
+            Translator = new LanguageProvider();
         }
 
 

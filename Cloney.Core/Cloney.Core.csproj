@@ -63,7 +63,6 @@
     </Compile>
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="IProgram.cs" />
-    <Compile Include="IWizard.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +76,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="GuiApplication.cs" />
+    <Compile Include="LanguageProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -126,17 +126,11 @@
   <data name="InvalidTargetFolderExpression" xml:space="preserve">
     <value>The {0} folder does not exist</value>
   </data>
-  <data name="MainErrorExpression" xml:space="preserve">
-    <value>Error: {0}</value>
-  </data>
   <data name="SourceFolderArgumentName" xml:space="preserve">
     <value>source</value>
   </data>
   <data name="SourceFolderDisplayName" xml:space="preserve">
     <value>source</value>
-  </data>
-  <data name="StartingWizardMessage" xml:space="preserve">
-    <value>Starting the Cloney wizard...</value>
   </data>
   <data name="TargetFolderArgumentName" xml:space="preserve">
     <value>target</value>
