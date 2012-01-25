@@ -45,7 +45,7 @@ namespace Cloney.Core
             {
                 ConsoleApplication.Start(args);
                 GuiApplication.Start(args);
-                throw new Exception("foo");
+                return true;
             }
             catch (Exception e)
             {
