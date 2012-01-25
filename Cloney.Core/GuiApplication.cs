@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NExtra.Diagnostics;
 
 namespace Cloney.Core
 {
-
     public class GuiApplication : IProgram
     {
         public GuiApplication(IProcess process)

@@ -22,7 +22,7 @@ namespace Cloney.Core
         public Program()
         {
             Console = new ConsoleFacade();
-            ConsoleApplication = new ConsoleApplication();
+            ConsoleApplication = new ConsoleApplication(new ConsoleFacade());
             GuiApplication = new GuiApplication(new ProcessFacade());
             Translator = new LanguageProvider();
         }
