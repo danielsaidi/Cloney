@@ -13,8 +13,8 @@ namespace Cloney.Core.Tests
         private List<string> args;
 
         private IConsole console;
-        private IProgram consoleApplication;
-        private IProgram guiApplication;
+        private IProgram consoleProgram;
+        private IProgram guiProgram;
         private ITranslator translator;
  
 
@@ -22,11 +22,11 @@ namespace Cloney.Core.Tests
         public void SetUp()
         {
             console = Substitute.For<IConsole>();
-            consoleApplication = Substitute.For<IProgram>();
-            guiApplication = Substitute.For<IProgram>();
+            consoleProgram = Substitute.For<IProgram>();
+            guiProgram = Substitute.For<IProgram>();
             translator = Substitute.For<ITranslator>();
 
-            program = new Program(console, consoleApplication, guiApplication, translator);
+            program = new Program(console, consoleProgram, guiProgram, translator);
             args = new List<string>{ "foo", "bar" };
 
             SetUpLanguage();
@@ -41,7 +41,7 @@ namespace Cloney.Core.Tests
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            program = new Program(console, null, guiApplication, translator);
+            program = new Program(console, null, guiProgram, translator);
 
             program.Start(args);
 
@@ -53,25 +53,25 @@ namespace Cloney.Core.Tests
         [Test]
         public void Start_ShouldNotStartGuiApplicationIfConsoleApplicationStarts()
         {
-            consoleApplication.Start(args).Returns(true);
+            consoleProgram.Start(args).Returns(true);
 
             var result = program.Start(args);
 
-            consoleApplication.Received().Start(args);
-            guiApplication.DidNotReceive().Start(args);
+            consoleProgram.Received().Start(args);
+            guiProgram.DidNotReceive().Start(args);
             Assert.That(result, Is.True);
         }
 
         [Test]
         public void Start_ShouldStartGuiApplicationIfConsoleApplicationDoesNotStart()
         {
-            consoleApplication.Start(args).Returns(false);
-            guiApplication.Start(args).Returns(true);
+            consoleProgram.Start(args).Returns(false);
+            guiProgram.Start(args).Returns(true);
 
             var result = program.Start(args);
 
-            consoleApplication.Received().Start(args);
-            guiApplication.Received().Start(args);
+            consoleProgram.Received().Start(args);
+            guiProgram.Received().Start(args);
             Assert.That(result, Is.True);
         }
 
@@ -80,8 +80,8 @@ namespace Cloney.Core.Tests
         {
             var result = program.Start(args);
 
-            consoleApplication.Received().Start(args);
-            guiApplication.Received().Start(args);
+            consoleProgram.Received().Start(args);
+            guiProgram.Received().Start(args);
             Assert.That(result, Is.False);
         }
     }

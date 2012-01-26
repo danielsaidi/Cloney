@@ -68,8 +68,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ConsoleApplicationBehavior.cs" />
-    <Compile Include="GuiApplicationBehavior.cs" />
+    <Compile Include="Console\ProgramBehavior.cs" />
+    <Compile Include="Gui\ProgramBehavior.cs" />
     <Compile Include="ProgramBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

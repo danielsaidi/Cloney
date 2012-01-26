@@ -20,24 +20,24 @@ namespace Cloney.Core
 
 
         public Program()
-            : this(new ConsoleFacade(), new ConsoleApplication(new ConsoleFacade()), new GuiApplication(new ProcessFacade()), new LanguageProvider())
+            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
         {
         }
 
-        public Program(IConsole console, IProgram consoleApplication, IProgram guiApplication, ITranslator translator)
+        public Program(IConsole console, IProgram consoleProgram, IProgram guiProgram, ITranslator translator)
         {
             Console = console;
-            ConsoleApplication = consoleApplication;
-            GuiApplication = guiApplication;
+            ConsoleProgram = consoleProgram;
+            GuiProgram = guiProgram;
             Translator = translator;
         }
 
 
         private IConsole Console { get; set; }
 
-        private IProgram ConsoleApplication { get; set; }
+        private IProgram ConsoleProgram { get; set; }
 
-        private IProgram GuiApplication { get; set; }
+        private IProgram GuiProgram { get; set; }
 
         private ITranslator Translator { get; set; }
 
@@ -48,7 +48,7 @@ namespace Cloney.Core
             {
                 foreach (var arg in args)
                     System.Console.WriteLine(arg);
-                return ConsoleApplication.Start(args) || GuiApplication.Start(args);
+                return ConsoleProgram.Start(args) || GuiProgram.Start(args);
             }
             catch (Exception e)
             {

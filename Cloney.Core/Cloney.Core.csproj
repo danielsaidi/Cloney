@@ -61,7 +61,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ConsoleApplication.cs" />
+    <Compile Include="Console\Program.cs" />
+    <Compile Include="Gui\Program.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,7 +76,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="GuiApplication.cs" />
     <Compile Include="LanguageProvider.cs" />
   </ItemGroup>
   <ItemGroup>
