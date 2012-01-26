@@ -8,7 +8,7 @@ namespace Cloney.Core
 {
     public class Program : IProgram
     {
-        /*private static ICommandLineArgumentParser argumentParser;
+        /*
         private static IDictionary<string,string> arguments;
         private static bool cloningInProgress;
         private static string currentPath;
@@ -20,7 +20,7 @@ namespace Cloney.Core
 
 
         public Program()
-            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
+            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade(), new CommandLineArgumentParser()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
         {
         }
 
@@ -58,8 +58,7 @@ namespace Cloney.Core
             }
 
 
-            /*argumentParser = new CommandLineArgumentParser();
-            arguments = argumentParser.ParseCommandLineArguments(args);
+            /*
             console = new ConsoleFacade();
             folderArgumentRetriever = new FolderArgumentRetriever();
             folderNamespaceExtractor = new FolderNamespaceExtractor();
@@ -72,9 +71,6 @@ namespace Cloney.Core
         /*
         private static void Start()
         {
-            if (StartWizard())
-                return;
-
             var sourceFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Language.SourceFolderArgumentName, Language.SourceFolderDisplayName, Language.FolderArgumentErrorMessage);
             var targetFolder = folderArgumentRetriever.GetFolderArgumentValue(arguments, Language.TargetFolderArgumentName, Language.TargetFolderDisplayName, Language.FolderArgumentErrorMessage);
             var sourceNamespace = folderNamespaceRetriever.GetFolderNamespace(solutionNamespaceExtractor, sourceFolder, Language.InvalidSolutionFolderExpression);
