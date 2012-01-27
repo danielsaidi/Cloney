@@ -4,6 +4,6 @@ namespace Cloney.Core
 {
     public interface IProgram
     {
-        bool Start(IEnumerable<string> args);
+        void Start(IEnumerable<string> args);
     }
 }

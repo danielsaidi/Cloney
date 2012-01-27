@@ -20,10 +20,12 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void FindAll_ShouldFindAllSubRoutinesInCoreLibrary()
         {
+            var i = 0;
             var routines = locator.FindAll().ToList();
 
-            Assert.That(routines.Count(), Is.EqualTo(1));
-            Assert.That(routines[0].GetType().Name, Is.EqualTo("HelpRoutine"));
+            Assert.That(routines.Count(), Is.EqualTo(2));
+            Assert.That(routines[i++].GetType().Name, Is.EqualTo("HelpRoutine"));
+            Assert.That(routines[i++].GetType().Name, Is.EqualTo("GuiRoutine"));
         }
     }
 }

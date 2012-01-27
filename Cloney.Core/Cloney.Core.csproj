@@ -61,8 +61,6 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Console\Program.cs" />
-    <Compile Include="Gui\Program.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>

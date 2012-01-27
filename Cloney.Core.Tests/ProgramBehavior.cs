@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cloney.Core.SubRoutines;
 using NExtra;
 using NExtra.Localization;
 using NSubstitute;
@@ -10,24 +11,24 @@ namespace Cloney.Core.Tests
     public class ProgramBehavior
     {
         private Program program;
-        private List<string> args;
+        private List<string> arguments;
 
         private IConsole console;
-        private IProgram consoleProgram;
-        private IProgram guiProgram;
         private ITranslator translator;
+        private ISubRoutineLocator subRoutineLocator;
+        private ICommandLineArgumentParser argumentParser;
  
 
         [SetUp]
         public void SetUp()
         {
             console = Substitute.For<IConsole>();
-            consoleProgram = Substitute.For<IProgram>();
-            guiProgram = Substitute.For<IProgram>();
             translator = Substitute.For<ITranslator>();
+            argumentParser = Substitute.For<ICommandLineArgumentParser>();
+            subRoutineLocator = Substitute.For<ISubRoutineLocator>();
 
-            program = new Program(console, consoleProgram, guiProgram, translator);
-            args = new List<string>{ "foo", "bar" };
+            program = new Program(console, translator, argumentParser, subRoutineLocator);
+            arguments = new List<string> { "foo", "bar" };
 
             SetUpLanguage();
         }
@@ -41,9 +42,9 @@ namespace Cloney.Core.Tests
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            program = new Program(console, null, guiProgram, translator);
+            program = new Program(console, translator, null, null);
 
-            program.Start(args);
+            program.Start(arguments);
 
             translator.Received().Translate("StartErrorMessage");
             console.Received().WriteLine("StartErrorMessage");
@@ -51,38 +52,25 @@ namespace Cloney.Core.Tests
         }
 
         [Test]
-        public void Start_ShouldNotStartGuiApplicationIfConsoleApplicationStarts()
+        public void Start_ShouldParseArguments()
         {
-            consoleProgram.Start(args).Returns(true);
+            program.Start(arguments);
 
-            var result = program.Start(args);
-
-            consoleProgram.Received().Start(args);
-            guiProgram.DidNotReceive().Start(args);
-            Assert.That(result, Is.True);
+            argumentParser.Received().ParseCommandLineArguments(arguments);
         }
 
         [Test]
-        public void Start_ShouldStartGuiApplicationIfConsoleApplicationDoesNotStart()
+        public void Start_ShouldLookForSubRoutines()
         {
-            consoleProgram.Start(args).Returns(false);
-            guiProgram.Start(args).Returns(true);
+            program.Start(arguments);
 
-            var result = program.Start(args);
-
-            consoleProgram.Received().Start(args);
-            guiProgram.Received().Start(args);
-            Assert.That(result, Is.True);
+            subRoutineLocator.Received().FindAll();
         }
 
         [Test]
-        public void Start_ShouldReturnFalseIfNoApplicationStarted()
+        public void Start_ShouldNotFailForMissingSubRoutines()
         {
-            var result = program.Start(args);
-
-            consoleProgram.Received().Start(args);
-            guiProgram.Received().Start(args);
-            Assert.That(result, Is.False);
+            program.Start(arguments);
         }
     }
 }

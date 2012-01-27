@@ -26,39 +26,40 @@ namespace Cloney.Core
 
 
         public Program()
-            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade(), new CommandLineArgumentParser(), new LocalSubRoutineLocator()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
+            : this(new ConsoleFacade(), new LanguageProvider(), new CommandLineArgumentParser(), new LocalSubRoutineLocator())
         {
         }
 
-        public Program(IConsole console, IProgram consoleProgram, IProgram guiProgram, ITranslator translator)
+        public Program(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISubRoutineLocator subRoutineLocator)
         {
             Console = console;
-            ConsoleProgram = consoleProgram;
-            GuiProgram = guiProgram;
             Translator = translator;
+            ArgumentParser = argumentParser;
+            SubRoutineLocator = subRoutineLocator;
         }
 
+
+        private ICommandLineArgumentParser ArgumentParser { get; set; }
 
         private IConsole Console { get; set; }
 
-        private IProgram ConsoleProgram { get; set; }
-
-        private IProgram GuiProgram { get; set; }
-
         private ITranslator Translator { get; set; }
 
+        private ISubRoutineLocator SubRoutineLocator { get; set; }
 
-        public bool Start(IEnumerable<string> args)
+
+        public void Start(IEnumerable<string> args)
         {
             try
             {
-                return ConsoleProgram.Start(args) || GuiProgram.Start(args);
+                var arguments = ArgumentParser.ParseCommandLineArguments(args);
+                foreach (var routine in SubRoutineLocator.FindAll())
+                    routine.Run(arguments);
             }
             catch (Exception e)
             {
                 Console.WriteLine(Translator.Translate("StartErrorMessage"));
                 Console.WriteLine(e.Message);
-                return false;
             }
 
 
