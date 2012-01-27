@@ -3,6 +3,10 @@ using NExtra.Diagnostics;
 
 namespace Cloney.Core.Gui
 {
+    /// <summary>
+    /// This class is responsible for starting the Cloney
+    /// GUI application by starting a separate process.
+    /// </summary>
     public class Program : IProgram
     {
         public Program(IProcess process)

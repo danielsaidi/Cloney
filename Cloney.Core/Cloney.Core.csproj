@@ -62,6 +62,10 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Console\Program.cs" />
+    <Compile Include="Console\SubRoutines\HelpRoutine.cs" />
+    <Compile Include="Console\SubRoutines\LocalSubRoutineLocator.cs" />
+    <Compile Include="Console\SubRoutines\ISubRoutineLocator.cs" />
+    <Compile Include="Console\SubRoutines\ISubRoutine.cs" />
     <Compile Include="Gui\Program.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">

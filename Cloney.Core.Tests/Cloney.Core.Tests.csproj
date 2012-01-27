@@ -69,6 +69,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Console\ProgramBehavior.cs" />
+    <Compile Include="Console\SubRoutines\LocalSubRoutineLocatorBehavior.cs" />
     <Compile Include="Gui\ProgramBehavior.cs" />
     <Compile Include="ProgramBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

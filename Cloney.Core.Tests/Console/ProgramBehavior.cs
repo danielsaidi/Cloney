@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cloney.Core.Console.SubRoutines;
 using NExtra;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,6 +11,7 @@ namespace Cloney.Core.Tests.Console
     {
         private IProgram program;
         private IConsole console;
+        private ISubRoutineLocator subRoutineLocator;
         private ICommandLineArgumentParser argumentParser;
 
         private IEnumerable<string> arguments;
@@ -20,8 +22,9 @@ namespace Cloney.Core.Tests.Console
         {
             console = Substitute.For<IConsole>();
             argumentParser = Substitute.For<ICommandLineArgumentParser>();
+            subRoutineLocator = Substitute.For<ISubRoutineLocator>();
 
-            program = new Core.Console.Program(console, argumentParser);
+            program = new Core.Console.Program(console, argumentParser, subRoutineLocator);
 
             arguments = new List<string>();
         }
@@ -33,6 +36,20 @@ namespace Cloney.Core.Tests.Console
             program.Start(arguments);
 
             argumentParser.Received().ParseCommandLineArguments(arguments);
+        }
+
+        [Test]
+        public void Start_ShouldLookForSubRoutines()
+        {
+            program.Start(arguments);
+
+            subRoutineLocator.Received().FindAll();
+        }
+
+        [Test]
+        public void Start_ShouldNotFailForMissingSubRoutines()
+        {
+            program.Start(arguments);
         }
     }
 }

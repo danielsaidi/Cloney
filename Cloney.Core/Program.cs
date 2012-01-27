@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cloney.Core.Console.SubRoutines;
 using NExtra;
 using NExtra.Diagnostics;
 using NExtra.Localization;
 
 namespace Cloney.Core
 {
+    /// <summary>
+    /// This class represents the main Cloney application.
+    /// It will either trigger the console or the GUI app,
+    /// according to the input argument it receives.
+    /// </summary>
     public class Program : IProgram
     {
         /*
@@ -20,7 +26,7 @@ namespace Cloney.Core
 
 
         public Program()
-            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade(), new CommandLineArgumentParser()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
+            : this(new ConsoleFacade(), new Console.Program(new ConsoleFacade(), new CommandLineArgumentParser(), new LocalSubRoutineLocator()), new Gui.Program(new ProcessFacade()), new LanguageProvider())
         {
         }
 
