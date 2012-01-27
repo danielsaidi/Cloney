@@ -61,6 +61,19 @@ namespace Cloney.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to usage: cloney [--help] [--clone &lt;source&gt; &lt;target&gt;]
+        ///
+        ///The most commonly used Cloney commands are
+        ///   help       Display general help
+        ///   clone      Clone a solution from a source to a target folder.
+        /// </summary>
+        internal static string GeneralHelpMessage {
+            get {
+                return ResourceManager.GetString("GeneralHelpMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cloney failed to start with the following error message:.
         /// </summary>
         internal static string StartErrorMessage {
