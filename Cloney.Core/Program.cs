@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cloney.Core.Console.SubRoutines;
+using Cloney.Core.SubRoutines;
 using NExtra;
 using NExtra.Diagnostics;
 using NExtra.Localization;
@@ -52,8 +52,6 @@ namespace Cloney.Core
         {
             try
             {
-                foreach (var arg in args)
-                    System.Console.WriteLine(arg);
                 return ConsoleProgram.Start(args) || GuiProgram.Start(args);
             }
             catch (Exception e)

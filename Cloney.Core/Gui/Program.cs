@@ -20,6 +20,7 @@ namespace Cloney.Core.Gui
 
         public bool Start(IEnumerable<string> args)
         {
+            return false;
             Process.Start("Cloney.Wizard.exe");
             return true;
         }

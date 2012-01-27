@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NExtra;
 
-namespace Cloney.Core.Console.SubRoutines
+namespace Cloney.Core.SubRoutines
 {
     /// <summary>
     /// This sub routine will trigger on the --help
@@ -22,7 +22,8 @@ namespace Cloney.Core.Console.SubRoutines
 
         public void Run(IDictionary<string, string> args)
         {
-            System.Console.WriteLine("HEJ");
+            if (args.Keys.Contains("help"))
+                System.Console.WriteLine("Skriv ut hjälp");
         }
     }
 }

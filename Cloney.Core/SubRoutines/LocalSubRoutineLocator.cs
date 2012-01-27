@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using NExtra.Extensions;
 
-namespace Cloney.Core.Console.SubRoutines
+namespace Cloney.Core.SubRoutines
 {
     /// <summary>
     /// This class can be used to find all Cloney

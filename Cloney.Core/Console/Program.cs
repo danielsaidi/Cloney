@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Cloney.Core.Console.SubRoutines;
+using Cloney.Core.SubRoutines;
 using NExtra;
 
 namespace Cloney.Core.Console
@@ -33,6 +33,8 @@ namespace Cloney.Core.Console
             var arguments = ArgumentParser.ParseCommandLineArguments(args);
             var routines = SubRoutineLocator.FindAll();
 
+            foreach(var routine in routines)
+                routine.Run(arguments);
 
             return args.Count() > 0;
         }
