@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cloney.Core.SubRoutines;
 using NExtra;
 using NExtra.Diagnostics;
@@ -53,8 +54,15 @@ namespace Cloney.Core
             try
             {
                 var arguments = ArgumentParser.ParseCommandLineArguments(args);
-                foreach (var routine in SubRoutineLocator.FindAll())
+                var routines = SubRoutineLocator.FindAll();
+
+                foreach (var routine in routines)
                     routine.Run(arguments);
+
+                while (routines.Where(x => !x.Finished).Count() > 0)
+                {
+                }
+
             }
             catch (Exception e)
             {

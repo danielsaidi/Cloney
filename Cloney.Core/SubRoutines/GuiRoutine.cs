@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NExtra.Diagnostics;
 
 namespace Cloney.Core.SubRoutines
@@ -8,7 +9,7 @@ namespace Cloney.Core.SubRoutines
     /// argument and print information about how to
     /// use Cloney.
     /// </summary>
-    public class GuiRoutine : ISubRoutine
+    public class GuiRoutine : SubRoutineBase, ISubRoutine
     {
         public GuiRoutine()
             :this(new ProcessFacade())
@@ -28,6 +29,8 @@ namespace Cloney.Core.SubRoutines
         {
             if (args.Count == 0)
                 Process.Start("Cloney.Wizard.exe");
+
+            Finish();
         }
     }
 }

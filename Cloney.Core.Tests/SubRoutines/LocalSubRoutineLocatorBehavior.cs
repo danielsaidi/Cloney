@@ -22,10 +22,11 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             var i = 0;
             var routines = locator.FindAll().ToList();
+            var routineNames = routines.Select(x => x.GetType().Name);
 
             Assert.That(routines.Count(), Is.EqualTo(2));
-            Assert.That(routines[i++].GetType().Name, Is.EqualTo("HelpRoutine"));
-            Assert.That(routines[i++].GetType().Name, Is.EqualTo("GuiRoutine"));
+            Assert.That(routineNames.Contains("GeneralHelpRoutine"), Is.True);
+            Assert.That(routineNames.Contains("GuiRoutine"), Is.True);
         }
     }
 }

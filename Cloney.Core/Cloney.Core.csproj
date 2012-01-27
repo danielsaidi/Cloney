@@ -76,10 +76,11 @@
     </Compile>
     <Compile Include="LanguageProvider.cs" />
     <Compile Include="SubRoutines\GuiRoutine.cs" />
-    <Compile Include="SubRoutines\HelpRoutine.cs" />
+    <Compile Include="SubRoutines\GeneralHelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
     <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
+    <Compile Include="SubRoutines\SubRoutineBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
