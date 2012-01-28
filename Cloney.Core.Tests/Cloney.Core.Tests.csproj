@@ -68,7 +68,9 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="SolutionCloners\FakeSolutionCloner.cs" />
     <Compile Include="SolutionCloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="SolutionCloners\ThreadedSolutionClonerBehavior.cs" />
     <Compile Include="SubRoutines\CloneRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GeneralHelpRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutineBehavior.cs" />

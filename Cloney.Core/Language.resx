@@ -118,11 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GeneralHelpMessage" xml:space="preserve">
-    <value>usage: cloney [--help] [--clone --source &lt;source&gt; --target &lt;target&gt;]
+    <value>usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
 
 The most commonly used Cloney commands are
    help       Display general help
    clone      Clone a solution from a source to a target folder</value>
+  </data>
+  <data name="MissingSourcePathArgumentErrorMessage" xml:space="preserve">
+    <value>You must provide Cloney with a source path, e.g. --source=c:\SourceFolder</value>
+  </data>
+  <data name="MissingTargetPathArgumentErrorMessage" xml:space="preserve">
+    <value>You must provide Cloney with a target path, e.g. --target=c:\TargetFolder</value>
   </data>
   <data name="StartErrorMessage" xml:space="preserve">
     <value>Cloney failed to start with the following error message:</value>

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Cloney.Core.SolutionCloners;
 using NExtra;
-using NExtra.Diagnostics;
 using NExtra.Localization;
 
 namespace Cloney.Core.SubRoutines
@@ -15,9 +13,9 @@ namespace Cloney.Core.SubRoutines
     /// </summary>
     public class CloneRoutine : SubRoutineBase, ISubRoutine
     {
-        private IConsole console;
-        private ITranslator translator;
-        private ISolutionCloner solutionCloner;
+        private readonly IConsole console;
+        private readonly ITranslator translator;
+        private readonly ISolutionCloner solutionCloner;
 
 
         public CloneRoutine()
@@ -33,24 +31,54 @@ namespace Cloney.Core.SubRoutines
         }
 
 
+
         public void Run(IDictionary<string, string> args)
         {
-            if (args.ContainsKey("clone") && args["clone"] == "true")
-                Thread.Sleep(2000);
-
-
-            //if (!ArgsHaveKeyValue("clone", "true"))
-              //  return Finish();
-
-            //if (args.Count == 0)
-              //  Process.Start("Cloney.Wizard.exe");
-
-            Finish();
+            if (!RunCloningOperation(args))
+                Finish();
         }
 
-        private void RunCloningOperation(string sourceFolder, string targetFolder)
+
+        private static string GetFolderArg(IDictionary<string, string> args, string key)
         {
-            
+            return (!args.ContainsKey(key) || args[key] == "true")
+                       ? string.Empty
+                       : args[key];
+        }
+
+        private bool RunCloningOperation(IDictionary<string, string> args)
+        {
+            if (!args.ContainsKey("clone") || args["clone"] != "true")
+                return false;
+
+            var sourcePath = GetFolderArg(args, "source");
+            if (!ValidateFolderArg(sourcePath, "MissingSourcePathArgumentErrorMessage"))
+                return false;
+
+            var targetPath = GetFolderArg(args, "target");
+            if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage")) 
+                return false;
+
+            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+            solutionCloner.CloneSolution(sourcePath, targetPath);
+
+            return true;
+        }
+
+        private bool ValidateFolderArg(string sourcePath, string errorMessage)
+        {
+            if (sourcePath == string.Empty)
+            {
+                console.WriteLine(translator.Translate(errorMessage));
+                return false;
+            }
+            return true;
+        }
+
+
+        private void solutionCloner_CloningEnded(object sender, EventArgs e)
+        {
+            Finish();
         }
     }
 }

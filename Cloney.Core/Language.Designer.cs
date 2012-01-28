@@ -61,7 +61,7 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to usage: cloney [--help] [--clone --source &lt;source&gt; --target &lt;target&gt;]
+        ///   Looks up a localized string similar to usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
         ///
         ///The most commonly used Cloney commands are
         ///   help       Display general help
@@ -70,6 +70,24 @@ namespace Cloney.Core {
         internal static string GeneralHelpMessage {
             get {
                 return ResourceManager.GetString("GeneralHelpMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must provide Cloney with a source path, e.g. --source=c:\SourceFolder.
+        /// </summary>
+        internal static string MissingSourcePathArgumentErrorMessage {
+            get {
+                return ResourceManager.GetString("MissingSourcePathArgumentErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must provide Cloney with a target path, e.g. --target=c:\TargetFolder.
+        /// </summary>
+        internal static string MissingTargetPathArgumentErrorMessage {
+            get {
+                return ResourceManager.GetString("MissingTargetPathArgumentErrorMessage", resourceCulture);
             }
         }
         

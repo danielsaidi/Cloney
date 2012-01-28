@@ -8,6 +8,9 @@ namespace Cloney.Core.SolutionCloners
     /// </summary>
     public class SolutionClonerBase
     {
+        public string CurrentPath { get; protected set; }
+
+
         public event EventHandler CloningBegun;
         
         public event EventHandler CloningEnded;

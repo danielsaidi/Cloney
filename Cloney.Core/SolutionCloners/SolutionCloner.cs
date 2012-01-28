@@ -6,30 +6,11 @@ namespace Cloney.Core.SolutionCloners
     /// This class can be used to clone Visual Studio solutions
     /// from a source to a target folder.
     /// </summary>
-    public class SolutionCloner : ISolutionCloner
+    public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
-        public event EventHandler CloningBegun;
-        public event EventHandler CloningEnded;
-
-
-        public string CurrentPath { get; private set; }
-
-
         public void CloneSolution(string sourcePath, string targetPath)
         {
             throw new NotImplementedException();
-        }
-
-        public void OnCloningBegun(EventArgs e)
-        {
-            if (CloningBegun != null)
-                CloningBegun(this, e);
-        }
-
-        public void OnCloningEnded(EventArgs e)
-        {
-            if (CloningEnded != null)
-                CloningEnded(this, e);
         }
     }
      /*   public SolutionCloner(IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns)
