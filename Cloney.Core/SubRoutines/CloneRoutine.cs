@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Cloney.Core.SolutionCloners;
 using NExtra;
 using NExtra.Diagnostics;
+using NExtra.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -14,16 +16,20 @@ namespace Cloney.Core.SubRoutines
     public class CloneRoutine : SubRoutineBase, ISubRoutine
     {
         private IConsole console;
+        private ITranslator translator;
+        private ISolutionCloner solutionCloner;
 
 
         public CloneRoutine()
-            :this(new ConsoleFacade())
+            :this(new ConsoleFacade(), new LanguageProvider(), new SolutionCloner())
         {
         }
 
-        public CloneRoutine(IConsole console)
+        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner)
         {
             this.console = console;
+            this.translator = translator;
+            this.solutionCloner = solutionCloner;
         }
 
 
@@ -31,6 +37,8 @@ namespace Cloney.Core.SubRoutines
         {
             if (args.ContainsKey("clone") && args["clone"] == "true")
                 Thread.Sleep(2000);
+
+
             //if (!ArgsHaveKeyValue("clone", "true"))
               //  return Finish();
 
@@ -38,6 +46,11 @@ namespace Cloney.Core.SubRoutines
               //  Process.Start("Cloney.Wizard.exe");
 
             Finish();
+        }
+
+        private void RunCloningOperation(string sourceFolder, string targetFolder)
+        {
+            
         }
     }
 }

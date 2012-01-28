@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cloney.Core.SolutionCloners;
 using Cloney.Core.SubRoutines;
 using NExtra;
 using NExtra.Localization;
@@ -13,6 +14,7 @@ namespace Cloney.Core.Tests.SubRoutines
         private ISubRoutine routine;
         private IConsole console;
         private ITranslator translator;
+        private ISolutionCloner solutionCloner;
 
 
         [SetUp]
@@ -20,9 +22,9 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
-            translator.Translate("GeneralHelpMessage").Returns("foo");
+            solutionCloner = Substitute.For<ISolutionCloner>();
 
-            routine = new GeneralHelpRoutine(console, translator);
+            routine = new CloneRoutine(console, translator, solutionCloner);
         }
 
 
@@ -31,7 +33,7 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(new Dictionary<string, string>());
 
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
 
             Assert.That(routine.Finished, Is.True);
         }
@@ -41,7 +43,18 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
 
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
+
+            Assert.That(routine.Finished, Is.True);
+        }
+        /*
+        [Test]
+        public void Run_ShouldWarnForMissingSourcePath()
+        {
+            routine.Run(new Dictionary<string, string> { { "clone", "true" } });
+
+            translator.Received().Translate("GeneralHelpMessage");
+            console.Received().WriteLine("foo");
 
             Assert.That(routine.Finished, Is.True);
         }
@@ -55,6 +68,6 @@ namespace Cloney.Core.Tests.SubRoutines
             console.Received().WriteLine("foo");
 
             Assert.That(routine.Finished, Is.True);
-        }
+        }*/
     }
 }

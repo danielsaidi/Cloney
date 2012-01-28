@@ -68,13 +68,5 @@ namespace Cloney.Core.Tests.SolutionCloners
     }
 
 
-    internal class TestCloner : SolutionClonerBase, ISolutionCloner
-    {
-        public string CurrentPath { get; private set; }
-
-        public void CloneSolution(string sourcePath, string targetPath)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    internal class TestCloner : SolutionClonerBase { }
 }

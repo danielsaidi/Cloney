@@ -33,7 +33,7 @@ namespace Cloney.Core.Tests.SubRoutines
     }
 
 
-    internal class TestRoutine : SubRoutineBase, ISubRoutine
+    internal class TestRoutine : SubRoutineBase
     {
         public void Run(IDictionary<string, string> args)
         {

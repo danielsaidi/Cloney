@@ -61,7 +61,7 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to usage: cloney [--help] [--clone &lt;source&gt; &lt;target&gt;]
+        ///   Looks up a localized string similar to usage: cloney [--help] [--clone --source &lt;source&gt; --target &lt;target&gt;]
         ///
         ///The most commonly used Cloney commands are
         ///   help       Display general help
