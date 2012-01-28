@@ -7,7 +7,7 @@ namespace Cloney.Core.SubRoutines
         public bool Finished { get; private set; }
 
 
-        protected bool ArgExistsWithValue(Dictionary<string, string> args, string key, string value)
+        protected bool ArgHasKeyWithValue(Dictionary<string, string> args, string key, string value)
         {
             return (args.ContainsKey(key) && args[key] == value);
         }

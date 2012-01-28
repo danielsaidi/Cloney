@@ -7,7 +7,7 @@ namespace Cloney.Core.Tests.SubRoutines
     [TestFixture]
     public class SubRoutineBaseBehavior
     {
-        private ISubRoutine routine;
+        private TestRoutine routine;
 
 
         [SetUp]
@@ -30,10 +30,40 @@ namespace Cloney.Core.Tests.SubRoutines
 
             Assert.That(routine.Finished, Is.True);
         }
+
+        [Test]
+        public void ArgHasKeyWithValue_ShouldReturnFalseForNoArguments()
+        {
+            var result = routine.ArgHasKeyWithValue(new Dictionary<string, string>(), "foo", "bar");
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void ArgHasKeyWithValue_ShouldAbortForInvalidArguments()
+        {
+            var result = routine.ArgHasKeyWithValue(new Dictionary<string, string> { { "foo", "bar" } }, "bar", "foo");
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void ArgHasKeyWithValue_ShouldProceedForRelevantArgument()
+        {
+            var result = routine.ArgHasKeyWithValue(new Dictionary<string, string> { { "foo", "bar" } }, "foo", "bar");
+
+            Assert.That(result, Is.True);
+        }
     }
+
 
     internal class TestRoutine : SubRoutineBase, ISubRoutine
     {
+        new public bool ArgHasKeyWithValue(Dictionary<string, string> args, string key, string value)
+        {
+            return base.ArgHasKeyWithValue(args, key, value);
+        }
+
         public void Run(IDictionary<string, string> args)
         {
             Finish();
