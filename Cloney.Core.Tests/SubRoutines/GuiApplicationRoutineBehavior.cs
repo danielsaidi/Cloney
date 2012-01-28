@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class ProgramBehavior
+    public class GuiApplicationRoutineBehavior
     {
         private ISubRoutine routine;
         private IProcess process;
@@ -18,7 +18,7 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             process = Substitute.For<IProcess>();
 
-            routine = new GuiRoutine(process);
+            routine = new GuiApplicationRoutine(process);
         }
 
 

@@ -75,7 +75,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="LanguageProvider.cs" />
-    <Compile Include="SubRoutines\GuiRoutine.cs" />
+    <Compile Include="SubRoutines\CloneRoutine.cs" />
+    <Compile Include="SubRoutines\GuiApplicationRoutine.cs" />
     <Compile Include="SubRoutines\GeneralHelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />

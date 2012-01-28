@@ -127,7 +127,4 @@ The most commonly used Cloney commands are
   <data name="StartErrorMessage" xml:space="preserve">
     <value>Cloney failed to start with the following error message:</value>
   </data>
-  <data name="WizardStartMessage" xml:space="preserve">
-    <value />
-  </data>
 </root>
