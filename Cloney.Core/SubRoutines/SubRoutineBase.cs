@@ -2,12 +2,16 @@
 
 namespace Cloney.Core.SubRoutines
 {
+    /// <summary>
+    /// This abstract base class can provide sub
+    /// routines with basic functionality.
+    /// </summary>
     public abstract class SubRoutineBase
     {
         public bool Finished { get; private set; }
 
 
-        protected bool ArgHasKeyWithValue(Dictionary<string, string> args, string key, string value)
+        protected bool ArgsHaveKeyValue(IDictionary<string, string> args, string key, string value)
         {
             return (args.ContainsKey(key) && args[key] == value);
         }

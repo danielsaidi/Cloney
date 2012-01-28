@@ -29,7 +29,7 @@ namespace Cloney.Core.SubRoutines
 
         public void Run(IDictionary<string, string> args)
         {
-            if (args.Keys.Contains("help") && args["help"] == "true")
+            if (args.ContainsKey("help") && args["help"] == "true")
                 console.WriteLine(translator.Translate("GeneralHelpMessage"));
 
             Finish();

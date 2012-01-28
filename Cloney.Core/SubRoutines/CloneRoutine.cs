@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using NExtra;
 using NExtra.Diagnostics;
 
 namespace Cloney.Core.SubRoutines
@@ -10,22 +13,27 @@ namespace Cloney.Core.SubRoutines
     /// </summary>
     public class CloneRoutine : SubRoutineBase, ISubRoutine
     {
+        private IConsole console;
+
+
         public CloneRoutine()
-            :this(new ProcessFacade())
+            :this(new ConsoleFacade())
         {
         }
 
-        public CloneRoutine(IProcess process)
+        public CloneRoutine(IConsole console)
         {
-            Process = process;
+            this.console = console;
         }
-
-
-        private IProcess Process { get; set; }
 
 
         public void Run(IDictionary<string, string> args)
         {
+            if (args.ContainsKey("clone") && args["clone"] == "true")
+                Thread.Sleep(2000);
+            //if (!ArgsHaveKeyValue("clone", "true"))
+              //  return Finish();
+
             //if (args.Count == 0)
               //  Process.Start("Cloney.Wizard.exe");
 
