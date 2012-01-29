@@ -1,4 +1,5 @@
 ﻿using System;
+using Cloney.Core.Namespace;
 
 namespace Cloney.Core.SolutionCloners
 {
@@ -8,6 +9,17 @@ namespace Cloney.Core.SolutionCloners
     /// </summary>
     public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
+        public SolutionCloner()
+            :this(new FolderNamespaceResolver(), new FolderNamespaceResolver())
+        {
+
+        }
+
+        public SolutionCloner(INamespaceResolver targetNamespaceResolver, INamespaceResolver sourceNamespaceResolver)
+        {
+            
+        }
+
         public void CloneSolution(string sourcePath, string targetPath)
         {
             throw new NotImplementedException();
