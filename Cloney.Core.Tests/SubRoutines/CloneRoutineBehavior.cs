@@ -37,8 +37,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine.Run(new Dictionary<string, string>());
 
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -47,8 +45,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
 
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -58,8 +54,6 @@ namespace Cloney.Core.Tests.SubRoutines
 
             translator.Received().Translate("MissingSourcePathArgumentErrorMessage");
             console.Received().WriteLine("foo");
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -69,8 +63,6 @@ namespace Cloney.Core.Tests.SubRoutines
 
             translator.Received().Translate("MissingTargetPathArgumentErrorMessage");
             console.Received().WriteLine("bar");
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -81,8 +73,6 @@ namespace Cloney.Core.Tests.SubRoutines
             translator.DidNotReceive().Translate(Arg.Any<string>());
             console.DidNotReceive().WriteLine(Arg.Any<string>());
             solutionCloner.Received().CloneSolution("c:\\source", "c:\\target");
-
-            Assert.That(routine.Finished, Is.False);
         }
 
         [Test]
@@ -92,8 +82,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new CloneRoutine(console, translator, solutionCloner);
 
             routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "c:\\source" }, { "target", "c:\\target" } });
-
-            Assert.That(routine.Finished, Is.True);
         }
     }
 }

@@ -28,8 +28,6 @@ namespace Cloney.Core.SubRoutines
         {
             if (args.Count == 0)
                 process.Start("Cloney.Wizard.exe");
-
-            Finish();
         }
     }
 }

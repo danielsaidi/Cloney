@@ -32,8 +32,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine.Run(new Dictionary<string, string>());
 
             console.DidNotReceive().WriteLine(Arg.Any<string>());
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -42,8 +40,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
 
             console.DidNotReceive().WriteLine(Arg.Any<string>());
-
-            Assert.That(routine.Finished, Is.True);
         }
 
         [Test]
@@ -53,8 +49,6 @@ namespace Cloney.Core.Tests.SubRoutines
 
             translator.Received().Translate("GeneralHelpMessage");
             console.Received().WriteLine("foo");
-
-            Assert.That(routine.Finished, Is.True);
         }
     }
 }

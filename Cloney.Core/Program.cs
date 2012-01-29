@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Cloney.Core.SubRoutines;
 using NExtra;
-using NExtra.Diagnostics;
 using NExtra.Localization;
 
 namespace Cloney.Core
@@ -58,11 +56,6 @@ namespace Cloney.Core
 
                 foreach (var routine in routines)
                     routine.Run(arguments);
-
-                while (routines.Where(x => !x.Finished).Count() > 0)
-                {
-                }
-
             }
             catch (Exception e)
             {

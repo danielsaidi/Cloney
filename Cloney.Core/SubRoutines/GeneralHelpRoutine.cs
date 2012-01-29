@@ -31,8 +31,6 @@ namespace Cloney.Core.SubRoutines
         {
             if (args.ContainsKey("help") && args["help"] == "true")
                 console.WriteLine(translator.Translate("GeneralHelpMessage"));
-
-            Finish();
         }
     }
 }

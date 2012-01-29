@@ -34,8 +34,19 @@ namespace Cloney.Core.SubRoutines
 
         public void Run(IDictionary<string, string> args)
         {
-            if (!RunCloningOperation(args))
-                Finish();
+            if (!args.ContainsKey("clone") || args["clone"] != "true")
+                return;
+
+            var sourcePath = GetFolderArg(args, "source");
+            if (!ValidateFolderArg(sourcePath, "MissingSourcePathArgumentErrorMessage"))
+                return;
+
+            var targetPath = GetFolderArg(args, "target");
+            if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage"))
+                return;
+
+            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+            solutionCloner.CloneSolution(sourcePath, targetPath);
         }
 
 
@@ -44,25 +55,6 @@ namespace Cloney.Core.SubRoutines
             return (!args.ContainsKey(key) || args[key] == "true")
                        ? string.Empty
                        : args[key];
-        }
-
-        private bool RunCloningOperation(IDictionary<string, string> args)
-        {
-            if (!args.ContainsKey("clone") || args["clone"] != "true")
-                return false;
-
-            var sourcePath = GetFolderArg(args, "source");
-            if (!ValidateFolderArg(sourcePath, "MissingSourcePathArgumentErrorMessage"))
-                return false;
-
-            var targetPath = GetFolderArg(args, "target");
-            if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage")) 
-                return false;
-
-            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
-            solutionCloner.CloneSolution(sourcePath, targetPath);
-
-            return true;
         }
 
         private bool ValidateFolderArg(string sourcePath, string errorMessage)
@@ -78,7 +70,6 @@ namespace Cloney.Core.SubRoutines
 
         private void solutionCloner_CloningEnded(object sender, EventArgs e)
         {
-            Finish();
         }
     }
 }
