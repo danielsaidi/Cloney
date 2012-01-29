@@ -68,7 +68,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Namespace\FolderNamespaceResolverBehavior.cs" />
+    <Compile Include="Namespace\SolutionBasedNamespaceResolverBehavior.cs" />
+    <Compile Include="Namespace\FolderBasedNamespaceResolverBehavior.cs" />
     <Compile Include="SolutionCloners\FakeSolutionCloner.cs" />
     <Compile Include="SolutionCloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="SolutionCloners\ThreadedSolutionClonerBehavior.cs" />

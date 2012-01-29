@@ -10,7 +10,7 @@ namespace Cloney.Core.SolutionCloners
     public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
         public SolutionCloner()
-            :this(new FolderNamespaceResolver(), new FolderNamespaceResolver())
+            :this(new FolderBasedNamespaceResolver(), new FolderBasedNamespaceResolver())
         {
 
         }

@@ -2,9 +2,11 @@
 {
     /// <summary>
     /// This class can be used to resolve the namespace
-    /// of a solution based on the solution root folder.
+    /// of a solution based on the name of a folder. It
+    /// is stupid and only looks at the folder name and
+    /// does not handle folder hierarchies.
     /// </summary>
-    public class FolderNamespaceResolver : INamespaceResolver
+    public class FolderBasedNamespaceResolver : INamespaceResolver
     {
         public string ResolveNamespace(string folderPath)
         {

@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.Namespace
 {
     [TestFixture]
-    public class FolderNamespaceResolverBehavior
+    public class FolderBasedNamespaceResolverBehavior
     {
         private INamespaceResolver resolver;
 
@@ -12,9 +12,17 @@ namespace Cloney.Core.Tests.Namespace
         [SetUp]
         public void SetUp()
         {
-            resolver = new FolderNamespaceResolver();
+            resolver = new FolderBasedNamespaceResolver();
         }
 
+
+        [Test]
+        public void ResolveNamespace_ShouldReturnEmptyStringForMissingFolderName()
+        {
+            var result = resolver.ResolveNamespace("");
+
+            Assert.That(result, Is.EqualTo(""));
+        }
 
         [Test]
         public void ResolveNamespace_ShouldHandleForwardSlashes()

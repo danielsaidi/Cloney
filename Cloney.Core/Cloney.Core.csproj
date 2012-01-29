@@ -61,13 +61,16 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="IO\DirectoryFacade.cs" />
+    <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
-    <Compile Include="Namespace\FolderNamespaceResolver.cs" />
+    <Compile Include="Namespace\SolutionBasedNamespaceResolver.cs" />
+    <Compile Include="Namespace\FolderBasedNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
