@@ -10,24 +10,24 @@ namespace Cloney.Core.SubRoutines
     /// </summary>
     public class GuiApplicationRoutine : SubRoutineBase, ISubRoutine
     {
+        private readonly IProcess process;
+
+
         public GuiApplicationRoutine()
-            :this(new ProcessFacade())
+            :this(Instances.Process)
         {
         }
 
         public GuiApplicationRoutine(IProcess process)
         {
-            Process = process;
+            this.process = process;
         }
-
-
-        private IProcess Process { get; set; }
 
 
         public void Run(IDictionary<string, string> args)
         {
             if (args.Count == 0)
-                Process.Start("Cloney.Wizard.exe");
+                process.Start("Cloney.Wizard.exe");
 
             Finish();
         }

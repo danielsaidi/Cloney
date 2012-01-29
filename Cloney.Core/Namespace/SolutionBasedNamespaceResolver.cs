@@ -9,12 +9,6 @@ namespace Cloney.Core.Namespace
     /// of a solution based on the name of the solution
     /// file in a certain folder.
     /// </summary>
-    /// <remarks>
-    /// The class will stop for the first solution file
-    /// it finds. If the solution folder contains a set
-    /// of solution files, the class may pick the wrong
-    /// solution file.
-    /// </remarks>
     public class SolutionBasedNamespaceResolver : INamespaceResolver
     {
         private readonly IDirectory directory;

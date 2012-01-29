@@ -19,7 +19,7 @@ namespace Cloney.Core.SubRoutines
 
 
         public CloneRoutine()
-            :this(new ConsoleFacade(), new LanguageProvider(), new SolutionCloner())
+            :this(Instances.Console, Instances.Translator, Instances.SolutionCloner)
         {
         }
 

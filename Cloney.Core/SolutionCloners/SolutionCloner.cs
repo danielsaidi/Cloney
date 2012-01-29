@@ -9,12 +9,6 @@ namespace Cloney.Core.SolutionCloners
     /// </summary>
     public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
-        public SolutionCloner()
-            :this(new FolderBasedNamespaceResolver(), new FolderBasedNamespaceResolver())
-        {
-
-        }
-
         public SolutionCloner(INamespaceResolver targetNamespaceResolver, INamespaceResolver sourceNamespaceResolver)
         {
             
