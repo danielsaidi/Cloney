@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cloney.Core.Old.Abstractions;
 using NExtra.Extensions;
 
-namespace Cloney.Core.Old
+namespace Cloney.Core.IO
 {
-    public class PathPatternMatcher : ICanMatchPathPattern
+    /// <summary>
+    /// This class can be used to check if a file or
+    /// directory path matches a certain pattern.
+    /// </summary>
+    public class PathPatternMatcher : IPathPatternMatcher
     {
-        public bool IsMatch(string path, string pattern)
-        {
-            return MatchPattern(path, pattern);
-        }
-
         public bool IsAnyMatch(string path, IEnumerable<string> patterns)
         {
             return patterns.Any(pattern => IsMatch(path, pattern));
+        }
+
+        public bool IsMatch(string path, string pattern)
+        {
+            return MatchPattern(path, pattern);
         }
 
 
