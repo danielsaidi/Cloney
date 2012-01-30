@@ -63,8 +63,8 @@
     </Compile>
     <Compile Include="Instances.cs" />
     <Compile Include="IO\DirectoryFacade.cs" />
-    <Compile Include="IO\ICanMatchPathPattern.cs" />
     <Compile Include="IO\IDirectory.cs" />
+    <Compile Include="IO\IPathPatternMatcher.cs" />
     <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">
