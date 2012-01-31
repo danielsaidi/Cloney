@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Cloney.Core.IO;
 using Cloney.Core.Namespace;
 
 namespace Cloney.Core.SolutionCloners
@@ -9,14 +9,24 @@ namespace Cloney.Core.SolutionCloners
     /// </summary>
     public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
-        public SolutionCloner(INamespaceResolver targetNamespaceResolver, INamespaceResolver sourceNamespaceResolver)
+        private readonly INamespaceResolver targetNamespaceResolver;
+        private readonly INamespaceResolver sourceNamespaceResolver;
+        private readonly IPathPatternMatcher pathPatternMatcher;
+
+
+        public SolutionCloner(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver, IPathPatternMatcher pathPatternMatcher)
         {
-            
+            this.targetNamespaceResolver = targetNamespaceResolver;
+            this.sourceNamespaceResolver = sourceNamespaceResolver;
+            this.pathPatternMatcher = pathPatternMatcher;
         }
+
 
         public void CloneSolution(string sourcePath, string targetPath)
         {
-            throw new NotImplementedException();
+            var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(sourcePath);
+            var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetPath);
+
         }
     }
      /*   public SolutionCloner(IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns)
