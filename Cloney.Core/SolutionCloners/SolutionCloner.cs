@@ -30,13 +30,9 @@ namespace Cloney.Core.SolutionCloners
 
             var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(sourcePath);
             var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetPath);
-            Console.WriteLine("FOO");
-            for (var i = 0; i < 100; i++)
-            {
-                CurrentPath = i.ToString();
-                Thread.Sleep(5);
-            }
-                
+            
+
+
             OnCloningEnded(new EventArgs());
         }
     }
