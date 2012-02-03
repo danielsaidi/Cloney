@@ -16,8 +16,5 @@ namespace Cloney.Core.SolutionCloners
         String CurrentPath { get; }
 
         void CloneSolution(string sourcePath, string targetPath);
-        void OnCloningBegun(EventArgs e);
-        void OnCloningEnded(EventArgs e);
-        void OnCurrentPathChanged(EventArgs e);
     }
 }

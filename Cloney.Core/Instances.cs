@@ -26,9 +26,8 @@ namespace Cloney.Core
                 var sourceResolver = new SolutionBasedNamespaceResolver(new DirectoryFacade());
                 var targetResolver = new FolderBasedNamespaceResolver();
                 var patternMatcher = new PathPatternMatcher();
-                var cloner = new SolutionCloner(sourceResolver, targetResolver, patternMatcher);
-                return cloner;
-                return new ThreadedSolutionCloner(cloner);
+
+                return new SolutionCloner(sourceResolver, targetResolver, patternMatcher);
             }
         }
 

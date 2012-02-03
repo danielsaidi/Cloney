@@ -7,6 +7,9 @@ namespace Cloney.Core.Tests.SolutionCloners
     {
         public void CloneSolution(string sourcePath, string targetPath)
         {
+            OnCloningBegun(new EventArgs());
+            CurrentPath = "foo/bar";
+            OnCurrentPathChanged(new EventArgs());
             OnCloningEnded(new EventArgs());
         }
     }

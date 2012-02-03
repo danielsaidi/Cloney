@@ -4,9 +4,9 @@ using NExtra.Diagnostics;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine will trigger on the --help
-    /// argument and print information about how to
-    /// use Cloney.
+    /// This sub routine will trigger if no arguments
+    /// are provided. It will start the Cloney wizard
+    /// and display some start instructions.
     /// </summary>
     public class GuiApplicationRoutine : SubRoutineBase, ISubRoutine
     {

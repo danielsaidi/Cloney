@@ -82,7 +82,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="LanguageProvider.cs" />
-    <Compile Include="SolutionCloners\ThreadedSolutionCloner.cs" />
     <Compile Include="SolutionCloners\SolutionClonerBase.cs" />
     <Compile Include="SolutionCloners\ISolutionCloner.cs" />
     <Compile Include="SolutionCloners\SolutionCloner.cs" />

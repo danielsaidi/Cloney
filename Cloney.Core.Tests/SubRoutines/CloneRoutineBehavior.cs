@@ -27,7 +27,7 @@ namespace Cloney.Core.Tests.SubRoutines
             translator.Translate("MissingTargetPathArgumentErrorMessage").Returns("bar");
             solutionCloner = Substitute.For<ISolutionCloner>();
 
-            routine = new CloneRoutine(console, translator, solutionCloner, false);
+            routine = new CloneRoutine(console, translator, solutionCloner);
         }
 
 
@@ -57,9 +57,27 @@ namespace Cloney.Core.Tests.SubRoutines
         }
 
         [Test]
+        public void Run_ShouldWarnForInvalidSourcePath()
+        {
+            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "true" } });
+
+            translator.Received().Translate("MissingSourcePathArgumentErrorMessage");
+            console.Received().WriteLine("foo");
+        }
+
+        [Test]
         public void Run_ShouldWarnForMissingTargetPath()
         {
-            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "c:\\source" } });
+            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" } });
+
+            translator.Received().Translate("MissingTargetPathArgumentErrorMessage");
+            console.Received().WriteLine("bar");
+        }
+
+        [Test]
+        public void Run_ShouldWarnForInvalidTargetPath()
+        {
+            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" }, { "target", "true" } });
 
             translator.Received().Translate("MissingTargetPathArgumentErrorMessage");
             console.Received().WriteLine("bar");
