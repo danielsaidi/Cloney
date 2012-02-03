@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Cloney.Core.SolutionCloners;
+using Cloney.Core.Cloners;
 using Cloney.Core.SubRoutines;
-using Cloney.Core.Tests.SolutionCloners;
 using NExtra;
 using NExtra.Localization;
 using NSubstitute;

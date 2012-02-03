@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cloney.Core.SolutionCloners
+namespace Cloney.Core.Cloners
 {
     /// <summary>
     /// This abstract base class can provide solution

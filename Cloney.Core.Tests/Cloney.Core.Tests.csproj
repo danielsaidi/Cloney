@@ -76,8 +76,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolutionCloners\FakeSolutionCloner.cs" />
-    <Compile Include="SolutionCloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="Cloners\FakeSolutionCloner.cs" />
+    <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="SubRoutines\CloneRoutineBehavior.cs" />
     <Compile Include="SubRoutines\HelpRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutineBehavior.cs" />

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cloney.Core.SolutionCloners;
+using Cloney.Core.Cloners;
 
-namespace Cloney.Core.Tests.SolutionCloners
+namespace Cloney.Core.Tests.Cloners
 {
     internal class FakeSolutionCloner : SolutionClonerBase, ISolutionCloner
     {

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using Cloney.Core.Cloners;
 using Cloney.Core.Namespace;
-using Cloney.Core.SolutionCloners;
 using NExtra;
 using NExtra.Diagnostics;
 using NExtra.IO;

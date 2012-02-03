@@ -5,7 +5,7 @@ using Cloney.Core.Namespace;
 using NExtra.IO;
 using NExtra.Extensions;
 
-namespace Cloney.Core.SolutionCloners
+namespace Cloney.Core.Cloners
 {
     /// <summary>
     /// This class can be used to clone Visual Studio solutions

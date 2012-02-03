@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace Cloney.Core.SolutionCloners
+namespace Cloney.Core.Cloners
 {
     /// <summary>
     /// This interface can be implemented by classes that

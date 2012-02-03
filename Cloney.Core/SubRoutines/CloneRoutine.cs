@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cloney.Core.SolutionCloners;
+using Cloney.Core.Cloners;
 using NExtra;
 using NExtra.Localization;
 

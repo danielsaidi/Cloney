@@ -82,9 +82,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="LanguageProvider.cs" />
-    <Compile Include="SolutionCloners\SolutionClonerBase.cs" />
-    <Compile Include="SolutionCloners\ISolutionCloner.cs" />
-    <Compile Include="SolutionCloners\SolutionCloner.cs" />
+    <Compile Include="Cloners\SolutionClonerBase.cs" />
+    <Compile Include="Cloners\ISolutionCloner.cs" />
+    <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutine.cs" />
     <Compile Include="SubRoutines\HelpRoutine.cs" />
