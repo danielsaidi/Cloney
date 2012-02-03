@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cloney.Core.SolutionCloners;
 using NExtra;
 using NExtra.Localization;
@@ -16,16 +17,21 @@ namespace Cloney.Core.SubRoutines
         private readonly IConsole console;
         private readonly ITranslator translator;
         private readonly ISolutionCloner solutionCloner;
+        private readonly bool threaded;
+        private bool cloningInProgress;
+
+
         public CloneRoutine()
-            :this(Instances.Console, Instances.Translator, Instances.SolutionCloner)
+            :this(Instances.Console, Instances.Translator, Instances.SolutionCloner, true)
         {
         }
 
-        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner)
+        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner, bool threaded)
         {
             this.console = console;
             this.translator = translator;
             this.solutionCloner = solutionCloner;
+            this.threaded = threaded;
         }
 
 
@@ -43,12 +49,26 @@ namespace Cloney.Core.SubRoutines
             if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage"))
                 return;
 
-            
+            solutionCloner.CloningBegun += solutionCloner_CloningBegun;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+            solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
+
+            if (threaded)
+            {
+                new Thread(() => solutionCloner.CloneSolution(sourcePath, targetPath)).Start();
+            }
+            else
+            {
+                solutionCloner.CloneSolution(sourcePath, targetPath);
+            }
+
+
+
             solutionCloner.CloneSolution(sourcePath, targetPath);
-            for (var i=0; i<100; i++)
-                console.WriteLine(i.ToString());
+            while (cloningInProgress)
+                console.WriteLine(solutionCloner.CurrentPath);
         }
+
 
 
         private static string GetFolderArg(IDictionary<string, string> args, string key)
@@ -69,8 +89,19 @@ namespace Cloney.Core.SubRoutines
         }
 
 
+        void solutionCloner_CloningBegun(object sender, EventArgs e)
+        {
+            cloningInProgress = true;
+        }
+
         private void solutionCloner_CloningEnded(object sender, EventArgs e)
         {
+            cloningInProgress = false;
+        }
+
+        void solutionCloner_CurrentPathChanged(object sender, EventArgs e)
+        {
+            console.WriteLine(solutionCloner.CurrentPath);
         }
     }
 }

@@ -8,12 +8,25 @@ namespace Cloney.Core.SolutionCloners
     /// </summary>
     public class SolutionClonerBase
     {
-        public string CurrentPath { get; protected set; }
+        private string currentPath;
+
+
+        public string CurrentPath
+        {
+            get { return currentPath; }
+            set
+            {
+                currentPath = value;
+                OnCurrentPathChanged(new EventArgs());
+            }
+        }
 
 
         public event EventHandler CloningBegun;
-        
+
         public event EventHandler CloningEnded;
+
+        public event EventHandler CurrentPathChanged;
 
 
         public void OnCloningBegun(EventArgs e)
@@ -26,6 +39,12 @@ namespace Cloney.Core.SolutionCloners
         {
             if (CloningEnded != null)
                 CloningEnded(this, e);
+        }
+
+        public void OnCurrentPathChanged(EventArgs e)
+        {
+            if (CurrentPathChanged != null)
+                CurrentPathChanged(this, e);
         }
     }
 }

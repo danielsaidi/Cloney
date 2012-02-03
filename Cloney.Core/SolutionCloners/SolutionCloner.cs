@@ -1,4 +1,6 @@
-﻿using Cloney.Core.Namespace;
+﻿using System;
+using System.Threading;
+using Cloney.Core.Namespace;
 using NExtra.IO;
 
 namespace Cloney.Core.SolutionCloners
@@ -24,12 +26,18 @@ namespace Cloney.Core.SolutionCloners
 
         public void CloneSolution(string sourcePath, string targetPath)
         {
+            OnCloningBegun(new EventArgs());
+
             var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(sourcePath);
             var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetPath);
-
-
-
-
+            Console.WriteLine("FOO");
+            for (var i = 0; i < 100; i++)
+            {
+                CurrentPath = i.ToString();
+                Thread.Sleep(5);
+            }
+                
+            OnCloningEnded(new EventArgs());
         }
     }
      /*   public SolutionCloner(IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns)

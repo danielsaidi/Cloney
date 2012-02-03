@@ -11,11 +11,13 @@ namespace Cloney.Core.SolutionCloners
     {
         event EventHandler CloningBegun;
         event EventHandler CloningEnded;
+        event EventHandler CurrentPathChanged;
 
         String CurrentPath { get; }
 
         void CloneSolution(string sourcePath, string targetPath);
         void OnCloningBegun(EventArgs e);
         void OnCloningEnded(EventArgs e);
+        void OnCurrentPathChanged(EventArgs e);
     }
 }

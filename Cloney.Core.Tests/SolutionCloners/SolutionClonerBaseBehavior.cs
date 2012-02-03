@@ -8,14 +8,35 @@ namespace Cloney.Core.Tests.SolutionCloners
     public class SolutionClonerBaseBehavior
     {
         private TestCloner cloner;
-        private int begunCount;
-        private int endedCount;
+        private int eventCount;
 
 
         [SetUp]
         public void SetUp()
         {
             cloner = new TestCloner();
+            eventCount = 0;
+        }
+
+
+        [Test]
+        public void CurrentPath_ShouldNotTriggerEventIfNoSubscribersExist()
+        {
+            cloner.OnCurrentPathChanged(new EventArgs());
+
+            cloner.CurrentPath = "foo";
+
+            Assert.That(eventCount, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CurrentPath_ShouldTriggerEventIfSubscribersExist()
+        {
+            cloner.CurrentPathChanged += cloner_CurrentPathChanged;
+
+            cloner.CurrentPath = "foo";
+
+            Assert.That(eventCount, Is.EqualTo(1));
         }
 
 
@@ -24,7 +45,7 @@ namespace Cloney.Core.Tests.SolutionCloners
         {
             cloner.OnCloningBegun(new EventArgs());
 
-            Assert.That(begunCount, Is.EqualTo(0));
+            Assert.That(eventCount, Is.EqualTo(0));
         }
 
         [Test]
@@ -34,7 +55,7 @@ namespace Cloney.Core.Tests.SolutionCloners
 
             cloner.OnCloningBegun(new EventArgs());
 
-            Assert.That(begunCount, Is.EqualTo(1));
+            Assert.That(eventCount, Is.EqualTo(1));
         }
 
         [Test]
@@ -42,7 +63,7 @@ namespace Cloney.Core.Tests.SolutionCloners
         {
             cloner.OnCloningEnded(new EventArgs());
 
-            Assert.That(endedCount, Is.EqualTo(0));
+            Assert.That(eventCount, Is.EqualTo(0));
         }
 
         [Test]
@@ -52,18 +73,41 @@ namespace Cloney.Core.Tests.SolutionCloners
 
             cloner.OnCloningEnded(new EventArgs());
 
-            Assert.That(endedCount, Is.EqualTo(1));
+            Assert.That(eventCount, Is.EqualTo(1));
         }
 
+        [Test]
+        public void OnCurrentPathChanged_ShouldNotTriggerEventIfNoSubscribersExist()
+        {
+            cloner.OnCurrentPathChanged(new EventArgs());
 
+            Assert.That(eventCount, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void OnCurrentPathChanged_ShouldTriggerEventIfSubscribersExist()
+        {
+            cloner.CurrentPathChanged += cloner_CurrentPathChanged;
+
+            cloner.OnCurrentPathChanged(new EventArgs());
+
+            Assert.That(eventCount, Is.EqualTo(1));
+        }
+
+        
         void cloner_CloningBegun(object sender, EventArgs e)
         {
-            begunCount++;
+            eventCount++;
         }
 
         void cloner_CloningEnded(object sender, EventArgs e)
         {
-            endedCount++;
+            eventCount++;
+        }
+
+        void cloner_CurrentPathChanged(object sender, EventArgs e)
+        {
+            eventCount++;
         }
     }
 

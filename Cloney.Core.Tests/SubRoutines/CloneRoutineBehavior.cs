@@ -27,7 +27,7 @@ namespace Cloney.Core.Tests.SubRoutines
             translator.Translate("MissingTargetPathArgumentErrorMessage").Returns("bar");
             solutionCloner = Substitute.For<ISolutionCloner>();
 
-            routine = new CloneRoutine(console, translator, solutionCloner);
+            routine = new CloneRoutine(console, translator, solutionCloner, false);
         }
 
 
@@ -73,15 +73,6 @@ namespace Cloney.Core.Tests.SubRoutines
             translator.DidNotReceive().Translate(Arg.Any<string>());
             console.DidNotReceive().WriteLine(Arg.Any<string>());
             solutionCloner.Received().CloneSolution("c:\\source", "c:\\target");
-        }
-
-        [Test]
-        public void Run_ShouldFinishWhenCloningOperationEnds()
-        {
-            solutionCloner = new FakeSolutionCloner();
-            routine = new CloneRoutine(console, translator, solutionCloner);
-
-            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "c:\\source" }, { "target", "c:\\target" } });
         }
     }
 }

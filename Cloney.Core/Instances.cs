@@ -21,7 +21,15 @@ namespace Cloney.Core
 
         public static ISolutionCloner SolutionCloner
         {
-            get { return new SolutionCloner(new SolutionBasedNamespaceResolver(new DirectoryFacade()), new FolderBasedNamespaceResolver(), new PathPatternMatcher()); }
+            get
+            {
+                var sourceResolver = new SolutionBasedNamespaceResolver(new DirectoryFacade());
+                var targetResolver = new FolderBasedNamespaceResolver();
+                var patternMatcher = new PathPatternMatcher();
+                var cloner = new SolutionCloner(sourceResolver, targetResolver, patternMatcher);
+                return cloner;
+                return new ThreadedSolutionCloner(cloner);
+            }
         }
 
         public static ITranslator Translator
