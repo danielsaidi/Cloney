@@ -8,16 +8,25 @@ Blog:		http://danielsaidi.wordpress.com
 
 
 
-Cloney 0.6.0.0		2011-10-09
+Cloney 0.9.0.0		2012-02-03
 ==============================
 
-In this version, Cloney has been rewritten from scratch simply
-because I am stupid in the entire head. Cloney should now work
-just like before, but with more consistent features and a more
-complete internal test suite.
+In this version, Cloney has been rewritten from scratch. It is
+now almost entirely SOLIDified, except for the solution cloner
+itself. Since it worked perfect in the last release, I think I
+will just let it be for now and replace parts of it in a later
+release.
 
-In the command prompt, you can now type "cloney --help" to get
-a list of commands that you can use. If you run cloney without
+This version features some rudimentary routines, including the
+following ones:
+
+	<none>: Calling Cloney with no args will start the wizard.
+	--help: Displays general help regarding how to use Cloney.
+	--clone --source=x --target=y: Clones solution x to dir y.
+
+The wizard has undergone no changes, compared to the previous
+version, except that it now calls the natice application with
+other parameters. If you want to redesign it, let me know.
 
 
 
