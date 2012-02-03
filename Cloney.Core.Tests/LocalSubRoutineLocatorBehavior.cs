@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using Cloney.Core.SubRoutines;
 using NUnit.Framework;
 
-namespace Cloney.Core.Tests.SubRoutines
+namespace Cloney.Core.Tests
 {
     [TestFixture]
     public class LocalSubRoutineLocatorBehavior
@@ -25,7 +24,7 @@ namespace Cloney.Core.Tests.SubRoutines
 
             Assert.That(routines.Count(), Is.EqualTo(3));
             Assert.That(routineNames.Contains("CloneRoutine"), Is.True);
-            Assert.That(routineNames.Contains("GeneralHelpRoutine"), Is.True);
+            Assert.That(routineNames.Contains("HelpRoutine"), Is.True);
             Assert.That(routineNames.Contains("GuiApplicationRoutine"), Is.True);
         }
     }

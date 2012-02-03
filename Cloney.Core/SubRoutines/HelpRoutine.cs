@@ -9,18 +9,18 @@ namespace Cloney.Core.SubRoutines
     /// contains a help key with the value "true". It will
     /// then print general Cloney help information.
     /// </summary>
-    public class GeneralHelpRoutine : SubRoutineBase, ISubRoutine
+    public class HelpRoutine : SubRoutineBase, ISubRoutine
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
 
 
-        public GeneralHelpRoutine()
+        public HelpRoutine()
             :this(Instances.Console, Instances.Translator)
         {
         }
 
-        public GeneralHelpRoutine(IConsole console, ITranslator translator)
+        public HelpRoutine(IConsole console, ITranslator translator)
         {
             this.console = console;
             this.translator = translator;
@@ -29,6 +29,9 @@ namespace Cloney.Core.SubRoutines
 
         public void Run(IDictionary<string, string> args)
         {
+            if (args.Count != 1)
+                return;
+
             if (args.ContainsKey("help") && args["help"] == "true")
                 console.WriteLine(translator.Translate("GeneralHelpMessage"));
         }

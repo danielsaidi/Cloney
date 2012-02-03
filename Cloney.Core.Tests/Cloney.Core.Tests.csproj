@@ -69,6 +69,7 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
     <Compile Include="Namespace\FolderBasedNamespaceResolverBehavior.cs" />
     <Compile Include="Namespace\SolutionBasedNamespaceResolverBehavior.cs" />
     <Compile Include="ProgramBehavior.cs">
@@ -79,9 +80,8 @@
     <Compile Include="SolutionCloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="SolutionCloners\ThreadedSolutionClonerBehavior.cs" />
     <Compile Include="SubRoutines\CloneRoutineBehavior.cs" />
-    <Compile Include="SubRoutines\GeneralHelpRoutineBehavior.cs" />
+    <Compile Include="SubRoutines\HelpRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutineBehavior.cs" />
-    <Compile Include="SubRoutines\LocalSubRoutineLocatorBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cloney.Core\Cloney.Core.csproj">

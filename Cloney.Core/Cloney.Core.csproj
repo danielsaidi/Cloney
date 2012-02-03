@@ -64,11 +64,13 @@
     </Compile>
     <Compile Include="Instances.cs" />
     <Compile Include="IProgram.cs" />
+    <Compile Include="ISubRoutineLocator.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
+    <Compile Include="LocalSubRoutineLocator.cs" />
     <Compile Include="Namespace\SolutionBasedNamespaceResolver.cs" />
     <Compile Include="Namespace\FolderBasedNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
@@ -86,10 +88,8 @@
     <Compile Include="SolutionCloners\SolutionCloner.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutine.cs" />
-    <Compile Include="SubRoutines\GeneralHelpRoutine.cs" />
+    <Compile Include="SubRoutines\HelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
-    <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
-    <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
     <Compile Include="SubRoutines\SubRoutineBase.cs" />
   </ItemGroup>
   <ItemGroup>

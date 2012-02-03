@@ -62,11 +62,8 @@ namespace Cloney.Core.SubRoutines
                 solutionCloner.CloneSolution(sourcePath, targetPath);
             }
 
-
-
-            solutionCloner.CloneSolution(sourcePath, targetPath);
             while (cloningInProgress)
-                console.WriteLine(solutionCloner.CurrentPath);
+                continue;
         }
 
 

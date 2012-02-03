@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class GeneralHelpRoutineBehavior
+    public class HelpRoutineBehavior
     {
         private ISubRoutine routine;
         private IConsole console;
@@ -22,7 +22,7 @@ namespace Cloney.Core.Tests.SubRoutines
             translator = Substitute.For<ITranslator>();
             translator.Translate("GeneralHelpMessage").Returns("foo");
 
-            routine = new GeneralHelpRoutine(console, translator);
+            routine = new HelpRoutine(console, translator);
         }
 
 
@@ -30,6 +30,14 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForNoArguments()
         {
             routine.Run(new Dictionary<string, string>());
+
+            console.DidNotReceive().WriteLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void Run_ShouldAbortForMoreThanOneArgument()
+        {
+            routine.Run(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
 
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }

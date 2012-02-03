@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Cloney.Core.SubRoutines;
 using NExtra.Extensions;
 
-namespace Cloney.Core.SubRoutines
+namespace Cloney.Core
 {
     /// <summary>
     /// This class can be used to find all Cloney
