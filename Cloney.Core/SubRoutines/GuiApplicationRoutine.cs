@@ -14,7 +14,7 @@ namespace Cloney.Core.SubRoutines
 
 
         public GuiApplicationRoutine()
-            :this(Instances.Process)
+            :this(Default.Process)
         {
         }
 

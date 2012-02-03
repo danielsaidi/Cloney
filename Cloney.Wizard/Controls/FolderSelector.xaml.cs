@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using Cloney.Core.Old.Abstractions;
+using Cloney.Core.Namespace;
 using NExtra.Extensions;
 
 namespace Cloney.Wizard.Controls
@@ -28,7 +28,7 @@ namespace Cloney.Wizard.Controls
             private set { txtNamespace.Text = value; }
         }
 
-        public ICanExtractNamespace NamespaceExtractor { get; private set; }
+        public INamespaceResolver NamespaceResolver { get; private set; }
 
         public string Path
         {
@@ -43,11 +43,11 @@ namespace Cloney.Wizard.Controls
         }
 
 
-        public void Initialize(ICanExtractNamespace namespaceExtractor, string initialFolderPath)
+        public void Initialize(INamespaceResolver namespaceResolver, string initialFolder)
         {
-            NamespaceExtractor = namespaceExtractor;
-            Path = initialFolderPath;
-            btnSelect.IsEnabled = NamespaceExtractor != null;
+            NamespaceResolver = namespaceResolver;
+            Path = initialFolder;
+            btnSelect.IsEnabled = NamespaceResolver != null;
         }
 
         private void OnChanged(EventArgs e)
@@ -68,7 +68,7 @@ namespace Cloney.Wizard.Controls
 
         private void textBox_Changed(object sender, TextChangedEventArgs e)
         {
-            Namespace = NamespaceExtractor.ExtractNamespace(txtFolder.Text);
+            Namespace = NamespaceResolver.ResolveNamespace(txtFolder.Text);
             OnChanged(new EventArgs());
         }
     }

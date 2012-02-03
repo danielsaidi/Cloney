@@ -62,7 +62,7 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Instances.cs" />
+    <Compile Include="Default.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="ISubRoutineLocator.cs" />
     <Compile Include="Language.Designer.cs">

@@ -16,7 +16,7 @@ namespace Cloney.Core.SubRoutines
 
 
         public HelpRoutine()
-            :this(Instances.Console, Instances.Translator)
+            :this(Default.Console, Default.Translator)
         {
         }
 

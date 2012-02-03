@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-
+using Cloney.Core.Cloners;
+using NExtra.Extensions;
 
 namespace Cloney.Wizard
 {
@@ -10,16 +11,14 @@ namespace Cloney.Wizard
     /// </summary>
     public partial class MainWindow
     {
-        /*private ICanExtractNamespace folderNamespaceExtractor;
-        private ICanCloneSolution solutionCloner;
-        private ICanExtractNamespace solutionFileNamespaceExtractor;
+        private ISolutionCloner solutionCloner;
         private DispatcherTimer refreshTimer;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            Initialize();
+            InitializeBootstrap();
         }
 
 
@@ -52,11 +51,9 @@ namespace Cloney.Wizard
         }
 
 
-        private void Initialize()
+        private void InitializeBootstrap()
         {
-            folderNamespaceExtractor = new FolderNamespaceExtractor();
-            solutionFileNamespaceExtractor = new SolutionFileNamespaceExtractor();
-            solutionCloner = new ThreadedSolutionCloner(new SolutionCloner(CoreSettings.ExcludeFolderPatterns.AsEnumerable(), CoreSettings.ExcludeFilePatterns.AsEnumerable(), CoreSettings.PlainCopyFilePatterns.AsEnumerable()));
+            solutionCloner = Core.Default.SolutionCloner;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
 
             refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
@@ -64,14 +61,14 @@ namespace Cloney.Wizard
             refreshTimer.IsEnabled = true;
             refreshTimer.Start();
 
-            sourceFolderSelector.Initialize(solutionFileNamespaceExtractor, LastSourcePath);
-            targetFolderSelector.Initialize(folderNamespaceExtractor, LastTargetPath);
+            sourceFolderSelector.Initialize(Core.Default.SourceNamespaceResolver, LastSourcePath);
+            targetFolderSelector.Initialize(Core.Default.TargetNamespaceResolver, LastTargetPath);
         }
 
 
         private void btnClone_Click(object sender, RoutedEventArgs e)
         {
-            solutionCloner.CloneSolution(sourceFolderSelector.Path, sourceFolderSelector.Namespace, targetFolderSelector.Path, targetFolderSelector.Namespace);
+            solutionCloner.CloneSolution(sourceFolderSelector.Path, targetFolderSelector.Path);
         }
 
         private void folderSelector_OnChanged(object sender, EventArgs e)
@@ -93,6 +90,6 @@ namespace Cloney.Wizard
         static void solutionCloner_CloningEnded(object sender, EventArgs e)
         {
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-        }*/
+        }
     }
 }
