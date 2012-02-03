@@ -1,5 +1,5 @@
-﻿using Cloney.Core.IO;
-using Cloney.Core.Namespace;
+﻿using Cloney.Core.Namespace;
+using NExtra.IO;
 
 namespace Cloney.Core.SolutionCloners
 {
@@ -26,6 +26,9 @@ namespace Cloney.Core.SolutionCloners
         {
             var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(sourcePath);
             var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetPath);
+
+
+
 
         }
     }

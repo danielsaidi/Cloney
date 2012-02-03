@@ -1,8 +1,8 @@
-﻿using Cloney.Core.IO;
-using Cloney.Core.Namespace;
+﻿using Cloney.Core.Namespace;
 using Cloney.Core.SolutionCloners;
 using NExtra;
 using NExtra.Diagnostics;
+using NExtra.IO;
 using NExtra.Localization;
 
 namespace Cloney.Core

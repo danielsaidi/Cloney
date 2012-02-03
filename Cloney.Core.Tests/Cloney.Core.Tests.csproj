@@ -12,6 +12,7 @@
     <AssemblyName>Cloney.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -46,8 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NExtra">
-      <HintPath>..\packages\NExtra.2.6.0.0\lib\net40\NExtra.dll</HintPath>
+    <Reference Include="NExtra, Version=2.6.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NExtra.2.6.2.6\lib\net40\NExtra.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
@@ -68,17 +69,18 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IO\PathPatternMatcherBehavior.cs" />
-    <Compile Include="Namespace\SolutionBasedNamespaceResolverBehavior.cs" />
     <Compile Include="Namespace\FolderBasedNamespaceResolverBehavior.cs" />
+    <Compile Include="Namespace\SolutionBasedNamespaceResolverBehavior.cs" />
+    <Compile Include="ProgramBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionCloners\FakeSolutionCloner.cs" />
     <Compile Include="SolutionCloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="SolutionCloners\ThreadedSolutionClonerBehavior.cs" />
     <Compile Include="SubRoutines\CloneRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GeneralHelpRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GuiApplicationRoutineBehavior.cs" />
-    <Compile Include="ProgramBehavior.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubRoutines\LocalSubRoutineLocatorBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

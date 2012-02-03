@@ -3,7 +3,12 @@ _ReSharper*
 
 *.user
 *.suo
+*.zip
+*.dgml
 
 **/.git
 **/bin
 **/obj
+**/*.nupkg
+
+TestResult.xml

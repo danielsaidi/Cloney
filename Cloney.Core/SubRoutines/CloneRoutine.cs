@@ -16,8 +16,6 @@ namespace Cloney.Core.SubRoutines
         private readonly IConsole console;
         private readonly ITranslator translator;
         private readonly ISolutionCloner solutionCloner;
-
-
         public CloneRoutine()
             :this(Instances.Console, Instances.Translator, Instances.SolutionCloner)
         {
@@ -45,8 +43,11 @@ namespace Cloney.Core.SubRoutines
             if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage"))
                 return;
 
+            
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
             solutionCloner.CloneSolution(sourcePath, targetPath);
+            for (var i=0; i<100; i++)
+                console.WriteLine(i.ToString());
         }
 
 

@@ -25,13 +25,5 @@ namespace Cloney.Core.Tests.SolutionCloners
         {
             Assert.That(solutionCloner.CurrentPath, Is.EqualTo("foo"));
         }
-
-        [Test]
-        public void Run_ShouldRunDecoratedClassMethod()
-        {
-            solutionCloner.CloneSolution("foo", "bar");
-
-            decoratedSolutionCloner.Received().CloneSolution("foo", "bar");
-        }
     }
 }
