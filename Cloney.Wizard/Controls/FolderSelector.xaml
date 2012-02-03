@@ -18,7 +18,7 @@
                     <Label Content="{x:Static Resources:Language.Select}" Style="{StaticResource ButtonLabel}" />
                 </Button.Content>
             </Button>
-            <TextBox Name="txtFolder" TextChanged="textBox_Changed"></TextBox>
+            <TextBox Name="txtFolder" LostFocus="txtFolder_LostFocus" TextChanged="textBox_Changed" AllowDrop="False"></TextBox>
         </DockPanel>
         <TextBox Name="txtNamespace" Margin="0 5 0 0 " TextChanged="textBox_Changed"></TextBox>
     </StackPanel>

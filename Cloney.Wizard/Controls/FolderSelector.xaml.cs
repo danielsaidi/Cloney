@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using Cloney.Core.Namespace;
@@ -15,6 +16,8 @@ namespace Cloney.Wizard.Controls
 
 
         public event EventHandler Changed;
+
+        public event EventHandler Error;
 
 
         public bool IsValid
@@ -38,8 +41,8 @@ namespace Cloney.Wizard.Controls
 
         public bool ShowNamespaceTextbox
         {
-            get { return txtNamespace.Visibility == System.Windows.Visibility.Visible; }
-            set { txtNamespace.Visibility = value ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
+            get { return txtNamespace.Visibility == Visibility.Visible; }
+            set { txtNamespace.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
         }
 
 
@@ -50,14 +53,21 @@ namespace Cloney.Wizard.Controls
             btnSelect.IsEnabled = NamespaceResolver != null;
         }
 
+
         private void OnChanged(EventArgs e)
         {
             var handler = Changed;
             if (handler != null) handler(this, e);
         }
 
+        private void OnError(EventArgs e)
+        {
+            var handler = Error;
+            if (handler != null) handler(this, e);
+        }
 
-        private void btnSelect_Click(object sender, System.Windows.RoutedEventArgs e)
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = Path};
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
@@ -68,8 +78,25 @@ namespace Cloney.Wizard.Controls
 
         private void textBox_Changed(object sender, TextChangedEventArgs e)
         {
-            Namespace = NamespaceResolver.ResolveNamespace(txtFolder.Text);
-            OnChanged(new EventArgs());
+            ResolveNamespace();
+        }
+
+        private void txtFolder_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ResolveNamespace();
+        }
+
+        private void ResolveNamespace()
+        {
+            try
+            {
+                Namespace = NamespaceResolver.ResolveNamespace(txtFolder.Text);
+                OnChanged(new EventArgs());
+            }
+            catch (Exception e)
+            {
+                OnError(new EventArgs());
+            }
         }
     }
 }

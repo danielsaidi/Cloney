@@ -14,13 +14,13 @@
                 <Label Style="{StaticResource TitleDescription}" Content="{x:Static Resources:Language.TitleDescription}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="sourceFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="sourceFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged" Error="folderSelector_OnError"></uc:FolderSelector>
                 </Border>
                 
                 <Image Style="{StaticResource Arrow}" />
 
                 <Border Style="{StaticResource Box}">
-                    <uc:FolderSelector x:Name="targetFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged"></uc:FolderSelector>
+                    <uc:FolderSelector x:Name="targetFolderSelector" FontSize="11" ShowNamespaceTextbox="False" Changed="folderSelector_OnChanged" Error="folderSelector_OnError"></uc:FolderSelector>
                 </Border>
 
                 <Image Style="{StaticResource Arrow}" />
