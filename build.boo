@@ -7,11 +7,11 @@ build_version  = env('build.version')
 build_config  = env('build.config')
 
 test_assemblies = (
-   "Cloney.Tests/bin/${build_config}/Cloney.Core.Tests.dll", , 
+   "Cloney.Core.Tests/bin/${build_config}/Cloney.Core.Tests.dll",
 )
 
 
-target default:
+target default, (compile, test):
    pass
    
 target zip, (compile, test, copy):
