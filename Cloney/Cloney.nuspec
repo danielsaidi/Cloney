@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <summary>Cloney - Clone your .NET solutions in no time</summary>
-    <description>Cloney replaces the old namespace in folder and file names as well in files and ignores some files and folders (like git and svn), leaving you with a new, clean solution without a trace of old, unwanted stuff.</description>
+    <description>Cloney clones your .NET solutions in no time. When it does, it replaces the old namespace in folder and file names as well in files. It also ignores some files and folders (like git, svn, tfs, R# etc.), leaving you with a new, clean solution without a trace of old, unwanted stuff.</description>
     <releaseNotes>See http://github.com/danielsaidi/Cloney/blob/master/Release-notes.txt</releaseNotes>
     <copyright>Copyright 2011-2012, Daniel Saidi</copyright>
     <tags>net .net c# clone visual studio solution</tags>
