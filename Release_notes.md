@@ -1,13 +1,3 @@
-Release notes
-=============
-
-Author:		Daniel Saidi [daniel.saidi@gmail.com]
-Web site:	http://danielsaidi.github.com/Cloney
-Project:	http://github.com/danielsaidi/Cloney
-Blog:		http://danielsaidi.wordpress.com
-
-
-
 Cloney 0.9.0.0		2012-02-03
 ==============================
 
@@ -31,7 +21,7 @@ other parameters. If you want to redesign it, let me know.
 
 
 Cloney 0.5.0.0		2011-10-09
-==============================
+------------------------------
 
 In this version, focus has been on structural changes and some
 minor UI changes. The two applications should work like before,
@@ -50,4 +40,9 @@ application to crash.
 The wizard has some small UI improvements. It is also possible
 to enter text by hand into the text boxes, which will probably
 make handling the application easier.
+
+
+
+Older release notes have been removed
+-------------------------------------
 
