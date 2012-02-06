@@ -27,8 +27,9 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             var args = new Dictionary<string, string>();
 
-            routine.Run(args);
+            var result = routine.Run(args);
 
+            Assert.That(result, Is.True);
             process.Received().Start("Cloney.Wizard.exe");
         }
 
@@ -37,8 +38,9 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             var args = new Dictionary<string, string> {{"foo", "bar"}};
             
-            routine.Run(args);
+            var result = routine.Run(args);
 
+            Assert.That(result, Is.False);
             process.DidNotReceive().Start(Arg.Any<string>());
         }
     }

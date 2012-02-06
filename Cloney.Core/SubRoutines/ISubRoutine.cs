@@ -14,6 +14,6 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public interface ISubRoutine
     {
-        void Run(IDictionary<string, string> args);
+        bool Run(IDictionary<string, string> args);
     }
 }

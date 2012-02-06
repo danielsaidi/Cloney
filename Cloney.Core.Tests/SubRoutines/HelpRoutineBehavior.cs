@@ -29,32 +29,36 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            routine.Run(new Dictionary<string, string>());
+            var result = routine.Run(new Dictionary<string, string>());
 
+            Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            routine.Run(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
+            var result = routine.Run(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
 
+            Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForIrrelevantArguments()
         {
-            routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
 
+            Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldProceedForRelevantArgument()
         {
-            routine.Run(new Dictionary<string, string> { { "help", "true" } });
+            var result = routine.Run(new Dictionary<string, string> { { "help", "true" } });
 
+            Assert.That(result, Is.True);
             translator.Received().Translate("GeneralHelpMessage");
             console.Received().WriteLine("foo");
         }

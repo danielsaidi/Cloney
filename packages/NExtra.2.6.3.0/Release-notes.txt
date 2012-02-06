@@ -1,18 +1,16 @@
-Release notes
-=============
+.NExtra 2.6.3.0		2012-02-06
+==============================
 
-Author:		Daniel Saidi [daniel.saidi@gmail.com]
+I have finally finished tweaking the build and publish scripts, so
+that the release process will be quick and automated.
 
-Web site:	http://www.dotnextra.com
-Project:	http://github.com/danielsaidi/NExtra
-Downloads:	http://github.com/danielsaidi/NExtra/downloads
-Issues:		http://github.com/danielsaidi/NExtra/issues
-Blog:		http://danielsaidi.wordpress.com/category/nextra/
+In this version, I have added three read methods to IConsole. They
+can be used to mock out reading from the command line.
 
 
 
 .NExtra 2.6.2.2		2012-02-03
-------------------------------
+==============================
 
 I have moved build scripts and Phantom packages into the Resources
 folder, to get them out of the way for you who are only interested
@@ -517,128 +515,7 @@ NExtra.Extensions.IEnumerableExtensions.IsSingle()
 
 
 
-.NET Extensions 2.1.0	2011-05-27
-----------------------------------
-
-General changes
----------------
-
-I have removed TODO unit tests. If they are needed, they will done,
-but to have non-functional unit tests in the test projects is only
-annoying. I have also renamed all private variables that did begin
-with an _. It is a minor detail (and thanks to R#, minor work) but
-perhaps good to know.
+Older release notes have been removed
+-------------------------------------
 
 
-NExtra
--------------
-
-I have added a new Attributes.GuidAttribute class, and moved every
-attribute that was previously defined in NExtra.MVC to this
-namespace.
-
-The Attributes.SwedishSsnAttribute has been adjusted so that it is
-not throwing an exception when too few digits are provided.
-
-The Documentation namespace is completely new. It contains classes
-that lets you extract documentation for assemblies, types, members
-and methods. Use the main XmlDocumentationHandler class to quickly
-get started and check out the Extractors sub-namespace if you need
-to modify the default behavior....or make something completely new.
-
-The Extensions.IOrderedQueryableExtensions class is removed, since
-its extension methods could be moved into IQueryableExtensions.
-
-The Extensions.AssemblyExtensions class has a new extension method
-that can be used to return all types that inherit an interface. It
-is called GetTypesThatImplement.
-
-The Facades.FacadeBase class has been made non-abstract, so now it
-is possible to create as many instances of it as you want.
-
-The Pagination.PaginationContext.GetResult method has been renamed
-to GetPaginationResult.
-
-The Testing.MetadataTypeRegistrator class has been really improved.
-Earlier versions just registered the existing MetadataTypes in the
-EXECUTING assembly. However, since MetadataTypes may be defined in
-any assembly that is part of a solution, the class now has methods
-for registering MetadataTypes in any assembly and for any type.
-
-The Web.Abstractions.ICanConvertHtml5Elements interface is renamed
-to ICanConvertHtml. Its ConvertHtml5Elements method was renamed to
-ConvertHtml. This affects the Html5ElementConverter class.
-
-Web.Abstractions.ICanDetermineHtml5Support (I knooow that there is
-no thing as HTML5 support) and Web.Html5Support are now renamed to
-ICanDetermineHtml5ElementSupport and Html5ElementSupport.
-
-Web.Abstractions.ICookieHandler & Web.HttpContextCookieHandler are
-waaaay rewritten with more intuitive and flexible methods. The old
-versions are NOT compatible with these new ones.
-
-Web.Abstractions.ICanGetVirtualFile and Web.VirtualFileHandler are
-removed in this new version, since the implementation was not that
-good. If I make them better, I will add them once again.
-
-The Web.Authentication namespace has been renamed to Web.Security.
-
-The entire Web.Facades namespace has been removed, since the class
-inside it was quite small and of little use.
-
-The Web.Security classes as well as their corresponding interfaces
-have been renamed as well, to IMembershipFacade / MembershipFacade
-& IRolesFacade / RolesFacade. IMembershipFacade / MembershipFacade
-has some new methods, but both classes be extended to fully mirror
-the corresponding static classes. Maybe in another release :)
-
-
-NExtra.MVC
------------------
-
-I have updated the MVC project to ASP.NET MVC 3.0.
-
-I have removed the entire Facades folder, since I do not know (at
-all) when I added it or what the hell I was thinking. If I find a
-good explanations, maybe I will re-add the classes. So, thanks to
-the removal, this DLL is really small so far.
-
-Since the TagBuilder class is not available in ASP.NET MVC 3.0, I
-have removed the ImageHelper class. If it is missed, I may create
-it once more. Just let me know.
-
-I have added a new HtmlHelper called HtmlStringHtmlHelper. It can
-be used to present non-HTML string with HTML syntax. For now, the
-class only replaces new lines with br tags, but its functionality
-may change in the future.
-
-
-NExtra.WebForms
-----------------------
-
-I have moved the StateBagExtensions class to the main project. It
-is available in System.Web and now WebForms specific.
-
-
-NExtra.WinForms
-----------------------
-
-No changes.
-
-
-NExtra.WPF
-----------------------
-
-I chose to remove the IsX extension methods for the CheckBox and
-RadioButton classes. So, now, they only contain a State() method
-to retrieve their ThreeState state, instead of having to use the
-nullable boolean IsChecked property.
-
-
-Renamed methods/properties (screw deprecated :)
------------------------------------------------
-
-NExtra.Extensions.UriExtensions.GetServerRoot() => Root()
-NExtra.Mvc.Extensions.ControllerExtensions.CurrentAction() => Action()
-NExtra.Mvc.Extensions.ControllerExtensions.CurrentController() => Controller()
-NExtra.WebForms.Extensions.ControlExtensions.GetHtml() => Html()

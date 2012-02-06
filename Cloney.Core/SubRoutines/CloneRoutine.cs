@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cloney.Core.Cloners;
 using NExtra;
+using NExtra.Extensions;
 using NExtra.Localization;
 
 namespace Cloney.Core.SubRoutines
@@ -32,38 +33,39 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        public void Run(IDictionary<string, string> args)
+        public bool Run(IDictionary<string, string> args)
         {
             if (!args.ContainsKey("clone") || args["clone"] != "true")
-                return;
+                return false;
 
-            var sourcePath = GetFolderArg(args, "source");
-            if (!ValidateFolderArg(sourcePath, "MissingSourcePathArgumentErrorMessage"))
-                return;
-
-            var targetPath = GetFolderArg(args, "target");
-            if (!ValidateFolderArg(targetPath, "MissingTargetPathArgumentErrorMessage"))
-                return;
+            var sourcePath = GetPath(args, "source");
+            var targetPath = GetPath(args, "target");
 
             solutionCloner.CloneSolution(sourcePath, targetPath);
+            return true;
         }
 
 
-        private static string GetFolderArg(IDictionary<string, string> args, string key)
+        private static string GetArg(IDictionary<string, string> args, string key)
         {
             return (!args.ContainsKey(key) || args[key] == "true")
                        ? string.Empty
                        : args[key];
         }
 
-        private bool ValidateFolderArg(string sourcePath, string errorMessage)
+        private string GetPath(IDictionary<string, string> args, string type)
         {
-            if (sourcePath == string.Empty)
-            {
-                console.WriteLine(translator.Translate(errorMessage));
-                return false;
-            }
-            return true;
+            var path = GetArg(args, type);
+            if (path.Trim().IsNullOrEmpty())
+                path = GetPathFromConsole(type);
+            return path;
+        }
+
+        private string GetPathFromConsole(string type)
+        {
+            var message = string.Format(translator.Translate("EnterFolderPath"), type);
+            console.Write(message);
+            return console.ReadLine();
         }
 
 

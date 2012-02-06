@@ -61,11 +61,21 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
+        ///   Looks up a localized string similar to Enter the path to the {0} folder:  .
+        /// </summary>
+        internal static string EnterFolderPath {
+            get {
+                return ResourceManager.GetString("EnterFolderPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
         ///
         ///The most commonly used Cloney commands are
         ///   help       Display general help
-        ///   clone      Clone a solution from a source to a target folder.
+        ///   clone      Clone a solution from a source folder to a target folder.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {
@@ -92,7 +102,9 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cloney failed to start with the following error message:.
+        ///   Looks up a localized string similar to 
+        ///Cloney failed to start with the following error message:
+        ///.
         /// </summary>
         internal static string StartErrorMessage {
             get {

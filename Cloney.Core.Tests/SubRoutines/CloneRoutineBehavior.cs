@@ -21,9 +21,11 @@ namespace Cloney.Core.Tests.SubRoutines
         public void SetUp()
         {
             console = Substitute.For<IConsole>();
+            console.ReadLine().Returns("input value");
+
             translator = Substitute.For<ITranslator>();
-            translator.Translate("MissingSourcePathArgumentErrorMessage").Returns("foo");
-            translator.Translate("MissingTargetPathArgumentErrorMessage").Returns("bar");
+            translator.Translate("EnterFolderPath").Returns("{0}");
+
             solutionCloner = Substitute.For<ISolutionCloner>();
 
             routine = new CloneRoutine(console, translator, solutionCloner);
@@ -33,63 +35,68 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            routine.Run(new Dictionary<string, string>());
+            var result = routine.Run(new Dictionary<string, string>());
 
+            Assert.That(result, Is.False);
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForIrrelevantArguments()
         {
-            routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
 
+            Assert.That(result, Is.False);
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Test]
-        public void Run_ShouldWarnForMissingSourcePath()
+        public void Run_ShouldRequireConsoleInputForMissingSourcePath()
         {
-            routine.Run(new Dictionary<string, string> { { "clone", "true" } });
+            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "target", "bar" } });
 
-            translator.Received().Translate("MissingSourcePathArgumentErrorMessage");
-            console.Received().WriteLine("foo");
+            translator.Received().Translate("EnterFolderPath");
+            console.Received().Write("source");
         }
 
         [Test]
-        public void Run_ShouldWarnForInvalidSourcePath()
+        public void Run_ShouldCloneWithConsoleInputForMissingSourcePath()
         {
-            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "true" } });
+            var result = routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "target", "bar" } });
 
-            translator.Received().Translate("MissingSourcePathArgumentErrorMessage");
-            console.Received().WriteLine("foo");
+            Assert.That(result, Is.True);
+            console.Received().ReadLine();
+            solutionCloner.Received().CloneSolution("input value", "bar");
         }
 
         [Test]
-        public void Run_ShouldWarnForMissingTargetPath()
+        public void Run_ShouldRequireConsoleInputForMissingTargetPath()
         {
             routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" } });
 
-            translator.Received().Translate("MissingTargetPathArgumentErrorMessage");
-            console.Received().WriteLine("bar");
+            translator.Received().Translate("EnterFolderPath");
+            console.Received().Write("target");
         }
 
         [Test]
-        public void Run_ShouldWarnForInvalidTargetPath()
+        public void Run_ShouldCloneWithConsoleInputForMissingTargetPath()
         {
-            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" }, { "target", "true" } });
+            var result = routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" } });
 
-            translator.Received().Translate("MissingTargetPathArgumentErrorMessage");
-            console.Received().WriteLine("bar");
+            Assert.That(result, Is.True);
+            console.Received().ReadLine();
+            solutionCloner.Received().CloneSolution("foo", "input value");
         }
 
         [Test]
-        public void Run_ShouldStartCloningOperationForValidArguments()
+        public void Run_ShouldStartCloningOperationWithProvidedFolders()
         {
-            routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "c:\\source" }, { "target", "c:\\target" } });
+            var result = routine.Run(new Dictionary<string, string> { { "clone", "true" }, { "source", "foo" }, { "target", "bar" } });
 
+            Assert.That(result, Is.True);
             translator.DidNotReceive().Translate(Arg.Any<string>());
             console.DidNotReceive().WriteLine(Arg.Any<string>());
-            solutionCloner.Received().CloneSolution("c:\\source", "c:\\target");
+            solutionCloner.Received().CloneSolution("foo", "bar");
         }
     }
 }

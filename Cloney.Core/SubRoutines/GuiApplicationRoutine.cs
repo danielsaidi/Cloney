@@ -24,10 +24,13 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        public void Run(IDictionary<string, string> args)
+        public bool Run(IDictionary<string, string> args)
         {
-            if (args.Count == 0)
-                process.Start("Cloney.Wizard.exe");
+            if (args.Count != 0)
+                return false;
+
+            process.Start("Cloney.Wizard.exe");
+            return true;
         }
     }
 }

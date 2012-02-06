@@ -55,8 +55,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NExtra">
-      <HintPath>..\packages\NExtra.2.6.2.6\lib\net40\NExtra.dll</HintPath>
+    <Reference Include="NExtra, Version=2.6.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NExtra.2.6.3.0\lib\net40\NExtra.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

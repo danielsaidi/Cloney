@@ -27,13 +27,16 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        public void Run(IDictionary<string, string> args)
+        public bool Run(IDictionary<string, string> args)
         {
             if (args.Count != 1)
-                return;
+                return false;
 
-            if (args.ContainsKey("help") && args["help"] == "true")
-                console.WriteLine(translator.Translate("GeneralHelpMessage"));
+            if (!args.ContainsKey("help") || args["help"] != "true")
+                return false;
+            
+            console.WriteLine(translator.Translate("GeneralHelpMessage"));
+            return true;
         }
     }
 }
