@@ -7,11 +7,11 @@
 
 :: Fetch input parameters
 set target=%1
-set build.version=%2
-set build.config=release
+set config=%2
 
-:: Fallback to default target if none is provided
+:: Set default target and config if needed
 if "%target%"=="" set target=default
+if "%config%"=="" set config=release
 
-:: Execute the boo script with params - accessible with e.g. env("build.config")
-resources\phantom\phantom.exe -f:build.boo %target% -a:build.config=%build.config% -a:build.version=%build.version%
+:: Execute the boo script with input params - accessible with env("x")
+resources\phantom\phantom.exe -f:build.boo %target% -a:config=%config%
