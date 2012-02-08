@@ -81,8 +81,13 @@ a:active { color: #0db8be; }
 
 .button:active { margin-top: 23px; }
 
+
+.likes { margin-top:20px; }
+.likes .facebook { padding-top:3px; }
+.likes .gplus { padding-top:3px; }
+
 					
-.comments { margin-top:20px; }
+.comments { margin-top:30px; }
 .comments .span { width:190px; font-family:georgia; font-style:italic; font-size:1.1em; }
 .comments .span + .span { margin-left:15px; padding-left:10px; }
 .comments em { font-size:1.4em; display:block; margin-top:5px; }
@@ -97,7 +102,7 @@ footer
 	border-top:solid 1px #333;
 	margin-top:50px;
 	padding-top:10px;
-	font-size:0.8em;
+	font-size:0.85em;
 }
 
 footer a { color:white; text-decoration:underline; }

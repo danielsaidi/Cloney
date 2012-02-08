@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -14,6 +14,7 @@
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/css/site.css" rel="stylesheet">
 
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assets/js/github.js"></script>
@@ -38,6 +39,14 @@
 	</head>
 
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=147327015386089";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 	  
 		<a href="http://github.com/danielsaidi/Cloney"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
@@ -57,47 +66,33 @@
 					</div>
 					
 					<p class="description">
-						Cloney can be used to <b>clone .NET solutions</b>. It <b>copies all solution files and folders</b> 
+						Cloney can be used to <b>clone .NET solutions</b>. It <b>copies the entire solution</b> 
 						and <b>adjusts folder names, file names and file content</b> whenever needed. It will also 
-						<b>ignore certain files and folders</b> (git, tfs, svn etc.) that do not belong to the new solution.
+						<b>ignore some files and folders</b> (git, tfs etc.) that do not belong to the new solution.
 					</p>
 				
 					<a class="download button" href="http://github.com/danielsaidi/cloney/downloads" title="Click to download the latest Cloney release">
 						Download Cloney <span id="version" />
 					</a>
-					<!--
-					<div class="row likes">
 					
-						<div class="span4 twitter">
-							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://danielsaidi.github.com/cloney" data-text="Use Cloney to clone your .NET solutions in no time -" data-size="large" data-hashtags="cloney">Tweet</a>
+					<div class="row likes">
+						<div class="span2 twitter">
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://danielsaidi.github.com/cloney" data-text="Use Cloney to easily clone your .NET solutions -" data-size="large" data-hashtags="cloney">Tweet</a>
 							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-						</span>
-
-						<div class="twitter">
-							<a href="https://twitter.com/share" class="twitter-share-button" data-text="Cloney - clone your .NET solutions in no time. http://danielsaidi.github.com/Cloney" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+						</div>
+						
+						<div class="span3 facebook">
+							<div class="fb-like" data-href="http://danielsaidi.github.com/Cloney" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
 						</div>
 				
-						<div class="gplus">
+						<div class="span1 gplus">
 							<g:plusone size="medium"></g:plusone>
 						</div>
-				
-						<div class="facebook">
-							<div id="fb-root"></div>
-							<script>(function(d, s, id) {
-								var js, fjs = d.getElementsByTagName(s)[0];
-								if (d.getElementById(id)) {return;}
-								js = d.createElement(s); js.id = id;
-								js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-								fjs.parentNode.insertBefore(js, fjs);
-								}(document, 'script', 'facebook-jssdk'));
-							</script>
-							<div class="fb-like" data-href="http://danielsaidi.github.com/Cloney" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-						</div>
 
-						
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="T8X3H6VHVU5KN"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></div></form>
+						<div class="span2 donate">
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="T8X3H6VHVU5KN"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></div></form>
+						</div>
 					</div>
-					-->
 					
 					<div class="row comments">
 						<div class="span">
@@ -110,7 +105,7 @@
 							<p><a href="http://cloudnine.se" rel="external">Carl Schéle</a></p>
 						</div>
 						<div class="span">
-							I forgot his quote, but it was <em>good!</em>
+							I await his quote...it'll be <em>good!</em>
 							<p><a href="http://twitter.com/jongyllen" rel="external">Jon Gyllenswärd</a></p>
 						</div>
 					</div>
