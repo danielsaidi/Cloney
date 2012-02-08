@@ -1,44 +1,47 @@
-body
-{
-	font-size: 0.625em;
+body {
+	padding-bottom: 40px;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px 2px 2px;
+	background: url(../img/bg.png) repeat-x black;
+}
+
+body, h1, h2, h3 {
 	color: white;
-	font-family: helvetica,verdana,arial;
-	background-color: black;
-	background-image: url(img/bg.png);
-	background-repeat: repeat-x; margin:0px;
 }
 
-a { color: white; }
-h1 { display: none; }
-h2 { font-size: 2.5em; }
-h3 { font-size: 1.6em; line-height: 1.4em; }
-h2,h3 { font-weight: normal; }
-h2, h3, #footer { text-shadow: rgba(0, 0, 0, 0.6) 0px 2px 2px; }
-h2 b, h3 b, #footer b { font-size: 0.95em; }
-h2 + img { margin: 15px 0;}
-
-#main
-{
-	width: 525px;
-	margin: 0 auto;
-	text-align: center;
-	background-repeat: no-repeat;
-	background-position: top center;
-	background-image: url(img/bg_glow.png);
+h1 {
+	display: none;
 }
 
-#header { padding-top: 50px; }
+h2 {
+	margin-top: 20px; 
+	font-weight: normal;
+} 
 
 
-.button
+a { color: #0db8be; }
+a:hover { color: #0db8be; }
+a:active { color: #0db8be; }
+
+
+#main { background: url(../img/bg_glow.png) no-repeat top center; }
+#main .content { margin-top: 60px; text-align: center; }
+
+
+.cloning { margin: 30px 0px; }
+
+
+.description { font-size: 1.2em; line-height: 1.6em; }
+
+
+.download.button
 {
-   margin: 20px 0px 40px 0px;
-   width: 346px; 
-   border: 1px solid #157275;
-   
-   color: #ffffff;
-   padding:  6px 0;
+   margin: 30px;
+   width: 360px; 
    display: inline-block;
+   border: 1px solid #157275;
+   color: #ffffff;
+   padding:  15px 0;
+   
    text-decoration: none;
    
    font-size: 2.0em;
@@ -78,12 +81,25 @@ h2 + img { margin: 15px 0;}
 
 .button:active { margin-top: 23px; }
 
-.likes { margin-left:75px; }
-.likes > div { float:left; }
-.likes > div.twitter { margin-right:20px; }
-.likes + div { clear:both; }
-form { position:relative; display:inline-block; }
-form > div { top:-11px; position:absolute; left:-80px; }
+					
+.comments { margin-top:20px; }
+.comments .span { width:190px; font-family:georgia; font-style:italic; font-size:1.1em; }
+.comments .span + .span { margin-left:15px; padding-left:10px; }
+.comments em { font-size:1.4em; display:block; margin-top:5px; }
+.comments p { font-size:0.9em; margin-top:10px; text-align:right; }
 
-.license { margin-top:30px }
-.copyright { margin:30px 0; }
+
+.license { font-size:0.8em; }
+
+										
+footer
+{
+	border-top:solid 1px #333;
+	margin-top:50px;
+	padding-top:10px;
+	font-size:0.8em;
+}
+
+footer a { color:white; text-decoration:underline; }
+
+footer .links { text-align:right; }
