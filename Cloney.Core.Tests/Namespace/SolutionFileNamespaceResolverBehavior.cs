@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.Namespace
 {
     [TestFixture]
-    public class SolutionBasedNamespaceResolverBehavior
+    public class SolutionFileNamespaceResolverBehavior
     {
         private INamespaceResolver resolver;
         private IDirectory directory;
@@ -17,7 +17,7 @@ namespace Cloney.Core.Tests.Namespace
         public void SetUp()
         {
             directory = Substitute.For<IDirectory>();
-            resolver = new SolutionBasedNamespaceResolver(directory);
+            resolver = new SolutionFileNamespaceResolver(directory);
         }
 
 

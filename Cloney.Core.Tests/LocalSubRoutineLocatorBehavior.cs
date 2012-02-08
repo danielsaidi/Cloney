@@ -25,7 +25,7 @@ namespace Cloney.Core.Tests
             Assert.That(routines.Count(), Is.EqualTo(3));
             Assert.That(routineNames.Contains("CloneRoutine"), Is.True);
             Assert.That(routineNames.Contains("HelpRoutine"), Is.True);
-            Assert.That(routineNames.Contains("GuiApplicationRoutine"), Is.True);
+            Assert.That(routineNames.Contains("GuiRoutine"), Is.True);
         }
     }
 }

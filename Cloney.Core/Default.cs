@@ -65,12 +65,12 @@ namespace Cloney.Core
 
         public static INamespaceResolver SourceNamespaceResolver
         {
-            get { return new SolutionBasedNamespaceResolver(new DirectoryFacade()); }
+            get { return new SolutionFileNamespaceResolver(new DirectoryFacade()); }
         }
 
         public static INamespaceResolver TargetNamespaceResolver
         {
-            get { return new FolderBasedNamespaceResolver(); }
+            get { return new FolderNamespaceResolver(); }
         }
 
         public static ITranslator Translator

@@ -126,13 +126,25 @@ usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
 
 The most commonly used Cloney commands are
    help       Display general help
-   clone      Clone a solution from a source folder to a target folder</value>
+   clone      Clone a solution from a source folder to a target folder
+   settings   Display application settings</value>
   </data>
-  <data name="MissingSourcePathArgumentErrorMessage" xml:space="preserve">
-    <value>You must provide Cloney with a source path, e.g. --source=c:\SourceFolder</value>
+  <data name="GuiStartMessage" xml:space="preserve">
+    <value>
+Starting the Cloney Wizard...
+
+Type cloney --help for more options.</value>
   </data>
-  <data name="MissingTargetPathArgumentErrorMessage" xml:space="preserve">
-    <value>You must provide Cloney with a target path, e.g. --target=c:\TargetFolder</value>
+  <data name="SettingsMessage" xml:space="preserve">
+    <value>
+1. Excluded folder patterns:
+   {0}
+
+2. Excluded file patterns:
+   {1}
+
+3. Plain copied file patterns:
+   {2}</value>
   </data>
   <data name="StartErrorMessage" xml:space="preserve">
     <value>

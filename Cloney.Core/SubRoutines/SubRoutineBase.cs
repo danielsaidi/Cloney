@@ -12,5 +12,10 @@ namespace Cloney.Core.SubRoutines
         {
             return (args.ContainsKey(key) && args[key] == value);
         }
+
+        protected bool ArgsHaveSingleKeyValue(IDictionary<string, string> args, string key, string value)
+        {
+            return args.Count == 1 && ArgsHaveKeyValue(args, key, value);
+        }
     }
 }

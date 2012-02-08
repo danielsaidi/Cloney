@@ -7,14 +7,14 @@ namespace Cloney.Core.Namespace
     /// <summary>
     /// This class can be used to resolve the namespace
     /// of a solution based on the name of the solution
-    /// file in a certain folder.
+    /// file within a certain folder.
     /// </summary>
-    public class SolutionBasedNamespaceResolver : INamespaceResolver
+    public class SolutionFileNamespaceResolver : INamespaceResolver
     {
         private readonly IDirectory directory;
 
 
-        public SolutionBasedNamespaceResolver(IDirectory directory)
+        public SolutionFileNamespaceResolver(IDirectory directory)
         {
             this.directory = directory;
         }

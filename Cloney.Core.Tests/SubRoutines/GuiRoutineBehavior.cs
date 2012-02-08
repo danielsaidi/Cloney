@@ -1,24 +1,31 @@
 ﻿using System.Collections.Generic;
 using Cloney.Core.SubRoutines;
+using NExtra;
 using NExtra.Diagnostics;
+using NExtra.Localization;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class GuiApplicationRoutineBehavior
+    public class GuiRoutineBehavior
     {
         private ISubRoutine routine;
+        private IConsole console;
+        private ITranslator translator;
         private IProcess process;
 
 
         [SetUp]
         public void SetUp()
         {
+            console = Substitute.For<IConsole>();
+            translator = Substitute.For<ITranslator>();
+            translator.Translate("GuiStartMessage").Returns("message");
             process = Substitute.For<IProcess>();
 
-            routine = new GuiApplicationRoutine(process);
+            routine = new GuiRoutine(console, translator, process);
         }
 
 
@@ -31,6 +38,18 @@ namespace Cloney.Core.Tests.SubRoutines
 
             Assert.That(result, Is.True);
             process.Received().Start("Cloney.Wizard.exe");
+        }
+
+        [Test]
+        public void Start_ShouldDisplayLaunchMessageForNoArguments()
+        {
+            var args = new Dictionary<string, string>();
+
+            var result = routine.Run(args);
+
+            Assert.That(result, Is.True);
+            translator.Received().Translate("GuiStartMessage");
+            console.Received().WriteLine("message");
         }
 
         [Test]

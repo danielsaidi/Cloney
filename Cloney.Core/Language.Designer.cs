@@ -75,7 +75,8 @@ namespace Cloney.Core {
         ///
         ///The most commonly used Cloney commands are
         ///   help       Display general help
-        ///   clone      Clone a solution from a source folder to a target folder.
+        ///   clone      Clone a solution from a source folder to a target folder
+        ///   settings   Display application settings.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {
@@ -84,20 +85,31 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must provide Cloney with a source path, e.g. --source=c:\SourceFolder.
+        ///   Looks up a localized string similar to 
+        ///Starting the Cloney Wizard...
+        ///
+        ///Type cloney --help for more options..
         /// </summary>
-        internal static string MissingSourcePathArgumentErrorMessage {
+        internal static string GuiStartMessage {
             get {
-                return ResourceManager.GetString("MissingSourcePathArgumentErrorMessage", resourceCulture);
+                return ResourceManager.GetString("GuiStartMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must provide Cloney with a target path, e.g. --target=c:\TargetFolder.
+        ///   Looks up a localized string similar to 
+        ///1. Excluded folder patterns:
+        ///   {0}
+        ///
+        ///2. Excluded file patterns:
+        ///   {1}
+        ///
+        ///3. Plain copied file patterns:
+        ///   {2}.
         /// </summary>
-        internal static string MissingTargetPathArgumentErrorMessage {
+        internal static string SettingsMessage {
             get {
-                return ResourceManager.GetString("MissingTargetPathArgumentErrorMessage", resourceCulture);
+                return ResourceManager.GetString("SettingsMessage", resourceCulture);
             }
         }
         

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using NExtra;
 using NExtra.Diagnostics;
+using NExtra.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -8,18 +11,22 @@ namespace Cloney.Core.SubRoutines
     /// are provided. It will start the Cloney wizard
     /// and display some start instructions.
     /// </summary>
-    public class GuiApplicationRoutine : SubRoutineBase, ISubRoutine
+    public class GuiRoutine : SubRoutineBase, ISubRoutine
     {
+        private readonly IConsole console;
+        private readonly ITranslator translator;
         private readonly IProcess process;
 
 
-        public GuiApplicationRoutine()
-            :this(Default.Process)
+        public GuiRoutine()
+            :this(Default.Console, Default.Translator, Default.Process)
         {
         }
 
-        public GuiApplicationRoutine(IProcess process)
+        public GuiRoutine(IConsole console, ITranslator translator, IProcess process)
         {
+            this.console = console;
+            this.translator = translator;
             this.process = process;
         }
 
@@ -29,6 +36,7 @@ namespace Cloney.Core.SubRoutines
             if (args.Count != 0)
                 return false;
 
+            console.WriteLine(translator.Translate("GuiStartMessage"));
             process.Start("Cloney.Wizard.exe");
             return true;
         }

@@ -29,10 +29,7 @@ namespace Cloney.Core.SubRoutines
 
         public bool Run(IDictionary<string, string> args)
         {
-            if (args.Count != 1)
-                return false;
-
-            if (!args.ContainsKey("help") || args["help"] != "true")
+            if (!ArgsHaveSingleKeyValue(args, "help", "true"))
                 return false;
             
             console.WriteLine(translator.Translate("GeneralHelpMessage"));
