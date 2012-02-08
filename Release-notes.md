@@ -14,6 +14,15 @@ I have also added a new "settings" command, which will display
 application settings. For now, the settings are read only, but
 it would be nice to be able to manage them from the console.
 
+Finally, I have added an error message that is printed when no
+routine that could handle the command was found.
+
+This version supports the following commands:
+
+	<none>: Calling Cloney with no args will start the wizard.
+	--help: Displays general help regarding how to use Cloney.
+	--clone --source=x --target=y: Clones solution x to dir y.
+	--settings: Prints application settings (readonly for now).
 
 
 Cloney 0.9.0.0		2012-02-03
