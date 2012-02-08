@@ -1,3 +1,21 @@
+Cloney 0.9.1.0		2012-02-08
+==============================
+
+In this version, the clone operation does not require a source
+and a target to be entered. In earlier versions, the operation
+would abort, but now it will simply ask the user to enter them.
+
+If Cloney is started by calling Cloney without parameters, the
+application will now output a start message when it starts the
+GUI application. This message instructs the user how to launch
+the help command.
+
+I have also added a new "settings" command, which will display
+application settings. For now, the settings are read only, but
+it would be nice to be able to manage them from the console.
+
+
+
 Cloney 0.9.0.0		2012-02-03
 ==============================
 
