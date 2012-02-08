@@ -17,7 +17,5 @@ namespace Cloney.Core.SubRoutines
         {
             return args.Count == 1 && ArgsHaveKeyValue(args, key, value);
         }
-
-        public abstract bool Run(IDictionary<string, string> args);
     }
 }
