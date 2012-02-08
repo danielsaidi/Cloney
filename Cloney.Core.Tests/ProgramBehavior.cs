@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cloney.Core.SubRoutines;
 using NExtra;
 using NExtra.Localization;
 using NSubstitute;
@@ -23,6 +24,7 @@ namespace Cloney.Core.Tests
         {
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
+            translator.Translate("NoRoutineMatchMessage").Returns("foo");
             argumentParser = Substitute.For<ICommandLineArgumentParser>();
             subRoutineLocator = Substitute.For<ISubRoutineLocator>();
 
@@ -70,6 +72,31 @@ namespace Cloney.Core.Tests
         public void Start_ShouldNotFailForMissingSubRoutines()
         {
             program.Start(arguments);
+        }
+
+        [Test]
+        public void Start_ShouldNotPrintNonMatchMessageForTriggeredSubRoutines()
+        {
+            var subRoutine = Substitute.For<ISubRoutine>();
+            subRoutine.Run(Arg.Any<IDictionary<string, string>>()).Returns(true);
+            subRoutineLocator.FindAll().Returns(new List<ISubRoutine>{subRoutine});
+
+            program.Start(arguments);
+
+            console.DidNotReceive().WriteLine(Arg.Any<string>());
+        }
+
+        [Test]
+        public void Start_ShouldPrintNonMatchMessageForNonTriggeredSubRoutines()
+        {
+            var subRoutine = Substitute.For<ISubRoutine>();
+            subRoutine.Run(Arg.Any<IDictionary<string, string>>()).Returns(false);
+            subRoutineLocator.FindAll().Returns(new List<ISubRoutine> { subRoutine });
+
+            program.Start(arguments);
+
+            translator.Received().Translate("NoRoutineMatchMessage");
+            console.Received().WriteLine("foo");
         }
     }
 }

@@ -61,7 +61,8 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the path to the {0} folder:  .
+        ///   Looks up a localized string similar to 
+        ///Enter the path to the {0} folder:  .
         /// </summary>
         internal static string EnterFolderPath {
             get {
@@ -93,6 +94,18 @@ namespace Cloney.Core {
         internal static string GuiStartMessage {
             get {
                 return ResourceManager.GetString("GuiStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Cloney did not recognize the command.
+        ///
+        ///Type cloney --help for more options..
+        /// </summary>
+        internal static string NoRoutineMatchMessage {
+            get {
+                return ResourceManager.GetString("NoRoutineMatchMessage", resourceCulture);
             }
         }
         

@@ -12,6 +12,12 @@ namespace Cloney.Core
     /// </summary>
     public class Program : IProgram
     {
+        private readonly IConsole console;
+        private readonly ITranslator translator;
+        private readonly ICommandLineArgumentParser argumentParser;
+        private readonly ISubRoutineLocator subRoutineLocator;
+
+
         public Program()
             : this(new ConsoleFacade(), new LanguageProvider(), new CommandLineArgumentParser(), new LocalSubRoutineLocator())
         {
@@ -19,36 +25,32 @@ namespace Cloney.Core
 
         public Program(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISubRoutineLocator subRoutineLocator)
         {
-            Console = console;
-            Translator = translator;
-            ArgumentParser = argumentParser;
-            SubRoutineLocator = subRoutineLocator;
+            this.console = console;
+            this.translator = translator;
+            this.argumentParser = argumentParser;
+            this.subRoutineLocator = subRoutineLocator;
         }
 
-
-        private ICommandLineArgumentParser ArgumentParser { get; set; }
-
-        private IConsole Console { get; set; }
-
-        private ITranslator Translator { get; set; }
-
-        private ISubRoutineLocator SubRoutineLocator { get; set; }
 
 
         public void Start(IEnumerable<string> args)
         {
             try
             {
-                var arguments = ArgumentParser.ParseCommandLineArguments(args);
-                var routines = SubRoutineLocator.FindAll();
+                var arguments = argumentParser.ParseCommandLineArguments(args);
+                var routines = subRoutineLocator.FindAll();
 
+                var result = false;
                 foreach (var routine in routines)
-                    routine.Run(arguments);
+                    result = result || routine.Run(arguments);
+
+                if (!result)
+                    console.WriteLine(translator.Translate("NoRoutineMatchMessage"));
             }
             catch (Exception e)
             {
-                Console.WriteLine(Translator.Translate("StartErrorMessage"));
-                Console.WriteLine(e.Message);
+                console.WriteLine(translator.Translate("StartErrorMessage"));
+                console.WriteLine(e.Message);
             }
         }
     }

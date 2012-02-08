@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EnterFolderPath" xml:space="preserve">
-    <value>Enter the path to the {0} folder:  </value>
+    <value>
+Enter the path to the {0} folder:  </value>
   </data>
   <data name="GeneralHelpMessage" xml:space="preserve">
     <value>
@@ -132,6 +133,12 @@ The most commonly used Cloney commands are
   <data name="GuiStartMessage" xml:space="preserve">
     <value>
 Starting the Cloney Wizard...
+
+Type cloney --help for more options.</value>
+  </data>
+  <data name="NoRoutineMatchMessage" xml:space="preserve">
+    <value>
+Cloney did not recognize the command.
 
 Type cloney --help for more options.</value>
   </data>
