@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <iconUrl>http://danielsaidi.github.com/Cloney/content/img/icon_250.png</iconUrl>
+    <iconUrl>http://danielsaidi.github.com/Cloney/assets/img/icon_250.png</iconUrl>
     <projectUrl>http://danielsaidi.github.com/Cloney</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
