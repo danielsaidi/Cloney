@@ -17,13 +17,13 @@
     <tags>net .net c# clone visual studio solution</tags>
   </metadata>
   <files>
-	<file src="..\Resources\README.txt" target="" />
-	<file src="..\Resources\Release-notes.txt" target="" />
-	<file src="bin\Release\Cloney.Core.dll" target="" />
-	<file src="bin\Release\Cloney.exe" target="" />
-	<file src="bin\Release\Cloney.exe.config" target="" />
-	<file src="bin\Release\Cloney.Wizard.exe" target="" />
-	<file src="bin\Release\NExtra.dll" target="" />
-	<file src="bin\Release\NExtra.xml" target="" />
+	<file src="..\Resources\README.txt" target="tools" />
+	<file src="..\Resources\Release-notes.txt" target="tools" />
+	<file src="bin\Release\Cloney.Core.dll" target="tools" />
+	<file src="bin\Release\Cloney.exe" target="tools" />
+	<file src="bin\Release\Cloney.exe.config" target="tools" />
+	<file src="bin\Release\Cloney.Wizard.exe" target="tools" />
+	<file src="bin\Release\NExtra.dll" target="tools" />
+	<file src="bin\Release\NExtra.xml" target="tools" />
   </files>
 </package>
