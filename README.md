@@ -72,13 +72,13 @@ me know!
 License
 -------
 
-Cloney is released under the MIT License which basically
-means you can do much anything you want with it. Read it
-at http://www.opensource.org/licenses/mit-license.php
+Cloney is released under the MIT License. This basically
+means you can do much anything you want with it.
+
+Read  http://www.opensource.org/licenses/mit-license.php
 
 If you use Cloney and like it, please spread the word. A
-separate area at the web site is saved for quotes, so if
-you want to give me a quote, I'd love to publish it.
+separate area at the web site is saved for user comments.
 
 If you take a class or interface out of Cloney, keep the
 author information in the source code.

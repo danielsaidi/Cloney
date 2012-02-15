@@ -4,6 +4,13 @@ using Cloney.Wizard.Resources;
 
 namespace Cloney.Wizard
 {
+    /// <summary>
+    /// The main Cloney Wizard application class.
+    /// </summary>
+    /// <remarks>
+    /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
+    /// Link:       http://danielsaidi.github.com/Cloney
+    /// </remarks>
     public partial class App
     {
         public App()

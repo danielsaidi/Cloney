@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Cloney")]
-[assembly: AssemblyDescription("Core functionality for Cloney")]
+[assembly: AssemblyDescription("Cloney console application.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
 
@@ -15,4 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d2807296-064a-4bcd-a15f-96c0b667565e")]
+[assembly: Guid("27094ad4-7b65-4f6a-9e45-7c7de96b7943")]

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</ProjectGuid>
+    <ProjectGuid>{2A3260D0-3495-4E32-9B50-E549B56854D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cloney</RootNamespace>
-    <AssemblyName>Cloney</AssemblyName>
+    <RootNamespace>Cloney.Tests</RootNamespace>
+    <AssemblyName>Cloney.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -46,12 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NExtra, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NExtra">
       <HintPath>..\packages\NExtra.2.6.3.0\lib\net40\NExtra.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,43 +68,25 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Default.cs" />
-    <Compile Include="IProgram.cs" />
-    <Compile Include="ISubRoutineLocator.cs" />
-    <Compile Include="Language.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Language.resx</DependentUpon>
+    <Compile Include="Cloners\FakeSolutionCloner.cs" />
+    <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
+    <Compile Include="Namespace\FolderNamespaceResolverBehavior.cs" />
+    <Compile Include="Namespace\SolutionFileNamespaceResolverBehavior.cs" />
+    <Compile Include="ProgramBehavior.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LocalSubRoutineLocator.cs" />
-    <Compile Include="Namespace\SolutionFileNamespaceResolver.cs" />
-    <Compile Include="Namespace\FolderNamespaceResolver.cs" />
-    <Compile Include="Namespace\INamespaceResolver.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="LanguageProvider.cs" />
-    <Compile Include="Cloners\SolutionClonerBase.cs" />
-    <Compile Include="Cloners\ISolutionCloner.cs" />
-    <Compile Include="Cloners\SolutionCloner.cs" />
-    <Compile Include="SubRoutines\CloneRoutine.cs" />
-    <Compile Include="SubRoutines\SettingsRoutine.cs" />
-    <Compile Include="SubRoutines\GuiRoutine.cs" />
-    <Compile Include="SubRoutines\HelpRoutine.cs" />
-    <Compile Include="SubRoutines\ISubRoutine.cs" />
-    <Compile Include="SubRoutines\SubRoutineBase.cs" />
+    <Compile Include="SubRoutines\CloneRoutineBehavior.cs" />
+    <Compile Include="SubRoutines\SettingsRoutineBehavior.cs" />
+    <Compile Include="SubRoutines\GuiRoutineBehavior.cs" />
+    <Compile Include="SubRoutines\HelpRoutineBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\Cloney\Cloney.csproj">
+      <Project>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</Project>
+      <Name>Cloney</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -123,12 +111,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="Language.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

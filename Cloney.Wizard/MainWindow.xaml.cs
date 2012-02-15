@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
-using Cloney.Core.Cloners;
+using Cloney.Cloners;
 using NExtra.Extensions;
 
 namespace Cloney.Wizard
@@ -10,6 +10,10 @@ namespace Cloney.Wizard
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// <remarks>
+    /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
+    /// Link:       http://danielsaidi.github.com/Cloney
+    /// </remarks>
     public partial class MainWindow
     {
         private ISolutionCloner solutionCloner;
@@ -57,7 +61,7 @@ namespace Cloney.Wizard
 
         private void InitializeBootstrap()
         {
-            solutionCloner = Core.Default.SolutionCloner;
+            solutionCloner = Default.SolutionCloner;
             solutionCloner.CloningEnded += solutionCloner_CloningEnded;
 
             refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
@@ -65,8 +69,8 @@ namespace Cloney.Wizard
             refreshTimer.IsEnabled = true;
             refreshTimer.Start();
 
-            sourceFolderSelector.Initialize(Core.Default.SourceNamespaceResolver, LastSourcePath);
-            targetFolderSelector.Initialize(Core.Default.TargetNamespaceResolver, LastTargetPath);
+            sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, LastSourcePath);
+            targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
         }
 
 

@@ -1,3 +1,17 @@
+Cloney 0.9.2.0		2012-02-15
+==============================
+
+In this version, I have renamed the projects, so that the Core
+project is now called Cloney. The console application has been
+renamed to Cloney.Console, but the resulting exe file is still
+named Cloney.exe.
+
+I have experimented with the NuGet package generation and hope
+that adding an empty reference tag will stop Cloney from being
+added to references if you add it.
+
+
+
 Cloney 0.9.1.0		2012-02-08
 ==============================
 

@@ -2,11 +2,19 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using Cloney.Core.Namespace;
+using Cloney.Namespace;
 using NExtra.Extensions;
 
 namespace Cloney.Wizard.Controls
 {
+    /// <summary>
+    /// This component can be used to select a folder by
+    /// using a native folder selector.
+    /// </summary>
+    /// <remarks>
+    /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
+    /// Link:       http://danielsaidi.github.com/Cloney
+    /// </remarks>
     public partial class FolderSelector
     {
         public FolderSelector()
