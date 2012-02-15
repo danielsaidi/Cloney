@@ -15,15 +15,18 @@
     <releaseNotes>See http://github.com/danielsaidi/Cloney/blob/master/Release-notes.txt</releaseNotes>
     <copyright>Copyright 2011-2012, Daniel Saidi</copyright>
     <tags>net .net c# clone visual studio solution</tags>
+	<references />
   </metadata>
   <files>
 	<file src="..\Resources\README.txt" target="tools" />
 	<file src="..\Resources\Release-notes.txt" target="tools" />
+	
 	<file src="bin\Release\Cloney.Core.dll" target="tools" />
-	<file src="bin\Release\Cloney.exe" target="tools" />
-	<file src="bin\Release\Cloney.exe.config" target="tools" />
-	<file src="bin\Release\Cloney.Wizard.exe" target="tools" />
 	<file src="bin\Release\NExtra.dll" target="tools" />
 	<file src="bin\Release\NExtra.xml" target="tools" />
+	
+	<file src="..\Cloney.Console\bin\Release\Cloney.exe" target="tools" />
+	<file src="..\Cloney.Console\bin\Release\Cloney.exe.config" target="tools" />
+	<file src="..\Cloney.Wizard\bin\Release\Cloney.Wizard.exe" target="tools" />
   </files>
 </package>

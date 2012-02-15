@@ -9,7 +9,7 @@ build_version = ""
 build_config  = env('config')
 
 test_assemblies = (
-   "Cloney.Core.Tests/bin/${build_config}/Cloney.Core.Tests.dll",
+   "Cloney.Tests/bin/${build_config}/Cloney.Tests.dll",
 )
 
 
@@ -57,7 +57,7 @@ target copy:
    File.Copy("Release-notes.md", "${build_folder}/Release-notes.txt", true)
    
    with FileList(""):
-    .Include("Cloney/bin/${build_config}/*.*")
+    .Include("Cloney.Console/bin/${build_config}/*.*")
     .ForEach def(file):
       File.Copy(file.FullName, "${build_folder}/${file.Name}", true)
 
