@@ -82,9 +82,7 @@ a:active { color: #0db8be; }
 .button:active { margin-top: 23px; }
 
 
-.likes { margin-top:20px; }
-.likes .facebook { padding-top:3px; }
-.likes .gplus { padding-top:3px; }
+.likes { margin-top:20px; margin-bottom:40px; }
 
 					
 .comments { margin-top:30px; }
