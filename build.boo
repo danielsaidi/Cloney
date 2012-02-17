@@ -9,7 +9,7 @@ build_version = ""
 build_config  = env('config')
 
 test_assemblies = (
-   "Cloney.Tests/bin/${build_config}/Cloney.Tests.dll",
+   "Cloney.Core.Tests/bin/${build_config}/Cloney.Core.Tests.dll",
 )
 
 

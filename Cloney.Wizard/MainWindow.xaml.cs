@@ -73,6 +73,19 @@ namespace Cloney.Wizard
             targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
         }
 
+        private void Refresh()
+        {
+            lblCurrentPath.Content = string.Empty;
+
+            if (!sourceFolderSelector.IsValid)
+                lblCurrentPath.Content = Wizard.Resources.Language.InvalidSourceFolder;
+
+            if (!sourceFolderSelector.IsValid)
+                lblCurrentPath.Content = Wizard.Resources.Language.InvalidSourceFolder;
+
+            btnClone.IsEnabled = CanInstall;
+        }
+
 
         private void btnClone_Click(object sender, RoutedEventArgs e)
         {
@@ -91,26 +104,26 @@ namespace Cloney.Wizard
             if (!string.IsNullOrEmpty(targetFolderSelector.Path))
                 LastTargetPath = targetFolderSelector.Path;
 
-            btnClone.IsEnabled = CanInstall;
+            Refresh();
         }
 
         private void folderSelector_OnError(object sender, EventArgs e)
         {
-            btnClone.IsEnabled = CanInstall;
+            Refresh();
         }
 
-        void refreshTimer_Tick(object sender, EventArgs e)
+        private void refreshTimer_Tick(object sender, EventArgs e)
         {
             btnClone.IsEnabled = CanInstall;
             lblCurrentPath.Content = solutionCloner.CurrentPath;
         }
 
-        static void solutionCloner_CloningEnded(object sender, EventArgs e)
+        private static void solutionCloner_CloningEnded(object sender, EventArgs e)
         {
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        void worker_DoWork(object sender, DoWorkEventArgs e)
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             solutionCloner.CloneSolution(sourcePath, targetPath);
         }

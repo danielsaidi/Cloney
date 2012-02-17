@@ -147,4 +147,10 @@
   <data name="UnhandledExceptionPattern" xml:space="preserve">
     <value>An unhandled exception occured: {0}</value>
   </data>
+  <data name="InvalidSourceFolder" xml:space="preserve">
+    <value>The source path does not contain a solution file.</value>
+  </data>
+  <data name="InvalidTargetFolder" xml:space="preserve">
+    <value>The target path is invalid.</value>
+  </data>
 </root>

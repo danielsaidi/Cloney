@@ -106,6 +106,24 @@ namespace Cloney.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The source path does not contain a solution file..
+        /// </summary>
+        public static string InvalidSourceFolder {
+            get {
+                return ResourceManager.GetString("InvalidSourceFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target path is invalid..
+        /// </summary>
+        public static string InvalidTargetFolder {
+            get {
+                return ResourceManager.GetString("InvalidTargetFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Namespace:.
         /// </summary>
         public static string Namespace {

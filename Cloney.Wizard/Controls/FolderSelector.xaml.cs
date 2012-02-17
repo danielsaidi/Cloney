@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Cloney.Core.Namespace;
 
 namespace Cloney.Wizard.Controls
@@ -16,8 +17,15 @@ namespace Cloney.Wizard.Controls
     /// </remarks>
     public partial class FolderSelector
     {
+        private readonly Brush errorBrush;
+        private readonly Brush neutralBrush;
+
+
         public FolderSelector()
         {
+            errorBrush = new SolidColorBrush(Color.FromRgb(255, 200, 200));
+            neutralBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
             InitializeComponent();
         }
 
@@ -98,10 +106,15 @@ namespace Cloney.Wizard.Controls
             try
             {
                 Namespace = NamespaceResolver.ResolveNamespace(txtFolder.Text);
+                if (string.IsNullOrEmpty(Namespace))
+                    throw new Exception(txtFolder.Text);
+
+                txtFolder.Background = neutralBrush;
                 OnChanged(new EventArgs());
             }
-            catch (Exception e)
+            catch
             {
+                txtFolder.Background = errorBrush;
                 OnError(new EventArgs());
             }
         }
