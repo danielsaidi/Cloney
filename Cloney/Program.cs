@@ -1,62 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Cloney.SubRoutines;
-using NExtra;
-using NExtra.Localization;
-
-namespace Cloney
+﻿namespace Cloney
 {
     /// <summary>
-    /// This class represents the main Cloney application.
-    /// It will trigger all available sub routines with a
-    /// parsed collection of input arguments.
+    /// This class will start the Cloney application that
+    /// is defined in the Cloney library.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/Cloney
     /// </remarks>
-    public class Program : IProgram
+    public class Program
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
-        private readonly ISubRoutineLocator subRoutineLocator;
-
-
-        public Program()
-            : this(Default.Console, Default.Translator, Default.CommandLineArgumentParser, Default.SubRoutineLocator)
+        private static void Main(string[] args)
         {
-        }
-
-        public Program(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISubRoutineLocator subRoutineLocator)
-        {
-            this.console = console;
-            this.translator = translator;
-            this.argumentParser = argumentParser;
-            this.subRoutineLocator = subRoutineLocator;
-        }
-
-
-
-        public void Start(IEnumerable<string> args)
-        {
-            try
-            {
-                var arguments = argumentParser.ParseCommandLineArguments(args);
-                var routines = subRoutineLocator.FindAll();
-
-                var result = false;
-                foreach (var routine in routines)
-                    result = result || routine.Run(arguments);
-
-                if (!result)
-                    console.WriteLine(translator.Translate("NoRoutineMatchMessage"));
-            }
-            catch (Exception e)
-            {
-                console.WriteLine(translator.Translate("StartErrorMessage"));
-                console.WriteLine(e.Message);
-            }
+            new Core.Program().Start(args);
         }
     }
 }

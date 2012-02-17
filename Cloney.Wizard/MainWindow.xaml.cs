@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
-using Cloney.Cloners;
+using Cloney.Core;
+using Cloney.Core.Cloners;
 using NExtra.Extensions;
 
 namespace Cloney.Wizard

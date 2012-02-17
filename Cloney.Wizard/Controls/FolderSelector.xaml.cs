@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using Cloney.Namespace;
+using Cloney.Core.Namespace;
 using NExtra.Extensions;
 
 namespace Cloney.Wizard.Controls
