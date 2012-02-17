@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
 using Cloney.Core.Cloners;
-using NExtra.Extensions;
 
 namespace Cloney.Wizard
 {
@@ -35,7 +34,7 @@ namespace Cloney.Wizard
         {
             get
             {
-                return sourceFolderSelector.IsValid && targetFolderSelector.IsValid && solutionCloner.CurrentPath.IsNullOrEmpty();
+                return sourceFolderSelector.IsValid && targetFolderSelector.IsValid && string.IsNullOrEmpty(solutionCloner.CurrentPath);
             }
         }
 
@@ -87,9 +86,9 @@ namespace Cloney.Wizard
 
         private void folderSelector_OnChanged(object sender, EventArgs e)
         {
-            if (!sourceFolderSelector.Path.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(sourceFolderSelector.Path))
                 LastSourcePath = sourceFolderSelector.Path;
-            if (!targetFolderSelector.Path.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(targetFolderSelector.Path))
                 LastTargetPath = targetFolderSelector.Path;
 
             btnClone.IsEnabled = CanInstall;

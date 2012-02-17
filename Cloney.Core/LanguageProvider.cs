@@ -1,4 +1,4 @@
-﻿using NExtra.Localization;
+﻿using Cloney.Core.Localization;
 
 namespace Cloney.Core
 {

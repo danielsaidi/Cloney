@@ -1,7 +1,7 @@
 ﻿using Cloney.Core.Namespace;
 using NUnit.Framework;
 
-namespace Cloney.Tests.Namespace
+namespace Cloney.Core.Tests.Namespace
 {
     [TestFixture]
     public class FolderNamespaceResolverBehavior

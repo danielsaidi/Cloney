@@ -2,7 +2,7 @@
 using Cloney.Core.Cloners;
 using NUnit.Framework;
 
-namespace Cloney.Tests.Cloners
+namespace Cloney.Core.Tests.Cloners
 {
     [TestFixture]
     public class SolutionClonerBaseBehavior

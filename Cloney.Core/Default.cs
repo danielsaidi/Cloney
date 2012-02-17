@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Cloney.Core.Cloners;
+using Cloney.Core.Console;
+using Cloney.Core.Diagnostics;
+using Cloney.Core.IO;
+using Cloney.Core.Localization;
 using Cloney.Core.Namespace;
 using Cloney.Core.SubRoutines;
-using NExtra;
-using NExtra.Diagnostics;
-using NExtra.IO;
-using NExtra.Localization;
 
 namespace Cloney.Core
 {

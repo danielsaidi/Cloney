@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using Cloney.Core.Namespace;
-using NExtra.Extensions;
 
 namespace Cloney.Wizard.Controls
 {
@@ -30,7 +29,7 @@ namespace Cloney.Wizard.Controls
 
         public bool IsValid
         {
-            get { return !Path.IsNullOrEmpty() && !Namespace.IsNullOrEmpty(); }
+            get { return !string.IsNullOrEmpty(Path) && !string.IsNullOrEmpty(Namespace); }
         }
 
         public string Namespace

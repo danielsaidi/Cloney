@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using NExtra.IO;
+using Cloney.Core.IO;
 
 namespace Cloney.Core.Namespace
 {

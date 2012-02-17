@@ -2,7 +2,7 @@
 using Cloney.Core.SubRoutines;
 using NUnit.Framework;
 
-namespace Cloney.Tests.SubRoutines
+namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
     public class LocalSubRoutineLocatorBehavior

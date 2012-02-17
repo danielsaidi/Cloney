@@ -1,22 +1,13 @@
-Cloney 0.9.2.1		2012-02-17
+Cloney 0.9.2.0		2012-02-17
 ==============================
 
-In this version, the console application file name mistake (it
-was named Cloney.Console.exe in the last version) is fixed. It
-is now named Cloney.exe once again.
+In this version, I have removed all NExtra dependencies. Every
+component from NExtra has instead been moved into Cloney. This
+makes the solution bigger, but removes a DLL dependency, which
+is nice for people who download the source code.
 
-I have also fixed the resource namespace crash. Thanks for the
-fast feedback!
-
-
-
-Cloney 0.9.2.0		2012-02-15
-==============================
-
-In this version, I have renamed the projects, so that the Core
-project is now called Cloney. The console application has been
-renamed to Cloney.Console, but the resulting exe file is still
-named Cloney.exe.
+The LanguageProvider class became obsolete after I created the
+Default class, so I removed it.
 
 I have experimented with the NuGet package generation and hope
 that adding an empty reference tag will stop Cloney from being

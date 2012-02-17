@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using NExtra.Extensions;
+using Cloney.Core.Reflection;
 
 namespace Cloney.Core.SubRoutines
 {

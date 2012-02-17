@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Cloney.Core.IO;
 using Cloney.Core.Namespace;
-using NExtra.IO;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Cloney.Tests.Namespace
+namespace Cloney.Core.Tests.Namespace
 {
     [TestFixture]
     public class SolutionFileNamespaceResolverBehavior

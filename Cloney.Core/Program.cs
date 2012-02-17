@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cloney.Core.Console;
+using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
-using NExtra;
-using NExtra.Localization;
 
 namespace Cloney.Core
 {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Cloney.Core.IO;
 using Cloney.Core.Namespace;
-using NExtra.IO;
-using NExtra.Extensions;
 
 namespace Cloney.Core.Cloners
 {
@@ -64,7 +63,7 @@ namespace Cloney.Core.Cloners
 
         private void CloneFolderFiles(string folderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            if (folderPath.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(folderPath))
                 return;
 
             foreach (var filePath in Directory.GetFiles(folderPath))
@@ -102,7 +101,7 @@ namespace Cloney.Core.Cloners
 
         private void CloneSubFolders(string parentFolderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            if (parentFolderPath.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(parentFolderPath))
                 return;
 
             foreach (var directory in Directory.GetDirectories(parentFolderPath))

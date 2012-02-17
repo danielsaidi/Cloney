@@ -65,13 +65,26 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Console\CommandLineArgumentParser.cs" />
+    <Compile Include="Console\ConsoleFacade.cs" />
+    <Compile Include="Console\ICommandLineArgumentParser.cs" />
+    <Compile Include="Console\IConsole.cs" />
     <Compile Include="Default.cs" />
+    <Compile Include="Diagnostics\IProcess.cs" />
+    <Compile Include="Diagnostics\ProcessFacade.cs" />
+    <Compile Include="IO\DirectoryFacade.cs" />
+    <Compile Include="IO\IDirectory.cs" />
+    <Compile Include="IO\IPathPatternMatcher.cs" />
+    <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="IProgram.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
+    <Compile Include="Localization\HierarchicalResourceManagerFacade.cs" />
+    <Compile Include="Localization\ITranslator.cs" />
+    <Compile Include="Localization\ResourceManagerFacade.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolver.cs" />
     <Compile Include="Namespace\FolderNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
@@ -86,6 +99,7 @@
     <Compile Include="Cloners\SolutionClonerBase.cs" />
     <Compile Include="Cloners\ISolutionCloner.cs" />
     <Compile Include="Cloners\SolutionCloner.cs" />
+    <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
     <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />

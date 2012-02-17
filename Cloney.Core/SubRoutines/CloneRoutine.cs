@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cloney.Core.Cloners;
-using NExtra;
-using NExtra.Extensions;
-using NExtra.Localization;
+using Cloney.Core.Console;
+using Cloney.Core.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -60,7 +59,7 @@ namespace Cloney.Core.SubRoutines
         private string GetPath(IDictionary<string, string> args, string type)
         {
             var path = GetArg(args, type);
-            if (path.Trim().IsNullOrEmpty())
+            if (string.IsNullOrEmpty(path.Trim()))
                 path = GetPathFromConsole(type);
             return path;
         }

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Cloney.Core;
+using Cloney.Core.Console;
+using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
-using NExtra;
-using NExtra.Localization;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Cloney.Tests
+namespace Cloney.Core.Tests
 {
     [TestFixture]
     public class ProgramBehavior

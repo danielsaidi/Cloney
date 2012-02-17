@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Cloney.Core.Cloners;
+using Cloney.Core.Console;
+using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
-using NExtra;
-using NExtra.Localization;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Cloney.Tests.SubRoutines
+namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
     public class CloneRoutineBehavior

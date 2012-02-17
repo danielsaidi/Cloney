@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using NExtra;
-using NExtra.Diagnostics;
-using NExtra.Localization;
+using Cloney.Core.Console;
+using Cloney.Core.Diagnostics;
+using Cloney.Core.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
