@@ -46,9 +46,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NExtra">
-      <HintPath>..\packages\NExtra.2.6.3.0\lib\net40\NExtra.dll</HintPath>
-    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
     </Reference>

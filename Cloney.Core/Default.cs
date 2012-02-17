@@ -90,7 +90,7 @@ namespace Cloney.Core
 
         public static ITranslator Translator
         {
-            get { return new LanguageProvider(); }
+            get { return new ResourceManagerFacade(Language.ResourceManager); }
         }
     }
 }
