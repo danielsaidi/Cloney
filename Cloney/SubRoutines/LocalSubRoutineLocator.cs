@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Cloney.SubRoutines;
 using NExtra.Extensions;
 
-namespace Cloney
+namespace Cloney.SubRoutines
 {
     /// <summary>
     /// This class can be used to find every sub routine

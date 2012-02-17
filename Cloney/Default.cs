@@ -2,6 +2,7 @@
 using System.Linq;
 using Cloney.Cloners;
 using Cloney.Namespace;
+using Cloney.SubRoutines;
 using NExtra;
 using NExtra.Diagnostics;
 using NExtra.IO;
@@ -22,6 +23,11 @@ namespace Cloney
         public static IConsole Console
         {
             get { return new ConsoleFacade(); }
+        }
+
+        public static ICommandLineArgumentParser CommandLineArgumentParser
+        {
+            get { return new CommandLineArgumentParser(); }
         }
 
         public static IEnumerable<string> ExcludeFilePatterns
@@ -52,6 +58,11 @@ namespace Cloney
         internal static Properties.Settings Settings
         {
             get { return Properties.Settings.Default; }
+        }
+
+        public static ISubRoutineLocator SubRoutineLocator
+        {
+            get { return new LocalSubRoutineLocator(); }
         }
 
 

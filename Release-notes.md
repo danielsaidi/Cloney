@@ -1,3 +1,15 @@
+Cloney 0.9.2.1		2012-02-17
+==============================
+
+In this version, the console application file name mistake (it
+was named Cloney.Console.exe in the last version) is fixed. It
+is now named Cloney.exe once again.
+
+I have also fixed the resource namespace crash. Thanks for the
+fast feedback!
+
+
+
 Cloney 0.9.2.0		2012-02-15
 ==============================
 

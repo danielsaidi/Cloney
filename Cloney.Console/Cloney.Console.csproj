@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cloney.Console</RootNamespace>
-    <AssemblyName>Cloney.Console</AssemblyName>
+    <AssemblyName>Cloney</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -52,7 +52,11 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Cloney.Console.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NExtra, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,13 +73,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cloney\Cloney.csproj">
-      <Project>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</Project>
-      <Name>Cloney.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cloney.Wizard\Cloney.Wizard.csproj">
       <Project>{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}</Project>
       <Name>Cloney.Wizard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cloney\Cloney.csproj">
+      <Project>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</Project>
+      <Name>Cloney</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

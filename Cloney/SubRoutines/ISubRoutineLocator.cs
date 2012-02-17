@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Cloney.SubRoutines;
 
-namespace Cloney
+namespace Cloney.SubRoutines
 {
     /// <summary>
     /// This interface can be implemented by classes that

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cloney.SubRoutines;
 using NExtra;
 using NExtra.Localization;
 
@@ -23,7 +24,7 @@ namespace Cloney
 
 
         public Program()
-            : this(new ConsoleFacade(), new LanguageProvider(), new CommandLineArgumentParser(), new LocalSubRoutineLocator())
+            : this(Default.Console, Default.Translator, Default.CommandLineArgumentParser, Default.SubRoutineLocator)
         {
         }
 

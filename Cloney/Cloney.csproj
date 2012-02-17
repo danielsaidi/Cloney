@@ -45,6 +45,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NExtra, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,13 +67,11 @@
     </Compile>
     <Compile Include="Default.cs" />
     <Compile Include="IProgram.cs" />
-    <Compile Include="ISubRoutineLocator.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
-    <Compile Include="LocalSubRoutineLocator.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolver.cs" />
     <Compile Include="Namespace\FolderNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
@@ -86,6 +87,8 @@
     <Compile Include="Cloners\ISolutionCloner.cs" />
     <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
+    <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
+    <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
     <Compile Include="SubRoutines\SettingsRoutine.cs" />
     <Compile Include="SubRoutines\GuiRoutine.cs" />
     <Compile Include="SubRoutines\HelpRoutine.cs" />
@@ -122,7 +125,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Language.resx">
       <Generator>ResXFileCodeGenerator</Generator>
