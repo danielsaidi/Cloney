@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Cloney.Core {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -74,7 +77,9 @@ namespace Cloney.Core {
         ///The most commonly used Cloney commands are
         ///   help       Display general help
         ///   clone      Clone a solution from a source folder to a target folder
-        ///   settings   Display application settings.
+        ///   settings   Display application settings
+        ///   install    Install Windows Explorer context menu option for VS2010 sln files
+        ///   uninstall  Uninstall context menu option.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {
@@ -91,6 +96,27 @@ namespace Cloney.Core {
         internal static string GuiStartMessage {
             get {
                 return ResourceManager.GetString("GuiStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///      The installer for Cloney failed with the following error message:
+        ///    .
+        /// </summary>
+        internal static string InstallerErrorMessage {
+            get {
+                return ResourceManager.GetString("InstallerErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Installing context menu option for Cloney in Windows Explorer. Right click on a Visual Studio 2010 solution file to clone..
+        /// </summary>
+        internal static string InstallMessage {
+            get {
+                return ResourceManager.GetString("InstallMessage", resourceCulture);
             }
         }
         
@@ -131,6 +157,33 @@ namespace Cloney.Core {
         internal static string StartErrorMessage {
             get {
                 return ResourceManager.GetString("StartErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Context menu option for Cloney successfully installed!.
+        /// </summary>
+        internal static string SuccessfulInstallMessage {
+            get {
+                return ResourceManager.GetString("SuccessfulInstallMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Context menu option for Cloney successfully uninstalled!.
+        /// </summary>
+        internal static string SuccessfulUninstallMessage {
+            get {
+                return ResourceManager.GetString("SuccessfulUninstallMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstalling context menu option for Cloney..
+        /// </summary>
+        internal static string UninstallMessage {
+            get {
+                return ResourceManager.GetString("UninstallMessage", resourceCulture);
             }
         }
     }
