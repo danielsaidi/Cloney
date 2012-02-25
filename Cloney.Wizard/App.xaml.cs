@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Threading;
 using Cloney.Wizard.Resources;
 
@@ -13,9 +14,21 @@ namespace Cloney.Wizard
     /// </remarks>
     public partial class App
     {
+        public static String[] Args;
+
         public App()
         {
             Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            if(e.Args.Length > 0)
+            {
+                Args = e.Args;
+            }
+
+            base.OnStartup(e);
         }
 
         static void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
