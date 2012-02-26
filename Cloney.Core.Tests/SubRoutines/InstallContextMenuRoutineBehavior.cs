@@ -29,6 +29,7 @@ namespace Cloney.Core.Tests.SubRoutines
             translator.Translate("SuccessfulInstallMessage").Returns("SuccessfulInstallmessage");
             translator.Translate("SuccessfulUninstallMessage").Returns("SuccessfulUninstallmessage");
             translator.Translate("InstallerErrorMessage").Returns("InstallerErrorMessage");
+            translator.Translate("ContextMenuText").Returns("ContextMenuText");
 
             routine = new InstallContextMenuRoutine(console, translator, installer);
         }
@@ -88,7 +89,7 @@ namespace Cloney.Core.Tests.SubRoutines
             var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
 
             Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Any<string>());
+            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
             translator.Received().Translate("SuccessfulInstallMessage");
             console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulInstallmessage")));
         }
@@ -99,7 +100,17 @@ namespace Cloney.Core.Tests.SubRoutines
             var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
 
             Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Core.Tests\bin")));
+            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Core.Tests\bin")), Arg.Any<string>());
+        }
+
+        [Test]
+        public void Run_WithInstallArgument_ShouldPassInTranslationForMenuText()
+        {
+            var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
+
+            Assert.That(result, Is.True);
+            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Is<string>(x => x.Contains("ContextMenuText")));
+            translator.Received().Translate("ContextMenuText");
         }
 
         [Test]
@@ -115,7 +126,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_WhenInstallationFails_ShouldPrintFriendlyFailMessage()
         {
             const string exceptionMessage = "Something exceptional occurred";
-            installer.When(x => x.RegisterContextMenu(Arg.Any<string>()))
+            installer.When(x => x.RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>()))
                 .Do(x => { throw new FileNotFoundException(exceptionMessage);});
 
             routine.Run(new Dictionary<string, string> { { "install", "true" } });

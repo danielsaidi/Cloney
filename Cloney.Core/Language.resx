@@ -178,4 +178,7 @@ Cloney failed to start with the following error message:
   <data name="UninstallMessage" xml:space="preserve">
     <value>Uninstalling context menu option for Cloney.</value>
   </data>
+  <data name="ContextMenuText" xml:space="preserve">
+    <value>Clone solution with Cloney</value>
+  </data>
 </root>

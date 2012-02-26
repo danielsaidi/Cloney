@@ -61,6 +61,15 @@ namespace Cloney.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone solution with Cloney.
+        /// </summary>
+        internal static string ContextMenuText {
+            get {
+                return ResourceManager.GetString("ContextMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Enter the path to the {0} folder:  .
         /// </summary>

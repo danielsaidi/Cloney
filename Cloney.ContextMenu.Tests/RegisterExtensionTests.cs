@@ -11,6 +11,7 @@ namespace Cloney.ContextMenu.Tests
         private string binFilePath;
         private ContextMenuInstaller installer;
         private const string RegistryKeyName = "VisualStudio.Launcher.sln";
+        private const string MenuText = "Clone solution with Cloney";
 
         [SetUp]
         public void SetUp()
@@ -24,7 +25,7 @@ namespace Cloney.ContextMenu.Tests
         {
             string filePathToCloneyWizardExe = string.Format(@"{0}\..\..\..\Cloney\bin\Debug", binFilePath);
 
-            installer.RegisterContextMenu(filePathToCloneyWizardExe);
+            installer.RegisterContextMenu(filePathToCloneyWizardExe, MenuText);
 
             var key = Registry.ClassesRoot.OpenSubKey(string.Format(@"{0}\Shell\Cloney Context Menu\command",RegistryKeyName) );
             Assert.That(key, Is.Not.Null);
@@ -36,7 +37,7 @@ namespace Cloney.ContextMenu.Tests
         {
             string incorrectFilePath = string.Format(@"{0}\..", binFilePath);
 
-            Assert.Throws<FileNotFoundException>(() => installer.RegisterContextMenu(incorrectFilePath));
+            Assert.Throws<FileNotFoundException>(() => installer.RegisterContextMenu(incorrectFilePath, MenuText));
         }
 
         [Test]
@@ -44,14 +45,14 @@ namespace Cloney.ContextMenu.Tests
         {
             string incorrectFilePath = string.Format(@"{0}\idontexist", binFilePath);
 
-            Assert.Throws<FileNotFoundException>(() => installer.RegisterContextMenu(incorrectFilePath));
+            Assert.Throws<FileNotFoundException>(() => installer.RegisterContextMenu(incorrectFilePath, MenuText));
         }
 
         [Test]
         public void UnregisterContextMenu_NoParameters_ShouldUninstallShellExtension()
         {
             string filePathToCloneyWizardExe = string.Format(@"{0}\..\..\..\Cloney\bin\Debug", binFilePath);
-            installer.RegisterContextMenu(filePathToCloneyWizardExe);
+            installer.RegisterContextMenu(filePathToCloneyWizardExe, MenuText);
 
             installer.UnregisterContextMenu();
 

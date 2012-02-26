@@ -8,14 +8,13 @@ namespace Cloney.ContextMenu
         private const string CloneyWizard = "Cloney.Wizard.exe";
         private const string RegistryKeyName = "VisualStudio.Launcher.sln";
         private const string ShellKeyName = "Cloney Context Menu";
-        private const string MenuText = "Clone solution with Cloney";
 
-        public void RegisterContextMenu(string filePath)
+        public void RegisterContextMenu(string filePath, string menuText)
         {
             CheckIfValid(filePath);
 
             string menuCommand = string.Format("\"{0}\\{1}\" \"%1\"", filePath, CloneyWizard);
-            RegisterShellExtension(RegistryKeyName, ShellKeyName, MenuText, menuCommand);
+            RegisterShellExtension(RegistryKeyName, ShellKeyName, menuText, menuCommand);
         }
 
         public void UnregisterContextMenu()
