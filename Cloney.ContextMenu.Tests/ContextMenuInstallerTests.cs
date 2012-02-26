@@ -6,7 +6,7 @@ using System.IO;
 namespace Cloney.ContextMenu.Tests
 {
     [TestFixture]
-    public class RegisterExtensionTests
+    public class ContextMenuInstallerTests
     {
         private string binFilePath;
         private ContextMenuInstaller installer;
