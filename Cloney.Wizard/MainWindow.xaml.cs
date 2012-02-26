@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
@@ -69,8 +70,23 @@ namespace Cloney.Wizard
             refreshTimer.IsEnabled = true;
             refreshTimer.Start();
 
-            sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, LastSourcePath);
+            string initialSourcePath = InitialSourcePath();
+
+            sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, initialSourcePath);
             targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
+        }
+
+        private string InitialSourcePath()
+        {
+            if (App.Args == null || App.Args.Length == 0)
+                return LastSourcePath;
+
+            var fileInfo = new FileInfo(App.Args[0]);
+
+            if (!fileInfo.Exists || fileInfo.Directory == null)
+                return LastSourcePath;
+
+            return fileInfo.Directory.FullName;
         }
 
         private void Refresh()

@@ -97,6 +97,7 @@
     <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
+    <Compile Include="SubRoutines\InstallContextMenuRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
     <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
     <Compile Include="SubRoutines\SettingsRoutine.cs" />
@@ -142,7 +143,14 @@
     <EmbeddedResource Include="Language.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cloney.ContextMenu\Cloney.ContextMenu.csproj">
+      <Project>{02A887EA-8DE5-4169-89AD-79955FC70442}</Project>
+      <Name>Cloney.ContextMenu</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
