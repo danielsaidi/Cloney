@@ -128,13 +128,24 @@ usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
 The most commonly used Cloney commands are
    help       Display general help
    clone      Clone a solution from a source folder to a target folder
-   settings   Display application settings</value>
+   settings   Display application settings
+   install    Install Windows Explorer context menu option for VS2010 sln files
+   uninstall  Uninstall context menu option</value>
   </data>
   <data name="GuiStartMessage" xml:space="preserve">
     <value>
 Starting the Cloney Wizard...
 
 Type cloney --help for more options.</value>
+  </data>
+  <data name="InstallerErrorMessage" xml:space="preserve">
+    <value>
+      The installer for Cloney failed with the following error message:
+    </value>
+  </data>
+  <data name="InstallMessage" xml:space="preserve">
+    <value>
+Installing context menu option for Cloney in Windows Explorer. Right click on a Visual Studio 2010 solution file to clone.</value>
   </data>
   <data name="NoRoutineMatchMessage" xml:space="preserve">
     <value>
@@ -157,5 +168,17 @@ Type cloney --help for more options.</value>
     <value>
 Cloney failed to start with the following error message:
 </value>
+  </data>
+  <data name="SuccessfulInstallMessage" xml:space="preserve">
+    <value>Context menu option for Cloney successfully installed!</value>
+  </data>
+  <data name="SuccessfulUninstallMessage" xml:space="preserve">
+    <value>Context menu option for Cloney successfully uninstalled!</value>
+  </data>
+  <data name="UninstallMessage" xml:space="preserve">
+    <value>Uninstalling context menu option for Cloney.</value>
+  </data>
+  <data name="ContextMenuText" xml:space="preserve">
+    <value>Clone solution with Cloney</value>
   </data>
 </root>
