@@ -7,8 +7,9 @@ using Cloney.Core.Localization;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This routine will trigger on this console command:
-    /// cloney --clone --source=x --target=y
+    /// This sub routine triggers on this console command:
+    /// cloney --clone [--source=x] [--target=y]
+    /// When triggered, it will clone the solution x to y.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -23,16 +24,17 @@ namespace Cloney.Core.SubRoutines
 
 
         public CloneRoutine()
-            :this(Default.Console, Default.Translator, Default.CommandLineArgumentParser, Default.SolutionCloner)
+            :this(Default.Console, Default.Translator, Default.SolutionCloner)
         {
         }
 
-        public CloneRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISolutionCloner solutionCloner)
+        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner)
         {
             this.console = console;
             this.translator = translator;
-            this.argumentParser = argumentParser;
             this.solutionCloner = solutionCloner;
+
+            argumentParser = Default.CommandLineArgumentParser;
 
             solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
         }

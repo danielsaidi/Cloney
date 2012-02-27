@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Cloney.ContextMenu;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
@@ -34,11 +33,11 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new InstallContextMenuRoutine(console, translator, installer);
         }
 
-        /*
+
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            var result = routine.Run(new Dictionary<string, string>());
+            var result = routine.Run(new string[]{});
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -47,7 +46,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "install", "true" }, { "uninstall", "true" } });
+            var result = routine.Run(new[]{ "--install", "--uninstall" });
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -56,7 +55,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForIrrelevantArguments()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(new[] { "--foo=bar" });
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -65,7 +64,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForInstallArgument()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
+            var result = routine.Run(new[] { "--install" });
 
             Assert.That(result, Is.True);
             translator.Received().Translate("InstallMessage");
@@ -75,7 +74,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForUnInstallArgument()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "uninstall", "true" } });
+            var result = routine.Run(new[] { "--uninstall" });
 
             Assert.That(result, Is.True);
             translator.Received().Translate("UninstallMessage");
@@ -87,7 +86,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_WithInstallArgument_ShouldRunContextMenuInstaller()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
+            var result = routine.Run(new[] { "--install" });
 
             Assert.That(result, Is.True);
             installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
@@ -98,7 +97,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_WithInstallArgument_ShouldPassInFilePathForConsoleExe()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
+            var result = routine.Run(new[] { "--install" });
 
             Assert.That(result, Is.True);
             installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Core.Tests\bin")), Arg.Any<string>());
@@ -107,7 +106,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_WithInstallArgument_ShouldPassInTranslationForMenuText()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "install", "true" } });
+            var result = routine.Run(new[] { "--install" });
 
             Assert.That(result, Is.True);
             installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Is<string>(x => x.Contains("ContextMenuText")));
@@ -117,7 +116,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_WithUninstallArgument_ShouldRunContextMenuInstaller()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "uninstall", "true" } });
+            var result = routine.Run(new[] { "--uninstall" });
 
             Assert.That(result, Is.True);
             installer.Received().UnregisterContextMenu();
@@ -130,10 +129,10 @@ namespace Cloney.Core.Tests.SubRoutines
             installer.When(x => x.RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>()))
                 .Do(x => { throw new FileNotFoundException(exceptionMessage);});
 
-            routine.Run(new Dictionary<string, string> { { "install", "true" } });
+            routine.Run(new[] { "--install" });
 
             translator.Received().Translate("InstallerErrorMessage");
             console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
-        }*/
+        }
     }
 }

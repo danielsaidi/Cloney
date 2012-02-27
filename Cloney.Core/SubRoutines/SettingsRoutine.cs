@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine triggers on the --settings arg.
-    /// For now, it just prints the current settings to
-    /// the console.
+    /// This sub routine triggers on this console command:
+    /// cloney --settings
+    /// When triggered, it prints current Cloney settings.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -18,6 +17,7 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
+        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public SettingsRoutine()
@@ -29,12 +29,14 @@ namespace Cloney.Core.SubRoutines
         {
             this.console = console;
             this.translator = translator;
+
+            argumentParser = Default.CommandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            throw new NotImplementedException();
+            return Run(argumentParser.ParseCommandLineArguments(args));
         }
 
         public bool Run(IDictionary<string, string> args)

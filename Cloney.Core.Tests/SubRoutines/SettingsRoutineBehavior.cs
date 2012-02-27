@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Cloney.Core.Console;
+﻿using Cloney.Core.Console;
 using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
@@ -25,11 +24,11 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new SettingsRoutine(console, translator);
         }
 
-        /*
+
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            var result = routine.Run(new Dictionary<string, string>());
+            var result = routine.Run(new string[]{});
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -38,7 +37,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "settings", "true" }, { "foo", "bar" } });
+            var result = routine.Run(new[] { "--settings", "-foo=bar"});
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -47,7 +46,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForIrrelevantArguments()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(new[] { "-foo=bar" });
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -56,7 +55,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForRelevantArgument()
         {
-            var result = routine.Run(new Dictionary<string, string> { { "settings", "true" } });
+            var result = routine.Run(new[] { "--settings" });
 
             var settingsMessage = translator.Translate("SettingsMessage");
             var excludeFolderMessage = string.Join(", ", Default.ExcludeFolderPatterns);
@@ -67,6 +66,6 @@ namespace Cloney.Core.Tests.SubRoutines
             Assert.That(result, Is.True);
             translator.Received().Translate("SettingsMessage");
             console.Received().WriteLine(message);
-        }*/
+        }
     }
 }

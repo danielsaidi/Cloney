@@ -5,8 +5,9 @@ using Cloney.Core.Localization;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine triggers on the --help arg. It
-    /// prints general help information to the console.
+    /// This sub routine triggers on this console command:
+    /// cloney --help
+    /// When triggered, it displays Cloney help info text.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -20,15 +21,16 @@ namespace Cloney.Core.SubRoutines
 
 
         public HelpRoutine()
-            :this(Default.Console, Default.Translator, Default.CommandLineArgumentParser)
+            :this(Default.Console, Default.Translator)
         {
         }
 
-        public HelpRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser)
+        public HelpRoutine(IConsole console, ITranslator translator)
         {
             this.console = console;
             this.translator = translator;
-            this.argumentParser = argumentParser;
+
+            argumentParser = Default.CommandLineArgumentParser;
         }
 
 
