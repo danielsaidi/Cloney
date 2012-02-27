@@ -65,7 +65,7 @@ Cloney console app:
 	*	cloney <no arguments>
 		Launch cloney.exe without args to launch the GUI.
 		
-		cloney --clone --source=x --target=y OR
+	*	cloney --clone --source=x --target=y OR
 		Clone the solution in folder x to folder y.
 		
 	*	cloney --help
@@ -74,20 +74,11 @@ Cloney console app:
 	*	cloney --install
 		Install the Cloney Windows Explorer plugin.
 		
-	*	cloney settings
-		cloney --settings
+	*	cloney --settings
 		Display the current Cloney settings.
 		
 	*	cloney --uninstall
 		Uninstall the Cloney Windows Explorer plugin.
-
-The following shortcuts map to the ones specified above:
-
-	*	cloney clone x y
-	*	cloney help
-	*	cloney install
-	*	cloney settings
-	*	cloney uninstall
 
 Get in contact me if you have any ideas regarding how to
 improve Cloney. A better GUI? More commands? Let me know!
