@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Cloney.Core.Console;
 using Cloney.Core.Diagnostics;
 using Cloney.Core.Localization;
@@ -34,9 +36,9 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        public bool Run(IDictionary<string, string> args)
+        public bool Run(IEnumerable<string> args)
         {
-            if (args.Count != 0)
+            if (args.Count() != 0)
                 return false;
 
             console.WriteLine(translator.Translate("GuiStartMessage"));

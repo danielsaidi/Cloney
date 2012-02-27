@@ -25,10 +25,16 @@ namespace Cloney.Core.SubRoutines
             this.installer = installer;
         }
 
+
+        public bool Run(IEnumerable<string> args)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Run(IDictionary<string, string> args)
         {
-            bool runInstall = ArgsHaveSingleKeyValue(args, "install", "true");
-            bool runUninstall = ArgsHaveSingleKeyValue(args, "uninstall", "true");
+            bool runInstall = HasSingleArg(args, "install", "true");
+            bool runUninstall = HasSingleArg(args, "uninstall", "true");
 
             if (!runInstall && !runUninstall)
                 return false;

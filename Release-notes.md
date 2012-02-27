@@ -1,3 +1,21 @@
+Cloney 0.9.3.0		2012-02-27
+==============================
+
+This version features a brand new Windows Explorer plugin. The
+plugin is created by Daniel Lee (@danlimerick) and drastically
+simplifies using Cloney.
+
+To install the plugin, you just have to type "cloney --install"
+in the command prompt, in the folder where you have the Cloney
+executable. To uninstall it, just type "cloney --uninstall".
+
+Installing the plugin as above will set it to the folder where
+the executable exists, so if you remove the folder, the plugin
+will not work anymore. Future versions of Cloney will probably
+contain an MSI as well, but is that really needed? Let us know.
+
+
+
 Cloney 0.9.2.0		2012-02-17
 ==============================
 

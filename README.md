@@ -4,22 +4,13 @@ Cloney
 	Author:		Daniel Saidi [daniel.saidi@gmail.com]
 
 Cloney is a Windows application that lets you clone .NET
-solutions in no time. It can be executed as a console as
-well as a GUI application.
+solutions. It can be executed from the command prompt or
+as a GUI application.
 
-When Cloney clones a solution, it copies all folders and
-files from a source folder (must contain a solution file)
-to a target folder.
+Cloney also features a Window Explorer plugin, that lets
+you clone a solution by right-clicking the solution file
+in the Windows Explorer.
 
-During a cloning operation, Cloney replaces the original
-namespace with the name of the target folder, so that it
-becomes the new namespace. Files and folders are renamed
-if needed and file content is automatically adjusted.
-
-Cloney will also ignore files and folders that shouldn't
-be cloned (like git, tfs, svn files and folders). Cloney
-only includes files and folders that are relevant to the
-new solution.
 
 
 Web resources
@@ -37,36 +28,86 @@ resources:
 If you have any questions, do not hesitate to contact me.
 
 
+
 Getting started
 ---------------
 
 Cloney can be downloaded as a tag (source code), or as a
 download bundle (pre-compiled) from GitHub. You can also
-grab the latest source code by cloning the GitHub repo.
+grab the latest code from the GitHub repository.
 
 Cloney can be executed as a console or a GUI application.
+It also has a Window Explorer plugin that lets you clone
+solutions by right-clicking an .sln file in the explorer.
 
-If you start Cloney using the application icon, you will
-start the GUI application. Use it to select a source and
-a target folder, then press "Clone" to start cloning the
-solution to the target folder.
 
-For more options, use the console application. It has no
-rich amount of features as of now, but has the following
-commands:
+### Using the Cloney GUI application
 
-	1.	cloney --help	
+The easiest way to use Cloney is by starting the GUI app.
+To start it, just double-click cloney.exe in the Windows
+Explorer or launch cloney.exe without any arguments.
+
+The GUI application has a text box for the source folder
+and one for the target folder. Select the source and the
+target folder then press "Clone" button, and you're done.
+
+This is a simple, but nonflexible way to clone solutions.
+
+
+### Using the Cloney console application
+
+Using the Cloney console application provides you with a
+lot more options than when using the GUI. 
+
+The following command-line commands are supported by the
+Cloney console app:
+
+	*	cloney <no arguments>
+		Launch cloney.exe without args to launch the GUI.
+		
+		cloney --clone --source=x --target=y OR
+		Clone the solution in folder x to folder y.
+		
+	*	cloney --help
 		Display a help message about how to use Cloney.
 		
-	2.	cloney <no arguments>
-		Launch Cloney without args to start the GUI app.
+	*	cloney --install
+		Install the Cloney Windows Explorer plugin.
 		
-	3.	cloney --clone --source=x --target=y
-		Clone the solution in folder x to folder y.
+	*	cloney settings
+		cloney --settings
+		Display the current Cloney settings.
+		
+	*	cloney --uninstall
+		Uninstall the Cloney Windows Explorer plugin.
+
+The following shortcuts map to the ones specified above:
+
+	*	cloney clone x y
+	*	cloney help
+	*	cloney install
+	*	cloney settings
+	*	cloney uninstall
 
 Get in contact me if you have any ideas regarding how to
-improve Cloney. A better GUI? More console commands? Let
-me know!
+improve Cloney. A better GUI? More commands? Let me know!
+
+
+### Using the Cloney Windows Explorer Plugin
+
+Daniel Lee (@danlimerick) has created a nice, convenient
+Windows Explorer plugin, that simplifies using Cloney in
+the windows explorer.
+
+To install the plugin, just type "cloney --install". The
+Cloney plugin is then bound to the folder that installed
+it. To uninstall the plugin, type "cloney --uninstall".
+
+With the plugin properly installed, just right-click any
+solution file in the Windows Explorer, then click "Clone
+this solution using Cloney". This will open up a minimal
+version of the GUI application. 
+
 
 
 License
@@ -82,5 +123,7 @@ separate area at the web site is saved for user comments.
 
 If you take a class or interface out of Cloney, keep the
 author information in the source code.
+
+
 
 

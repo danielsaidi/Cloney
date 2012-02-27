@@ -16,7 +16,6 @@ namespace Cloney.Core.Tests
         private IConsole console;
         private ITranslator translator;
         private ISubRoutineLocator subRoutineLocator;
-        private ICommandLineArgumentParser argumentParser;
  
 
         [SetUp]
@@ -25,10 +24,9 @@ namespace Cloney.Core.Tests
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
             translator.Translate("NoRoutineMatchMessage").Returns("foo");
-            argumentParser = Substitute.For<ICommandLineArgumentParser>();
             subRoutineLocator = Substitute.For<ISubRoutineLocator>();
 
-            program = new Program(console, translator, argumentParser, subRoutineLocator);
+            program = new Program(console, translator, subRoutineLocator);
             arguments = new List<string> { "foo", "bar" };
 
             SetUpLanguage();
@@ -43,21 +41,13 @@ namespace Cloney.Core.Tests
         [Test]
         public void Start_ShouldFailWithPrettyErrorMessage()
         {
-            program = new Program(console, translator, null, null);
+            program = new Program(console, translator, null);
 
             program.Start(arguments);
 
             translator.Received().Translate("StartErrorMessage");
             console.Received().WriteLine("StartErrorMessage");
             console.Received().WriteLine("Object reference not set to an instance of an object.");
-        }
-
-        [Test]
-        public void Start_ShouldParseArguments()
-        {
-            program.Start(arguments);
-
-            argumentParser.Received().ParseCommandLineArguments(arguments);
         }
 
         [Test]
@@ -78,7 +68,7 @@ namespace Cloney.Core.Tests
         public void Start_ShouldNotPrintNonMatchMessageForTriggeredSubRoutines()
         {
             var subRoutine = Substitute.For<ISubRoutine>();
-            subRoutine.Run(Arg.Any<IDictionary<string, string>>()).Returns(true);
+            subRoutine.Run(Arg.Any<IEnumerable<string>>()).Returns(true);
             subRoutineLocator.FindAll().Returns(new List<ISubRoutine>{subRoutine});
 
             program.Start(arguments);
@@ -90,7 +80,7 @@ namespace Cloney.Core.Tests
         public void Start_ShouldPrintNonMatchMessageForNonTriggeredSubRoutines()
         {
             var subRoutine = Substitute.For<ISubRoutine>();
-            subRoutine.Run(Arg.Any<IDictionary<string, string>>()).Returns(false);
+            subRoutine.Run(Arg.Any<IEnumerable<string>>()).Returns(false);
             subRoutineLocator.FindAll().Returns(new List<ISubRoutine> { subRoutine });
 
             program.Start(arguments);

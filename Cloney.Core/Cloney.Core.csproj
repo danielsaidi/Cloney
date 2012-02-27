@@ -97,6 +97,7 @@
     <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
+    <Compile Include="SubRoutines\CloneRoutineShortcutDecorator.cs" />
     <Compile Include="SubRoutines\InstallContextMenuRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
     <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="SubRoutines\HelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\SubRoutineBase.cs" />
+    <Compile Include="SubRoutines\SubRoutineException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

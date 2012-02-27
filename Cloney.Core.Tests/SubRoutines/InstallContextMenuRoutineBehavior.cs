@@ -34,6 +34,7 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new InstallContextMenuRoutine(console, translator, installer);
         }
 
+        /*
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
@@ -133,6 +134,6 @@ namespace Cloney.Core.Tests.SubRoutines
 
             translator.Received().Translate("InstallerErrorMessage");
             console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
-        }
+        }*/
     }
 }

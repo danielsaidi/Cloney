@@ -25,7 +25,6 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new HelpRoutine(console, translator);
         }
 
-
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {

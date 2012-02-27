@@ -19,20 +19,18 @@ namespace Cloney.Core
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
         private readonly ISubRoutineLocator subRoutineLocator;
 
 
         public Program()
-            : this(Default.Console, Default.Translator, Default.CommandLineArgumentParser, Default.SubRoutineLocator)
+            : this(Default.Console, Default.Translator, Default.SubRoutineLocator)
         {
         }
 
-        public Program(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISubRoutineLocator subRoutineLocator)
+        public Program(IConsole console, ITranslator translator, ISubRoutineLocator subRoutineLocator)
         {
             this.console = console;
             this.translator = translator;
-            this.argumentParser = argumentParser;
             this.subRoutineLocator = subRoutineLocator;
         }
 
@@ -42,12 +40,11 @@ namespace Cloney.Core
         {
             try
             {
-                var arguments = argumentParser.ParseCommandLineArguments(args);
                 var routines = subRoutineLocator.FindAll();
 
                 var result = false;
                 foreach (var routine in routines)
-                    result = result || routine.Run(arguments);
+                    result = result || routine.Run(args);
 
                 if (!result)
                     console.WriteLine(translator.Translate("NoRoutineMatchMessage"));

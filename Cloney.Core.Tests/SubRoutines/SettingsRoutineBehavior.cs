@@ -25,7 +25,7 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new SettingsRoutine(console, translator);
         }
 
-
+        /*
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
@@ -67,6 +67,6 @@ namespace Cloney.Core.Tests.SubRoutines
             Assert.That(result, Is.True);
             translator.Received().Translate("SettingsMessage");
             console.Received().WriteLine(message);
-        }
+        }*/
     }
 }

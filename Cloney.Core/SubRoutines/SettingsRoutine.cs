@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
 
@@ -31,9 +32,14 @@ namespace Cloney.Core.SubRoutines
         }
 
 
+        public bool Run(IEnumerable<string> args)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Run(IDictionary<string, string> args)
         {
-            if (!ArgsHaveSingleKeyValue(args, "settings", "true"))
+            if (!HasSingleArg(args, "settings", "true"))
                 return false;
 
             var settingsMessage = translator.Translate("SettingsMessage");

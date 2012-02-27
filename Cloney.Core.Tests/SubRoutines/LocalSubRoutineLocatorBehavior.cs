@@ -23,8 +23,9 @@ namespace Cloney.Core.Tests.SubRoutines
             var routines = locator.FindAll().ToList();
             var routineNames = routines.Select(x => x.GetType().Name);
 
-            Assert.That(routines.Count(), Is.EqualTo(5));
+            Assert.That(routines.Count(), Is.EqualTo(6));
             Assert.That(routineNames.Contains("CloneRoutine"), Is.True);
+            Assert.That(routineNames.Contains("CloneRoutineShortcutDecorator"), Is.True);
             Assert.That(routineNames.Contains("HelpRoutine"), Is.True);
             Assert.That(routineNames.Contains("GuiRoutine"), Is.True);
             Assert.That(routineNames.Contains("SettingsRoutine"), Is.True);

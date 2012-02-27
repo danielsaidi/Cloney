@@ -28,11 +28,11 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new GuiRoutine(console, translator, process);
         }
 
-
+        
         [Test]
         public void Start_ShouldLaunchExternalProgramForNoArguments()
         {
-            var args = new Dictionary<string, string>();
+            var args = new List<string>();
 
             var result = routine.Run(args);
 
@@ -43,7 +43,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Start_ShouldDisplayLaunchMessageForNoArguments()
         {
-            var args = new Dictionary<string, string>();
+            var args = new List<string>();
 
             var result = routine.Run(args);
 
@@ -55,7 +55,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Start_ShouldNotLaunchExternalProgramForArguments()
         {
-            var args = new Dictionary<string, string> {{"foo", "bar"}};
+            var args = new List<string>{"foo"};
             
             var result = routine.Run(args);
 

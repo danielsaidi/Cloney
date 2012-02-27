@@ -7,8 +7,8 @@ using Cloney.Core.Localization;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine will trigger on the --clone arg,
-    /// using --source=x --target=y as input parameters.
+    /// This routine will trigger on this console command:
+    /// cloney --clone --source=x --target=y
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -18,27 +18,34 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
+        private readonly ICommandLineArgumentParser argumentParser;
         private readonly ISolutionCloner solutionCloner;
 
 
         public CloneRoutine()
-            :this(Default.Console, Default.Translator, Default.SolutionCloner)
+            :this(Default.Console, Default.Translator, Default.CommandLineArgumentParser, Default.SolutionCloner)
         {
         }
 
-        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner)
+        public CloneRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser, ISolutionCloner solutionCloner)
         {
             this.console = console;
             this.translator = translator;
+            this.argumentParser = argumentParser;
             this.solutionCloner = solutionCloner;
 
             solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
         }
 
-
-        public bool Run(IDictionary<string, string> args)
+        
+        public bool Run(IEnumerable<string> args)
         {
-            if (!args.ContainsKey("clone") || args["clone"] != "true")
+            return Run(argumentParser.ParseCommandLineArguments(args));
+        }
+
+        private bool Run(IDictionary<string, string> args)
+        {
+            if (!HasArg(args, "clone", "true"))
                 return false;
 
             var sourcePath = GetPath(args, "source");

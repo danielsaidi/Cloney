@@ -16,23 +16,30 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
+        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public HelpRoutine()
-            :this(Default.Console, Default.Translator)
+            :this(Default.Console, Default.Translator, Default.CommandLineArgumentParser)
         {
         }
 
-        public HelpRoutine(IConsole console, ITranslator translator)
+        public HelpRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser)
         {
             this.console = console;
             this.translator = translator;
+            this.argumentParser = argumentParser;
         }
 
 
-        public bool Run(IDictionary<string, string> args)
+        public bool Run(IEnumerable<string> args)
         {
-            if (!ArgsHaveSingleKeyValue(args, "help", "true"))
+            return Run(argumentParser.ParseCommandLineArguments(args));
+        }
+
+        private bool Run(IDictionary<string, string> args)
+        {
+            if (!HasSingleArg(args, "help", "true"))
                 return false;
             
             console.WriteLine(translator.Translate("GeneralHelpMessage"));
