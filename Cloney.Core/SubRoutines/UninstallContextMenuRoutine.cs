@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using Cloney.ContextMenu;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
-using Cloney.Core.Reflection;
 
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
     /// This sub routine triggers on this console command:
-    /// cloney --install
-    /// When triggered, it installs the convenient Cloney
-    /// Windows Explorer plugin.
+    /// cloney --uninstall
+    /// When triggered, it uninstalls and unregisters the
+    /// Cloney Windows Explorer plugin.
     /// </summary>
-    public class InstallContextMenuRoutine : SubRoutineBase, ISubRoutine
+    public class UninstallContextMenuRoutine : SubRoutineBase, ISubRoutine
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
@@ -21,12 +20,12 @@ namespace Cloney.Core.SubRoutines
         private readonly ICommandLineArgumentParser argumentParser;
 
 
-        public InstallContextMenuRoutine()
+        public UninstallContextMenuRoutine()
             :this(Default.Console, Default.Translator, new ContextMenuInstaller())
         {
         }
 
-        public InstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer)
+        public UninstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer)
         {
             this.console = console;
             this.translator = translator;
@@ -43,12 +42,12 @@ namespace Cloney.Core.SubRoutines
 
         private bool Run(IDictionary<string, string> args)
         {
-            if (!HasSingleArg(args, "install", "true"))
+            if (!HasSingleArg(args, "uninstall", "true"))
                 return false;
 
             try
             {
-                RunInstall();
+                RunUninstall();
             }
             catch (Exception e)
             {
@@ -59,12 +58,11 @@ namespace Cloney.Core.SubRoutines
             return true;
         }
 
-        private void RunInstall()
+        private void RunUninstall()
         {
-            console.WriteLine(translator.Translate("InstallMessage"));
-            var binDirectory = AssemblyExtensions.GetFilePathToAssemblyCodeBase();
-            installer.RegisterContextMenu(binDirectory, translator.Translate("ContextMenuText"));
-            console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
+            console.WriteLine(translator.Translate("UninstallMessage"));
+            installer.UnregisterContextMenu();
+            console.WriteLine("\n" + translator.Translate("SuccessfulUninstallMessage"));
         }
     }
 }

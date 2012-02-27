@@ -26,10 +26,11 @@ namespace Cloney.Core.Tests.SubRoutines
             var count = 0;
 
             Assert.That(routineNames.Contains("CloneRoutine"), Is.True); count++;
-            Assert.That(routineNames.Contains("HelpRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("GuiRoutine"), Is.True); count++;
-            Assert.That(routineNames.Contains("SettingsRoutine"), Is.True); count++;
+            Assert.That(routineNames.Contains("HelpRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("InstallContextMenuRoutine"), Is.True); count++;
+            Assert.That(routineNames.Contains("SettingsRoutine"), Is.True); count++;
+            Assert.That(routineNames.Contains("UninstallContextMenuRoutine"), Is.True); count++;
 
             Assert.That(routines.Count(), Is.EqualTo(count));
         }
