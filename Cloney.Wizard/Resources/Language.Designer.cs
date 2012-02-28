@@ -142,6 +142,33 @@ namespace Cloney.Wizard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select folder....
+        /// </summary>
+        public static string SelectFolder {
+            get {
+                return ResourceManager.GetString("SelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select source folder....
+        /// </summary>
+        public static string SelectSourceFolder {
+            get {
+                return ResourceManager.GetString("SelectSourceFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select target folder....
+        /// </summary>
+        public static string SelectTargetFolder {
+            get {
+                return ResourceManager.GetString("SelectTargetFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clone your .NET solutions in no time..
         /// </summary>
         public static string Title {

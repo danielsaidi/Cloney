@@ -14,6 +14,10 @@ the executable exists, so if you remove the folder, the plugin
 will not work anymore. Future versions of Cloney will probably
 contain an MSI as well, but is that really needed? Let us know.
 
+The release also features a new GUI mode, where only the modal
+dialogs for selecting a source and target folder are displayed.
+Launch this mode with cloney --modal. 
+
 
 
 Cloney 0.9.2.0		2012-02-17

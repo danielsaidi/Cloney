@@ -96,6 +96,7 @@
     <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
+    <Compile Include="SubRoutines\ModalGuiRoutine.cs" />
     <Compile Include="SubRoutines\UninstallContextMenuRoutine.cs" />
     <Compile Include="SubRoutines\InstallContextMenuRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutineLocator.cs" />

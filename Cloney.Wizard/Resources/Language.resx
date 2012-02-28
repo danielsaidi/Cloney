@@ -153,4 +153,13 @@
   <data name="InvalidTargetFolder" xml:space="preserve">
     <value>The target path is invalid.</value>
   </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Select folder...</value>
+  </data>
+  <data name="SelectSourceFolder" xml:space="preserve">
+    <value>Select source folder...</value>
+  </data>
+  <data name="SelectTargetFolder" xml:space="preserve">
+    <value>Select target folder...</value>
+  </data>
 </root>

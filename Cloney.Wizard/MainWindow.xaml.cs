@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
@@ -26,11 +27,11 @@ namespace Cloney.Wizard
         public MainWindow()
         {
             InitializeComponent();
-            InitializeBootstrap();
+            Initialize();
         }
 
 
-        public bool CanInstall
+        public bool CanClone
         {
             get
             {
@@ -59,25 +60,53 @@ namespace Cloney.Wizard
         }
 
 
-        private void InitializeBootstrap()
+        private void Initialize()
         {
-            solutionCloner = Default.SolutionCloner;
-            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+            InitializeSolutionCloner();
+            InitializeTimer();
+            InitializeFolderSelectors();
+            InitializeModalBehavior();
+        }
 
-            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
-            refreshTimer.Tick += refreshTimer_Tick;
-            refreshTimer.IsEnabled = true;
-            refreshTimer.Start();
+        private void InitializeModalBehavior()
+        {
+            if (!App.Arguments.ModalMode)
+                return;
 
-            var initialSourcePath = InitialSourcePath();
+            Hide();
+
+            if (string.IsNullOrEmpty(App.Arguments.SourcePath))
+                if (sourceFolderSelector.ShowModal(Wizard.Resources.Language.SelectSourceFolder) != System.Windows.Forms.DialogResult.OK)
+                    return;
+
+            if (targetFolderSelector.ShowModal(Wizard.Resources.Language.SelectTargetFolder) != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            Process.Start("Cloney.exe", string.Format("--clone --source={0} --target={1}", sourceFolderSelector.Path, targetFolderSelector.Path));
+
+            Close();
+        }
+
+        private void InitializeFolderSelectors()
+        {
+            var initialSourcePath = App.Arguments.SourcePath ?? LastSourcePath;
 
             sourceFolderSelector.Initialize(Default.SourceFolderNamespaceResolver, initialSourcePath);
             targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
         }
 
-        private string InitialSourcePath()
+        private void InitializeSolutionCloner()
         {
-            return App.Arguments.SourcePath ?? LastSourcePath;
+            solutionCloner = Default.SolutionCloner;
+            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
+        }
+
+        private void InitializeTimer()
+        {
+            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
+            refreshTimer.Tick += refreshTimer_Tick;
+            refreshTimer.IsEnabled = true;
+            refreshTimer.Start();
         }
 
         private void Refresh()
@@ -90,18 +119,27 @@ namespace Cloney.Wizard
             if (!sourceFolderSelector.IsValid)
                 lblCurrentPath.Content = Wizard.Resources.Language.InvalidSourceFolder;
 
-            btnClone.IsEnabled = CanInstall;
+            btnClone.IsEnabled = CanClone;
         }
 
 
-        private void btnClone_Click(object sender, RoutedEventArgs e)
+        private void StartCloningOperation()
         {
+            if (!CanClone)
+                return;
+
             sourcePath = sourceFolderSelector.Path;
             targetPath = targetFolderSelector.Path;
 
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerAsync();
+        }
+
+
+        private void btnClone_Click(object sender, RoutedEventArgs e)
+        {
+            StartCloningOperation();
         }
 
         private void folderSelector_OnChanged(object sender, EventArgs e)
@@ -121,7 +159,7 @@ namespace Cloney.Wizard
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            btnClone.IsEnabled = CanInstall;
+            btnClone.IsEnabled = CanClone;
             lblCurrentPath.Content = solutionCloner.CurrentPath;
         }
 

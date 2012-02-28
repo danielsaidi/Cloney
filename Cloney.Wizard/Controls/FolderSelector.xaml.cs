@@ -54,7 +54,7 @@ namespace Cloney.Wizard.Controls
             private set { txtFolder.Text = value; }
         }
 
-        public bool ShowNamespaceTextbox
+        public bool ShowNamespace
         {
             get { return txtNamespace.Visibility == Visibility.Visible; }
             set { txtNamespace.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
@@ -68,7 +68,6 @@ namespace Cloney.Wizard.Controls
             btnSelect.IsEnabled = NamespaceResolver != null;
         }
 
-
         private void OnChanged(EventArgs e)
         {
             var handler = Changed;
@@ -79,26 +78,6 @@ namespace Cloney.Wizard.Controls
         {
             var handler = Error;
             if (handler != null) handler(this, e);
-        }
-
-
-        private void btnSelect_Click(object sender, RoutedEventArgs e)
-        {
-            var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = Path};
-            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
-                return;
-
-            Path = folderBrowserDialog.SelectedPath;
-        }
-
-        private void textBox_Changed(object sender, TextChangedEventArgs e)
-        {
-            ResolveNamespace();
-        }
-
-        private void txtFolder_LostFocus(object sender, RoutedEventArgs e)
-        {
-            ResolveNamespace();
         }
 
         private void ResolveNamespace()
@@ -117,6 +96,35 @@ namespace Cloney.Wizard.Controls
                 txtFolder.Background = errorBrush;
                 OnError(new EventArgs());
             }
+        }
+
+        public DialogResult ShowModal(string description)
+        {
+            var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = Path, Description = description};
+
+            var result = folderBrowserDialog.ShowDialog();
+            if (result != DialogResult.OK)
+                return result;
+
+            Path = folderBrowserDialog.SelectedPath;
+
+            return result;
+        }
+
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            ShowModal(Wizard.Resources.Language.SelectFolder);
+        }
+
+        private void textBox_Changed(object sender, TextChangedEventArgs e)
+        {
+            ResolveNamespace();
+        }
+
+        private void txtFolder_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ResolveNamespace();
         }
     }
 }

@@ -96,7 +96,5 @@ namespace Cloney.Core
         {
             get { return new Wizard.ApplicationArgumentParser(); }
         }
-
-        
     }
 }
