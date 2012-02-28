@@ -123,13 +123,14 @@ Enter the path to the {0} folder:  </value>
   </data>
   <data name="GeneralHelpMessage" xml:space="preserve">
     <value>
-usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
+usage: cloney [--clone [--source=&lt;source&gt;] [--target=&lt;target&gt;]] [--help] [--install] [--uninstall] [--settings]
 
-The most commonly used Cloney commands are
-   help       Display general help
+The most commonly used Cloney commands are:
+   [n/a]      Using no arguments starts the GUI application
    clone      Clone a solution from a source folder to a target folder
+   help       Display general help
+   install    Install Windows Explorer context menu option for .sln files
    settings   Display application settings
-   install    Install Windows Explorer context menu option for VS2010 sln files
    uninstall  Uninstall context menu option</value>
   </data>
   <data name="GuiStartMessage" xml:space="preserve">
@@ -145,7 +146,7 @@ Type cloney --help for more options.</value>
   </data>
   <data name="InstallMessage" xml:space="preserve">
     <value>
-Installing context menu option for Cloney in Windows Explorer. Right click on a Visual Studio 2010 solution file to clone.</value>
+Installing the Cloney Windows Explorer context menu option...</value>
   </data>
   <data name="NoRoutineMatchMessage" xml:space="preserve">
     <value>
@@ -161,22 +162,24 @@ Type cloney --help for more options.</value>
 2. Excluded file patterns:
    {1}
 
-3. Plain copied file patterns:
+3. Plain copy file patterns:
    {2}</value>
   </data>
   <data name="StartErrorMessage" xml:space="preserve">
     <value>
-Cloney failed to start with the following error message:
+Cloney stopped with the following error message:
 </value>
   </data>
   <data name="SuccessfulInstallMessage" xml:space="preserve">
-    <value>Context menu option for Cloney successfully installed!</value>
+    <value>Windows Explorer context menu option for Cloney successfully installed!
+
+To clone a solution using the Windows Explorer, right-click on a Visual Studio solution file, then select "Clone solution with Cloney".</value>
   </data>
   <data name="SuccessfulUninstallMessage" xml:space="preserve">
-    <value>Context menu option for Cloney successfully uninstalled!</value>
+    <value>Windows Explorer context menu option for Cloney successfully uninstalled!</value>
   </data>
   <data name="UninstallMessage" xml:space="preserve">
-    <value>Uninstalling context menu option for Cloney.</value>
+    <value>Uninstalling context menu option for Cloney...</value>
   </data>
   <data name="ContextMenuText" xml:space="preserve">
     <value>Clone solution with Cloney</value>

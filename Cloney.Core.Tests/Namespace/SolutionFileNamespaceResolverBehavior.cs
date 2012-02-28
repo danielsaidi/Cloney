@@ -17,7 +17,7 @@ namespace Cloney.Core.Tests.Namespace
         public void SetUp()
         {
             directory = Substitute.For<IDirectory>();
-            resolver = new SolutionFileNamespaceResolver(directory);
+            resolver = new SolutionFolderNamespaceResolver(directory);
         }
 
 

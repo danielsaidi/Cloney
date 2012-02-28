@@ -1,6 +1,8 @@
-﻿using System;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Threading;
+using Cloney.Core;
+using Cloney.Core.Wizard;
 using Cloney.Wizard.Resources;
 
 namespace Cloney.Wizard
@@ -14,8 +16,6 @@ namespace Cloney.Wizard
     /// </remarks>
     public partial class App
     {
-        public static String[] Args;
-
         public App()
         {
             Dispatcher.UnhandledException += Dispatcher_UnhandledException;
@@ -23,13 +23,29 @@ namespace Cloney.Wizard
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            if(e.Args.Length > 0)
-            {
-                Args = e.Args;
-            }
+            Arguments = Default.WizardApplicationArgumentsParser.ParseArguments(e.Args);
+            AdjustArguments(Arguments);
 
             base.OnStartup(e);
         }
+
+
+        public static ApplicationArguments Arguments { get; private set; }
+
+
+        private static void AdjustArguments(ApplicationArguments arguments)
+        {
+            if (arguments.SourcePath == null)
+                return;
+
+            if (Directory.Exists(arguments.SourcePath))
+                return;
+
+            var fileInfo = new FileInfo(arguments.SourcePath);
+            if (fileInfo.Exists)
+                arguments.SourcePath = fileInfo.Directory.FullName;
+        }
+
 
         static void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {

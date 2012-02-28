@@ -14,7 +14,7 @@ namespace Cloney.ContextMenu
         {
             ValidateApplicationDirectory(filePath);
 
-            var menuCommand = string.Format("\"{0}\\{1}\" \"%1\"", filePath, CloneyWizard);
+            var menuCommand = string.Format("\"{0}\\{1}\" --source=\"%1\"", filePath, CloneyWizard);
             RegisterShellExtension(RegistryKeyName, ShellKeyName, menuText, menuCommand);
         }
 

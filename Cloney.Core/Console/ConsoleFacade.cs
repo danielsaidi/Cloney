@@ -3,7 +3,8 @@
 namespace Cloney.Core.Console
 {
     /// <summary>
-    /// This class can be used as a facade for the static Console class.
+    /// This class can be used as a facade for the static
+    /// Console class.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]

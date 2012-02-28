@@ -25,9 +25,9 @@ namespace Cloney.Core
             get { return new ConsoleFacade(); }
         }
 
-        public static ICommandLineArgumentParser CommandLineArgumentParser
+        public static IArgumentParser<IDictionary<string, string>> DictionaryArgumentParser
         {
-            get { return new CommandLineArgumentParser(); }
+            get { return new DictionaryArgumentParser(); }
         }
 
         public static IEnumerable<string> ExcludeFilePatterns
@@ -60,12 +60,6 @@ namespace Cloney.Core
             get { return Properties.Settings.Default; }
         }
 
-        public static ISubRoutineLocator SubRoutineLocator
-        {
-            get { return new LocalSubRoutineLocator(); }
-        }
-
-
         public static ISolutionCloner SolutionCloner
         {
             get
@@ -74,13 +68,18 @@ namespace Cloney.Core
                 var excludeFilePatterns = Settings.ExcludeFilePatterns.Cast<string>();
                 var plainCopyFilePatterns = Settings.PlainCopyFilePatterns.Cast<string>();
 
-                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, PathPatternMatcher, excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns);
+                return new SolutionCloner(SourceFolderNamespaceResolver, TargetNamespaceResolver, PathPatternMatcher, excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns);
             }
         }
 
-        public static INamespaceResolver SourceNamespaceResolver
+        public static INamespaceResolver SourceFolderNamespaceResolver
         {
-            get { return new SolutionFileNamespaceResolver(new DirectoryFacade()); }
+            get { return new SolutionFolderNamespaceResolver(new DirectoryFacade()); }
+        }
+
+        public static ISubRoutineLocator SubRoutineLocator
+        {
+            get { return new LocalSubRoutineLocator(); }
         }
 
         public static INamespaceResolver TargetNamespaceResolver
@@ -92,5 +91,12 @@ namespace Cloney.Core
         {
             get { return new ResourceManagerFacade(Language.ResourceManager); }
         }
+
+        public static IArgumentParser<Wizard.ApplicationArguments> WizardApplicationArgumentsParser
+        {
+            get { return new Wizard.ApplicationArgumentParser(); }
+        }
+
+        
     }
 }

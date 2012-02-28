@@ -13,12 +13,12 @@ namespace Cloney.Core.Namespace
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/Cloney
     /// </remarks>
-    public class SolutionFileNamespaceResolver : INamespaceResolver
+    public class SolutionFolderNamespaceResolver : INamespaceResolver
     {
         private readonly IDirectory directory;
 
 
-        public SolutionFileNamespaceResolver(IDirectory directory)
+        public SolutionFolderNamespaceResolver(IDirectory directory)
         {
             this.directory = directory;
         }

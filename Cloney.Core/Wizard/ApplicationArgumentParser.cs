@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Cloney.Core.Console;
+
+namespace Cloney.Core.Wizard
+{
+    /// <summary>
+    /// This class defines app args for the Cloney Wizard.
+    /// </summary>
+    /// <remarks>
+    /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
+    /// Link:       http://www.dotnextra.com
+    /// </remarks>
+    public class ApplicationArgumentParser : IArgumentParser<ApplicationArguments>
+    {
+        private readonly IArgumentParser<IDictionary<string, string>> baseParser;
+
+
+        public ApplicationArgumentParser()
+        {
+            baseParser = Default.DictionaryArgumentParser;
+        }
+
+
+        public ApplicationArguments ParseArguments(IEnumerable<string> args)
+        {
+            var arguments = baseParser.ParseArguments(args);
+
+            var appArgs = new ApplicationArguments();
+            ParseSourcePath(appArgs, arguments);
+            ParseModalMode(appArgs, arguments);
+
+            return appArgs;
+        }
+
+
+        private static void ParseModalMode(ApplicationArguments appArgs, IDictionary<string, string> arguments)
+        {
+            appArgs.ModalMode = arguments.ContainsKey("modal") && arguments["modal"] == "true" ? true : false;
+        }
+
+        private static void ParseSourcePath(ApplicationArguments appArgs, IDictionary<string, string> args)
+        {
+            appArgs.SourcePath = args.ContainsKey("source") ? args["source"] : null;
+        }
+    }
+}

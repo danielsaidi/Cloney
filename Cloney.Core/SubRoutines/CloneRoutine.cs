@@ -19,8 +19,8 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
         private readonly ISolutionCloner solutionCloner;
+        private readonly IArgumentParser<IDictionary<string, string>> argumentParser;
 
 
         public CloneRoutine()
@@ -34,7 +34,7 @@ namespace Cloney.Core.SubRoutines
             this.translator = translator;
             this.solutionCloner = solutionCloner;
 
-            argumentParser = Default.CommandLineArgumentParser;
+            argumentParser = Default.DictionaryArgumentParser;
 
             solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
         }
@@ -42,7 +42,7 @@ namespace Cloney.Core.SubRoutines
         
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(argumentParser.ParseArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)

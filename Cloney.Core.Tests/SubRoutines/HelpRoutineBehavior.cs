@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Cloney.Core.Console;
+﻿using Cloney.Core.Console;
 using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
@@ -10,19 +9,14 @@ namespace Cloney.Core.Tests.SubRoutines
     [TestFixture]
     public class HelpRoutineBehavior
     {
-        private IEnumerable<string> args;
-
         private ISubRoutine routine;
         private IConsole console;
         private ITranslator translator;
-        private ICommandLineArgumentParser argumentParser;
 
 
         [SetUp]
         public void SetUp()
         {
-            args = new List<string>();
-
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
             translator.Translate("GeneralHelpMessage").Returns("foo");

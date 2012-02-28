@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
         private readonly IConsole console;
         private readonly ITranslator translator;
         private readonly IContextMenuInstaller installer;
-        private readonly ICommandLineArgumentParser argumentParser;
+        private readonly IArgumentParser<IDictionary<string, string>> argumentParser;
 
 
         public UninstallContextMenuRoutine()
@@ -31,13 +31,13 @@ namespace Cloney.Core.SubRoutines
             this.translator = translator;
             this.installer = installer;
 
-            argumentParser = Default.CommandLineArgumentParser;
+            argumentParser = Default.DictionaryArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(argumentParser.ParseArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)

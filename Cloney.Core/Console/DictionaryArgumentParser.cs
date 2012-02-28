@@ -25,23 +25,20 @@ namespace Cloney.Core.Console
     /// The original implementation can be found at:
     /// http://www.codeproject.com/KB/recipes/command_line.aspx 
     /// </remarks>
-    public class CommandLineArgumentParser : ICommandLineArgumentParser
+    public class DictionaryArgumentParser : IArgumentParser<IDictionary<string, string>>
     {
         private readonly Regex splitter;
         private readonly Regex remover;
 
 
-        public CommandLineArgumentParser()
+        public DictionaryArgumentParser()
         {
             splitter = new Regex(@"^-{1,2}|^/|=|:", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             remover = new Regex(@"^['""]?(.*?)['""]?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         }
 
-        /// <summary>
-        /// Parse a collection of command line arguments.
-        /// </summary>
-        public IDictionary<string, string> ParseCommandLineArguments(IEnumerable<string> args)
+        public IDictionary<string, string> ParseArguments(IEnumerable<string> args)
         {
             string[] parts;
             string parameter = null;

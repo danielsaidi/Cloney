@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
+        private readonly IArgumentParser<IDictionary<string, string>> argumentParser;
 
 
         public HelpRoutine()
@@ -30,13 +30,13 @@ namespace Cloney.Core.SubRoutines
             this.console = console;
             this.translator = translator;
 
-            argumentParser = Default.CommandLineArgumentParser;
+            argumentParser = Default.DictionaryArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(argumentParser.ParseArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)

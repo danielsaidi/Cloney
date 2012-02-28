@@ -81,13 +81,14 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///usage: cloney [--help] [--clone --source=&lt;source&gt; --target=&lt;target&gt;]
+        ///usage: cloney [--clone [--source=&lt;source&gt;] [--target=&lt;target&gt;]] [--help] [--install] [--uninstall] [--settings]
         ///
-        ///The most commonly used Cloney commands are
-        ///   help       Display general help
+        ///The most commonly used Cloney commands are:
+        ///   [n/a]      Using no arguments starts the GUI application
         ///   clone      Clone a solution from a source folder to a target folder
+        ///   help       Display general help
+        ///   install    Install Windows Explorer context menu option for .sln files
         ///   settings   Display application settings
-        ///   install    Install Windows Explorer context menu option for VS2010 sln files
         ///   uninstall  Uninstall context menu option.
         /// </summary>
         internal static string GeneralHelpMessage {
@@ -121,7 +122,7 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Installing context menu option for Cloney in Windows Explorer. Right click on a Visual Studio 2010 solution file to clone..
+        ///Installing the Cloney Windows Explorer context menu option....
         /// </summary>
         internal static string InstallMessage {
             get {
@@ -149,7 +150,7 @@ namespace Cloney.Core {
         ///2. Excluded file patterns:
         ///   {1}
         ///
-        ///3. Plain copied file patterns:
+        ///3. Plain copy file patterns:
         ///   {2}.
         /// </summary>
         internal static string SettingsMessage {
@@ -160,7 +161,7 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Cloney failed to start with the following error message:
+        ///Cloney stopped with the following error message:
         ///.
         /// </summary>
         internal static string StartErrorMessage {
@@ -170,7 +171,9 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Context menu option for Cloney successfully installed!.
+        ///   Looks up a localized string similar to Windows Explorer context menu option for Cloney successfully installed!
+        ///
+        ///To clone a solution using the Windows Explorer, right-click on a Visual Studio solution file, then select &quot;Clone solution with Cloney&quot;..
         /// </summary>
         internal static string SuccessfulInstallMessage {
             get {
@@ -179,7 +182,7 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Context menu option for Cloney successfully uninstalled!.
+        ///   Looks up a localized string similar to Windows Explorer context menu option for Cloney successfully uninstalled!.
         /// </summary>
         internal static string SuccessfulUninstallMessage {
             get {
@@ -188,7 +191,7 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uninstalling context menu option for Cloney..
+        ///   Looks up a localized string similar to Uninstalling context menu option for Cloney....
         /// </summary>
         internal static string UninstallMessage {
             get {
