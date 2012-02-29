@@ -127,6 +127,9 @@ namespace Cloney.Wizard
             sourcePath = sourceFolderSelector.Path;
             targetPath = targetFolderSelector.Path;
 
+            Topmost = true;
+            Show();
+
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerAsync();
@@ -168,7 +171,9 @@ namespace Cloney.Wizard
         static void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-            Application.Current.Shutdown();
+
+            if (App.Arguments.ModalMode)
+                Application.Current.Shutdown();
         }
     }
 }
