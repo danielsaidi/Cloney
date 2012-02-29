@@ -59,6 +59,17 @@ namespace Cloney.Wizard
         }
 
 
+        private static void Shutdown()
+        {
+            Application.Current.Shutdown();
+        }
+
+        private static void Shutdown(string exitTitle, string exitMessage)
+        {
+            MessageBox.Show(exitMessage, exitTitle);
+            Shutdown();
+        }
+
         private void Initialize()
         {
             InitializeSolutionCloner();
@@ -76,10 +87,16 @@ namespace Cloney.Wizard
 
             if (string.IsNullOrEmpty(App.Arguments.SourcePath))
                 if (sourceFolderSelector.ShowModal(Wizard.Resources.Language.SelectSourceFolder) != System.Windows.Forms.DialogResult.OK)
-                    return;
+                    Shutdown();
+
+            if (!sourceFolderSelector.IsValid)
+                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidSourceFolder);
 
             if (targetFolderSelector.ShowModal(Wizard.Resources.Language.SelectTargetFolder) != System.Windows.Forms.DialogResult.OK)
-                return;
+                Shutdown();
+
+            if (!targetFolderSelector.IsValid)
+                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidTargetFolder);
 
             StartCloningOperation();
         }
@@ -173,7 +190,7 @@ namespace Cloney.Wizard
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
 
             if (App.Arguments.ModalMode)
-                Application.Current.Shutdown();
+                Shutdown();
         }
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerFacadeBehavior.cs" />
+    <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
     <Compile Include="Namespace\FolderNamespaceResolverBehavior.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolverBehavior.cs" />
     <Compile Include="ProgramBehavior.cs">
@@ -79,7 +80,6 @@
     <Compile Include="SubRoutines\ModalGuiRoutineBehavior.cs" />
     <Compile Include="SubRoutines\UninstallContextMenuRoutineBehavior.cs" />
     <Compile Include="SubRoutines\InstallContextMenuRoutineBehavior.cs" />
-    <Compile Include="SubRoutines\LocalSubRoutineLocatorBehavior.cs" />
     <Compile Include="SubRoutines\SettingsRoutineBehavior.cs" />
     <Compile Include="SubRoutines\GuiRoutineBehavior.cs" />
     <Compile Include="SubRoutines\HelpRoutineBehavior.cs" />

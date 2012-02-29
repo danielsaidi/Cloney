@@ -73,6 +73,7 @@
     <Compile Include="IO\IPathPatternMatcher.cs" />
     <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="IProgram.cs" />
+    <Compile Include="ISubRoutineLocator.cs" />
     <Compile Include="Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +82,7 @@
     <Compile Include="Localization\HierarchicalResourceManagerFacade.cs" />
     <Compile Include="Localization\ITranslator.cs" />
     <Compile Include="Localization\ResourceManagerFacade.cs" />
+    <Compile Include="LocalSubRoutineLocator.cs" />
     <Compile Include="Namespace\SolutionFolderNamespaceResolver.cs" />
     <Compile Include="Namespace\FolderNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
@@ -99,14 +101,11 @@
     <Compile Include="SubRoutines\ModalGuiRoutine.cs" />
     <Compile Include="SubRoutines\UninstallContextMenuRoutine.cs" />
     <Compile Include="SubRoutines\InstallContextMenuRoutine.cs" />
-    <Compile Include="SubRoutines\ISubRoutineLocator.cs" />
-    <Compile Include="SubRoutines\LocalSubRoutineLocator.cs" />
     <Compile Include="SubRoutines\SettingsRoutine.cs" />
     <Compile Include="SubRoutines\GuiRoutine.cs" />
     <Compile Include="SubRoutines\HelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\SubRoutineBase.cs" />
-    <Compile Include="SubRoutines\SubRoutineException.cs" />
     <Compile Include="Wizard\ApplicationArguments.cs" />
     <Compile Include="Wizard\ApplicationArgumentParser.cs" />
   </ItemGroup>

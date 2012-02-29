@@ -57,7 +57,7 @@ target copy:
    File.Copy("Release-notes.md", "${build_folder}/Release-notes.txt", true)
    
    with FileList(""):
-    .Include("Cloney.Console/bin/${build_config}/*.*")
+    .Include("${project_name}/bin/${build_config}/*.*")
     .ForEach def(file):
       File.Copy(file.FullName, "${build_folder}/${file.Name}", true)
 
@@ -65,8 +65,8 @@ target copy:
 target publish_nuget:
    File.Copy("README.md", "Resources\\README.txt", true)
    File.Copy("Release-notes.md", "Resources\\Release-notes.txt", true)
-   exec("nuget" , "pack Cloney\\Cloney.csproj -prop configuration=release")
-   exec("nuget push Cloney.${build_version}.nupkg")
+   exec("nuget" , "pack ${project_name}\\${project_name}.csproj -prop configuration=release")
+   exec("nuget push ${project_name}.${build_version}.nupkg")
    exec("del *.nupkg")
    exec("del Resources\\README.txt")
    exec("del Resources\\Release-notes.txt")

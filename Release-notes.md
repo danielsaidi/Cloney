@@ -1,4 +1,4 @@
-Cloney 0.9.3.0		2012-02-27
+Cloney 0.9.3.0		2012-02-29
 ==============================
 
 This version features a brand new Windows Explorer plugin. The

@@ -28,32 +28,9 @@ namespace Cloney.Core.Tests.SubRoutines
             routine = new GuiRoutine(console, translator, process);
         }
 
-        
-        [Test]
-        public void Start_ShouldLaunchExternalProgramForNoArguments()
-        {
-            var args = new List<string>();
-
-            var result = routine.Run(args);
-
-            Assert.That(result, Is.True);
-            process.Received().Start("Cloney.Wizard.exe");
-        }
 
         [Test]
-        public void Start_ShouldDisplayLaunchMessageForNoArguments()
-        {
-            var args = new List<string>();
-
-            var result = routine.Run(args);
-
-            Assert.That(result, Is.True);
-            translator.Received().Translate("GuiStartMessage");
-            console.Received().WriteLine("message");
-        }
-
-        [Test]
-        public void Start_ShouldNotLaunchExternalProgramForArguments()
+        public void Run_ShouldAbortForArguments()
         {
             var args = new List<string>{"foo"};
             
@@ -61,6 +38,31 @@ namespace Cloney.Core.Tests.SubRoutines
 
             Assert.That(result, Is.False);
             process.DidNotReceive().Start(Arg.Any<string>());
+        }
+
+        [Test]
+        public void Run_ShouldReturnTrueForNoArguments()
+        {
+            var result = routine.Run(new string[] { });
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Run_ShouldLaunchExternalProgramForNoArguments()
+        {
+            routine.Run(new string[] { });
+
+            process.Received().Start("Cloney.Wizard.exe");
+        }
+
+        [Test]
+        public void Run_ShouldDisplayTranslatedLaunchMessageForNoArguments()
+        {
+            routine.Run(new string[] { });
+
+            translator.Received().Translate("GuiStartMessage");
+            console.Received().WriteLine("message");
         }
     }
 }

@@ -44,5 +44,12 @@ namespace Cloney.Core.SubRoutines
             process.Start("Cloney.Wizard.exe");
             return true;
         }
+        public bool Run2(IEnumerable<string> args)
+        {
+            const string complexAlgorthim = "Hello, earth!";
+
+            process.Start("Cloney.Wizard.exe", complexAlgorthim);
+            return true;
+        }
     }
 }

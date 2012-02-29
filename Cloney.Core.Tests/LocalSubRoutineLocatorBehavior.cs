@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using Cloney.Core.SubRoutines;
 using NUnit.Framework;
 
-namespace Cloney.Core.Tests.SubRoutines
+namespace Cloney.Core.Tests
 {
     [TestFixture]
     public class LocalSubRoutineLocatorBehavior
@@ -29,6 +28,7 @@ namespace Cloney.Core.Tests.SubRoutines
             Assert.That(routineNames.Contains("GuiRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("HelpRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("InstallContextMenuRoutine"), Is.True); count++;
+            Assert.That(routineNames.Contains("ModalGuiRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("SettingsRoutine"), Is.True); count++;
             Assert.That(routineNames.Contains("UninstallContextMenuRoutine"), Is.True); count++;
 

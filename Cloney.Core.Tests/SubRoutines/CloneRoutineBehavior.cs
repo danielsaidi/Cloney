@@ -35,6 +35,7 @@ namespace Cloney.Core.Tests.SubRoutines
             var result = routine.Run(new string[0]);
 
             Assert.That(result, Is.False);
+            translator.DidNotReceive().Translate(Arg.Any<string>());
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
         }
         
@@ -44,6 +45,7 @@ namespace Cloney.Core.Tests.SubRoutines
             var result = routine.Run(new []{"--foo=bar"});
 
             Assert.That(result, Is.False);
+            translator.DidNotReceive().Translate(Arg.Any<string>());
             solutionCloner.DidNotReceive().CloneSolution(Arg.Any<string>(), Arg.Any<string>());
         }
 

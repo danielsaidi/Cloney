@@ -81,15 +81,16 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///usage: cloney [--clone [--source=&lt;source&gt;] [--target=&lt;target&gt;]] [--help] [--install] [--uninstall] [--settings]
+        ///usage: cloney [--clone [--source=&lt;source&gt;] [--target=&lt;target&gt;]] [--help] [--install] [--modal] [--settings] [--uninstall]
         ///
         ///The most commonly used Cloney commands are:
-        ///   [n/a]      Using no arguments starts the GUI application
+        ///   [n/a]      Start the GUI application
         ///   clone      Clone a solution from a source folder to a target folder
         ///   help       Display general help
         ///   install    Install Windows Explorer context menu option for .sln files
+        ///   mdoal       Start the GUI application in modal mode
         ///   settings   Display application settings
-        ///   uninstall  Uninstall context menu option.
+        ///   uninstall  Un [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {

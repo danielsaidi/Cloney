@@ -53,6 +53,12 @@ target folder then press "Clone" button, and you're done.
 
 This is a simple, but nonflexible way to clone solutions.
 
+You can also start a modal version of the GUI, using the
+"cloney --modal [--source=]" command. When it uses modal,
+Cloney will only display a source (if none provided) and
+a target folder selector then start cloning the solution.
+When the cloning operation is finished, Cloney exists.
+
 
 ### Using the Cloney console application
 
@@ -73,6 +79,9 @@ Cloney console app:
 		
 	*	cloney --install
 		Install the Cloney Windows Explorer plugin.
+
+	*	cloney --modal
+		Start the Cloney GUI in modal (quick) mode.
 		
 	*	cloney --settings
 		Display the current Cloney settings.
