@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
@@ -82,9 +81,7 @@ namespace Cloney.Wizard
             if (targetFolderSelector.ShowModal(Wizard.Resources.Language.SelectTargetFolder) != System.Windows.Forms.DialogResult.OK)
                 return;
 
-            Process.Start("Cloney.exe", string.Format("--clone --source={0} --target={1}", sourceFolderSelector.Path, targetFolderSelector.Path));
-
-            Close();
+            StartCloningOperation();
         }
 
         private void InitializeFolderSelectors()
@@ -98,7 +95,6 @@ namespace Cloney.Wizard
         private void InitializeSolutionCloner()
         {
             solutionCloner = Default.SolutionCloner;
-            solutionCloner.CloningEnded += solutionCloner_CloningEnded;
         }
 
         private void InitializeTimer()
@@ -134,6 +130,7 @@ namespace Cloney.Wizard
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerAsync();
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
 
 
@@ -163,14 +160,15 @@ namespace Cloney.Wizard
             lblCurrentPath.Content = solutionCloner.CurrentPath;
         }
 
-        private static void solutionCloner_CloningEnded(object sender, EventArgs e)
-        {
-            MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             solutionCloner.CloneSolution(sourcePath, targetPath);
+        }
+
+        static void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+            Application.Current.Shutdown();
         }
     }
 }
