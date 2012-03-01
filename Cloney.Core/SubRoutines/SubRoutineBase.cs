@@ -12,9 +12,14 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public abstract class SubRoutineBase
     {
+        protected bool HasArg(IDictionary<string, string> args, string key)
+        {
+            return (args.ContainsKey(key));
+        }
+
         protected bool HasArg(IDictionary<string, string> args, string key, string value)
         {
-            return (args.ContainsKey(key) && args[key] == value);
+            return (HasArg(args, key) && args[key] == value);
         }
 
         protected bool HasSingleArg(IDictionary<string, string> args, string key, string value)

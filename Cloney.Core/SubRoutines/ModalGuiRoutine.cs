@@ -40,10 +40,14 @@ namespace Cloney.Core.SubRoutines
 
         private bool Run(IDictionary<string, string> args)
         {
-            if (!HasSingleArg(args, "modal", "true"))
+            if (!HasArg(args, "modal", "true"))
                 return false;
 
-            process.Start("Cloney.Wizard.exe", "--modal");
+            var argString = "--modal";
+            if (HasArg(args, "source"))
+                argString += " --source=" + args["source"];
+
+            process.Start("Cloney.Wizard.exe", argString);
             return true;
         }
     }

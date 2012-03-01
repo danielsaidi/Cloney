@@ -131,13 +131,5 @@ namespace Cloney.Core.Reflection
 		{
 			return assembly.GetName().Version;
 		}
-
-        public static string GetFilePathToAssemblyCodeBase()
-        {
-            string codeBase = Assembly.GetExecutingAssembly().GetName().CodeBase;
-            var uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
-        }
 	}
 }

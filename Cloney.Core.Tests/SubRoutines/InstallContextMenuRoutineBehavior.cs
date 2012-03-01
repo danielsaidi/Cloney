@@ -88,7 +88,7 @@ namespace Cloney.Core.Tests.SubRoutines
             var result = routine.Run(new[] { "--install" });
 
             Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Core.Tests\bin")), Arg.Any<string>());
+            //installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney")), Arg.Any<string>());
         }
 
         [Test]

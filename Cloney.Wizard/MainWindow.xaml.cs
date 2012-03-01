@@ -78,6 +78,7 @@ namespace Cloney.Wizard
             InitializeModalBehavior();
         }
 
+        //TODO: This should be a separate window
         private void InitializeModalBehavior()
         {
             if (!App.Arguments.ModalMode)

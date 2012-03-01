@@ -62,7 +62,7 @@ namespace Cloney.Core.SubRoutines
         {
             console.WriteLine(translator.Translate("UninstallMessage"));
             installer.UnregisterContextMenu();
-            console.WriteLine("\n" + translator.Translate("SuccessfulUninstallMessage"));
+            console.WriteLine(translator.Translate("SuccessfulUninstallMessage"));
         }
     }
 }

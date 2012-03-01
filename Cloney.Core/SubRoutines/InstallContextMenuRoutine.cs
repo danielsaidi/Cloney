@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Cloney.ContextMenu;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
-using Cloney.Core.Reflection;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -62,9 +63,12 @@ namespace Cloney.Core.SubRoutines
         private void RunInstall()
         {
             console.WriteLine(translator.Translate("InstallMessage"));
-            var binDirectory = AssemblyExtensions.GetFilePathToAssemblyCodeBase();
-            installer.RegisterContextMenu(binDirectory, translator.Translate("ContextMenuText"));
-            console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
+            
+            var assemblyFile = Assembly.GetExecutingAssembly().Location;
+            var assemblyFolder = new FileInfo(assemblyFile).Directory.ToString();
+
+            installer.RegisterContextMenu(assemblyFolder, translator.Translate("ContextMenuText"));
+            console.WriteLine(string.Format(translator.Translate("SuccessfulInstallMessage"), assemblyFolder));
         }
     }
 }

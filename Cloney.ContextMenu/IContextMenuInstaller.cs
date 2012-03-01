@@ -2,7 +2,7 @@
 {
     public interface IContextMenuInstaller
     {
-        void RegisterContextMenu(string filePath, string menuText);
+        void RegisterContextMenu(string applicationFolder, string menuText);
         void UnregisterContextMenu();
     }
 }

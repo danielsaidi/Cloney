@@ -1,3 +1,15 @@
+Cloney 0.9.3.1		2012-03-01
+==============================
+
+In this version, I have fixed a bug that made cloney --install
+always use the build folder of the Cloney.Core.dll.
+
+The Cloney GUI is still a bit shaky and not that polished, but
+if you use it right, it will be gentle. Report any issues that
+you experience on the project site.
+
+
+
 Cloney 0.9.3.0		2012-02-29
 ==============================
 

@@ -88,9 +88,9 @@ namespace Cloney.Core {
         ///   clone      Clone a solution from a source folder to a target folder
         ///   help       Display general help
         ///   install    Install Windows Explorer context menu option for .sln files
-        ///   mdoal       Start the GUI application in modal mode
+        ///   modal      Start the GUI application in modal mode
         ///   settings   Display application settings
-        ///   uninstall  Un [rest of string was truncated]&quot;;.
+        ///   uninstall  Uni [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {
@@ -172,7 +172,11 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Explorer context menu option for Cloney successfully installed!
+        ///   Looks up a localized string similar to 
+        ///Windows Explorer context menu option for Cloney successfully installed!
+        ///
+        ///The provided path to the application is:
+        ///{0}
         ///
         ///To clone a solution using the Windows Explorer, right-click on a Visual Studio solution file, then select &quot;Clone solution with Cloney&quot;..
         /// </summary>
@@ -183,7 +187,8 @@ namespace Cloney.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Explorer context menu option for Cloney successfully uninstalled!.
+        ///   Looks up a localized string similar to 
+        ///Windows Explorer context menu option for Cloney successfully uninstalled!.
         /// </summary>
         internal static string SuccessfulUninstallMessage {
             get {

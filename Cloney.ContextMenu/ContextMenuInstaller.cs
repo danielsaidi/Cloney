@@ -5,32 +5,33 @@ namespace Cloney.ContextMenu
 {
     public class ContextMenuInstaller : IContextMenuInstaller
     {
-        private const string CloneyWizard = "Cloney.Wizard.exe";
-        private const string RegistryKeyName = "VisualStudio.Launcher.sln";
-        private const string ShellKeyName = "Cloney Context Menu";
+        private const string executable = "Cloney.Wizard.exe";
+        private const string registryKeyName = "VisualStudio.Launcher.sln";
+        private const string shellKeyName = "Cloney Context Menu";
 
 
-        public void RegisterContextMenu(string filePath, string menuText)
+        public void RegisterContextMenu(string applicationFolder, string menuText)
         {
-            ValidateApplicationDirectory(filePath);
+            ValidateApplication(applicationFolder);
 
-            var menuCommand = string.Format("\"{0}\\{1}\" --source=\"%1\" --modal", filePath, CloneyWizard);
-            RegisterShellExtension(RegistryKeyName, ShellKeyName, menuText, menuCommand);
+            var menuCommand = string.Format("\"{0}\\{1}\" --source=\"%1\" --modal", applicationFolder, executable);
+            
+            RegisterShellExtension(registryKeyName, shellKeyName, menuText, menuCommand);
         }
 
         public void UnregisterContextMenu()
         {
-            var key = Registry.ClassesRoot.OpenSubKey(string.Format(@"{0}\Shell\{1}", RegistryKeyName, ShellKeyName));
+            var key = Registry.ClassesRoot.OpenSubKey(string.Format(@"{0}\Shell\{1}", registryKeyName, shellKeyName));
             if (key == null)
                 return;
 
-            UnregisterShellExtension(RegistryKeyName, ShellKeyName);
+            UnregisterShellExtension(registryKeyName, shellKeyName);
         }
 
 
-        private static void RegisterShellExtension(string fileType, string shellKeyName, string menuText, string menuCommand)
+        private static void RegisterShellExtension(string fileType, string shellKey, string menuText, string menuCommand)
         {
-            var regPath = string.Format(@"{0}\shell\{1}", fileType, shellKeyName);
+            var regPath = string.Format(@"{0}\shell\{1}", fileType, shellKey);
 
             RegisterShellExtensionKey(regPath, menuText);
             RegisterShellExtensionKeyCommand(regPath, menuCommand);
@@ -58,22 +59,22 @@ namespace Cloney.ContextMenu
             }
         }
 
-        private static void UnregisterShellExtension(string fileType, string shellKeyName)
+        private static void UnregisterShellExtension(string fileType, string shellKey)
         {
-            var regPath = string.Format(@"{0}\shell\{1}", fileType, shellKeyName);
+            var regPath = string.Format(@"{0}\shell\{1}", fileType, shellKey);
 
             Registry.ClassesRoot.DeleteSubKeyTree(regPath);
         }
 
-        private static void ValidateApplicationDirectory(string filePath)
+        private static void ValidateApplication(string applicationFolder)
         {
-            var dir = new DirectoryInfo(filePath);
+            var dirInfo = new DirectoryInfo(applicationFolder);
 
-            if (!dir.Exists)
-                throw new FileNotFoundException(string.Format("Could not find the directory: {0}", filePath));
+            if (!dirInfo.Exists)
+                throw new FileNotFoundException(string.Format("Could not find the directory: {0}", dirInfo));
 
-            if (dir.GetFiles(CloneyWizard).Length == 0)
-                throw new FileNotFoundException(string.Format("Could not find Cloney.Wizard.exe in the directory: {0} ", filePath));
+            if (dirInfo.GetFiles(executable).Length == 0)
+                throw new FileNotFoundException(string.Format("Could not find cloney.exe in the directory: {0} ", dirInfo));
         }
     }
 }

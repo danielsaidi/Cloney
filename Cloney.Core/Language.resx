@@ -130,7 +130,7 @@ The most commonly used Cloney commands are:
    clone      Clone a solution from a source folder to a target folder
    help       Display general help
    install    Install Windows Explorer context menu option for .sln files
-   mdoal       Start the GUI application in modal mode
+   modal      Start the GUI application in modal mode
    settings   Display application settings
    uninstall  Uninstall context menu option</value>
   </data>
@@ -172,12 +172,17 @@ Cloney stopped with the following error message:
 </value>
   </data>
   <data name="SuccessfulInstallMessage" xml:space="preserve">
-    <value>Windows Explorer context menu option for Cloney successfully installed!
+    <value>
+Windows Explorer context menu option for Cloney successfully installed!
+
+The provided path to the application is:
+{0}
 
 To clone a solution using the Windows Explorer, right-click on a Visual Studio solution file, then select "Clone solution with Cloney".</value>
   </data>
   <data name="SuccessfulUninstallMessage" xml:space="preserve">
-    <value>Windows Explorer context menu option for Cloney successfully uninstalled!</value>
+    <value>
+Windows Explorer context menu option for Cloney successfully uninstalled!</value>
   </data>
   <data name="UninstallMessage" xml:space="preserve">
     <value>Uninstalling context menu option for Cloney...</value>
