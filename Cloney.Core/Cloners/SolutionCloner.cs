@@ -75,7 +75,7 @@ namespace Cloney.Core.Cloners
                     continue;
 
                 var adjustedFilePath = AdjustPath(filePath, sourcePath, sourceNamespace, targetNamespace);
-                var targetFilePath = targetPath + adjustedFilePath;
+                var targetFilePath = Path.Combine(targetPath, adjustedFilePath);
 
                 if (IsPlainCopyFile(fileName))
                 {
@@ -113,7 +113,7 @@ namespace Cloney.Core.Cloners
                     continue;
 
                 var adjustedFolderPath = AdjustPath(directory, sourcePath, sourceNamespace, targetNamespace);
-                var targetFolderPath = targetPath + adjustedFolderPath;
+                var targetFolderPath = Path.Combine(targetPath, adjustedFolderPath);
 
                 if (!Directory.Exists(targetFolderPath))
                     Directory.CreateDirectory(targetFolderPath);
