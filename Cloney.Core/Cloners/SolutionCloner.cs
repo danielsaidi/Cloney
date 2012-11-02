@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Cloney.Core.IO;
 using Cloney.Core.Namespace;
 
@@ -83,8 +84,15 @@ namespace Cloney.Core.Cloners
                     continue;
                 }
 
-                var sourceStream = new StreamReader(filePath);
+                // fixing issue #4 by trying to detect the encoding and then apply it again when writing the new file
+                // StreamReader would fall back to UTF8 anyway...
+                var encoding = KlerksSoftEncodingDetector.DetectTextFileEncoding(filePath, null) ?? Encoding.UTF8;
+                var sourceStream = new StreamReader(filePath, encoding);
                 var sourceContent = sourceStream.ReadToEnd();
+
+                // StreamReader can possibly use a different encoding than the one we provide; 
+                // but we want to write back with the same encoding that we used to read...
+                var sourceEncoding = sourceStream.CurrentEncoding;
                 sourceStream.Close();
 
                 if (!sourceContent.Contains(sourceNamespace))
@@ -93,7 +101,7 @@ namespace Cloney.Core.Cloners
                     continue;
                 }
 
-                var targetStream = new StreamWriter(targetFilePath);
+                var targetStream = new StreamWriter(new FileStream(targetFilePath, FileMode.CreateNew), sourceEncoding);
                 targetStream.Write(ReplaceNamespace(sourceContent, sourceNamespace, targetNamespace));
                 targetStream.Close();
             }

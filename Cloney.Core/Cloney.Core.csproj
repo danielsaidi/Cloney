@@ -61,6 +61,7 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Cloners\KlerksSoftEncodingDetector.cs" />
     <Compile Include="Console\DictionaryArgumentParser.cs" />
     <Compile Include="Console\ConsoleFacade.cs" />
     <Compile Include="Console\IArgumentParser.cs" />
