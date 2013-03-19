@@ -1,8 +1,9 @@
  <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>Cloney - Clone your .NET solutions in no time.</title>
+
+		<meta charset="utf-8">
 		<meta name="author" content="Daniel Saidi">
 		<meta name="description" content="Cloney can be used to clone .NET solutions.">
 		<meta name="keywords" content="cloney net .net visual studio solution clone" />
@@ -11,17 +12,13 @@
 		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-		<link href="assets/css/site.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="static/css/site.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/animate.css" />
 
-		<script type="text/javascript" src="assets/js/jquery.js"></script>
-		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="assets/js/github.js"></script>
-		<script type="text/javascript" src="assets/js/site.js"></script>
-
-		<script type="text/javascript">var switchTo5x=true;</script>
-		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-		<script type="text/javascript">stLight.options({publisher: "b8edc293-41e2-49b7-903c-5e4ed707e41e"}); </script>
+		<link href="http://fonts.googleapis.com/css?family=Lekton" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=Molengo" rel="stylesheet" type="text/css">
 
 		<link rel="shortcut icon" href="assets/img/favicon.ico">
 		<link rel="apple-touch-icon" href="assets/img/icon_48.png">
@@ -41,76 +38,145 @@
 		</script>
 	</head>
 
-	<body>
-		<a href="http://github.com/danielsaidi/Cloney"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+	<body data-spy="scroll" data-target=".navbar">
 
-		<div id="main" class="container">
-
-			<div class="row">
-				<div class="content span8 offset2">
-					
-					<header>
-						<img src="assets/img/logo_sml.png" alt="Cloney logo" />
-						<h1 class="hidden">Cloney</h1>
-						<h2>Clone your .NET solutions in no time</h2>
-					</header>
-					
-					<div class="cloning">
-						<img src="assets/img/cloning_operation.png" alt="Cloning operation" />
-					</div>
-					
-					<p class="description">
-						Cloney can be used to <b>clone .NET solutions</b>. It <b>copies the entire solution</b> 
-						and <b>adjusts folder names, file names and file content</b> whenever needed. It will also 
-						<b>ignore some files and folders</b> (git, tfs etc.) that do not belong to the new solution.
-					</p>
-				
-					<a class="download button" href="http://github.com/danielsaidi/cloney/downloads" title="Click to download the latest Cloney release">
-						Download Cloney <span id="version" />
-					</a>
-					
-					<div class="row likes">
-						<span class='st_sharethis_hcount' displayText='ShareThis'></span>
-						<span class='st_facebook_hcount' displayText='Facebook'></span>
-						<span class='st_twitter_hcount' displayText='Tweet'></span>
-						<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-						<span class='st_email_hcount' displayText='Email'></span>
-					</div>
-					
-					<div class="row comments">
-						<div class="span">
-							Cloney - <em>good stuff!</em>
-							<p><a href="http://cloudnine.se" rel="external">Carl Schéle</a></p>
-						</div>
-						<div class="span">
-							Thanks so much for Cloney -
-							<em>a real time saver!</em>
-							<p><a href="http://polylignes.fr" rel="external">JF Boyer</a></p>
-						</div>
-						<div class="span">
-							Cloney - <em>damn useful!</em>
-							<p><a href="http://twitter.com/jongyllen" rel="external">Jon Gyllenswärd</a></p>
-						</div>
-					</div>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#">Cloney</a>
+					<ul class="nav">
+						<li><a href="#testimonies">Testimonies</a></li>
+						<li><a href="#features">Features</a></li>
+						<li><a href="#get-started">Get started</a></li>
+						<li><a href="#contribute">Contribute</a></li>
+						<li><a href="#license">License</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="mailto:daniel.saidi@gmail.com"><i class="icon-envelope"></i> Contact me</a></li>
+					</ul>
 				</div>
 			</div>
+		</div>
 
-			<footer>
-				<div class="row">
-					<div class="span6">
-							© Copyright 2011-2012 <a href="http://www.saidi.se" rel="external" title="Check out my web site">Daniel Saidi</a>.
-							Designed by <a href="http://www.parsley.se" rel="external">Kristoffer Gustafsson</a>.
-					</div>
-					<div class="span6 links">
-						<a href="http://github.com/danielsaidi/Cloney" rel="external" title="Check out the project site">Project site</a> ∙ 
-						<a href="https://github.com/danielsaidi/Cloney/downloads" rel="external" title="Check out all available downloads">All downloads</a> ∙ 
-						<a href="http://github.com/danielsaidi/Cloney/issues" rel="external" title="Report a Cloney-related issue">Report an issue</a>
-					</div>
+
+		<div class="jumbotron">
+			<div class="container">
+				<h1><img src="static/img/logo_sml.png" /></h1>
+				<p>Clone your .NET solutions in no time</p>
+				<img src="static/img/cloning_operation.png" alt="cloning operation" />
+
+				<div class="buttons">
+					<a href="http://github.com/danielsaidi/Cloney/tags" rel="external">
+						<button class="btn btn-warning download animated bounceIn">
+							<i class="icon icon-cloud-download"></i>Download Cloney
+						</button>
+					</a>
+					<a href="http://github.com/danielsaidi/Cloney" rel="external">
+						<button class="btn btn-info github">
+							<i class="icon-wrench"></i>Visit project page
+						</button>
+					</a>
 				</div>
-			</footer>
 
-			</div> <!-- /container -->
+				<p class="version-info">
+					Current version <span class="version-target"></span> • Created and & maintained by Daniel Saidi
+				</p>
+			</div>
+		</div>
 
+
+		<div class="social well">
+			<div class="container">
+				<a class="btn btn-mini" href="http://github.com/danielsaidi/Cloney" rel="external"><i class="icon-github icon-large"></i> Watch</a>
+				<a class="btn btn-mini" href="http://github.com/danielsaidi/Cloney" rel="external"><i class="icon-github icon-large"></i> Fork</a>
+				<a class="btn btn-mini" href="http://twitter.com/danielsaidi/" target="_blank"><i class="icon-twitter icon-large"></i> Follow @danielsaidi</a>
+			</div>
+		</div>
+
+
+		<div class="container">
+
+			<section id="testimonies">
+				<h3><br/></h3>
+
+				<div class="row">
+					<span class="span3">
+						<p>Cloney - <em>good stuff!</em></p>
+						<p><a href="http://cloudnine.se" rel="external">Carl Schéle</a></p>
+					</span>
+					<span class="span3">
+						<p>Cloney - <em>a real time saver!</em></p>
+						<p><a href="http://polylignes.fr" rel="external">JF Boyer</a></p>
+					</span>
+					<span class="span3">
+						<p>I love Cloney!!!</p>
+						<p><a href="https://github.com/danielsaidi/Cloney/issues/3" rel="external">Peter Ennis</a></p>
+					</span>
+					<span class="span3">
+						<p>Cloney - <em>damn useful!</em></p>
+						<p><a href="http://twitter.com/jongyllen" rel="external">Jon Gyllenswärd</a></p>
+					</span>
+				</div>
+			</section>
+
+
+			<section id="features">
+				<h2><i class="icon-gift"></i>Features</h2>
+				<p>
+					Cloney can be used to <b>clone .NET solutions</b>. It <b>copies the entire solution</b> 
+						and <b>adjusts folder names, file names and file content</b> whenever needed. It will also 
+						<b>ignore some files and folders</b> (git, tfs etc.) that do not belong to the new solution.
+				</p>
+			</section>
+
+			<section id="get-started">
+				<h2><i class="icon-play"></i>Get started</h2>
+				<p>
+					<div class="row">
+						<span class="span2">
+							To get started, either
+						</span>
+						<span class="span10">
+							<ul>
+								<li>grab the <a href="http://github.com/danielsaidi/Cloney" rel="external">source code</a> from GitHub</li>
+								<li>...or download a certain version from the <a href="http://github.com/danielsaidi/Cloney/tags" rel="external">download page</a></li>
+							</ul>
+						</span>
+					</div>
+				</p>
+			</section>
+
+			<section id="contribute">
+				<h2><i class="icon-user"></i>Contribute</h2>
+				<p>
+					Contributions to Cloney are more than welcome. Just send me a pull request, attach the code in an e-mail or whatever. I'd love to have a look at it.
+				</p>
+			</section>
+
+			<section id="license">
+				<h2><i class="icon-check"></i>License</h2>
+				<p>
+					Cloney is released under the <a href="http://www.opensource.org/licenses/mit-license.php" rel="external" title="Read more about the MIT license">MIT license</a>, which means that you can do much about anything you want with it. If you like it, please spread the word.
+				</p>
+			</section>
+
+		</div> <!-- /container -->
+
+		<footer>
+			<div class="container" id="contact">
+				<h3>Contact</h3>
+				<p><i class="icon-home"></i> Site: <a href="http://saidi.se">saidi.se</a></p>
+				<p><i class="icon-envelope-alt"></i> Email: <a href="mailto:daniel.saidi@gmail.com">daniel.saidi@gmail.com</a></p>
+				<p><i class="icon-twitter"></i> Twitter: <a href="http://twitter.com/danielsaidi/">@danielsaidi</a></p>
+				<p><i class="icon-pencil"></i> Blog: <a href="http://danielsaidi.wordpress.com">danielsaidi.wordpress.com</a></p>
+				<p><i class="icon-wrench"></i> Work: System Developer @ <a href="http://cloudnine.se">Cloud Nine</a></p>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="static/js/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.json-2.4.min.js"></script>
+		<script type="text/javascript" src="static/js/site.js"></script>
 
 	</body>
 </html>

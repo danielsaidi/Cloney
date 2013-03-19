@@ -1,0 +1,123 @@
+body { background: black; color: white; }
+
+h1, h2, h3, h1 + p { font-family: 'Molengo', Georgia, Times, serif; }
+
+h2 { font-size: 2.0em; border-bottom: 1px solid #222; margin-bottom: 1em; }
+h2 i { margin-right: 1em; }
+h3 { font-size: 1.5em; font-weight: normal; }
+h3 i { margin-right: 0.8em; }
+
+section { padding-top: 20px; }
+section + section { padding-top: 50px; }
+
+
+footer {
+   background: #191919;
+   color: white;
+   margin-top: 5em;
+   padding: 2em 0 5em 0;
+   text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 1px;
+}
+
+footer i { margin-right: 1em; }
+
+
+
+.jumbotron {
+   background: url(../img/bg-green.png) #4a699d;
+   color: white;
+   padding-top: 40px;
+   text-align: center;
+   text-shadow: rgba(0, 50, 96, 0.8) 2px 3px 2px;
+}
+
+.jumbotron a {
+   text-decoration: none;
+}
+
+.jumbotron .container {
+   padding: 80px 0 40px 0;
+   background: url(../img/content_glow.png) top center no-repeat; 
+}
+
+.jumbotron h1 {
+   font-size: 6em;
+   font-weight: normal;
+   margin-bottom: 0.2em;
+}
+
+.jumbotron h1 + p {
+   font-size: 2em;
+   margin-bottom: 2em;
+}
+
+.jumbotron p {
+   font-size: 1em;
+}
+
+.jumbotron .buttons {
+   margin: 4em 0 3em 0;
+}
+
+.jumbotron .buttons .btn {
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+   color: white;
+   font-size: 1.4em;
+   font-weight: lighter;
+   height: 70px;
+   width: 28%;
+}
+
+.jumbotron .buttons .btn i {
+   font-size: 1.4em;
+   margin-right: 1em;
+}
+
+.jumbotron .buttons > a + a {
+   margin-left: 1.2em;
+}
+
+.jumbotron .btn.download {
+   text-shadow: #F89406 -0.15em -0.15em 0.1em;
+   background: -moz-linear-gradient( center top, #FBB450 50%, #F89406 50% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBB450', endColorstr='#F89406'); background: -webkit-gradient( linear, left top, left bottom, color-stop(0.5, #FBB450), color-stop(0.5, #F89406) );
+}
+
+.jumbotron .btn.github {
+   text-shadow: #005155 -0.15em -0.15em 0.1em;
+   background: -moz-linear-gradient( center top, #006666 50%, #005155 50% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006666', endColorstr='#005155'); background: -webkit-gradient( linear, left top, left bottom, color-stop(0.5, #006666), color-stop(0.5, #005155) );
+}
+
+
+/* Social well */
+
+.social.well {
+   text-align: center;
+}
+
+.social.well .btn-mini + .btn-mini {
+   margin-left: 2em;
+}
+
+.social.well .icon-large {
+   margin-right: 0.5em;
+}
+
+.social.well .icon-large {
+   font-size: 1.2em;
+}
+
+
+/* Testimonies */
+
+#testimonies {
+}
+
+#testimonies span {
+   text-align: center;
+}
+
+#testimonies span p + p {
+   font-style: italic;
+}
+
+
