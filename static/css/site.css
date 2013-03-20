@@ -28,7 +28,7 @@ footer i { margin-right: 1em; }
    color: white;
    padding-top: 40px;
    text-align: center;
-   text-shadow: rgba(0, 50, 96, 0.8) 1px 2px 0px;
+   text-shadow: rgba(0, 50, 96, 0.8) 2px 2px 1px;
 }
 
 .jumbotron a {
