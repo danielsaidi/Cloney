@@ -83,9 +83,17 @@ footer i { margin-right: 1em; }
    background: #f89406;
 }
 
+.btn-warning:hover  {
+   background: #ff9f1c;
+}
+
 .btn-inverse {
    text-shadow: -2px 0 0.05em #055, 0 2px 0.05em #055, 2px 0 0.05em #055, 0px -2px 0.05em #055;
    background: #066;
+}
+
+.btn-inverse:hover  {
+   background: #167272;
 }
 
 
