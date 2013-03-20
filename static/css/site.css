@@ -70,21 +70,20 @@ footer i { margin-right: 1em; }
 
 .jumbotron .buttons .btn i {
    font-size: 1.4em;
-   margin-right: 1em;
+   margin-right: 0.8em;
+   letter-spacing: 0.07em;
 }
 
 .jumbotron .buttons > a + a {
    margin-left: 1.2em;
 }
 
-.jumbotron .btn.download {
-   text-shadow: #F89406 -0.15em -0.15em 0.1em;
-   background: -moz-linear-gradient( center top, #FBB450 50%, #F89406 50% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBB450', endColorstr='#F89406'); background: -webkit-gradient( linear, left top, left bottom, color-stop(0.5, #FBB450), color-stop(0.5, #F89406) );
+.btn-warning  {
+   text-shadow: -2px 0 0.08em #F89406, 0 2px 0.08em #F89406, 2px 0 0.08em #F89406, 0px -2px 0.08em #F89406;
 }
 
-.jumbotron .btn.github {
-   text-shadow: #005155 -0.15em -0.15em 0.1em;
-   background: -moz-linear-gradient( center top, #006666 50%, #005155 50% ); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006666', endColorstr='#005155'); background: -webkit-gradient( linear, left top, left bottom, color-stop(0.5, #006666), color-stop(0.5, #005155) );
+.btn-inverse {
+   text-shadow: -2px 0 0.05em black, 0 2px 0.05em black, 2px 0 0.05em black, 0px -2px 0.05em black;
 }
 
 
