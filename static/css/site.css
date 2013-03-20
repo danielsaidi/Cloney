@@ -28,7 +28,7 @@ footer i { margin-right: 1em; }
    color: white;
    padding-top: 40px;
    text-align: center;
-   text-shadow: rgba(0, 50, 96, 0.8) 2px 3px 2px;
+   text-shadow: rgba(0, 50, 96, 0.8) 1px 2px 0px;
 }
 
 .jumbotron a {
@@ -80,10 +80,12 @@ footer i { margin-right: 1em; }
 
 .btn-warning  {
    text-shadow: -2px 0 0.08em #F89406, 0 2px 0.08em #F89406, 2px 0 0.08em #F89406, 0px -2px 0.08em #F89406;
+   background: #f89406;
 }
 
 .btn-inverse {
-   text-shadow: -2px 0 0.05em black, 0 2px 0.05em black, 2px 0 0.05em black, 0px -2px 0.05em black;
+   text-shadow: -2px 0 0.05em #055, 0 2px 0.05em #055, 2px 0 0.05em #055, 0px -2px 0.05em #055;
+   background: #066;
 }
 
 
