@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Cloners\FakeSolutionCloner.cs" />
     <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerFacadeBehavior.cs" />
     <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
@@ -86,10 +87,6 @@
     <Compile Include="Wizard\ApplicationArgumentParserBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cloney.ContextMenu\Cloney.ContextMenu.csproj">
-      <Project>{02A887EA-8DE5-4169-89AD-79955FC70442}</Project>
-      <Name>Cloney.ContextMenu</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cloney.Core\Cloney.Core.csproj">
       <Project>{1B8ACF01-A1F4-454B-8461-A09AE1A7F799}</Project>
       <Name>Cloney.Core</Name>

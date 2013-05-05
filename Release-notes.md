@@ -1,3 +1,14 @@
+Cloney 0.99.0		2013-05-02
+==============================
+
+In this redesign, I have all the components that
+
+Updated to NSubstitute 1.6.0.0
+Updated to NUnit 2.6.2
+
+
+
+
 Cloney 0.9.3.0		2012-02-29
 ==============================
 

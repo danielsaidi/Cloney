@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cloney.ContextMenu;
 using Cloney.Core.Console;
+using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
 using Cloney.Core.Reflection;
 
@@ -22,7 +22,7 @@ namespace Cloney.Core.SubRoutines
 
 
         public InstallContextMenuRoutine()
-            :this(Default.Console, Default.Translator, new ContextMenuInstaller())
+            :this(Default.Console, Default.Translator, new ContextMenuInstaller(Default.File, Default.ContextMenuRegistryWriter))
         {
         }
 

@@ -66,11 +66,17 @@
     <Compile Include="Console\ConsoleFacade.cs" />
     <Compile Include="Console\IArgumentParser.cs" />
     <Compile Include="Console\IConsole.cs" />
+    <Compile Include="ContextMenu\ContextMenuRegistryWriter.cs" />
+    <Compile Include="ContextMenu\IContextMenuInstaller.cs" />
+    <Compile Include="ContextMenu\ContextMenuInstaller.cs" />
+    <Compile Include="ContextMenu\RegistryException.cs" />
     <Compile Include="Default.cs" />
     <Compile Include="Diagnostics\IProcess.cs" />
     <Compile Include="Diagnostics\ProcessFacade.cs" />
-    <Compile Include="IO\DirectoryFacade.cs" />
+    <Compile Include="IO\DirectoryWrapper.cs" />
+    <Compile Include="IO\FileWrapper.cs" />
     <Compile Include="IO\IDirectory.cs" />
+    <Compile Include="IO\IFile.cs" />
     <Compile Include="IO\IPathPatternMatcher.cs" />
     <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="IProgram.cs" />
@@ -98,6 +104,7 @@
     <Compile Include="Cloners\ISolutionCloner.cs" />
     <Compile Include="Cloners\SolutionCloner.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
+    <Compile Include="ContextMenu\IContextMenuRegistryWriter.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
     <Compile Include="SubRoutines\ModalGuiRoutine.cs" />
     <Compile Include="SubRoutines\UninstallContextMenuRoutine.cs" />
@@ -150,12 +157,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cloney.ContextMenu\Cloney.ContextMenu.csproj">
-      <Project>{02A887EA-8DE5-4169-89AD-79955FC70442}</Project>
-      <Name>Cloney.ContextMenu</Name>
-    </ProjectReference>
+    <Folder Include="Registry\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

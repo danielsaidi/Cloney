@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Cloney.ContextMenu;
 using Cloney.Core.Console;
+using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;

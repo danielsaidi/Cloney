@@ -1,6 +1,6 @@
 using System;
 
-namespace Cloney.ContextMenu
+namespace Cloney.Core.ContextMenu
 {
     public class RegistryException : Exception
     {

@@ -2,6 +2,7 @@
 using System.Linq;
 using Cloney.Core.Cloners;
 using Cloney.Core.Console;
+using Cloney.Core.ContextMenu;
 using Cloney.Core.Diagnostics;
 using Cloney.Core.IO;
 using Cloney.Core.Localization;
@@ -25,6 +26,11 @@ namespace Cloney.Core
             get { return new ConsoleFacade(); }
         }
 
+        public static IContextMenuRegistryWriter ContextMenuRegistryWriter
+        {
+            get { return new ContextMenuRegistryWriter(); }
+        }
+
         public static IArgumentParser<IDictionary<string, string>> DictionaryArgumentParser
         {
             get { return new DictionaryArgumentParser(); }
@@ -38,6 +44,11 @@ namespace Cloney.Core
         public static IEnumerable<string> ExcludeFolderPatterns
         {
             get { return Settings.ExcludeFolderPatterns.Cast<string>(); }
+        }
+
+        public static IFile File
+        {
+            get { return new FileWrapper(); }
         }
 
         public static IPathPatternMatcher PathPatternMatcher
@@ -74,7 +85,7 @@ namespace Cloney.Core
 
         public static INamespaceResolver SourceFolderNamespaceResolver
         {
-            get { return new SolutionFolderNamespaceResolver(new DirectoryFacade()); }
+            get { return new SolutionFolderNamespaceResolver(new DirectoryWrapper()); }
         }
 
         public static ISubRoutineLocator SubRoutineLocator

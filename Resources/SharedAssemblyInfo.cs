@@ -5,7 +5,7 @@ using System.Reflection;
 // associated with an assembly.
 [assembly: AssemblyCompany("Daniel Saidi")]
 [assembly: AssemblyProduct("Cloney")]
-[assembly: AssemblyCopyright("Copyright © Daniel Saidi 2011-2012")]
+[assembly: AssemblyCopyright("Copyright © Daniel Saidi 2011-2013")]
 [assembly: AssemblyTrademark("")]
 
 // Version information for an assembly consists of the following four values:
@@ -15,5 +15,5 @@ using System.Reflection;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.9.3.0")]
-[assembly: AssemblyFileVersion("0.9.3.0")]
+[assembly: AssemblyVersion("0.99.0.0")]
+[assembly: AssemblyFileVersion("0.99.0.0")]
