@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using Cloney.Core.Console;
 
 namespace Cloney.Core.Wizard
@@ -12,20 +10,20 @@ namespace Cloney.Core.Wizard
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://www.dotnextra.com
     /// </remarks>
-    public class ApplicationArgumentParser : IArgumentParser<ApplicationArguments>
+    public class ApplicationCommandLineArgumentParser : ICommandLineArgumentParser<ApplicationArguments>
     {
-        private readonly IArgumentParser<IDictionary<string, string>> baseParser;
+        private readonly ICommandLineArgumentParser<IDictionary<string, string>> baseParser;
 
 
-        public ApplicationArgumentParser()
+        public ApplicationCommandLineArgumentParser()
         {
-            baseParser = Default.DictionaryArgumentParser;
+            baseParser = Default.DictionaryCommandLineArgumentParser;
         }
 
 
-        public ApplicationArguments ParseArguments(IEnumerable<string> args)
+        public ApplicationArguments ParseCommandLineArguments(IEnumerable<string> args)
         {
-            var arguments = baseParser.ParseArguments(args);
+            var arguments = baseParser.ParseCommandLineArguments(args);
 
             var appArgs = new ApplicationArguments();
             ParseSourcePath(appArgs, arguments);

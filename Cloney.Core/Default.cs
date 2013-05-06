@@ -31,9 +31,9 @@ namespace Cloney.Core
             get { return new ContextMenuRegistryWriter(); }
         }
 
-        public static IArgumentParser<IDictionary<string, string>> DictionaryArgumentParser
+        public static ICommandLineArgumentParser<IDictionary<string, string>> DictionaryCommandLineArgumentParser
         {
-            get { return new DictionaryArgumentParser(); }
+            get { return new DictionaryCommandLineArgumentParser(); }
         }
 
         public static IEnumerable<string> ExcludeFilePatterns
@@ -103,9 +103,9 @@ namespace Cloney.Core
             get { return new ResourceManagerFacade(Language.ResourceManager); }
         }
 
-        public static IArgumentParser<Wizard.ApplicationArguments> WizardApplicationArgumentsParser
+        public static ICommandLineArgumentParser<Wizard.ApplicationArguments> WizardApplicationCommandLineArgumentsParser
         {
-            get { return new Wizard.ApplicationArgumentParser(); }
+            get { return new Wizard.ApplicationCommandLineArgumentParser(); }
         }
     }
 }

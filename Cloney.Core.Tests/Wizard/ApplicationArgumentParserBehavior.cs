@@ -7,20 +7,20 @@ namespace Cloney.Core.Tests.Wizard
     [TestFixture]
     public class ApplicationArgumentParserBehavior
     {
-        private IArgumentParser<ApplicationArguments> argumentParser;
+        private ICommandLineArgumentParser<ApplicationArguments> argumentParser;
 
 
         [SetUp]
         public void SetUp()
         {
-            argumentParser = new ApplicationArgumentParser();
+            argumentParser = new ApplicationCommandLineArgumentParser();
         }
 
 
         [Test]
         public void Constructor_ShouldNotParseIrrelevantArgs()
         {
-            var args = argumentParser.ParseArguments(new[] { "--foo", "--bar" });
+            var args = argumentParser.ParseCommandLineArguments(new[] { "--foo", "--bar" });
 
             Assert.That(args.ModalMode, Is.False);
             Assert.That(args.SourcePath, Is.Null);
@@ -29,7 +29,7 @@ namespace Cloney.Core.Tests.Wizard
         [Test]
         public void Constructor_ShouldParseModalMode()
         {
-            var args = argumentParser.ParseArguments(new[] { "--modal", "--bar" });
+            var args = argumentParser.ParseCommandLineArguments(new[] { "--modal", "--bar" });
 
             Assert.That(args.ModalMode, Is.True);
             Assert.That(args.SourcePath, Is.Null);
@@ -38,7 +38,7 @@ namespace Cloney.Core.Tests.Wizard
         [Test]
         public void Constructor_ShouldParseSourcePath()
         {
-            var args = argumentParser.ParseArguments(new[] { "--source=foo", "--bar" });
+            var args = argumentParser.ParseCommandLineArguments(new[] { "--source=foo", "--bar" });
 
             Assert.That(args.ModalMode, Is.False);
             Assert.That(args.SourcePath, Is.EqualTo("foo"));

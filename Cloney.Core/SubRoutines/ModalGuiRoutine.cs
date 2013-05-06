@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
     public class ModalGuiRoutine : SubRoutineBase, ISubRoutine
     {
         private readonly IProcess process;
-        private readonly IArgumentParser<IDictionary<string, string>> argumentParser;
+        private readonly ICommandLineArgumentParser<IDictionary<string, string>> argumentParser;
 
 
         public ModalGuiRoutine()
@@ -29,13 +29,13 @@ namespace Cloney.Core.SubRoutines
         {
             this.process = process;
 
-            argumentParser = Default.DictionaryArgumentParser;
+            argumentParser = Default.DictionaryCommandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseArguments(args));
+            return Run(argumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)

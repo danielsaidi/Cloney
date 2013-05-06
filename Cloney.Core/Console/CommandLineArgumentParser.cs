@@ -16,29 +16,27 @@ namespace Cloney.Core.Console
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
-    /// Link:       http://www.dotnextra.com
+    /// Link:       http://danielsaidi.github.com/nextra
     /// 
-    /// The original implementation, made by Richard Lopes,
-    /// has been refactored to implement an interface that
-    /// replaced with other implementations.
-    /// 
-    /// The original implementation can be found at:
+    /// The original implementation by Richard Lopes has
+    /// been changed so that it implements the interface
+    /// ICommandLineArgumentParser. The original classes
+    /// can be found at:
     /// http://www.codeproject.com/KB/recipes/command_line.aspx 
     /// </remarks>
-    public class DictionaryArgumentParser : IArgumentParser<IDictionary<string, string>>
+    public class CommandLineArgumentParser : ICommandLineArgumentParser<IDictionary<string, string>>
     {
         private readonly Regex splitter;
         private readonly Regex remover;
 
 
-        public DictionaryArgumentParser()
+        public CommandLineArgumentParser()
         {
             splitter = new Regex(@"^-{1,2}|^/|=|:", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             remover = new Regex(@"^['""]?(.*?)['""]?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
         }
 
-        public IDictionary<string, string> ParseArguments(IEnumerable<string> args)
+        public IDictionary<string, string> ParseCommandLineArguments(IEnumerable<string> args)
         {
             string[] parts;
             string parameter = null;

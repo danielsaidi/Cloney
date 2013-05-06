@@ -4,14 +4,14 @@ namespace Cloney.Core.Console
 {
     ///<summary>
     /// This interface can be implemented by classes that
-    /// can parse command line args to a sting dictionary.
+    /// can parse command line args to a certain type.
     ///</summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
-    /// Link:       http://www.dotnextra.com
+    /// Link:       http://danielsaidi.github.com/nextra
     /// </remarks>
-    public interface IArgumentParser<out T>
+    public interface ICommandLineArgumentParser<out T>
     {
-        T ParseArguments(IEnumerable<string> args);
+        T ParseCommandLineArguments(IEnumerable<string> args);
     }
 }

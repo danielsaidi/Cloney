@@ -62,9 +62,9 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Cloners\KlerksSoftEncodingDetector.cs" />
-    <Compile Include="Console\DictionaryArgumentParser.cs" />
+    <Compile Include="Console\DictionaryCommandLineArgumentParser.cs" />
     <Compile Include="Console\ConsoleFacade.cs" />
-    <Compile Include="Console\IArgumentParser.cs" />
+    <Compile Include="Console\ICommandLineArgumentParser.cs" />
     <Compile Include="Console\IConsole.cs" />
     <Compile Include="ContextMenu\ContextMenuRegistryWriter.cs" />
     <Compile Include="ContextMenu\IContextMenuInstaller.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\SubRoutineBase.cs" />
     <Compile Include="Wizard\ApplicationArguments.cs" />
-    <Compile Include="Wizard\ApplicationArgumentParser.cs" />
+    <Compile Include="Wizard\ApplicationCommandLineArgumentParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

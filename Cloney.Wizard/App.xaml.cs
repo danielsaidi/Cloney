@@ -23,7 +23,7 @@ namespace Cloney.Wizard
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Arguments = Default.WizardApplicationArgumentsParser.ParseArguments(e.Args);
+            Arguments = Default.WizardApplicationCommandLineArgumentsParser.ParseCommandLineArguments(e.Args);
             AdjustArguments(Arguments);
 
             base.OnStartup(e);
