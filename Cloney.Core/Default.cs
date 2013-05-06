@@ -33,7 +33,7 @@ namespace Cloney.Core
 
         public static ICommandLineArgumentParser<IDictionary<string, string>> DictionaryCommandLineArgumentParser
         {
-            get { return new DictionaryCommandLineArgumentParser(); }
+            get { return new CommandLineArgumentParser(); }
         }
 
         public static IEnumerable<string> ExcludeFilePatterns
@@ -48,7 +48,7 @@ namespace Cloney.Core
 
         public static IFile File
         {
-            get { return new FileWrapper(); }
+            get { return new FileFacade(); }
         }
 
         public static IPathPatternMatcher PathPatternMatcher
@@ -85,7 +85,7 @@ namespace Cloney.Core
 
         public static INamespaceResolver SourceFolderNamespaceResolver
         {
-            get { return new SolutionFolderNamespaceResolver(new DirectoryWrapper()); }
+            get { return new SolutionFolderNamespaceResolver(new DirectoryFacade()); }
         }
 
         public static ISubRoutineLocator SubRoutineLocator
@@ -100,7 +100,7 @@ namespace Cloney.Core
 
         public static ITranslator Translator
         {
-            get { return new ResourceManagerFacade(Language.ResourceManager); }
+            get { return new ResourceManagerTranslator(Language.ResourceManager); }
         }
 
         public static ICommandLineArgumentParser<Wizard.ApplicationArguments> WizardApplicationCommandLineArgumentsParser

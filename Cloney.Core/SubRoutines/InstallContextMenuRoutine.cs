@@ -62,7 +62,7 @@ namespace Cloney.Core.SubRoutines
         private void RunInstall()
         {
             console.WriteLine(translator.Translate("InstallMessage"));
-            var binDirectory = AssemblyExtensions.GetFilePathToAssemblyCodeBase();
+            var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
             installer.RegisterContextMenu(binDirectory, translator.Translate("ContextMenuText"));
             console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
         }

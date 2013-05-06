@@ -62,7 +62,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Cloners\KlerksSoftEncodingDetector.cs" />
-    <Compile Include="Console\DictionaryCommandLineArgumentParser.cs" />
+    <Compile Include="Console\CommandLineArgumentParser.cs" />
     <Compile Include="Console\ConsoleFacade.cs" />
     <Compile Include="Console\ICommandLineArgumentParser.cs" />
     <Compile Include="Console\IConsole.cs" />
@@ -73,8 +73,8 @@
     <Compile Include="Default.cs" />
     <Compile Include="Diagnostics\IProcess.cs" />
     <Compile Include="Diagnostics\ProcessFacade.cs" />
-    <Compile Include="IO\DirectoryWrapper.cs" />
-    <Compile Include="IO\FileWrapper.cs" />
+    <Compile Include="IO\DirectoryFacade.cs" />
+    <Compile Include="IO\FileFacade.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
     <Compile Include="IO\IPathPatternMatcher.cs" />
@@ -86,9 +86,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
-    <Compile Include="Localization\HierarchicalResourceManagerFacade.cs" />
+    <Compile Include="Localization\HierarchicalResourceManagerTranslator.cs" />
     <Compile Include="Localization\ITranslator.cs" />
-    <Compile Include="Localization\ResourceManagerFacade.cs" />
+    <Compile Include="Localization\ResourceManagerTranslator.cs" />
     <Compile Include="LocalSubRoutineLocator.cs" />
     <Compile Include="Namespace\SolutionFolderNamespaceResolver.cs" />
     <Compile Include="Namespace\FolderNamespaceResolver.cs" />
@@ -103,8 +103,10 @@
     <Compile Include="Cloners\SolutionClonerBase.cs" />
     <Compile Include="Cloners\ISolutionCloner.cs" />
     <Compile Include="Cloners\SolutionCloner.cs" />
-    <Compile Include="Reflection\AssemblyExtensions.cs" />
+    <Compile Include="Reflection\Assembly_Extensions.cs" />
     <Compile Include="ContextMenu\IContextMenuRegistryWriter.cs" />
+    <Compile Include="Reflection\Assembly_TypeExtensions.cs" />
+    <Compile Include="Reflection\Assembly_FileExtensions.cs" />
     <Compile Include="SubRoutines\CloneRoutine.cs" />
     <Compile Include="SubRoutines\ModalGuiRoutine.cs" />
     <Compile Include="SubRoutines\UninstallContextMenuRoutine.cs" />

@@ -13,7 +13,7 @@ namespace Cloney.Core.IO
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/nextra
     /// </remarks>
-    public class DirectoryWrapper : IDirectory
+    public class DirectoryFacade : IDirectory
     {
         public DirectoryInfo CreateDirectory(string path)
         {

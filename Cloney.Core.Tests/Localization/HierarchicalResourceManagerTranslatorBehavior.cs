@@ -5,15 +5,15 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.Localization
 {
     [TestFixture]
-    public class HierarchicalResourceManagerFacadeBehavior
+    public class HierarchicalResourceManagerTranslatorBehavior
     {
-        private HierarchicalResourceManagerFacade obj;
+        private HierarchicalResourceManagerTranslator obj;
 
 
         [SetUp]
         public void SetUp()
         {
-            obj = new HierarchicalResourceManagerFacade(null);
+            obj = new HierarchicalResourceManagerTranslator(null);
         }
 
 
@@ -40,7 +40,7 @@ namespace Cloney.Core.Tests.Localization
         [Test]
         public void GetKeys_ShouldIgnoreDifferentSeparator()
         {
-            obj = new HierarchicalResourceManagerFacade(null, "-");
+            obj = new HierarchicalResourceManagerTranslator(null, "-");
 
             var result = obj.GetKeys("Domain_User_UserName").ToList();
 

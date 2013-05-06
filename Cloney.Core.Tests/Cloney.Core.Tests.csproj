@@ -69,7 +69,7 @@
     <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
-    <Compile Include="Localization\HierarchicalResourceManagerFacadeBehavior.cs" />
+    <Compile Include="Localization\HierarchicalResourceManagerTranslatorBehavior.cs" />
     <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
     <Compile Include="Namespace\FolderNamespaceResolverBehavior.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolverBehavior.cs" />
