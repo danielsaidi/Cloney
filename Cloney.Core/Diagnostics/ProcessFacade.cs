@@ -4,11 +4,12 @@ using System.Security;
 namespace Cloney.Core.Diagnostics
 {
     /// <summary>
-    /// This class can be used as a facade for the static Process class.
+    /// This class can be used as a facade for the static
+    /// Process class.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
-    /// Link:       http://www.dotnextra.com
+    /// Link:       http://danielsaidi.github.com/nextra
     /// </remarks>
     public class ProcessFacade : IProcess
     {
