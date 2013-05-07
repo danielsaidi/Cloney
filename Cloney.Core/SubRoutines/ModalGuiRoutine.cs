@@ -29,7 +29,7 @@ namespace Cloney.Core.SubRoutines
         {
             this.process = process;
 
-            argumentParser = Default.DictionaryCommandLineArgumentParser;
+            argumentParser = Default.CommandLineArgumentParser;
         }
 
 

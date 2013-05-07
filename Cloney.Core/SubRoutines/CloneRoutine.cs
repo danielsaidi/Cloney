@@ -34,7 +34,7 @@ namespace Cloney.Core.SubRoutines
             this.translator = translator;
             this.solutionCloner = solutionCloner;
 
-            argumentParser = Default.DictionaryCommandLineArgumentParser;
+            argumentParser = Default.CommandLineArgumentParser;
 
             solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
         }

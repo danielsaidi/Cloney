@@ -31,7 +31,7 @@ namespace Cloney.Core.SubRoutines
             this.translator = translator;
             this.installer = installer;
 
-            commandLineArgumentParser = Default.DictionaryCommandLineArgumentParser;
+            commandLineArgumentParser = Default.CommandLineArgumentParser;
         }
 
 

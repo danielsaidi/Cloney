@@ -30,13 +30,18 @@ namespace Cloney.Core.Tests.SubRoutines
 
 
         [Test]
-        public void Run_ShouldAbortForArguments()
+        public void Run_ShouldReturnFalseForArguments()
         {
-            var args = new List<string>{"foo"};
-            
-            var result = routine.Run(args);
+            var result = routine.Run(new[]{"foo"});
 
             Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void Run_ShouldAbortForArguments()
+        {
+            routine.Run(new[] { "foo" });
+
             process.DidNotReceive().Start(Arg.Any<string>());
         }
 

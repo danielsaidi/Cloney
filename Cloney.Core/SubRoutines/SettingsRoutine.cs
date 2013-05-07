@@ -30,7 +30,7 @@ namespace Cloney.Core.SubRoutines
             this.console = console;
             this.translator = translator;
 
-            argumentParser = Default.DictionaryCommandLineArgumentParser;
+            argumentParser = Default.CommandLineArgumentParser;
         }
 
 

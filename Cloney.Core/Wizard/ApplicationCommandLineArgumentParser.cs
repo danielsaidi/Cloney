@@ -17,7 +17,7 @@ namespace Cloney.Core.Wizard
 
         public ApplicationCommandLineArgumentParser()
         {
-            baseParser = Default.DictionaryCommandLineArgumentParser;
+            baseParser = Default.CommandLineArgumentParser;
         }
 
 

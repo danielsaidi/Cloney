@@ -30,7 +30,7 @@ namespace Cloney.Core
             get { return new ContextMenuRegistryWriter(); }
         }
 
-        public static ICommandLineArgumentParser<IDictionary<string, string>> DictionaryCommandLineArgumentParser
+        public static ICommandLineArgumentParser<IDictionary<string, string>> CommandLineArgumentParser
         {
             get { return new CommandLineArgumentParser(); }
         }

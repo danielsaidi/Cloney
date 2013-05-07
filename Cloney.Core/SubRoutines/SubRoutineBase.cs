@@ -4,7 +4,8 @@ namespace Cloney.Core.SubRoutines
 {
     /// <summary>
     /// This abstract base class can provide sub routines
-    /// with basic functionality.
+    /// with basic functionality. Every sub routine needs
+    /// a default constructor.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
