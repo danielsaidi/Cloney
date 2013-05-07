@@ -10,8 +10,8 @@ namespace Cloney.Core.Console
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/nextra
     /// </remarks>
-    public interface ICommandLineArgumentParser<out T>
+    public interface ICommandLineArgumentParser
     {
-        T ParseCommandLineArguments(IEnumerable<string> args);
+        IDictionary<string, string> ParseCommandLineArguments(IEnumerable<string> args);
     }
 }

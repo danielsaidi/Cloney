@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
@@ -16,21 +17,20 @@ namespace Cloney.Core.SubRoutines
         private readonly IConsole console;
         private readonly ITranslator translator;
         private readonly IContextMenuInstaller installer;
-        private readonly ICommandLineArgumentParser<IDictionary<string, string>> commandLineArgumentParser;
+        private readonly ICommandLineArgumentParser commandLineArgumentParser;
 
 
         public InstallContextMenuRoutine()
-            :this(Default.Console, Default.Translator, Default.ContextMenuInstaller)
+            :this(Default.Console, Default.Translator, Default.ContextMenuInstaller, Default.CommandLineArgumentParser)
         {
         }
 
-        public InstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer)
+        public InstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer, ICommandLineArgumentParser commandLineArgumentParser)
         {
             this.console = console;
             this.translator = translator;
             this.installer = installer;
-
-            commandLineArgumentParser = Default.CommandLineArgumentParser;
+            this.commandLineArgumentParser = commandLineArgumentParser;
         }
 
 
@@ -46,7 +46,11 @@ namespace Cloney.Core.SubRoutines
 
             try
             {
-                RunInstall();
+                console.WriteLine(translator.Translate("InstallMessage"));
+                var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
+                var applicationPath = Path.Combine(binDirectory, "Cloney.Wizard.exe");
+                installer.RegisterContextMenu(applicationPath, translator.Translate("ContextMenuText"));
+                console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
             }
             catch (Exception e)
             {
@@ -55,14 +59,6 @@ namespace Cloney.Core.SubRoutines
             }
 
             return true;
-        }
-
-        private void RunInstall()
-        {
-            console.WriteLine(translator.Translate("InstallMessage"));
-            var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
-            installer.RegisterContextMenu(binDirectory, translator.Translate("ContextMenuText"));
-            console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
         }
     }
 }

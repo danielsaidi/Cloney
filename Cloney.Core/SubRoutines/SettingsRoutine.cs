@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser<IDictionary<string, string>> argumentParser;
+        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public SettingsRoutine()

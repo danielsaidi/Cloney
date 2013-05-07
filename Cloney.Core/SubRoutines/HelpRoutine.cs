@@ -16,7 +16,7 @@ namespace Cloney.Core.SubRoutines
     {
         private readonly IConsole console;
         private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser<IDictionary<string, string>> argumentParser;
+        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public HelpRoutine()
@@ -24,7 +24,7 @@ namespace Cloney.Core.SubRoutines
         {
         }
 
-        public HelpRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser<IDictionary<string, string>> argumentParser)
+        public HelpRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser)
         {
             this.console = console;
             this.translator = translator;

@@ -24,7 +24,7 @@ namespace Cloney.Core.Console
     /// can be found at:
     /// http://www.codeproject.com/KB/recipes/command_line.aspx 
     /// </remarks>
-    public class CommandLineArgumentParser : ICommandLineArgumentParser<IDictionary<string, string>>
+    public class CommandLineArgumentParser : ICommandLineArgumentParser
     {
         private readonly Regex splitter;
         private readonly Regex remover;

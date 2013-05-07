@@ -35,7 +35,7 @@ namespace Cloney.Core
             get { return new ContextMenuRegistryWriter(); }
         }
 
-        public static ICommandLineArgumentParser<IDictionary<string, string>> CommandLineArgumentParser
+        public static ICommandLineArgumentParser CommandLineArgumentParser
         {
             get { return new CommandLineArgumentParser(); }
         }
@@ -110,11 +110,6 @@ namespace Cloney.Core
         public static ITranslator Translator
         {
             get { return new ResourceManagerTranslator(Language.ResourceManager); }
-        }
-
-        public static ICommandLineArgumentParser<Wizard.ApplicationArguments> WizardApplicationCommandLineArgumentsParser
-        {
-            get { return new Wizard.ApplicationCommandLineArgumentParser(); }
         }
     }
 }

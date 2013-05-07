@@ -6,7 +6,7 @@ namespace Cloney.Core.Tests.Wizard
 {
     [TestFixture]
     public class ApplicationArgumentParserBehavior
-    {
+    {/*
         private ICommandLineArgumentParser<ApplicationArguments> argumentParser;
 
 
@@ -42,6 +42,6 @@ namespace Cloney.Core.Tests.Wizard
 
             Assert.That(args.ModalMode, Is.False);
             Assert.That(args.SourcePath, Is.EqualTo("foo"));
-        }
+        }*/
     }
 }

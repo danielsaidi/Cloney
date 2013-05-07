@@ -80,12 +80,12 @@ namespace Cloney.Wizard
 
         private void InitializeModalBehavior()
         {
-            if (!App.Arguments.ModalMode)
+            //if (!App.Arguments.ModalMode)
                 return;
 
             Hide();
 
-            if (string.IsNullOrEmpty(App.Arguments.SourcePath))
+            //if (string.IsNullOrEmpty(App.Arguments.SourcePath))
                 if (sourceFolderSelector.ShowModal(Wizard.Resources.Language.SelectSourceFolder) != System.Windows.Forms.DialogResult.OK)
                     Shutdown();
 
@@ -103,7 +103,7 @@ namespace Cloney.Wizard
 
         private void InitializeFolderSelectors()
         {
-            var initialSourcePath = App.Arguments.SourcePath ?? LastSourcePath;
+            var initialSourcePath = /*App.Arguments.SourcePath ??*/ LastSourcePath;
 
             sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, initialSourcePath);
             targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
@@ -189,7 +189,7 @@ namespace Cloney.Wizard
         {
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
 
-            if (App.Arguments.ModalMode)
+            //if (App.Arguments.ModalMode)
                 Shutdown();
         }
     }

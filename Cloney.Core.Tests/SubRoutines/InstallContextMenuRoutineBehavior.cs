@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
@@ -11,26 +12,25 @@ namespace Cloney.Core.Tests.SubRoutines
     [TestFixture]
     public class InstallContextMenuRoutineBehavior
     {
+        private IEnumerable<string> args;
         private ISubRoutine routine;
         private IConsole console;
         private ITranslator translator;
         private IContextMenuInstaller installer;
+        private ICommandLineArgumentParser commandLineArgumentParser;
 
 
         [SetUp]
         public void SetUp()
         {
+            args = new[] { "foo" };
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
             installer = Substitute.For<IContextMenuInstaller>();
-            translator.Translate("InstallMessage").Returns("Installmessage");
-            translator.Translate("UninstallMessage").Returns("Uninstallmessage");
-            translator.Translate("SuccessfulInstallMessage").Returns("SuccessfulInstallmessage");
-            translator.Translate("SuccessfulUninstallMessage").Returns("SuccessfulUninstallmessage");
-            translator.Translate("InstallerErrorMessage").Returns("InstallerErrorMessage");
-            translator.Translate("ContextMenuText").Returns("ContextMenuText");
+            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
+            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
 
-            routine = new InstallContextMenuRoutine(console, translator, installer);
+            routine = new InstallContextMenuRoutine(console, translator, installer, commandLineArgumentParser);
         }
 
 
@@ -68,7 +68,7 @@ namespace Cloney.Core.Tests.SubRoutines
 
             Assert.That(result, Is.True);
             translator.Received().Translate("InstallMessage");
-            console.Received().WriteLine("Installmessage");
+            console.Received().WriteLine("InstallMessage");
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace Cloney.Core.Tests.SubRoutines
             Assert.That(result, Is.True);
             installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
             translator.Received().Translate("SuccessfulInstallMessage");
-            console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulInstallmessage")));
+            console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulInstallMessage")));
         }
 
         [Test]

@@ -23,8 +23,8 @@ namespace Cloney.Wizard
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Arguments = Default.WizardApplicationCommandLineArgumentsParser.ParseCommandLineArguments(e.Args);
-            AdjustArguments(Arguments);
+            //Arguments = Default.WizardApplicationCommandLineArgumentsParser.ParseCommandLineArguments(e.Args);
+            //AdjustArguments(Arguments);
 
             base.OnStartup(e);
         }
@@ -35,7 +35,7 @@ namespace Cloney.Wizard
 
         private static void AdjustArguments(ApplicationArguments arguments)
         {
-            if (arguments.SourcePath == null)
+            /*if (arguments.SourcePath == null)
                 return;
 
             if (Directory.Exists(arguments.SourcePath))
@@ -43,7 +43,7 @@ namespace Cloney.Wizard
 
             var fileInfo = new FileInfo(arguments.SourcePath);
             if (fileInfo.Exists)
-                arguments.SourcePath = fileInfo.Directory.FullName;
+                arguments.SourcePath = fileInfo.Directory.FullName;*/
         }
 
 

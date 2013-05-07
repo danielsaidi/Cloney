@@ -14,7 +14,7 @@ namespace Cloney.Core.Tests.SubRoutines
         private ISubRoutine routine;
         private IConsole console;
         private ITranslator translator;
-        private ICommandLineArgumentParser<IDictionary<string, string>> commandLineArgumentParser;
+        private ICommandLineArgumentParser commandLineArgumentParser;
 
 
         [SetUp]
@@ -24,7 +24,7 @@ namespace Cloney.Core.Tests.SubRoutines
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
             translator.Translate("GeneralHelpMessage").Returns("foo");
-            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser<IDictionary<string, string>>>();
+            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
 
             routine = new HelpRoutine(console, translator, commandLineArgumentParser);
         }

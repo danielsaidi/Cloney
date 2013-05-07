@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
     public class ModalGuiRoutine : SubRoutineBase, ISubRoutine
     {
         private readonly IProcess process;
-        private readonly ICommandLineArgumentParser<IDictionary<string, string>> argumentParser;
+        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public ModalGuiRoutine()

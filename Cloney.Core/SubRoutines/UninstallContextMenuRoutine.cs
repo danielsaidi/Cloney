@@ -17,7 +17,7 @@ namespace Cloney.Core.SubRoutines
         private readonly IConsole console;
         private readonly ITranslator translator;
         private readonly IContextMenuInstaller installer;
-        private readonly ICommandLineArgumentParser<IDictionary<string, string>> commandLineArgumentParser;
+        private readonly ICommandLineArgumentParser commandLineArgumentParser;
 
 
         public UninstallContextMenuRoutine()

@@ -9,9 +9,9 @@
     /// Link:       http://www.dotnextra.com
     /// </remarks>
     public class ApplicationArguments
-    {
+    {/*
         public bool ModalMode { get; set; }
 
-        public string SourcePath { get; set; }
+        public string SourcePath { get; set; }*/
     }
 }
