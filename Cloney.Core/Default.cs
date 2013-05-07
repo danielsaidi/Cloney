@@ -25,6 +25,11 @@ namespace Cloney.Core
             get { return new ConsoleFacade(); }
         }
 
+        public static IContextMenuInstaller ContextMenuInstaller
+        {
+            get { return new ContextMenuInstaller(File, ContextMenuRegistryWriter); }
+        }
+
         public static IContextMenuRegistryWriter ContextMenuRegistryWriter
         {
             get { return new ContextMenuRegistryWriter(); }

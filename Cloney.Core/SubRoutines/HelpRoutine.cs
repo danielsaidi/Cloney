@@ -5,8 +5,8 @@ using Cloney.Core.Localization;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine displays help information and is
-    /// triggered by "cloney --help"
+    /// This sub routine displays help information. It is
+    /// triggered by the "cloney --help" command.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]

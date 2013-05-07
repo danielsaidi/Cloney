@@ -8,10 +8,8 @@ using Cloney.Core.Reflection;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine triggers on this console command:
-    /// cloney --install
-    /// When triggered, it installs the convenient Cloney
-    /// Windows Explorer plugin.
+    /// This sub routine installs the Cloney context menu.
+    /// It is triggered by the "cloney --install" command.
     /// </summary>
     public class InstallContextMenuRoutine : SubRoutineBase, ISubRoutine
     {
@@ -22,7 +20,7 @@ namespace Cloney.Core.SubRoutines
 
 
         public InstallContextMenuRoutine()
-            :this(Default.Console, Default.Translator, new ContextMenuInstaller(Default.File, Default.ContextMenuRegistryWriter))
+            :this(Default.Console, Default.Translator, Default.ContextMenuInstaller)
         {
         }
 
