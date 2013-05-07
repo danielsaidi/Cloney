@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 using Cloney.Core.IO;
 using Cloney.Core.Namespace;
 using NSubstitute;
@@ -10,45 +10,43 @@ namespace Cloney.Core.Tests.Namespace
     public class SolutionFileNamespaceResolverBehavior
     {
         private INamespaceResolver resolver;
-        private IDirectory directory;
+        private IFile file;
 
 
         [SetUp]
         public void SetUp()
         {
-            directory = Substitute.For<IDirectory>();
-            resolver = new SolutionFolderNamespaceResolver(directory);
+            file = Substitute.For<IFile>();
+            file.Exists(Arg.Any<string>()).Returns(true);
+            resolver = new SolutionFileNamespaceResolver(file);
         }
 
 
         [Test]
-        public void ResolveNamespace_ShouldReturnEmptyStringForNoFiles()
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void ResolveNamespace_ShouldThrowExceptionForFileNotFound()
         {
-            directory.GetFiles("foo").Returns(new List<string>());
+            file.Exists(Arg.Any<string>()).Returns(false);
 
-            var result = resolver.ResolveNamespace("foo");
-
-            Assert.That(result, Is.EqualTo(""));
+            resolver.ResolveNamespace("foo.bar.sln");
         }
 
         [Test]
-        public void ResolveNamespace_ShouldReturnSolutionFileName()
+        [TestCase("foobar")]
+        [TestCase("foobar.txt")]
+        [TestCase("foo.bar.txt")]
+        [ExpectedException(typeof(InvalidSolutionFileException))]
+        public void ResolveNamespace_ShouldThrowExceptionForInvalidFileType(string fileName)
         {
-            directory.GetFiles("foo").Returns(new List<string> { "class.cs", "interface.cs", "solution.sln", "class.cs" });
-
-            var result = resolver.ResolveNamespace("foo");
-
-            Assert.That(result, Is.EqualTo("solution"));
+            resolver.ResolveNamespace(fileName);
         }
 
         [Test]
-        public void ResolveNamespace_ShouldReturnFirstOfSeveralSolutionFileNames()
+        public void ResolveNamespace_ShouldReturnNamespaceForValidFile()
         {
-            directory.GetFiles("foo").Returns(new List<string> { "class.cs", "interface.cs", "solution1.sln", "solution2.sln" });
+            var result = resolver.ResolveNamespace("foo.bar.sln");
 
-            var result = resolver.ResolveNamespace("foo");
-
-            Assert.That(result, Is.EqualTo("solution1"));
+            Assert.That(result, Is.EqualTo("foo.bar"));
         }
     }
 }

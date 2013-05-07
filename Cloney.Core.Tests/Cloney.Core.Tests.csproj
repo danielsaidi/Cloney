@@ -71,7 +71,7 @@
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerTranslatorBehavior.cs" />
     <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
-    <Compile Include="Namespace\FolderNamespaceResolverBehavior.cs" />
+    <Compile Include="Namespace\DirectoryNamespaceResolverBehavior.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolverBehavior.cs" />
     <Compile Include="ProgramBehavior.cs">
       <SubType>Code</SubType>

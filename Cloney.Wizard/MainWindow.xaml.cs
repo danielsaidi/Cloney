@@ -105,7 +105,7 @@ namespace Cloney.Wizard
         {
             var initialSourcePath = App.Arguments.SourcePath ?? LastSourcePath;
 
-            sourceFolderSelector.Initialize(Default.SourceFolderNamespaceResolver, initialSourcePath);
+            sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, initialSourcePath);
             targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
         }
 

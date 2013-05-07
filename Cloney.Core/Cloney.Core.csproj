@@ -90,9 +90,11 @@
     <Compile Include="Localization\ITranslator.cs" />
     <Compile Include="Localization\ResourceManagerTranslator.cs" />
     <Compile Include="LocalSubRoutineLocator.cs" />
-    <Compile Include="Namespace\SolutionFolderNamespaceResolver.cs" />
-    <Compile Include="Namespace\FolderNamespaceResolver.cs" />
+    <Compile Include="Namespace\InvalidFolderException.cs" />
+    <Compile Include="Namespace\InvalidSolutionFileException.cs" />
+    <Compile Include="Namespace\SolutionFileNamespaceResolver.cs" />
     <Compile Include="Namespace\INamespaceResolver.cs" />
+    <Compile Include="Namespace\DirectoryNamespaceResolver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -158,9 +160,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Registry\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,7 +7,6 @@ using Cloney.Core.Diagnostics;
 using Cloney.Core.IO;
 using Cloney.Core.Localization;
 using Cloney.Core.Namespace;
-using Cloney.Core.SubRoutines;
 
 namespace Cloney.Core
 {
@@ -34,6 +33,11 @@ namespace Cloney.Core
         public static ICommandLineArgumentParser<IDictionary<string, string>> DictionaryCommandLineArgumentParser
         {
             get { return new CommandLineArgumentParser(); }
+        }
+
+        public static IDirectory Directory 
+        {
+            get { return new DirectoryFacade(); }
         }
 
         public static IEnumerable<string> ExcludeFilePatterns
@@ -79,13 +83,13 @@ namespace Cloney.Core
                 var excludeFilePatterns = Settings.ExcludeFilePatterns.Cast<string>();
                 var plainCopyFilePatterns = Settings.PlainCopyFilePatterns.Cast<string>();
 
-                return new SolutionCloner(SourceFolderNamespaceResolver, TargetNamespaceResolver, PathPatternMatcher, excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns);
+                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, PathPatternMatcher, excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns);
             }
         }
 
-        public static INamespaceResolver SourceFolderNamespaceResolver
+        public static INamespaceResolver SourceNamespaceResolver
         {
-            get { return new SolutionFolderNamespaceResolver(new DirectoryFacade()); }
+            get { return new SolutionFileNamespaceResolver(File); }
         }
 
         public static ISubRoutineLocator SubRoutineLocator
@@ -95,7 +99,7 @@ namespace Cloney.Core
 
         public static INamespaceResolver TargetNamespaceResolver
         {
-            get { return new FolderNamespaceResolver(); }
+            get { return new DirectoryNamespaceResolver(Directory); }
         }
 
         public static ITranslator Translator
