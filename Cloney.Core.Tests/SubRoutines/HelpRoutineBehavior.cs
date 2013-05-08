@@ -10,8 +10,9 @@ namespace Cloney.Core.Tests.SubRoutines
     [TestFixture]
     public class HelpRoutineBehavior
     {
-        private IEnumerable<string> args;
         private ISubRoutine routine;
+
+        private IEnumerable<string> args;
         private IConsole console;
         private ITranslator translator;
         private ICommandLineArgumentParser commandLineArgumentParser;
@@ -59,7 +60,7 @@ namespace Cloney.Core.Tests.SubRoutines
         }
 
         [Test]
-        public void Run_ShouldAbortForIrrelevantArguments()
+        public void Run_ShouldAbortForIrrelevantArgument()
         {
             commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
             var result = routine.Run(args);

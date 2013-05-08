@@ -12,14 +12,16 @@ namespace Cloney.Core.Tests.SubRoutines
     [TestFixture]
     public class InstallContextMenuRoutineBehavior
     {
-        private IEnumerable<string> args;
         private ISubRoutine routine;
+
+        private IEnumerable<string> args;
         private IConsole console;
         private ITranslator translator;
         private IContextMenuInstaller installer;
         private ICommandLineArgumentParser commandLineArgumentParser;
 
 
+        
         [SetUp]
         public void SetUp()
         {
@@ -35,9 +37,18 @@ namespace Cloney.Core.Tests.SubRoutines
 
 
         [Test]
+        public void Run_ShouldParseIEnumerableToDictionary()
+        {
+            routine.Run(args);
+
+            commandLineArgumentParser.Received().ParseCommandLineArguments(args);
+        }
+
+        [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            var result = routine.Run(new string[]{});
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -46,69 +57,69 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            var result = routine.Run(new[]{ "--install", "--foo=bar" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" }, { "foo", "bar" } });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
-        public void Run_ShouldAbortForIrrelevantArguments()
+        public void Run_ShouldAbortForIrrelevantArgument()
         {
-            var result = routine.Run(new[] { "--foo=bar" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
-        public void Run_ShouldProceedForInstallArgument()
+        public void Run_ShouldProceedForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--install" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.True);
-            translator.Received().Translate("InstallMessage");
-            console.Received().WriteLine("InstallMessage");
         }
 
         [Test]
-        public void Run_WithInstallArgument_ShouldRunContextMenuInstaller()
+        public void Run_ShouldDisplayInstallMessageForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--install" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            routine.Run(args);
 
-            Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
             translator.Received().Translate("SuccessfulInstallMessage");
             console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulInstallMessage")));
         }
 
         [Test]
-        public void Run_WithInstallArgument_ShouldPassInFilePathForConsoleExe()
+        public void Run_ShouldRunInstallerForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--install" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            routine.Run(args);
 
-            Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Core.Tests\bin")), Arg.Any<string>());
+            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Test]
-        public void Run_WithInstallArgument_ShouldPassInTranslationForMenuText()
+        public void Run_ShouldRunInstallerWithWizardArgumentForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--install" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            routine.Run(args);
 
-            Assert.That(result, Is.True);
-            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Is<string>(x => x.Contains("ContextMenuText")));
-            translator.Received().Translate("ContextMenuText");
+            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Wizard.exe")), Arg.Any<string>());
         }
 
         [Test]
-        public void Run_WhenInstallationFails_ShouldPrintFriendlyFailMessage()
+        public void Run_ShouldPrintFriendlyFailMessageWhenInstallationFails()
         {
             const string exceptionMessage = "Something exceptional occurred";
             installer.When(x => x.RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>()))
                 .Do(x => { throw new FileNotFoundException(exceptionMessage);});
 
-            routine.Run(new[] { "--install" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            routine.Run(args);
 
             translator.Received().Translate("InstallerErrorMessage");
             console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
