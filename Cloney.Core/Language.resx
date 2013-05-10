@@ -196,4 +196,16 @@ Starting the Cloney Wizard in modal mode...</value>
 The Cloney Windows Explorer context menu option uninstaller failed with the following error message:
     </value>
   </data>
+  <data name="MissingProgramConsole" xml:space="preserve">
+    <value>
+Cloney has not been setup with a console connector.</value>
+  </data>
+  <data name="MissingProgramSubroutineLocator" xml:space="preserve">
+    <value>
+Cloney has not been setup with a subroutine locator.</value>
+  </data>
+  <data name="MissingProgramTranslator" xml:space="preserve">
+    <value>
+Cloney has not been setup with a translator.</value>
+  </data>
 </root>

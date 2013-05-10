@@ -155,6 +155,36 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///Cloney has not been setup with a console connector..
+        /// </summary>
+        internal static string MissingProgramConsole {
+            get {
+                return ResourceManager.GetString("MissingProgramConsole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Cloney has not been setup with a subroutine locator..
+        /// </summary>
+        internal static string MissingProgramSubroutineLocator {
+            get {
+                return ResourceManager.GetString("MissingProgramSubroutineLocator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Cloney has not been setup with a translator..
+        /// </summary>
+        internal static string MissingProgramTranslator {
+            get {
+                return ResourceManager.GetString("MissingProgramTranslator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///Cloney did not recognize the command.
         ///
         ///Type cloney --help for more options..

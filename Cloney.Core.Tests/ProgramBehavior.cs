@@ -11,8 +11,8 @@ namespace Cloney.Core.Tests
     public class ProgramBehavior
     {
         private Program program;
-        private List<string> arguments;
 
+        private List<string> arguments;
         private IConsole console;
         private ITranslator translator;
         private ISubRoutineLocator subRoutineLocator;
@@ -21,20 +21,13 @@ namespace Cloney.Core.Tests
         [SetUp]
         public void SetUp()
         {
+            arguments = new List<string> { "foo", "bar" };
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
-            translator.Translate("NoRoutineMatchMessage").Returns("foo");
+            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
             subRoutineLocator = Substitute.For<ISubRoutineLocator>();
 
             program = new Program(console, translator, subRoutineLocator);
-            arguments = new List<string> { "foo", "bar" };
-
-            SetUpLanguage();
-        }
-
-        private void SetUpLanguage()
-        {
-            translator.Translate("StartErrorMessage").Returns("StartErrorMessage");
         }
 
 
@@ -59,21 +52,14 @@ namespace Cloney.Core.Tests
         }
 
         [Test]
-        public void Start_ShouldNotFailForMissingSubRoutines()
+        public void Start_ShouldPrintNonMatchMessageForNoSubRoutines()
         {
-            program.Start(arguments);
-        }
-
-        [Test]
-        public void Start_ShouldNotPrintNonMatchMessageForTriggeredSubRoutines()
-        {
-            var subRoutine = Substitute.For<ISubRoutine>();
-            subRoutine.Run(Arg.Any<IEnumerable<string>>()).Returns(true);
-            subRoutineLocator.FindAll().Returns(new List<ISubRoutine>{subRoutine});
+            subRoutineLocator.FindAll().Returns(new List<ISubRoutine>());
 
             program.Start(arguments);
 
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            translator.Received().Translate("NoRoutineMatchMessage");
+            console.Received().WriteLine("NoRoutineMatchMessage");
         }
 
         [Test]
@@ -86,7 +72,19 @@ namespace Cloney.Core.Tests
             program.Start(arguments);
 
             translator.Received().Translate("NoRoutineMatchMessage");
-            console.Received().WriteLine("foo");
+            console.Received().WriteLine("NoRoutineMatchMessage");
+        }
+
+        [Test]
+        public void Start_ShouldNotPrintNonMatchMessageForTriggeredSubRoutines()
+        {
+            var subRoutine = Substitute.For<ISubRoutine>();
+            subRoutine.Run(Arg.Any<IEnumerable<string>>()).Returns(true);
+            subRoutineLocator.FindAll().Returns(new List<ISubRoutine>{subRoutine});
+
+            program.Start(arguments);
+
+            console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
     }
 }
