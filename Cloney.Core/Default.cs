@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Cloney.Core.Cloners;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
@@ -58,6 +59,11 @@ namespace Cloney.Core
         public static IFile File
         {
             get { return new FileFacade(); }
+        }
+
+        public static IFileEncodingResolver FileEncodingResolver
+        {
+            get { return new KlerksFileEncodingResolver(Encoding.UTF8); }
         }
 
         public static IPathPatternMatcher PathPatternMatcher
