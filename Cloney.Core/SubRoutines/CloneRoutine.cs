@@ -52,19 +52,17 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        private static string GetArg(IDictionary<string, string> args, string key)
+        private string GetPath(IDictionary<string, string> args, string pathType)
+        {
+            var path = GetPathArg(args, pathType);
+            return string.IsNullOrWhiteSpace(path) ? GetPathFromConsole(pathType) : path;
+        }
+
+        private static string GetPathArg(IDictionary<string, string> args, string key)
         {
             return (!args.ContainsKey(key) || args[key] == "true")
                        ? string.Empty
                        : args[key];
-        }
-
-        private string GetPath(IDictionary<string, string> args, string type)
-        {
-            var path = GetArg(args, type);
-            if (string.IsNullOrEmpty(path.Trim()))
-                path = GetPathFromConsole(type);
-            return path;
         }
 
         private string GetPathFromConsole(string type)
@@ -77,7 +75,7 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        void solutionCloner_CurrentPathChanged(object sender, EventArgs e)
+        private void solutionCloner_CurrentPathChanged(object sender, EventArgs e)
         {
             Console.WriteLine(solutionCloner.CurrentPath);
         }

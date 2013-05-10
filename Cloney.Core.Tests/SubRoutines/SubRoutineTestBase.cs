@@ -2,15 +2,18 @@
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace Cloney.Core.Tests.SubRoutines
 {
+    [TestFixture]
     public class SubRoutineTestBase
     {
-        protected readonly IEnumerable<string> args;
+        protected IEnumerable<string> args;
 
 
-        public SubRoutineTestBase()
+        [SetUp]
+        public void MasterSetUp()
         {
             args = new[] { "foo" };
 
