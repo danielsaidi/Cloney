@@ -29,5 +29,11 @@ namespace Cloney.Core.Tests.SubRoutines
         protected IConsole Console { get; private set; }
 
         protected ITranslator Translator { get; private set; }
+
+
+        protected CommandLineArguments GetArgs(IDictionary<string, string> rawArgs)
+        {
+            return new CommandLineArguments(rawArgs);
+        }
     }
 }

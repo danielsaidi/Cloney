@@ -4,7 +4,7 @@ namespace Cloney.Core.Console
 {
     ///<summary>
     /// This interface can be implemented by classes that
-    /// can parse command line args to a certain type.
+    /// can parse command line arguments.
     ///</summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -12,6 +12,6 @@ namespace Cloney.Core.Console
     /// </remarks>
     public interface ICommandLineArgumentParser
     {
-        IDictionary<string, string> ParseCommandLineArguments(IEnumerable<string> args);
+        CommandLineArguments ParseCommandLineArguments(IEnumerable<string> args);
     }
 }

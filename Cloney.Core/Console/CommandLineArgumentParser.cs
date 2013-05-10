@@ -36,7 +36,7 @@ namespace Cloney.Core.Console
             remover = new Regex(@"^['""]?(.*?)['""]?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         }
 
-        public IDictionary<string, string> ParseCommandLineArguments(IEnumerable<string> args)
+        public CommandLineArguments ParseCommandLineArguments(IEnumerable<string> args)
         {
             string[] parts;
             string parameter = null;
@@ -73,7 +73,7 @@ namespace Cloney.Core.Console
             if (parameter != null && !parameters.ContainsKey(parameter))
                 parameters.Add(parameter, "true");
 
-            return parameters;
+            return new CommandLineArguments(parameters);
         }
 
 

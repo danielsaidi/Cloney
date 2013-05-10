@@ -20,6 +20,8 @@ namespace Cloney.Core.Tests.SubRoutines
         [SetUp]
         public void SetUp()
         {
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(validArgs));
+
             solutionCloner = Substitute.For<ISolutionCloner>();
             routine = new CloneRoutine(solutionCloner, ArgumentParser, Console, Translator);
         }
@@ -37,7 +39,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForNoArguments()
         {
             var emptyArgs = new Dictionary<string, string>();
-            ArgumentParser.ParseCommandLineArguments(args).Returns(emptyArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(emptyArgs));
             var result = routine.Run(args);
 
             AssertSubRoutineStopped(result);
@@ -47,7 +49,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForIrrelevantArguments()
         {
             var irrelevantArgs = new Dictionary<string, string> {{"foo", "true"}, {"bar", "true"}};
-            ArgumentParser.ParseCommandLineArguments(args).Returns(irrelevantArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(irrelevantArgs));
             var result = routine.Run(args);
 
             AssertSubRoutineStopped(result);
@@ -56,7 +58,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForMissingSourcePath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingSourceArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingSourceArgs));
             var result = routine.Run(args);
 
             Assert.That(result, Is.True);
@@ -65,7 +67,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldInstructAboutConsoleInputForMissingSourcePath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingSourceArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingSourceArgs));
             routine.Run(args);
 
             Translator.Received().Translate("EnterFolderPath");
@@ -75,7 +77,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldRequireConsoleInputForMissingSourcePath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingSourceArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingSourceArgs));
             routine.Run(args);
 
             Console.Received().ReadLine();
@@ -84,7 +86,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldCloneWithConsoleInputForMissingSourcePath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingSourceArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingSourceArgs));
             Console.ReadLine().Returns("source path");
             routine.Run(args);
 
@@ -95,7 +97,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForMissingTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingTargetArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingTargetArgs));
             var result = routine.Run(args);
 
             Assert.That(result, Is.True);
@@ -104,7 +106,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldInstructAboutConsoleInputForMissingTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingTargetArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingTargetArgs));
             routine.Run(args);
 
             Translator.Received().Translate("EnterFolderPath");
@@ -114,7 +116,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldRequireConsoleInputForMissingTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingTargetArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingTargetArgs));
             routine.Run(args);
 
             Console.Received().ReadLine();
@@ -123,7 +125,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldCloneWithConsoleInputForMissingTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(missingTargetArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(missingTargetArgs));
             Console.ReadLine().Returns("target path");
             routine.Run(args);
 
@@ -134,7 +136,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForProvidedSourceAndTargetPaths()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(validArgs));
             var result = routine.Run(args);
 
             Assert.That(result, Is.True);
@@ -143,7 +145,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldNotInstructAboutConsoleInputForProvidedSourceAndTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(validArgs));
             routine.Run(args);
 
             Translator.DidNotReceive().Translate(Arg.Any<string>());
@@ -153,7 +155,6 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldNotRequireConsoleInputForProvidedSourceAndTargetPath()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
             routine.Run(args);
 
             Console.DidNotReceive().ReadLine();
@@ -162,7 +163,6 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldCloneWithProvidedSourceAndTargetPaths()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
             routine.Run(args);
 
             solutionCloner.Received().CloneSolution("foo", "bar");

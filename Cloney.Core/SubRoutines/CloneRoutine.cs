@@ -39,9 +39,9 @@ namespace Cloney.Core.SubRoutines
             return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
-        private bool Run(IDictionary<string, string> args)
+        private bool Run(CommandLineArguments args)
         {
-            if (!HasArg(args, "clone", "true"))
+            if (!args.HasArgument("clone", "true"))
                 return false;
 
             var sourcePath = GetPath(args, "source");
@@ -52,17 +52,17 @@ namespace Cloney.Core.SubRoutines
         }
 
 
-        private string GetPath(IDictionary<string, string> args, string pathType)
+        private string GetPath(CommandLineArguments args, string pathType)
         {
             var path = GetPathArg(args, pathType);
             return string.IsNullOrWhiteSpace(path) ? GetPathFromConsole(pathType) : path;
         }
 
-        private static string GetPathArg(IDictionary<string, string> args, string key)
+        private static string GetPathArg(CommandLineArguments args, string key)
         {
-            return (!args.ContainsKey(key) || args[key] == "true")
+            return (!args.HasArgument(key) || args.Raw[key] == "true")
                        ? string.Empty
-                       : args[key];
+                       : args.Raw[key];
         }
 
         private string GetPathFromConsole(string type)

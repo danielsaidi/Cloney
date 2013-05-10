@@ -37,9 +37,9 @@ namespace Cloney.Core.SubRoutines
             return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
-        private bool Run(IDictionary<string, string> args)
+        private bool Run(CommandLineArguments args)
         {
-            if (!HasSingleArg(args, "modal", "true"))
+            if (!args.HasSingleArgument("modal", "true"))
                 return false;
 
             var message = Translator.Translate("GuiModalStartMessage");

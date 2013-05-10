@@ -15,7 +15,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void SetUp()
         {
             var validArgs = new Dictionary<string, string> {{"settings", "true"}};
-            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(validArgs));
 
             Translator.Translate("SettingsMessage").Returns("{0}{1}{2}");
 
@@ -35,7 +35,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForNoArguments()
         {
             var emptyArgs = new Dictionary<string, string>();
-            ArgumentParser.ParseCommandLineArguments(args).Returns(emptyArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(emptyArgs));
             var result = routine.Run(args);
 
             AssertSubRoutineStopped(result);
@@ -45,7 +45,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
             var tooManyArgs = new Dictionary<string, string> {{"settings", "true"}, {"foo", "bar"}};
-            ArgumentParser.ParseCommandLineArguments(args).Returns(tooManyArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(tooManyArgs));
             var result = routine.Run(args);
 
             AssertSubRoutineStopped(result);
@@ -55,7 +55,7 @@ namespace Cloney.Core.Tests.SubRoutines
         public void Run_ShouldAbortForIrrelevantArguments()
         {
             var irrelevantArgs = new Dictionary<string, string> {{"settings", "true"}, {"foo", "bar"}};
-            ArgumentParser.ParseCommandLineArguments(args).Returns(irrelevantArgs);
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(irrelevantArgs));
             var result = routine.Run(args);
 
             AssertSubRoutineStopped(result);

@@ -32,9 +32,9 @@ namespace Cloney.Core.SubRoutines
             return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
-        private bool Run(IDictionary<string, string> args)
+        private bool Run(CommandLineArguments args)
         {
-            if (!HasSingleArg(args, "install", "true"))
+            if (!args.HasSingleArgument("install", "true"))
                 return false;
 
             var message = Translator.Translate("InstallMessage");

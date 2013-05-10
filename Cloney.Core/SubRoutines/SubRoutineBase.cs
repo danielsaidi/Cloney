@@ -41,16 +41,5 @@ namespace Cloney.Core.SubRoutines
                 return applicationPath;
             }
         }
-
-
-        protected bool HasArg(IDictionary<string, string> args, string key, string value)
-        {
-            return (args.ContainsKey(key) && args[key] == value);
-        }
-
-        protected bool HasSingleArg(IDictionary<string, string> args, string key, string value)
-        {
-            return args.Count == 1 && HasArg(args, key, value);
-        }
     }
 }
