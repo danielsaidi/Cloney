@@ -8,7 +8,7 @@
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://www.dotnextra.com
     /// </remarks>
-    public class ApplicationArguments
+    public class ApplicationArgumentssssss
     {/*
         public bool ModalMode { get; set; }
 

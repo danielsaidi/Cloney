@@ -1,14 +1,14 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
-using Cloney.Core.Wizard;
+using Cloney.Core.Console;
 using Cloney.Wizard.Resources;
 
 namespace Cloney.Wizard
 {
     /// <summary>
-    /// The main Cloney Wizard application class.
+    /// The Cloney Wizard application class. This is the
+    /// starting point when the wizard is launched.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -16,35 +16,31 @@ namespace Cloney.Wizard
     /// </remarks>
     public partial class App
     {
+        private readonly ICommandLineArgumentParser argumentParser;
+
+
         public App()
+            : this(Default.CommandLineArgumentParser)
         {
+        }
+
+        public App(ICommandLineArgumentParser argumentParser)
+        {
+            this.argumentParser = argumentParser;
+
             Dispatcher.UnhandledException += Dispatcher_UnhandledException;
         }
 
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            //Arguments = Default.WizardApplicationCommandLineArgumentsParser.ParseCommandLineArguments(e.Args);
-            //AdjustArguments(Arguments);
+            Arguments = argumentParser.ParseCommandLineArguments(e.Args);
 
             base.OnStartup(e);
         }
 
 
-        public static ApplicationArguments Arguments { get; private set; }
-
-
-        private static void AdjustArguments(ApplicationArguments arguments)
-        {
-            /*if (arguments.SourcePath == null)
-                return;
-
-            if (Directory.Exists(arguments.SourcePath))
-                return;
-
-            var fileInfo = new FileInfo(arguments.SourcePath);
-            if (fileInfo.Exists)
-                arguments.SourcePath = fileInfo.Directory.FullName;*/
-        }
+        public static CommandLineArguments Arguments { get; private set; }
 
 
         static void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

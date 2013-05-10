@@ -86,7 +86,7 @@ namespace Cloney.Core.Cloners
 
                 // fixing issue #4 by trying to detect the encoding and then apply it again when writing the new file
                 // StreamReader would fall back to UTF8 anyway...
-                var encoding = KlerksSoftEncodingDetector.DetectTextFileEncoding(filePath, null) ?? Encoding.UTF8;
+                var encoding = KlerksSoftFileEncodingDetector.DetectTextFileEncoding(filePath, null) ?? Encoding.UTF8;
                 var sourceStream = new StreamReader(filePath, encoding);
                 var sourceContent = sourceStream.ReadToEnd();
 

@@ -61,7 +61,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Cloners\KlerksSoftEncodingDetector.cs" />
+    <Compile Include="IO\KlerksFileEncodingResolver.cs" />
+    <Compile Include="IO\KlerksSoftFileEncodingDetector.cs" />
     <Compile Include="Console\CommandLineArgumentParser.cs" />
     <Compile Include="Console\CommandLineArguments.cs" />
     <Compile Include="Console\ConsoleFacade.cs" />
@@ -75,9 +76,11 @@
     <Compile Include="Diagnostics\IProcess.cs" />
     <Compile Include="Diagnostics\ProcessFacade.cs" />
     <Compile Include="IO\DirectoryFacade.cs" />
+    <Compile Include="IO\StreamReaderFileEncodingResolver.cs" />
     <Compile Include="IO\FileFacade.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
+    <Compile Include="IO\IFileEncodingResolver.cs" />
     <Compile Include="IO\IPathPatternMatcher.cs" />
     <Compile Include="IO\PathPatternMatcher.cs" />
     <Compile Include="IProgram.cs" />

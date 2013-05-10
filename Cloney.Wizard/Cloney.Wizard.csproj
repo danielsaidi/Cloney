@@ -78,6 +78,7 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Brushes\InputBrushes.cs" />
     <Compile Include="Controls\FolderSelector.xaml.cs">
       <DependentUpon>FolderSelector.xaml</DependentUpon>
     </Compile>

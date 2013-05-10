@@ -10,18 +10,18 @@ namespace Cloney.Core.Wizard
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://www.dotnextra.com
     /// </remarks>
-    public class ApplicationCommandLineArgumentParser //: ICommandLineArgumentParser<ApplicationArguments>
+    public class ApplicationCommandLineArgumentParsers //: ICommandLineArgumentParser<ApplicationArguments>
     {
         //private readonly ICommandLineArgumentParser baseParser;
 
 
-        public ApplicationCommandLineArgumentParser()
+        public ApplicationCommandLineArgumentParsers()
         {
         //    baseParser = Default.CommandLineArgumentParser;
         }
 
 
-        public ApplicationArguments ParseCommandLineArguments(IEnumerable<string> args)
+        public ApplicationArgumentssssss ParseCommandLineArguments(IEnumerable<string> args)
         {
             /*var arguments = baseParser.ParseCommandLineArguments(args);
 

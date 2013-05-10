@@ -65,10 +65,11 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Cloners\FakeSolutionCloner.cs" />
     <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
     <Compile Include="Console\CommandLineArgumentsBehavior.cs" />
     <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
+    <Compile Include="IO\KlerksFileEncodingResolverBehavior.cs" />
+    <Compile Include="IO\StreamReaderFileEncodingResolverBehavior.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerTranslatorBehavior.cs" />
     <Compile Include="LocalSubRoutineLocatorBehavior.cs" />
@@ -116,7 +117,11 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ISO_8859_1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

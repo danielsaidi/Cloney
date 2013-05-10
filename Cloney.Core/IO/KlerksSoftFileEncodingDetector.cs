@@ -1,16 +1,15 @@
 using System.IO;
-using System.Linq;
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cloney.Core.Cloners
+namespace Cloney.Core.IO
 {
     /// <summary>
     /// From here http://www.architectshack.com/TextFileEncodingDetector.ashx
     /// Also used by http://findandreplace.codeplex.com which fulfills quite similar problem as cloney.
     /// </summary>
-    public class KlerksSoftEncodingDetector
+    public static class KlerksSoftFileEncodingDetector
     {
         /*
          * Simple class to handle text file encoding woes (in a primarily English-speaking tech 
@@ -347,8 +346,8 @@ OF SUCH DAMAGE.
                 || (testByte >= 0x7B && testByte <= 0x7E) //common punctuation
                 )
                 return true;
-            else
-                return false;
+
+            return false;
         }
 
         private static int DetectSuspiciousUTF8SequenceLength(byte[] SampleBytes, long currentPos)
@@ -462,6 +461,5 @@ OF SUCH DAMAGE.
 
             return lengthFound;
         }
-
     }
 }
