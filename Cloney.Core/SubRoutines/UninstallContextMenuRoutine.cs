@@ -12,29 +12,24 @@ namespace Cloney.Core.SubRoutines
     /// </summary>
     public class UninstallContextMenuRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
         private readonly IContextMenuInstaller installer;
-        private readonly ICommandLineArgumentParser commandLineArgumentParser;
 
 
         public UninstallContextMenuRoutine()
-            : this(Default.Console, Default.Translator, Default.ContextMenuInstaller, Default.CommandLineArgumentParser)
+            : this(Default.ContextMenuInstaller, Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public UninstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer, ICommandLineArgumentParser commandLineArgumentParser)
+        public UninstallContextMenuRoutine(IContextMenuInstaller installer, ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
             this.installer = installer;
-            this.commandLineArgumentParser = commandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(commandLineArgumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)
@@ -42,16 +37,20 @@ namespace Cloney.Core.SubRoutines
             if (!HasSingleArg(args, "uninstall", "true"))
                 return false;
 
+            var message = Translator.Translate("UninstallMessage");
+            var successMessage = Translator.Translate("UninstallSuccessMessage");
+            var errorMessage = Translator.Translate("UninstallErrorMessage");
+
             try
             {
-                console.WriteLine(translator.Translate("UninstallMessage"));
+                Console.WriteLine(message);
                 installer.UnregisterContextMenu();
-                console.WriteLine(translator.Translate("UninstallSuccessMessage"));
+                Console.WriteLine(successMessage);
             }
             catch (Exception e)
             {
-                console.WriteLine(translator.Translate("UninstallErrorMessage"));
-                console.WriteLine(e.Message);
+                Console.WriteLine(errorMessage);
+                Console.WriteLine(e.Message);
             }
 
             return true;

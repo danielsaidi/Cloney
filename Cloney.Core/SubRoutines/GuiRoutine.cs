@@ -17,30 +17,28 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public class GuiRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
         private readonly IProcess process;
 
 
         public GuiRoutine()
-            :this(Default.Console, Default.Translator, Default.Process)
+            : this(Default.Process, Default.Console, Default.Translator)
         {
         }
 
-        public GuiRoutine(IConsole console, ITranslator translator, IProcess process)
+        public GuiRoutine(IProcess process, IConsole console, ITranslator translator)
+            : base(null, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
             this.process = process;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            if (args.Count() != 0)
+            if (args.Count() > 0)
                 return false;
 
-            console.WriteLine(translator.Translate("GuiStartMessage"));
+            var message = Translator.Translate("GuiStartMessage");
+            Console.WriteLine(message);
             process.Start("Cloney.Wizard.exe");
             return true;
         }

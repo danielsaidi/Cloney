@@ -100,6 +100,16 @@ namespace Cloney.Core {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///Starting the Cloney Wizard in modal mode....
+        /// </summary>
+        internal static string GuiModalStartMessage {
+            get {
+                return ResourceManager.GetString("GuiModalStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ///Starting the Cloney Wizard...
         ///
         ///Type cloney --help for more options..

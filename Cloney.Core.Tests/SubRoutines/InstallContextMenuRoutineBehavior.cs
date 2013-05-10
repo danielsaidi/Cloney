@@ -15,10 +15,10 @@ namespace Cloney.Core.Tests.SubRoutines
         private ISubRoutine routine;
 
         private IEnumerable<string> args;
-        private IConsole console;
-        private ITranslator translator;
         private IContextMenuInstaller installer;
         private ICommandLineArgumentParser commandLineArgumentParser;
+        private IConsole console;
+        private ITranslator translator;
 
 
         
@@ -26,14 +26,14 @@ namespace Cloney.Core.Tests.SubRoutines
         public void SetUp()
         {
             args = new[] { "foo" };
-            console = Substitute.For<IConsole>();
-            translator = Substitute.For<ITranslator>();
             installer = Substitute.For<IContextMenuInstaller>();
-            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
             commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
             commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
+            console = Substitute.For<IConsole>();
+            translator = Substitute.For<ITranslator>();
+            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
 
-            routine = new InstallContextMenuRoutine(console, translator, installer, commandLineArgumentParser);
+            routine = new InstallContextMenuRoutine(installer, commandLineArgumentParser, console, translator);
         }
 
 

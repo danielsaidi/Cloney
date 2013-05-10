@@ -14,29 +14,24 @@ namespace Cloney.Core.SubRoutines
     /// </summary>
     public class InstallContextMenuRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
         private readonly IContextMenuInstaller installer;
-        private readonly ICommandLineArgumentParser commandLineArgumentParser;
 
 
         public InstallContextMenuRoutine()
-            :this(Default.Console, Default.Translator, Default.ContextMenuInstaller, Default.CommandLineArgumentParser)
+            : this(Default.ContextMenuInstaller, Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public InstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer, ICommandLineArgumentParser commandLineArgumentParser)
+        public InstallContextMenuRoutine(IContextMenuInstaller installer, ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
             this.installer = installer;
-            this.commandLineArgumentParser = commandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(commandLineArgumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)
@@ -44,18 +39,24 @@ namespace Cloney.Core.SubRoutines
             if (!HasSingleArg(args, "install", "true"))
                 return false;
 
+            var message = Translator.Translate("InstallMessage");
+            var successMessage = Translator.Translate("InstallSuccessMessage");
+            var errorMessage = Translator.Translate("InstallErrorMessage");
+            var contextMenuText = Translator.Translate("ContextMenuText");
+
             try
             {
-                console.WriteLine(translator.Translate("InstallMessage"));
                 var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
                 var applicationPath = Path.Combine(binDirectory, "Cloney.Wizard.exe");
-                installer.RegisterContextMenu(applicationPath, translator.Translate("ContextMenuText"));
-                console.WriteLine(translator.Translate("InstallSuccessMessage"));
+
+                Console.WriteLine(message);
+                installer.RegisterContextMenu(applicationPath, contextMenuText);
+                Console.WriteLine(successMessage);
             }
             catch (Exception e)
             {
-                console.WriteLine(translator.Translate("InstallErrorMessage"));
-                console.WriteLine(e.Message);
+                Console.WriteLine(errorMessage);
+                Console.WriteLine(e.Message);
             }
 
             return true;

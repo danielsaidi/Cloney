@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Cloney.Core.Console;
-using Cloney.Core.Diagnostics;
-using Cloney.Core.Localization;
+﻿using Cloney.Core.Diagnostics;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
 using NUnit.Framework;
@@ -9,23 +6,17 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class GuiRoutineBehavior
+    public class GuiRoutineBehavior : SubRoutineTestBase
     {
         private ISubRoutine routine;
-        private IConsole console;
-        private ITranslator translator;
         private IProcess process;
 
 
         [SetUp]
         public void SetUp()
         {
-            console = Substitute.For<IConsole>();
-            translator = Substitute.For<ITranslator>();
-            translator.Translate("GuiStartMessage").Returns("message");
             process = Substitute.For<IProcess>();
-
-            routine = new GuiRoutine(console, translator, process);
+            routine = new GuiRoutine(process, Console, Translator);
         }
 
 
@@ -66,8 +57,8 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(new string[] { });
 
-            translator.Received().Translate("GuiStartMessage");
-            console.Received().WriteLine("message");
+            Translator.Received().Translate("GuiStartMessage");
+            Console.Received().WriteLine("GuiStartMessage");
         }
     }
 }

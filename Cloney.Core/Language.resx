@@ -187,6 +187,10 @@ The Cloney Windows Explorer context menu option was successfully uninstalled!</v
   <data name="ContextMenuText" xml:space="preserve">
     <value>Clone solution with Cloney</value>
   </data>
+  <data name="GuiModalStartMessage" xml:space="preserve">
+    <value>
+Starting the Cloney Wizard in modal mode...</value>
+  </data>
   <data name="UninstallErrorMessage" xml:space="preserve">
     <value>
 The Cloney Windows Explorer context menu option uninstaller failed with the following error message:

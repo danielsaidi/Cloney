@@ -17,24 +17,18 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public class CloneRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
         private readonly ISolutionCloner solutionCloner;
-        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public CloneRoutine()
-            :this(Default.Console, Default.Translator, Default.SolutionCloner)
+            : this(Default.SolutionCloner, Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public CloneRoutine(IConsole console, ITranslator translator, ISolutionCloner solutionCloner)
+        public CloneRoutine(ISolutionCloner solutionCloner, ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
             this.solutionCloner = solutionCloner;
-
-            argumentParser = Default.CommandLineArgumentParser;
 
             solutionCloner.CurrentPathChanged += solutionCloner_CurrentPathChanged;
         }
@@ -42,7 +36,7 @@ namespace Cloney.Core.SubRoutines
         
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)
@@ -52,8 +46,8 @@ namespace Cloney.Core.SubRoutines
 
             var sourcePath = GetPath(args, "source");
             var targetPath = GetPath(args, "target");
-
             solutionCloner.CloneSolution(sourcePath, targetPath);
+
             return true;
         }
 
@@ -75,15 +69,17 @@ namespace Cloney.Core.SubRoutines
 
         private string GetPathFromConsole(string type)
         {
-            var message = string.Format(translator.Translate("EnterFolderPath"), type);
-            console.Write(message);
-            return console.ReadLine();
+            var message = string.Format(Translator.Translate("EnterFolderPath"), type);
+            Console.Write(message);
+            var result = Console.ReadLine();
+
+            return result;
         }
 
 
         void solutionCloner_CurrentPathChanged(object sender, EventArgs e)
         {
-            console.WriteLine(solutionCloner.CurrentPath);
+            Console.WriteLine(solutionCloner.CurrentPath);
         }
     }
 }

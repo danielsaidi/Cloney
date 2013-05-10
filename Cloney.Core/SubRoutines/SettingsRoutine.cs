@@ -15,28 +15,20 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public class SettingsRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
-
-
         public SettingsRoutine()
-            :this(Default.Console, Default.Translator)
+            :this(Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public SettingsRoutine(IConsole console, ITranslator translator)
+        public SettingsRoutine(ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
-
-            argumentParser = Default.CommandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         public bool Run(IDictionary<string, string> args)
@@ -44,13 +36,13 @@ namespace Cloney.Core.SubRoutines
             if (!HasSingleArg(args, "settings", "true"))
                 return false;
 
-            var settingsMessage = translator.Translate("SettingsMessage");
+            var settingsMessage = Translator.Translate("SettingsMessage");
             var excludeFolderMessage = string.Join(", ", Default.ExcludeFolderPatterns);
             var excludeFileMessage = string.Join(", ", Default.ExcludeFilePatterns);
             var plainCopyFileMessage = string.Join(", ", Default.PlainCopyFilePatterns);
             var message = string.Format(settingsMessage, excludeFolderMessage, excludeFileMessage, plainCopyFileMessage);
             
-            console.WriteLine(message);
+            Console.WriteLine(message);
             return true;
         }
     }

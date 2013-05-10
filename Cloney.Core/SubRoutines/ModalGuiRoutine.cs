@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cloney.Core.Console;
 using Cloney.Core.Diagnostics;
+using Cloney.Core.Localization;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -17,25 +18,23 @@ namespace Cloney.Core.SubRoutines
     public class ModalGuiRoutine : SubRoutineBase, ISubRoutine
     {
         private readonly IProcess process;
-        private readonly ICommandLineArgumentParser argumentParser;
 
 
         public ModalGuiRoutine()
-            :this(Default.Process)
+            :this(Default.Process, Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public ModalGuiRoutine(IProcess process)
+        public ModalGuiRoutine(IProcess process, ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
             this.process = process;
-
-            argumentParser = Default.CommandLineArgumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)
@@ -43,6 +42,8 @@ namespace Cloney.Core.SubRoutines
             if (!HasSingleArg(args, "modal", "true"))
                 return false;
 
+            var message = Translator.Translate("GuiModalStartMessage");
+            Console.WriteLine(message);
             process.Start("Cloney.Wizard.exe", "--modal");
             return true;
         }

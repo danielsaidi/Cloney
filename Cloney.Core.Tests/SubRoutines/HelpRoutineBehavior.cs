@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Cloney.Core.Console;
-using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
 using NUnit.Framework;
@@ -8,27 +6,18 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class HelpRoutineBehavior
+    public class HelpRoutineBehavior : SubRoutineTestBase
     {
         private ISubRoutine routine;
-
-        private IEnumerable<string> args;
-        private IConsole console;
-        private ITranslator translator;
-        private ICommandLineArgumentParser commandLineArgumentParser;
 
 
         [SetUp]
         public void SetUp()
         {
-            args = new[] {"foo"};
-            console = Substitute.For<IConsole>();
-            translator = Substitute.For<ITranslator>();
-            translator.Translate("GeneralHelpMessage").Returns(x => x[0]);
-            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" } });
+            var validArgs = new Dictionary<string, string> {{"help", "true"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
 
-            routine = new HelpRoutine(console, translator, commandLineArgumentParser);
+            routine = new HelpRoutine(ArgumentParser, Console, Translator);
         }
 
 
@@ -37,37 +26,37 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            commandLineArgumentParser.Received().ParseCommandLineArguments(args);
+            ArgumentParser.Received().ParseCommandLineArguments(args);
         }
 
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
+            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
@@ -83,8 +72,8 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            translator.Received().Translate("GeneralHelpMessage");
-            console.Received().WriteLine("GeneralHelpMessage");
+            Translator.Received().Translate("GeneralHelpMessage");
+            Console.Received().WriteLine("GeneralHelpMessage");
         }
     }
 }

@@ -11,21 +11,24 @@ namespace Cloney.Core.Tests.SubRoutines
     public class CloneRoutineBehavior
     {
         private ISubRoutine routine;
+
+        private ISolutionCloner solutionCloner;
+        private ICommandLineArgumentParser argumentParser;
         private IConsole console;
         private ITranslator translator;
-        private ISolutionCloner solutionCloner;
 
 
         [SetUp]
         public void SetUp()
         {
+            solutionCloner = Substitute.For<ISolutionCloner>();
+            argumentParser = Substitute.For<ICommandLineArgumentParser>();
             console = Substitute.For<IConsole>();
             console.ReadLine().Returns("val");
             translator = Substitute.For<ITranslator>();
             translator.Translate("EnterFolderPath").Returns("foo");
-            solutionCloner = Substitute.For<ISolutionCloner>();
 
-            routine = new CloneRoutine(console, translator, solutionCloner);
+            routine = new CloneRoutine(solutionCloner, argumentParser, console, translator);
         }
 
 

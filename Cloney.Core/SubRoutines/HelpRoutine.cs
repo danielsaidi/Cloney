@@ -14,35 +14,29 @@ namespace Cloney.Core.SubRoutines
     /// </remarks>
     public class HelpRoutine : SubRoutineBase, ISubRoutine
     {
-        private readonly IConsole console;
-        private readonly ITranslator translator;
-        private readonly ICommandLineArgumentParser argumentParser;
-
-
         public HelpRoutine()
-            : this(Default.Console, Default.Translator, Default.CommandLineArgumentParser)
+            : this(Default.CommandLineArgumentParser, Default.Console, Default.Translator)
         {
         }
 
-        public HelpRoutine(IConsole console, ITranslator translator, ICommandLineArgumentParser argumentParser)
+        public HelpRoutine(ICommandLineArgumentParser argumentParser, IConsole console, ITranslator translator)
+            : base(argumentParser, console, translator)
         {
-            this.console = console;
-            this.translator = translator;
-            this.argumentParser = argumentParser;
         }
 
 
         public bool Run(IEnumerable<string> args)
         {
-            return Run(argumentParser.ParseCommandLineArguments(args));
+            return Run(ArgumentParser.ParseCommandLineArguments(args));
         }
 
         private bool Run(IDictionary<string, string> args)
         {
             if (!HasSingleArg(args, "help", "true"))
                 return false;
-            
-            console.WriteLine(translator.Translate("GeneralHelpMessage"));
+
+            var message = Translator.Translate("GeneralHelpMessage");
+            Console.WriteLine(message);
             return true;
         }
     }

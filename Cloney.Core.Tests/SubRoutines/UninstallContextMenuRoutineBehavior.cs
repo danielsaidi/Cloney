@@ -15,10 +15,10 @@ namespace Cloney.Core.Tests.SubRoutines
         private ISubRoutine routine;
 
         private IEnumerable<string> args;
+        private IContextMenuInstaller uninstaller;
+        private ICommandLineArgumentParser argumentParser;
         private IConsole console;
         private ITranslator translator;
-        private IContextMenuInstaller uninstaller;
-        private ICommandLineArgumentParser commandLineArgumentParser;
 
 
 
@@ -26,14 +26,14 @@ namespace Cloney.Core.Tests.SubRoutines
         public void SetUp()
         {
             args = new[] { "foo" };
+            uninstaller = Substitute.For<IContextMenuInstaller>();
+            argumentParser = Substitute.For<ICommandLineArgumentParser>();
+            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" } });
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
-            uninstaller = Substitute.For<IContextMenuInstaller>();
             translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
-            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" } });
 
-            routine = new UninstallContextMenuRoutine(console, translator, uninstaller, commandLineArgumentParser);
+            routine = new UninstallContextMenuRoutine(uninstaller, argumentParser, console, translator);
         }
 
 
@@ -42,13 +42,13 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            commandLineArgumentParser.Received().ParseCommandLineArguments(args);
+            argumentParser.Received().ParseCommandLineArguments(args);
         }
 
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
@@ -58,7 +58,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" }, { "foo", "bar" } });
+            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" }, { "foo", "bar" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
@@ -68,7 +68,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);

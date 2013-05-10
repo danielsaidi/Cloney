@@ -10,6 +10,8 @@ namespace Cloney.Core.Tests.SubRoutines
     public class SettingsRoutineBehavior
     {
         private ISubRoutine routine;
+
+        private ICommandLineArgumentParser argumentParser;
         private IConsole console;
         private ITranslator translator;
 
@@ -18,10 +20,11 @@ namespace Cloney.Core.Tests.SubRoutines
         public void SetUp()
         {
             console = Substitute.For<IConsole>();
+            argumentParser = Substitute.For<ICommandLineArgumentParser>();
             translator = Substitute.For<ITranslator>();
             translator.Translate("SettingsMessage").Returns("{0}{1}{2}");
 
-            routine = new SettingsRoutine(console, translator);
+            routine = new SettingsRoutine(argumentParser, console, translator);
         }
 
 
