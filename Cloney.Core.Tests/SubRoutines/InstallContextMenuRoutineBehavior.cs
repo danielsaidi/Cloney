@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
-using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,30 +8,20 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class InstallContextMenuRoutineBehavior
+    public class InstallContextMenuRoutineBehavior : SubRoutineTestBase
     {
         private ISubRoutine routine;
-
-        private IEnumerable<string> args;
         private IContextMenuInstaller installer;
-        private ICommandLineArgumentParser commandLineArgumentParser;
-        private IConsole console;
-        private ITranslator translator;
-
 
         
         [SetUp]
         public void SetUp()
         {
-            args = new[] { "foo" };
-            installer = Substitute.For<IContextMenuInstaller>();
-            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
-            console = Substitute.For<IConsole>();
-            translator = Substitute.For<ITranslator>();
-            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
+            var validArgs = new Dictionary<string, string> {{"install", "true"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
 
-            routine = new InstallContextMenuRoutine(installer, commandLineArgumentParser, console, translator);
+            installer = Substitute.For<IContextMenuInstaller>();
+            routine = new InstallContextMenuRoutine(installer, ArgumentParser, Console, Translator);
         }
 
 
@@ -42,37 +30,40 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            commandLineArgumentParser.Received().ParseCommandLineArguments(args);
+            ArgumentParser.Received().ParseCommandLineArguments(args);
         }
 
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            var emptyArgs = new Dictionary<string, string>();
+            ArgumentParser.ParseCommandLineArguments(args).Returns(emptyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" }, { "foo", "bar" } });
+            var tooManyArgs = new Dictionary<string, string> {{"install", "true"}, {"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(tooManyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            var irrelevantArgs = new Dictionary<string, string> {{"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(irrelevantArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
@@ -88,20 +79,12 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            translator.Received().Translate("InstallSuccessMessage");
-            console.Received().WriteLine("InstallSuccessMessage");
+            Translator.Received().Translate("InstallSuccessMessage");
+            Console.Received().WriteLine("InstallSuccessMessage");
         }
 
         [Test]
         public void Run_ShouldRunInstallerForRelevantArgument()
-        {
-            routine.Run(args);
-
-            installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
-        }
-
-        [Test]
-        public void Run_ShouldRunInstallerWithWizardArgumentForRelevantArgument()
         {
             routine.Run(args);
 
@@ -117,9 +100,9 @@ namespace Cloney.Core.Tests.SubRoutines
 
             routine.Run(args);
 
-            translator.Received().Translate("InstallErrorMessage");
-            console.Received().WriteLine("InstallErrorMessage");
-            console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
+            Translator.Received().Translate("InstallErrorMessage");
+            Console.Received().WriteLine("InstallErrorMessage");
+            Console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
         }
     }
 }

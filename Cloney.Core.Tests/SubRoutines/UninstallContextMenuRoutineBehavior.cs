@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
-using Cloney.Core.Localization;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,30 +8,20 @@ using NUnit.Framework;
 namespace Cloney.Core.Tests.SubRoutines
 {
     [TestFixture]
-    public class UninstallContextMenuRoutineBehavior
+    public class UninstallContextMenuRoutineBehavior : SubRoutineTestBase
     {
         private ISubRoutine routine;
-
-        private IEnumerable<string> args;
         private IContextMenuInstaller uninstaller;
-        private ICommandLineArgumentParser argumentParser;
-        private IConsole console;
-        private ITranslator translator;
-
 
 
         [SetUp]
         public void SetUp()
         {
-            args = new[] { "foo" };
+            var validArgs = new Dictionary<string, string> {{"uninstall", "true"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(validArgs);
+            
             uninstaller = Substitute.For<IContextMenuInstaller>();
-            argumentParser = Substitute.For<ICommandLineArgumentParser>();
-            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" } });
-            console = Substitute.For<IConsole>();
-            translator = Substitute.For<ITranslator>();
-            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
-
-            routine = new UninstallContextMenuRoutine(uninstaller, argumentParser, console, translator);
+            routine = new UninstallContextMenuRoutine(uninstaller, ArgumentParser, Console, Translator);
         }
 
 
@@ -42,37 +30,40 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            argumentParser.Received().ParseCommandLineArguments(args);
+            ArgumentParser.Received().ParseCommandLineArguments(args);
         }
 
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            var emptyArgs = new Dictionary<string, string>();
+            ArgumentParser.ParseCommandLineArguments(args).Returns(emptyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" }, { "foo", "bar" } });
+            var tooManyArgs = new Dictionary<string, string> {{"uninstall", "true"}, {"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(tooManyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            argumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            var irrelevantArgs = new Dictionary<string, string> {{"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(irrelevantArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
-            console.DidNotReceive().WriteLine(Arg.Any<string>());
+            Console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
@@ -88,8 +79,8 @@ namespace Cloney.Core.Tests.SubRoutines
         {
             routine.Run(args);
 
-            translator.Received().Translate("UninstallSuccessMessage");
-            console.Received().WriteLine("UninstallSuccessMessage");
+            Translator.Received().Translate("UninstallSuccessMessage");
+            Console.Received().WriteLine("UninstallSuccessMessage");
         }
 
         [Test]
@@ -109,9 +100,9 @@ namespace Cloney.Core.Tests.SubRoutines
 
             routine.Run(args);
 
-            translator.Received().Translate("UninstallErrorMessage");
-            console.Received().WriteLine("UninstallErrorMessage");
-            console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
+            Translator.Received().Translate("UninstallErrorMessage");
+            Console.Received().WriteLine("UninstallErrorMessage");
+            Console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
         }
     }
 }
