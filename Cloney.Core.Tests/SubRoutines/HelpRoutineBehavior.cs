@@ -32,7 +32,8 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            var emptyArgs = new Dictionary<string, string>();
+            ArgumentParser.ParseCommandLineArguments(args).Returns(emptyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
@@ -42,7 +43,8 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" }, { "foo", "bar" } });
+            var tooManyArgs = new Dictionary<string, string> {{"help", "true"}, {"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(tooManyArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
@@ -52,7 +54,8 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            ArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            var irrelevantArgs = new Dictionary<string, string> {{"foo", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(irrelevantArgs);
             var result = routine.Run(args);
 
             Assert.That(result, Is.False);
@@ -68,7 +71,7 @@ namespace Cloney.Core.Tests.SubRoutines
         }
 
         [Test]
-        public void Run_ShouldDisplayTranslatedErrorMessageForRelevantArgument()
+        public void Run_ShouldWriteToConsoleRelevantArgument()
         {
             routine.Run(args);
 

@@ -44,7 +44,8 @@ namespace Cloney.Core.SubRoutines
 
             var message = Translator.Translate("GuiModalStartMessage");
             Console.WriteLine(message);
-            process.Start("Cloney.Wizard.exe", "--modal");
+            process.Start(WizardApplicationPath, "--modal");
+
             return true;
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
+using Cloney.Core.Reflection;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -28,6 +30,17 @@ namespace Cloney.Core.SubRoutines
         protected IConsole Console { get; private set; }
 
         protected ITranslator Translator { get; private set; }
+
+        protected string WizardApplicationPath
+        {
+            get
+            {
+                var binDirectory = Assembly_FileExtensions.GetFolderPathOfExecutingAssembly();
+                var applicationPath = Path.Combine(binDirectory, "Cloney.Wizard.exe");
+
+                return applicationPath;
+            }
+        }
 
 
         protected bool HasArg(IDictionary<string, string> args, string key, string value)

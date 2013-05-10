@@ -130,7 +130,7 @@ The most commonly used Cloney commands are:
    clone      Clone a solution from a source folder to a target folder
    help       Display general help
    install    Install Windows Explorer context menu option for .sln files
-   mdoal       Start the GUI application in modal mode
+   modal      Start the GUI application in modal mode
    settings   Display application settings
    uninstall  Uninstall context menu option</value>
   </data>

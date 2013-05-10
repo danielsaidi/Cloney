@@ -36,10 +36,11 @@ namespace Cloney.Core.SubRoutines
         {
             if (args.Count() > 0)
                 return false;
-
+            
             var message = Translator.Translate("GuiStartMessage");
             Console.WriteLine(message);
-            process.Start("Cloney.Wizard.exe");
+            process.Start(WizardApplicationPath);
+
             return true;
         }
     }

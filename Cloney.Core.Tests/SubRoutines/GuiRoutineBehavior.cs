@@ -45,20 +45,20 @@ namespace Cloney.Core.Tests.SubRoutines
         }
 
         [Test]
-        public void Run_ShouldLaunchExternalProgramForNoArguments()
-        {
-            routine.Run(new string[] { });
-
-            process.Received().Start("Cloney.Wizard.exe");
-        }
-
-        [Test]
-        public void Run_ShouldDisplayTranslatedLaunchMessageForNoArguments()
+        public void Run_ShouldWriteToConsoleForNoArguments()
         {
             routine.Run(new string[] { });
 
             Translator.Received().Translate("GuiStartMessage");
             Console.Received().WriteLine("GuiStartMessage");
+        }
+
+        [Test]
+        public void Run_ShouldLaunchWizardForNoArguments()
+        {
+            routine.Run(new string[] { });
+
+            process.Received().Start(Arg.Is<string>(x => x.Contains("Cloney.Wizard.exe")));
         }
     }
 }

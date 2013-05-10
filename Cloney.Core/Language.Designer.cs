@@ -88,9 +88,9 @@ namespace Cloney.Core {
         ///   clone      Clone a solution from a source folder to a target folder
         ///   help       Display general help
         ///   install    Install Windows Explorer context menu option for .sln files
-        ///   mdoal       Start the GUI application in modal mode
+        ///   modal      Start the GUI application in modal mode
         ///   settings   Display application settings
-        ///   uninstall  Un [rest of string was truncated]&quot;;.
+        ///   uninstall  Uni [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GeneralHelpMessage {
             get {

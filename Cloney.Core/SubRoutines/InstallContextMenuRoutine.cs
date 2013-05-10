@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
-using Cloney.Core.Reflection;
 
 namespace Cloney.Core.SubRoutines
 {
@@ -46,11 +44,8 @@ namespace Cloney.Core.SubRoutines
 
             try
             {
-                var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
-                var applicationPath = Path.Combine(binDirectory, "Cloney.Wizard.exe");
-
                 Console.WriteLine(message);
-                installer.RegisterContextMenu(applicationPath, contextMenuText);
+                installer.RegisterContextMenu(WizardApplicationPath, contextMenuText);
                 Console.WriteLine(successMessage);
             }
             catch (Exception e)
