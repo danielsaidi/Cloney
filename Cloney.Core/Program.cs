@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
-using Cloney.Core.SubRoutines;
 
 namespace Cloney.Core
 {
@@ -35,14 +34,12 @@ namespace Cloney.Core
         }
 
 
-
         public void Start(IEnumerable<string> args)
         {
             try
             {
-                var routines = subRoutineLocator.FindAll();
-
                 var result = false;
+                var routines = subRoutineLocator.FindAll();
                 foreach (var routine in routines)
                     result = result || routine.Run(args);
 

@@ -9,7 +9,7 @@ namespace Cloney.Core
 {
     /// <summary>
     /// This class can be used to find every sub routine
-    /// that is defined in the Cloney library.
+    /// that is defined in the executing assembly.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
