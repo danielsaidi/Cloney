@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Cloners\FakeSolutionCloner.cs" />
     <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="Console\CommandLineArgumentsBehavior.cs" />
     <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerTranslatorBehavior.cs" />

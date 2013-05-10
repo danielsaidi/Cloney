@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Cloners\KlerksSoftEncodingDetector.cs" />
     <Compile Include="Console\CommandLineArgumentParser.cs" />
+    <Compile Include="Console\CommandLineArguments.cs" />
     <Compile Include="Console\ConsoleFacade.cs" />
     <Compile Include="Console\ICommandLineArgumentParser.cs" />
     <Compile Include="Console\IConsole.cs" />
