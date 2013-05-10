@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
 using Cloney.Core.Localization;
@@ -12,30 +13,43 @@ namespace Cloney.Core.Tests.SubRoutines
     public class UninstallContextMenuRoutineBehavior
     {
         private ISubRoutine routine;
+
+        private IEnumerable<string> args;
         private IConsole console;
         private ITranslator translator;
-        private IContextMenuInstaller installer;
+        private IContextMenuInstaller uninstaller;
+        private ICommandLineArgumentParser commandLineArgumentParser;
+
 
 
         [SetUp]
         public void SetUp()
         {
+            args = new[] { "foo" };
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
-            installer = Substitute.For<IContextMenuInstaller>();
-            translator.Translate("UninstallMessage").Returns("Uninstallmessage");
-            translator.Translate("SuccessfulUninstallMessage").Returns("SuccessfulUninstallmessage");
-            translator.Translate("InstallerErrorMessage").Returns("InstallerErrorMessage");
-            translator.Translate("ContextMenuText").Returns("ContextMenuText");
+            uninstaller = Substitute.For<IContextMenuInstaller>();
+            translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
+            commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" } });
 
-            routine = new UninstallContextMenuRoutine(console, translator, installer);
+            routine = new UninstallContextMenuRoutine(console, translator, uninstaller, commandLineArgumentParser);
         }
 
 
         [Test]
+        public void Run_ShouldParseIEnumerableToDictionary()
+        {
+            routine.Run(args);
+
+            commandLineArgumentParser.Received().ParseCommandLineArguments(args);
+        }
+
+        [Test]
         public void Run_ShouldAbortForNoArguments()
         {
-            var result = routine.Run(new string[]{});
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string>());
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
@@ -44,52 +58,59 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldAbortForMoreThanOneArgument()
         {
-            var result = routine.Run(new[] { "--uninstall", "--foo=bar", });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "uninstall", "true" }, { "foo", "bar" } });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
-        public void Run_ShouldAbortForIrrelevantArguments()
+        public void Run_ShouldAbortForIrrelevantArgument()
         {
-            var result = routine.Run(new[] { "--foo=bar" });
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "foo", "bar" } });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.False);
             console.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
         [Test]
-        public void Run_ShouldProceedForUnInstallArgument()
+        public void Run_ShouldProceedForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--uninstall" });
+            var result = routine.Run(args);
 
             Assert.That(result, Is.True);
-            translator.Received().Translate("UninstallMessage");
-            console.Received().WriteLine("Uninstallmessage");
-            translator.Received().Translate("SuccessfulUninstallMessage");
-            console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulUninstallmessage")));
         }
 
         [Test]
-        public void Run_WithUninstallArgument_ShouldRunContextMenuInstaller()
+        public void Run_ShouldDisplayUninstallMessageForRelevantArgument()
         {
-            var result = routine.Run(new[] { "--uninstall" });
+            routine.Run(args);
 
-            Assert.That(result, Is.True);
-            installer.Received().UnregisterContextMenu();
+            translator.Received().Translate("UninstallSuccessMessage");
+            console.Received().WriteLine("UninstallSuccessMessage");
         }
 
         [Test]
-        public void Run_WhenInstallationFails_ShouldPrintFriendlyFailMessage()
+        public void Run_ShouldRunUninstallerForRelevantArgument()
+        {
+            routine.Run(args);
+
+            uninstaller.Received().UnregisterContextMenu();
+        }
+
+        [Test]
+        public void Run_ShouldPrintFriendlyFailMessageWhenUninstallationFails()
         {
             const string exceptionMessage = "Something exceptional occurred";
-            installer.When(x => x.UnregisterContextMenu())
-                .Do(x => { throw new FileNotFoundException(exceptionMessage);});
+            uninstaller.When(x => x.UnregisterContextMenu())
+                .Do(x => { throw new FileNotFoundException(exceptionMessage); });
 
-            routine.Run(new[] { "--uninstall" });
+            routine.Run(args);
 
-            translator.Received().Translate("InstallerErrorMessage");
+            translator.Received().Translate("UninstallErrorMessage");
+            console.Received().WriteLine("UninstallErrorMessage");
             console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
         }
     }

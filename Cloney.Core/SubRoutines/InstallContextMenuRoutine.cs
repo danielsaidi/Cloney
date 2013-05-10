@@ -50,11 +50,11 @@ namespace Cloney.Core.SubRoutines
                 var binDirectory = Assembly_FileExtensions.GetFilePathToExecutingAssembly();
                 var applicationPath = Path.Combine(binDirectory, "Cloney.Wizard.exe");
                 installer.RegisterContextMenu(applicationPath, translator.Translate("ContextMenuText"));
-                console.WriteLine("\n" + translator.Translate("SuccessfulInstallMessage"));
+                console.WriteLine(translator.Translate("InstallSuccessMessage"));
             }
             catch (Exception e)
             {
-                console.WriteLine(translator.Translate("InstallerErrorMessage"));
+                console.WriteLine(translator.Translate("InstallErrorMessage"));
                 console.WriteLine(e.Message);
             }
 

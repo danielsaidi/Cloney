@@ -7,10 +7,8 @@ using Cloney.Core.Localization;
 namespace Cloney.Core.SubRoutines
 {
     /// <summary>
-    /// This sub routine triggers on this console command:
-    /// cloney --uninstall
-    /// When triggered, it uninstalls and unregisters the
-    /// Cloney Windows Explorer plugin.
+    /// This sub routine uninstalls the Cloney context menu.
+    /// It is triggered by the "cloney --uninstall" command.
     /// </summary>
     public class UninstallContextMenuRoutine : SubRoutineBase, ISubRoutine
     {
@@ -21,17 +19,16 @@ namespace Cloney.Core.SubRoutines
 
 
         public UninstallContextMenuRoutine()
-            :this(Default.Console, Default.Translator, new ContextMenuInstaller(Default.File, Default.ContextMenuRegistryWriter))
+            : this(Default.Console, Default.Translator, Default.ContextMenuInstaller, Default.CommandLineArgumentParser)
         {
         }
 
-        public UninstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer)
+        public UninstallContextMenuRoutine(IConsole console, ITranslator translator, IContextMenuInstaller installer, ICommandLineArgumentParser commandLineArgumentParser)
         {
             this.console = console;
             this.translator = translator;
             this.installer = installer;
-
-            commandLineArgumentParser = Default.CommandLineArgumentParser;
+            this.commandLineArgumentParser = commandLineArgumentParser;
         }
 
 
@@ -47,22 +44,17 @@ namespace Cloney.Core.SubRoutines
 
             try
             {
-                RunUninstall();
+                console.WriteLine(translator.Translate("UninstallMessage"));
+                installer.UnregisterContextMenu();
+                console.WriteLine(translator.Translate("UninstallSuccessMessage"));
             }
             catch (Exception e)
             {
-                console.WriteLine(translator.Translate("InstallerErrorMessage"));
+                console.WriteLine(translator.Translate("UninstallErrorMessage"));
                 console.WriteLine(e.Message);
             }
 
             return true;
-        }
-
-        private void RunUninstall()
-        {
-            console.WriteLine(translator.Translate("UninstallMessage"));
-            installer.UnregisterContextMenu();
-            console.WriteLine("\n" + translator.Translate("SuccessfulUninstallMessage"));
         }
     }
 }

@@ -24,8 +24,9 @@ namespace Cloney.Core.Tests.SubRoutines
             args = new[] {"foo"};
             console = Substitute.For<IConsole>();
             translator = Substitute.For<ITranslator>();
-            translator.Translate("GeneralHelpMessage").Returns("foo");
+            translator.Translate("GeneralHelpMessage").Returns(x => x[0]);
             commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" } });
 
             routine = new HelpRoutine(console, translator, commandLineArgumentParser);
         }
@@ -72,12 +73,18 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForRelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "help", "true" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Run_ShouldDisplayTranslatedErrorMessageForRelevantArgument()
+        {
+            routine.Run(args);
+
             translator.Received().Translate("GeneralHelpMessage");
-            console.Received().WriteLine("foo");
+            console.Received().WriteLine("GeneralHelpMessage");
         }
     }
 }

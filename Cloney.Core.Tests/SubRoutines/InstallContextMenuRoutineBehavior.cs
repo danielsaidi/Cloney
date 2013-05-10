@@ -31,6 +31,7 @@ namespace Cloney.Core.Tests.SubRoutines
             installer = Substitute.For<IContextMenuInstaller>();
             translator.Translate(Arg.Any<string>()).Returns(x => x[0]);
             commandLineArgumentParser = Substitute.For<ICommandLineArgumentParser>();
+            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
 
             routine = new InstallContextMenuRoutine(console, translator, installer, commandLineArgumentParser);
         }
@@ -77,7 +78,6 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldProceedForRelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
             var result = routine.Run(args);
 
             Assert.That(result, Is.True);
@@ -86,17 +86,15 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldDisplayInstallMessageForRelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
             routine.Run(args);
 
-            translator.Received().Translate("SuccessfulInstallMessage");
-            console.Received().WriteLine(Arg.Is<string>(s => s.Contains("SuccessfulInstallMessage")));
+            translator.Received().Translate("InstallSuccessMessage");
+            console.Received().WriteLine("InstallSuccessMessage");
         }
 
         [Test]
         public void Run_ShouldRunInstallerForRelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
             routine.Run(args);
 
             installer.Received().RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>());
@@ -105,10 +103,9 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldRunInstallerWithWizardArgumentForRelevantArgument()
         {
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
             routine.Run(args);
 
-            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Wizard.exe")), Arg.Any<string>());
+            installer.Received().RegisterContextMenu(Arg.Is<string>(x => x.Contains(@"Cloney.Wizard.exe")), "ContextMenuText");
         }
 
         [Test]
@@ -118,10 +115,10 @@ namespace Cloney.Core.Tests.SubRoutines
             installer.When(x => x.RegisterContextMenu(Arg.Any<string>(), Arg.Any<string>()))
                 .Do(x => { throw new FileNotFoundException(exceptionMessage);});
 
-            commandLineArgumentParser.ParseCommandLineArguments(args).Returns(new Dictionary<string, string> { { "install", "true" } });
             routine.Run(args);
 
-            translator.Received().Translate("InstallerErrorMessage");
+            translator.Received().Translate("InstallErrorMessage");
+            console.Received().WriteLine("InstallErrorMessage");
             console.Received().WriteLine(Arg.Is<string>(x => x.Contains(exceptionMessage)));
         }
     }

@@ -140,9 +140,9 @@ Starting the Cloney Wizard...
 
 Type cloney --help for more options.</value>
   </data>
-  <data name="InstallerErrorMessage" xml:space="preserve">
+  <data name="InstallErrorMessage" xml:space="preserve">
     <value>
-      The installer for Cloney failed with the following error message:
+The Cloney Windows Explorer context menu option installer failed with the following error message:
     </value>
   </data>
   <data name="InstallMessage" xml:space="preserve">
@@ -171,18 +171,25 @@ Type cloney --help for more options.</value>
 Cloney stopped with the following error message:
 </value>
   </data>
-  <data name="SuccessfulInstallMessage" xml:space="preserve">
-    <value>Windows Explorer context menu option for Cloney successfully installed!
+  <data name="InstallSuccessMessage" xml:space="preserve">
+    <value>
+The Cloney Windows Explorer context menu option was successfully installed!
 
-To clone a solution using the Windows Explorer, right-click on a Visual Studio solution file, then select "Clone solution with Cloney".</value>
+To clone a solution using the context menu, right-click on a Visual Studio solution file, then select "Clone solution with Cloney".</value>
   </data>
-  <data name="SuccessfulUninstallMessage" xml:space="preserve">
-    <value>Windows Explorer context menu option for Cloney successfully uninstalled!</value>
+  <data name="UninstallSuccessMessage" xml:space="preserve">
+    <value>
+The Cloney Windows Explorer context menu option was successfully uninstalled!</value>
   </data>
   <data name="UninstallMessage" xml:space="preserve">
     <value>Uninstalling context menu option for Cloney...</value>
   </data>
   <data name="ContextMenuText" xml:space="preserve">
     <value>Clone solution with Cloney</value>
+  </data>
+  <data name="UninstallErrorMessage" xml:space="preserve">
+    <value>
+The Cloney Windows Explorer context menu option uninstaller failed with the following error message:
+    </value>
   </data>
 </root>
