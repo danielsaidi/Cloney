@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cloney.Core.Cloners;
+using Cloney.Core.Cloning;
 using Cloney.Core.Console;
 using Cloney.Core.Localization;
 

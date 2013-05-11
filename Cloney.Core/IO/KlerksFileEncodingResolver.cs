@@ -3,9 +3,13 @@ using System.Text;
 namespace Cloney.Core.IO
 {
     /// <summary>
-    /// From here http://www.architectshack.com/TextFileEncodingDetector.ashx
-    /// Also used by http://findandreplace.codeplex.com which fulfills quite similar problem as cloney.
+    /// This class can be used to resolve file encodings,
+    /// using the KlerksSoftFileEncodingDetector class.
     /// </summary>
+    /// <remarks>
+    /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
+    /// Link:       http://danielsaidi.github.com/Cloney
+    /// </remarks>
     public class KlerksFileEncodingResolver : IFileEncodingResolver
     {
         private readonly Encoding defaultEncoding;

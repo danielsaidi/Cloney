@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
-using Cloney.Core.Cloners;
+using Cloney.Core.Cloning;
 
 namespace Cloney.Wizard
 {

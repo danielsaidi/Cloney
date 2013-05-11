@@ -5,7 +5,7 @@ using System.Text;
 using Cloney.Core.IO;
 using Cloney.Core.Namespace;
 
-namespace Cloney.Core.Cloners
+namespace Cloney.Core.Cloning
 {
     /// <summary>
     /// This class can be used to clone Visual Studio solutions
@@ -21,23 +21,16 @@ namespace Cloney.Core.Cloners
     /// </remarks>
     public class SolutionCloner : SolutionClonerBase, ISolutionCloner
     {
-        private readonly INamespaceResolver targetNamespaceResolver;
         private readonly INamespaceResolver sourceNamespaceResolver;
-        private readonly IPathPatternMatcher pathPatternMatcher;
-        private readonly IEnumerable<string> excludeFolderPatterns;
-        private readonly IEnumerable<string> excludeFilePatterns;
-        private readonly IEnumerable<string> plainCopyFilePatterns;
+        private readonly INamespaceResolver targetNamespaceResolver;
+        private readonly IPathCloningManager pathCloningManager;
 
 
-        public SolutionCloner(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver, IPathPatternMatcher pathPatternMatcher, IEnumerable<string> excludeFolderPatterns, IEnumerable<string> excludeFilePatterns, IEnumerable<string> plainCopyFilePatterns)
+        public SolutionCloner(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver, IPathCloningManager pathCloningManager)
         {
-            this.targetNamespaceResolver = targetNamespaceResolver;
             this.sourceNamespaceResolver = sourceNamespaceResolver;
-            this.pathPatternMatcher = pathPatternMatcher;
-
-            this.excludeFolderPatterns = excludeFolderPatterns;
-            this.excludeFilePatterns = excludeFilePatterns;
-            this.plainCopyFilePatterns = plainCopyFilePatterns;
+            this.targetNamespaceResolver = targetNamespaceResolver;
+            this.pathCloningManager = pathCloningManager;
         }
 
 
@@ -48,15 +41,15 @@ namespace Cloney.Core.Cloners
             return ReplaceNamespace(path, sourceNamespace, targetNamespace);
         }
 
-        public void CloneSolution(string sourcePath, string targetPath)
+        public void CloneSolution(string solutionFilePath, string targetFolderPath)
         {
             OnCloningBegun(new EventArgs());
 
-            var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(sourcePath);
-            var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetPath);
+            var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(solutionFilePath);
+            var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetFolderPath);
 
-            CloneSubFolders(sourcePath, sourcePath, sourceNamespace, targetPath, targetNamespace);
-            CloneFolderFiles(sourcePath, sourcePath, sourceNamespace, targetPath, targetNamespace);
+            CloneSubFolders(solutionFilePath, solutionFilePath, sourceNamespace, targetFolderPath, targetNamespace);
+            CloneFolderFiles(solutionFilePath, solutionFilePath, sourceNamespace, targetFolderPath, targetNamespace);
             CurrentPath = "";
 
             OnCloningEnded(new EventArgs());
@@ -72,13 +65,13 @@ namespace Cloney.Core.Cloners
                 CurrentPath = filePath;
 
                 var fileName = new FileInfo(filePath).Name;
-                if (IsExcludedFile(fileName))
+                if (pathCloningManager.ShouldExcludeFile(fileName))
                     continue;
 
                 var adjustedFilePath = AdjustPath(filePath, sourcePath, sourceNamespace, targetNamespace);
                 var targetFilePath = Path.Combine(targetPath, adjustedFilePath);
 
-                if (IsPlainCopyFile(fileName))
+                if (pathCloningManager.ShouldPlainCopyFile(fileName))
                 {
                     File.Copy(filePath, targetFilePath, true);
                     continue;
@@ -117,7 +110,7 @@ namespace Cloney.Core.Cloners
                 CurrentPath = directory;
 
                 var folderName = new DirectoryInfo(directory).Name;
-                if (IsExcludedFolder(folderName))
+                if (pathCloningManager.ShouldExcludeFolder(folderName))
                     continue;
 
                 var adjustedFolderPath = AdjustPath(directory, sourcePath, sourceNamespace, targetNamespace);
@@ -131,21 +124,6 @@ namespace Cloney.Core.Cloners
             }
         }
 
-
-        public bool IsExcludedFolder(string folderPath)
-        {
-            return pathPatternMatcher.IsAnyMatch(folderPath, excludeFolderPatterns);
-        }
-
-        public bool IsExcludedFile(string filePath)
-        {
-            return pathPatternMatcher.IsAnyMatch(filePath, excludeFilePatterns);
-        }
-
-        public bool IsPlainCopyFile(string filePath)
-        {
-            return pathPatternMatcher.IsAnyMatch(filePath, plainCopyFilePatterns);
-        }
 
         public string ReplaceNamespace(string str, string sourceNamespace, string targetNamespace)
         {

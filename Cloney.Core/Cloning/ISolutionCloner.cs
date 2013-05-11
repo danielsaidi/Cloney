@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cloney.Core.Cloners
+namespace Cloney.Core.Cloning
 {
     /// <summary>
     /// This interface can be implemented by classes that
@@ -19,6 +19,6 @@ namespace Cloney.Core.Cloners
 
         String CurrentPath { get; }
 
-        void CloneSolution(string sourcePath, string targetPath);
+        void CloneSolution(string solutionFilePath, string targetFolderPath);
     }
 }

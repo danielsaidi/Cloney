@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cloney.Core.Cloners;
+using Cloney.Core.Cloning;
 using Cloney.Core.Console;
 using Cloney.Core.ContextMenu;
 using Cloney.Core.Diagnostics;
@@ -66,6 +66,14 @@ namespace Cloney.Core
             get { return new KlerksFileEncodingResolver(Encoding.UTF8); }
         }
 
+        public static IPathCloningManager PathCloningManager
+        {
+            get
+            {
+                return new PathCloningManager(PathPatternMatcher, ExcludeFolderPatterns, ExcludeFilePatterns, PlainCopyFilePatterns);
+            }
+        }
+
         public static IPathPatternMatcher PathPatternMatcher
         {
             get { return new PathPatternMatcher(); }
@@ -90,11 +98,7 @@ namespace Cloney.Core
         {
             get
             {
-                var excludeFolderPatterns = Settings.ExcludeFolderPatterns.Cast<string>();
-                var excludeFilePatterns = Settings.ExcludeFilePatterns.Cast<string>();
-                var plainCopyFilePatterns = Settings.PlainCopyFilePatterns.Cast<string>();
-
-                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, PathPatternMatcher, excludeFolderPatterns, excludeFilePatterns, plainCopyFilePatterns);
+                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, PathCloningManager);
             }
         }
 

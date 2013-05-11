@@ -65,7 +65,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Cloners\SolutionClonerBaseBehavior.cs" />
+    <Compile Include="Cloning\PathCloningManagerBehavior.cs" />
+    <Compile Include="Cloning\SolutionClonerBaseBehavior.cs" />
     <Compile Include="Console\CommandLineArgumentsBehavior.cs" />
     <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
     <Compile Include="IO\KlerksFileEncodingResolverBehavior.cs" />

@@ -12,27 +12,24 @@ namespace Cloney.Core.IO
     public static class KlerksSoftFileEncodingDetector
     {
         /*
-         * Simple class to handle text file encoding woes (in a primarily English-speaking tech 
-         *      world).
+         * Simple class to handle text file encoding woes (in a primarily English-speaking tech world).
          * 
-         *  - This code is fully managed, no shady calls to MLang (the unmanaged codepage
-         *      detection library originally developed for Internet Explorer).
+         *  - This code is fully managed, no shady calls to MLang (the unmanaged codepage detection
+         *      library originally developed for Internet Explorer).
          * 
-         *  - This class does NOT try to detect arbitrary codepages/charsets, it really only
-         *      aims to differentiate between some of the most common variants of Unicode 
-         *      encoding, and a "default" (western / ascii-based) encoding alternative provided
-         *      by the caller.
+         *  - This class does NOT try to detect arbitrary codepages/charsets, it really only aims to
+         *      differentiate between some of the most common variants of Unicode encoding, and a
+         *      "default" (western / ascii-based) encoding alternative provided by the caller.
          *      
-         *  - As there is no "Reliable" way to distinguish between UTF-8 (without BOM) and 
-         *      Windows-1252 (in .Net, also incorrectly called "ASCII") encodings, we use a 
-         *      heuristic - so the more of the file we can sample the better the guess. If you 
-         *      are going to read the whole file into memory at some point, then best to pass 
-         *      in the whole byte byte array directly. Otherwise, decide how to trade off 
-         *      reliability against performance / memory usage.
+         *  - As there is no "reliable" way to distinguish between UTF-8 (without BOM) and Windows-1252
+         *      (in .Net, also incorrectly called "ASCII") encodings, we use a  heuristic - so the more
+         *      of the file we can sample the better the guess. If you are going to read the whole file
+         *      into memory at some point, then best to pass in the whole byte byte array directly.
+         *      Otherwise, decide how to trade off  reliability against performance / memory usage.
          *      
-         *  - The UTF-8 detection heuristic only works for western text, as it relies on 
-         *      the presence of UTF-8 encoded accented and other characters found in the upper 
-         *      ranges of the Latin-1 and (particularly) Windows-1252 codepages.
+         *  - The UTF-8 detection heuristic only works for western text, as it relies on the presence of
+         *      UTF-8 encoded accented and other characters found in the upper ranges of the Latin-1 and
+         *      (particularly) Windows-1252 codepages.
          *  
          *  - For more general detection routines, see existing projects / resources:
          *    - MLang - Microsoft library originally for IE6, available in Windows XP and later APIs now (I think?)
@@ -43,7 +40,6 @@ namespace Cloney.Core.IO
          *  
          * Copyright Tao Klerks, Jan 2010, tao@klerks.biz
          * Licensed under the modified BSD license:
-         * 
 
 Redistribution and use in source and binary forms, with or without modification, are 
 permitted provided that the following conditions are met:
@@ -65,16 +61,16 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE.
-
          * 
          */
 
         private const long _defaultHeuristicSampleSize = 0x10000;
+
         //completely arbitrary - inappropriate for high numbers of files / high speed requirements
 
         public static Encoding DetectTextFileEncoding(string InputFilename, Encoding DefaultEncoding)
         {
-            using (FileStream textfileStream = File.OpenRead(InputFilename))
+            using (var textfileStream = File.OpenRead(InputFilename))
             {
                 return DetectTextFileEncoding(textfileStream, DefaultEncoding);
             }
@@ -90,27 +86,21 @@ OF SUCH DAMAGE.
                                                       long HeuristicSampleSize)
         {
             if (InputFileStream == null)
-                throw new ArgumentNullException("Must provide a valid Filestream!", "InputFileStream");
+                throw new ArgumentNullException("InputFileStream", @"Must provide a valid Filestream!");
 
             if (!InputFileStream.CanRead)
-                throw new ArgumentException("Provided file stream is not readable!", "InputFileStream");
+                throw new ArgumentException(@"Provided file stream is not readable!", "InputFileStream");
 
             if (!InputFileStream.CanSeek)
-                throw new ArgumentException("Provided file stream cannot seek!", "InputFileStream");
+                throw new ArgumentException(@"Provided file stream cannot seek!", "InputFileStream");
 
-            Encoding encodingFound = null;
-
-            long originalPos = InputFileStream.Position;
-
+            var originalPos = InputFileStream.Position;
             InputFileStream.Position = 0;
 
-
             //First read only what we need for BOM detection
-
-            byte[] bomBytes = new byte[InputFileStream.Length > 4 ? 4 : InputFileStream.Length];
+            var bomBytes = new byte[InputFileStream.Length > 4 ? 4 : InputFileStream.Length];
             InputFileStream.Read(bomBytes, 0, bomBytes.Length);
-
-            encodingFound = DetectBOMBytes(bomBytes);
+            var encodingFound = DetectBOMBytes(bomBytes);
 
             if (encodingFound != null)
             {
@@ -118,56 +108,36 @@ OF SUCH DAMAGE.
                 return encodingFound;
             }
 
-
-            //BOM Detection failed, going for heuristics now.
-            //  create sample byte array and populate it
-            byte[] sampleBytes =
-                new byte[HeuristicSampleSize > InputFileStream.Length ? InputFileStream.Length : HeuristicSampleSize];
+            //BOM Detection failed, going for heuristics now...create sample byte array and populate it
+            var sampleBytes = new byte[HeuristicSampleSize > InputFileStream.Length ? InputFileStream.Length : HeuristicSampleSize];
             Array.Copy(bomBytes, sampleBytes, bomBytes.Length);
             if (InputFileStream.Length > bomBytes.Length)
                 InputFileStream.Read(sampleBytes, bomBytes.Length, sampleBytes.Length - bomBytes.Length);
             InputFileStream.Position = originalPos;
 
-            //test byte array content
+            //Test byte array content
             encodingFound = DetectUnicodeInByteSampleByHeuristics(sampleBytes);
-
-            if (encodingFound != null)
-                return encodingFound;
-            else
-                return DefaultEncoding;
+            return encodingFound ?? DefaultEncoding;
         }
 
         public static Encoding DetectTextByteArrayEncoding(byte[] TextData, Encoding DefaultEncoding)
         {
             if (TextData == null)
-                throw new ArgumentNullException("Must provide a valid text data byte array!", "TextData");
+                throw new ArgumentNullException("TextData", @"Must provide a valid text data byte array!");
 
-            Encoding encodingFound = null;
-
-            encodingFound = DetectBOMBytes(TextData);
-
+            var encodingFound = DetectBOMBytes(TextData);
             if (encodingFound != null)
-            {
                 return encodingFound;
-            }
-            else
-            {
-                //test byte array content
-                encodingFound = DetectUnicodeInByteSampleByHeuristics(TextData);
 
-                if (encodingFound != null)
-                    return encodingFound;
-                else
-                    return DefaultEncoding;
-            }
-
-
+            //Test byte array content
+            encodingFound = DetectUnicodeInByteSampleByHeuristics(TextData);
+            return encodingFound ?? DefaultEncoding;
         }
 
         public static Encoding DetectBOMBytes(byte[] BOMBytes)
         {
             if (BOMBytes == null)
-                throw new ArgumentNullException("Must provide a valid BOM byte array!", "BOMBytes");
+                throw new ArgumentNullException("BOMBytes", @"Must provide a valid BOM byte array!");
 
             if (BOMBytes.Length < 2)
                 return null;
@@ -218,9 +188,8 @@ OF SUCH DAMAGE.
             //Cycle through, keeping count of binary null positions, possible UTF-8 
             //  sequences from upper ranges of Windows-1252, and probable US-ASCII 
             //  character counts.
-
             long currentPos = 0;
-            int skipUTF8Bytes = 0;
+            var skipUTF8Bytes = 0;
 
             while (currentPos < SampleBytes.Length)
             {
@@ -240,8 +209,7 @@ OF SUCH DAMAGE.
                 //suspicious sequences (look like UTF-8)
                 if (skipUTF8Bytes == 0)
                 {
-                    int lengthFound = DetectSuspiciousUTF8SequenceLength(SampleBytes, currentPos);
-
+                    var lengthFound = DetectSuspiciousUTF8SequenceLength(SampleBytes, currentPos);
                     if (lengthFound > 0)
                     {
                         suspiciousUTF8SequenceCount++;
@@ -262,10 +230,8 @@ OF SUCH DAMAGE.
             //  proportion of even binary nulls.
             //  The thresholds here used (less than 20% nulls where you expect non-nulls, and more than
             //  60% nulls where you do expect nulls) are completely arbitrary.
-
             if (((evenBinaryNullsInSample * 2.0) / SampleBytes.Length) < 0.2
-                && ((oddBinaryNullsInSample * 2.0) / SampleBytes.Length) > 0.6
-                )
+                && ((oddBinaryNullsInSample * 2.0) / SampleBytes.Length) > 0.6)
                 return Encoding.Unicode;
 
 
@@ -276,8 +242,7 @@ OF SUCH DAMAGE.
             //  60% nulls where you do expect nulls) are completely arbitrary.
 
             if (((oddBinaryNullsInSample * 2.0) / SampleBytes.Length) < 0.2
-                && ((evenBinaryNullsInSample * 2.0) / SampleBytes.Length) > 0.6
-                )
+                && ((evenBinaryNullsInSample * 2.0) / SampleBytes.Length) > 0.6)
                 return Encoding.BigEndianUnicode;
 
 
@@ -285,17 +250,18 @@ OF SUCH DAMAGE.
             //  using regexp, in his w3c.org unicode FAQ entry: 
             //  http://www.w3.org/International/questions/qa-forms-utf-8
             //  adapted here for C#.
-            string potentiallyMangledString = Encoding.ASCII.GetString(SampleBytes);
-            Regex UTF8Validator = new Regex(@"\A("
-                                            + @"[\x09\x0A\x0D\x20-\x7E]"
-                                            + @"|[\xC2-\xDF][\x80-\xBF]"
-                                            + @"|\xE0[\xA0-\xBF][\x80-\xBF]"
-                                            + @"|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}"
-                                            + @"|\xED[\x80-\x9F][\x80-\xBF]"
-                                            + @"|\xF0[\x90-\xBF][\x80-\xBF]{2}"
-                                            + @"|[\xF1-\xF3][\x80-\xBF]{3}"
-                                            + @"|\xF4[\x80-\x8F][\x80-\xBF]{2}"
-                                            + @")*\z");
+            var potentiallyMangledString = Encoding.ASCII.GetString(SampleBytes);
+            var UTF8Validator = new Regex(@"\A("
+                + @"[\x09\x0A\x0D\x20-\x7E]"
+                + @"|[\xC2-\xDF][\x80-\xBF]"
+                + @"|\xE0[\xA0-\xBF][\x80-\xBF]"
+                + @"|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}"
+                + @"|\xED[\x80-\x9F][\x80-\xBF]"
+                + @"|\xF0[\x90-\xBF][\x80-\xBF]{2}"
+                + @"|[\xF1-\xF3][\x80-\xBF]{3}"
+                + @"|\xF4[\x80-\x8F][\x80-\xBF]{2}"
+                + @")*\z");
+
             if (UTF8Validator.IsMatch(potentiallyMangledString))
             {
                 //Unfortunately, just the fact that it CAN be UTF-8 doesn't tell you much about probabilities.
@@ -317,7 +283,6 @@ OF SUCH DAMAGE.
                 //   arbitrarily decided, should be 80% (a random distribution, eg binary data, would yield 
                 //   approx 40%, so the chances of hitting this threshold by accident in random data are 
                 //   VERY low). 
-
                 if ((suspiciousUTF8SequenceCount * 500000.0 / SampleBytes.Length >= 1) //suspicious sequences
                     && (
                            //all suspicious, so cannot evaluate proportion of US-Ascii

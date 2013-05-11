@@ -61,6 +61,8 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Cloning\IPathCloningManager.cs" />
+    <Compile Include="Cloning\PathCloningManager.cs" />
     <Compile Include="IO\KlerksFileEncodingResolver.cs" />
     <Compile Include="IO\KlerksSoftFileEncodingDetector.cs" />
     <Compile Include="Console\CommandLineArgumentParser.cs" />
@@ -106,9 +108,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Cloners\SolutionClonerBase.cs" />
-    <Compile Include="Cloners\ISolutionCloner.cs" />
-    <Compile Include="Cloners\SolutionCloner.cs" />
+    <Compile Include="Cloning\SolutionClonerBase.cs" />
+    <Compile Include="Cloning\ISolutionCloner.cs" />
+    <Compile Include="Cloning\SolutionCloner.cs" />
     <Compile Include="Reflection\Assembly_Extensions.cs" />
     <Compile Include="ContextMenu\IContextMenuRegistryWriter.cs" />
     <Compile Include="Reflection\Assembly_TypeExtensions.cs" />

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Cloney.Core.Cloners;
+using Cloney.Core.Cloning;
 using Cloney.Core.SubRoutines;
 using NSubstitute;
 using NUnit.Framework;
@@ -171,7 +171,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldWriteToConsoleWhenCurrentPathChanges()
         {
-            var cloner = new SolutionCloner(null, null, null, new[] { "" }, new[] { "" }, new[] { "" });
+            var cloner = new SolutionCloner(null, null, null);
             routine = new CloneRoutine(cloner, ArgumentParser, Console, Translator);
 
             cloner.CurrentPath = "apa";
