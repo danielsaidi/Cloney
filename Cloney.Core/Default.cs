@@ -66,11 +66,11 @@ namespace Cloney.Core
             get { return new KlerksFileEncodingResolver(Encoding.UTF8); }
         }
 
-        public static IPathCloningManager PathCloningManager
+        public static ISolutionClonerBehavior SolutionClonerBehavior
         {
             get
             {
-                return new PathCloningManager(PathPatternMatcher, ExcludeFolderPatterns, ExcludeFilePatterns, PlainCopyFilePatterns);
+                return new SolutionClonerBehavior(PathPatternMatcher, ExcludeFolderPatterns, ExcludeFilePatterns, PlainCopyFilePatterns);
             }
         }
 
@@ -98,7 +98,7 @@ namespace Cloney.Core
         {
             get
             {
-                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, PathCloningManager);
+                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, SolutionClonerBehavior, FileEncodingResolver);
             }
         }
 

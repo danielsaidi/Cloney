@@ -171,7 +171,7 @@ namespace Cloney.Core.Tests.SubRoutines
         [Test]
         public void Run_ShouldWriteToConsoleWhenCurrentPathChanges()
         {
-            var cloner = new SolutionCloner(null, null, null);
+            var cloner = new SolutionCloner(null, null, null, null);
             routine = new CloneRoutine(cloner, ArgumentParser, Console, Translator);
 
             cloner.CurrentPath = "apa";
