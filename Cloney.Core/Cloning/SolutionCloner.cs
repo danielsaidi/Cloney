@@ -38,22 +38,15 @@ namespace Cloney.Core.Cloning
             var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetFolderPath);
             var sourceFolderPath = new FileInfo(solutionFilePath).Directory.ToString();
 
-            CloneSubFolders(sourceFolderPath, sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
-            CloneFolderFiles(sourceFolderPath, sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
+            CloneSubFolders(sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
+            CloneFolderFiles(sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
             CurrentPath = "";
 
             OnCloningEnded(new EventArgs());
         }
 
 
-        private static string AdjustPath(string path, string sourcePath, string sourceNamespace, string targetNamespace)
-        {
-            //path = path.Replace(sourcePath, "");
-
-            return ReplaceNamespace(path, sourceNamespace, targetNamespace);
-        }
-
-        private void CloneFolderFiles(string folderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
+        private void CloneFolderFiles(string folderPath, string sourceNamespace, string targetPath, string targetNamespace)
         {
             if (string.IsNullOrEmpty(folderPath))
                 return;
@@ -66,7 +59,7 @@ namespace Cloney.Core.Cloning
                 if (cloningBehavior.ShouldExcludeFile(fileName))
                     continue;
 
-                var adjustedFilePath = AdjustPath(filePath, sourcePath, sourceNamespace, targetNamespace);
+                var adjustedFilePath = ReplaceNamespace(filePath, sourceNamespace, targetNamespace);
                 var targetFilePath = Path.Combine(targetPath, adjustedFilePath);
 
                 if (cloningBehavior.ShouldPlainCopyFile(fileName))
@@ -97,7 +90,7 @@ namespace Cloney.Core.Cloning
             }
         }
 
-        private void CloneSubFolders(string parentFolderPath, string sourcePath, string sourceNamespace, string targetPath, string targetNamespace)
+        private void CloneSubFolders(string parentFolderPath, string sourceNamespace, string targetPath, string targetNamespace)
         {
             if (string.IsNullOrWhiteSpace(parentFolderPath))
                 return;
@@ -110,14 +103,14 @@ namespace Cloney.Core.Cloning
                 if (cloningBehavior.ShouldExcludeFolder(folderName))
                     continue;
 
-                var adjustedFolderPath = AdjustPath(directory, sourcePath, sourceNamespace, targetNamespace);
+                var adjustedFolderPath = ReplaceNamespace(directory, sourceNamespace, targetNamespace);
                 var targetFolderPath = Path.Combine(targetPath, adjustedFolderPath);
 
                 if (!Directory.Exists(targetFolderPath))
                     Directory.CreateDirectory(targetFolderPath);
 
-                CloneSubFolders(directory, sourcePath, sourceNamespace, targetPath, targetNamespace);
-                CloneFolderFiles(directory, sourcePath, sourceNamespace, targetPath, targetNamespace);
+                CloneSubFolders(directory, sourceNamespace, targetPath, targetNamespace);
+                CloneFolderFiles(directory, sourceNamespace, targetPath, targetNamespace);
             }
         }
 
