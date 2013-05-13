@@ -1,7 +1,12 @@
-Cloney 0.99.0		2013-05-02
+Cloney 0.99.0		2013-05-13
 ==============================
 
-In this redesign, I have all the components that
+In this redesign, I have refactored the entire solution, added
+more unit tests, improved the overall model etc.
+
+Furthermore, the application base is more stable and will make
+it a lot easier to resolve the various reported issues.
+
 
 Updated to NSubstitute 1.6.0.0
 Updated to NUnit 2.6.2
