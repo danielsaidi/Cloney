@@ -7,8 +7,9 @@ using Cloney.Wizard.Resources;
 namespace Cloney.Wizard
 {
     /// <summary>
-    /// The Cloney Wizard application class. This is the
-    /// starting point when the wizard is launched.
+    /// This is the Cloney Wizard application class. The
+    /// class is the starting point when the application
+    /// is launched.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -27,7 +28,6 @@ namespace Cloney.Wizard
         public App(ICommandLineArgumentParser argumentParser)
         {
             this.argumentParser = argumentParser;
-
             Dispatcher.UnhandledException += Dispatcher_UnhandledException;
         }
 
@@ -35,12 +35,21 @@ namespace Cloney.Wizard
         protected override void OnStartup(StartupEventArgs e)
         {
             Arguments = argumentParser.ParseCommandLineArguments(e.Args);
-
             base.OnStartup(e);
         }
 
 
         public static CommandLineArguments Arguments { get; private set; }
+
+        public static string InputSource
+        {
+            get { return Arguments.HasArgument("source") ? Arguments.Raw["source"] : null; }
+        }
+
+        public static bool IsModal
+        {
+            get { return Arguments.HasArgument("modal", "true"); }
+        }
 
 
         static void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

@@ -43,19 +43,9 @@ namespace Cloney.Core.Tests.SubRoutines
         }
 
         [Test]
-        public void Run_ShouldAbortForMoreThanOneArgument()
-        {
-            var tooManyArgs = new Dictionary<string, string> {{"modal", "true"}, {"foo", "bar"}};
-            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(tooManyArgs));
-            var result = routine.Run(args);
-
-            AssertSubRoutineStopped(result);
-        }
-
-        [Test]
         public void Run_ShouldAbortForIrrelevantArgument()
         {
-            var irrelevantArgs = new Dictionary<string, string> { { "foo", "bar" } };
+            var irrelevantArgs = new Dictionary<string, string> {{"foo", "bar"}};
             ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(irrelevantArgs));
             var result = routine.Run(args);
 
@@ -85,6 +75,17 @@ namespace Cloney.Core.Tests.SubRoutines
             routine.Run(args);
 
             process.Received().Start(Arg.Is<string>(x => x.Contains("Cloney.Wizard.exe")), "--modal");
+        }
+
+
+        [Test]
+        public void Run_ShouldLaunchModalWizardWithSourceArgument()
+        {
+            var tooManyArgs = new Dictionary<string, string> {{"modal", "true"}, {"source", "bar"}};
+            ArgumentParser.ParseCommandLineArguments(args).Returns(GetArgs(tooManyArgs));
+            routine.Run(args);
+
+            process.Received().Start(Arg.Is<string>(x => x.Contains("Cloney.Wizard.exe")), "--modal --source=bar");
         }
 
 

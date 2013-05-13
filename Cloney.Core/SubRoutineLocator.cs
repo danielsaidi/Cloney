@@ -15,7 +15,7 @@ namespace Cloney.Core
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/Cloney
     /// </remarks>
-    public class LocalSubRoutineLocator : ISubRoutineLocator
+    public class SubRoutineLocator : ISubRoutineLocator
     {
         public IEnumerable<ISubRoutine> FindAll()
         {

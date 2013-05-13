@@ -12,7 +12,7 @@ namespace Cloney.Core.Tests
         [SetUp]
         public void SetUp()
         {
-            locator = new LocalSubRoutineLocator();
+            locator = new SubRoutineLocator();
         }
 
 

@@ -39,12 +39,15 @@ namespace Cloney.Core.SubRoutines
 
         private bool Run(CommandLineArguments args)
         {
-            if (!args.HasSingleArgument("modal", "true"))
+            if (!args.HasArgument("modal", "true"))
                 return false;
+
+            var source = args.HasArgument("source") ? args.Raw["source"] : null;
+            var sourceString = source == null ? null : " --source=" + source;
 
             var message = Translator.Translate("GuiModalStartMessage");
             Console.WriteLine(message);
-            process.Start(WizardApplicationPath, "--modal");
+            process.Start(WizardApplicationPath, "--modal" + sourceString);
 
             return true;
         }

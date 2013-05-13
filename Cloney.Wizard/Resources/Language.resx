@@ -117,14 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Folder" xml:space="preserve">
-    <value>Folder:</value>
-  </data>
   <data name="Clone" xml:space="preserve">
     <value>Clone</value>
-  </data>
-  <data name="Namespace" xml:space="preserve">
-    <value>Namespace:</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select...</value>
@@ -139,7 +133,7 @@
     <value>Clone your .NET solutions in no time.</value>
   </data>
   <data name="TitleDescription" xml:space="preserve">
-    <value>Just select a source and a target folder, then press "clone":</value>
+    <value>Just select a solution file and a target folder, then press "clone":</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -147,19 +141,16 @@
   <data name="UnhandledExceptionPattern" xml:space="preserve">
     <value>An unhandled exception occured: {0}</value>
   </data>
-  <data name="InvalidSourceFolder" xml:space="preserve">
-    <value>The source path does not contain a solution file.</value>
+  <data name="InvalidSource" xml:space="preserve">
+    <value>The source file must be a .sln file.</value>
   </data>
-  <data name="InvalidTargetFolder" xml:space="preserve">
+  <data name="InvalidTarget" xml:space="preserve">
     <value>The target path is invalid.</value>
   </data>
-  <data name="SelectFolder" xml:space="preserve">
-    <value>Select folder...</value>
+  <data name="SelectSource" xml:space="preserve">
+    <value>Select solution file...</value>
   </data>
-  <data name="SelectSourceFolder" xml:space="preserve">
-    <value>Select source folder...</value>
-  </data>
-  <data name="SelectTargetFolder" xml:space="preserve">
+  <data name="SelectTarget" xml:space="preserve">
     <value>Select target folder...</value>
   </data>
 </root>

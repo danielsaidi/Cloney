@@ -4,11 +4,15 @@ using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
 using Cloney.Core.Cloning;
+using Cloney.Core.Namespace;
+using Cloney.Wizard.Controls;
+using Cloney.Wizard.Properties;
 
 namespace Cloney.Wizard
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// This class defines the interaction logic for the
+    /// main Cloney Wizard window.
     /// </summary>
     /// <remarks>
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
@@ -16,17 +20,26 @@ namespace Cloney.Wizard
     /// </remarks>
     public partial class MainWindow
     {
-        private ISolutionCloner solutionCloner;
+        private readonly ISolutionCloner solutionCloner;
         private DispatcherTimer refreshTimer;
-
-        private string sourcePath;
-        private string targetPath;
 
 
         public MainWindow()
+            : this(Default.SolutionCloner, Default.SourceNamespaceResolver, Default.TargetNamespaceResolver)
+        {
+        }
+
+        public MainWindow(ISolutionCloner solutionCloner, INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver)
         {
             InitializeComponent();
-            Initialize();
+
+            this.solutionCloner = solutionCloner;
+            InitializeTimer();
+            InitializePathSelectors(sourceNamespaceResolver, targetNamespaceResolver);
+
+            Refresh();
+            if (App.IsModal)
+                StartAsModal();
         }
 
 
@@ -34,30 +47,59 @@ namespace Cloney.Wizard
         {
             get
             {
-                return sourceFolderSelector.IsValid && targetFolderSelector.IsValid && string.IsNullOrEmpty(solutionCloner.CurrentPath);
+                var validSource = sourcePathSelector.HasValidPath;
+                var validTarget = targetPathSelector.HasValidPath;
+                var notCloning  = string.IsNullOrEmpty(solutionCloner.CurrentPath);
+                return validSource && validTarget && notCloning;
             }
         }
 
         public string LastSourcePath
         {
-            get { return Properties.Settings.Default.LastSourcePath; }
+            get { return Settings.Default.LastSourcePath; }
             set
             {
-                Properties.Settings.Default.LastSourcePath = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.LastSourcePath = value;
+                Settings.Default.Save();
             }
         }
 
         public string LastTargetPath
         {
-            get { return Properties.Settings.Default.LastTargetPath; }
+            get { return Settings.Default.LastTargetPath; }
             set
             {
-                Properties.Settings.Default.LastTargetPath = value;
-                Properties.Settings.Default.Save();
+                Settings.Default.LastTargetPath = value;
+                Settings.Default.Save();
             }
         }
 
+
+        private void InitializePathSelectors(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver)
+        {
+            sourcePathSelector.Initialize(sourceNamespaceResolver, PathType.File, App.InputSource ?? LastSourcePath);
+            sourcePathSelector.DialogTitle = Wizard.Resources.Language.SelectSource;
+            targetPathSelector.Initialize(targetNamespaceResolver, PathType.Folder, LastTargetPath);
+            targetPathSelector.DialogTitle = Wizard.Resources.Language.SelectTarget;
+        }
+
+        private void InitializeTimer()
+        {
+            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
+            refreshTimer.Tick += refreshTimer_Tick;
+            refreshTimer.Stop();
+        }
+
+        private void Refresh()
+        {
+            lblCurrentPath.Content = string.Empty;
+            if (!sourcePathSelector.HasValidPath)
+                lblCurrentPath.Content = Wizard.Resources.Language.InvalidSource;
+            else if (!targetPathSelector.HasValidPath)
+                lblCurrentPath.Content = Wizard.Resources.Language.InvalidTarget;
+
+            btnClone.IsEnabled = CanClone;
+        }
 
         private static void Shutdown()
         {
@@ -70,82 +112,46 @@ namespace Cloney.Wizard
             Shutdown();
         }
 
-        private void Initialize()
+        private void StartAsModal()
         {
-            InitializeSolutionCloner();
-            InitializeTimer();
-            InitializeFolderSelectors();
-            InitializeModalBehavior();
-        }
-
-        private void InitializeModalBehavior()
-        {
-            //if (!App.Arguments.ModalMode)
-                return;
-
             Hide();
 
-            //if (string.IsNullOrEmpty(App.Arguments.SourcePath))
-                if (sourceFolderSelector.ShowModal(Wizard.Resources.Language.SelectSourceFolder) != System.Windows.Forms.DialogResult.OK)
+            if (string.IsNullOrWhiteSpace(App.InputSource))
+                if (sourcePathSelector.OpenPathSelector() != System.Windows.Forms.DialogResult.OK)
+                {
                     Shutdown();
+                    return;
+                }
 
-            if (!sourceFolderSelector.IsValid)
-                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidSourceFolder);
+            if (!sourcePathSelector.HasValidPath)
+            {
+                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidSource);
+                return;
+            }
 
-            if (targetFolderSelector.ShowModal(Wizard.Resources.Language.SelectTargetFolder) != System.Windows.Forms.DialogResult.OK)
+            if (targetPathSelector.OpenPathSelector() != System.Windows.Forms.DialogResult.OK)
+            {
                 Shutdown();
+                return;
+            }
 
-            if (!targetFolderSelector.IsValid)
-                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidTargetFolder);
+            if (!targetPathSelector.HasValidPath)
+            {
+                Shutdown(Wizard.Resources.Language.Error, Wizard.Resources.Language.InvalidTarget);
+                return;
+            }
 
             StartCloningOperation();
         }
-
-        private void InitializeFolderSelectors()
-        {
-            var initialSourcePath = /*App.Arguments.SourcePath ??*/ LastSourcePath;
-
-            sourceFolderSelector.Initialize(Default.SourceNamespaceResolver, initialSourcePath);
-            targetFolderSelector.Initialize(Default.TargetNamespaceResolver, LastTargetPath);
-        }
-
-        private void InitializeSolutionCloner()
-        {
-            solutionCloner = Default.SolutionCloner;
-        }
-
-        private void InitializeTimer()
-        {
-            refreshTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 0, 10) };
-            refreshTimer.Tick += refreshTimer_Tick;
-            refreshTimer.IsEnabled = true;
-            refreshTimer.Start();
-        }
-
-        private void Refresh()
-        {
-            lblCurrentPath.Content = string.Empty;
-
-            if (!sourceFolderSelector.IsValid)
-                lblCurrentPath.Content = Wizard.Resources.Language.InvalidSourceFolder;
-
-            if (!sourceFolderSelector.IsValid)
-                lblCurrentPath.Content = Wizard.Resources.Language.InvalidSourceFolder;
-
-            btnClone.IsEnabled = CanClone;
-        }
-
 
         private void StartCloningOperation()
         {
             if (!CanClone)
                 return;
 
-            sourcePath = sourceFolderSelector.Path;
-            targetPath = targetFolderSelector.Path;
-
             Topmost = true;
             Show();
+            refreshTimer.Start();
 
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
@@ -159,18 +165,13 @@ namespace Cloney.Wizard
             StartCloningOperation();
         }
 
-        private void folderSelector_OnChanged(object sender, EventArgs e)
+        private void pathSelector_OnChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(sourceFolderSelector.Path))
-                LastSourcePath = sourceFolderSelector.Path;
-            if (!string.IsNullOrEmpty(targetFolderSelector.Path))
-                LastTargetPath = targetFolderSelector.Path;
+            if (!string.IsNullOrEmpty(sourcePathSelector.Path))
+                LastSourcePath = sourcePathSelector.Path;
+            if (!string.IsNullOrEmpty(targetPathSelector.Path))
+                LastTargetPath = targetPathSelector.Path;
 
-            Refresh();
-        }
-
-        private void folderSelector_OnError(object sender, EventArgs e)
-        {
             Refresh();
         }
 
@@ -182,14 +183,15 @@ namespace Cloney.Wizard
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            solutionCloner.CloneSolution(sourcePath, targetPath);
+            solutionCloner.CloneSolution(sourcePathSelector.Path, targetPathSelector.Path);
         }
 
-        static void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            refreshTimer.Stop();
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
 
-            //if (App.Arguments.ModalMode)
+            if (App.IsModal)
                 Shutdown();
         }
     }

@@ -78,10 +78,12 @@
     <Compile Include="..\Resources\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Brushes\InputBrushes.cs" />
-    <Compile Include="Controls\FolderSelector.xaml.cs">
-      <DependentUpon>FolderSelector.xaml</DependentUpon>
+    <Compile Include="Brushes.cs" />
+    <Compile Include="Controls\PathSelector.xaml.cs">
+      <DependentUpon>PathSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PathSelectorBase.cs" />
+    <Compile Include="Controls\PathType.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -168,7 +170,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\FolderSelector.xaml">
+    <Page Include="Controls\PathSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

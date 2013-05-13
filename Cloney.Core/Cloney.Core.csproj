@@ -95,7 +95,7 @@
     <Compile Include="Localization\HierarchicalResourceManagerTranslator.cs" />
     <Compile Include="Localization\ITranslator.cs" />
     <Compile Include="Localization\ResourceManagerTranslator.cs" />
-    <Compile Include="LocalSubRoutineLocator.cs" />
+    <Compile Include="SubRoutineLocator.cs" />
     <Compile Include="Namespace\InvalidFolderException.cs" />
     <Compile Include="Namespace\InvalidSolutionFileException.cs" />
     <Compile Include="Namespace\SolutionFileNamespaceResolver.cs" />
@@ -124,8 +124,6 @@
     <Compile Include="SubRoutines\HelpRoutine.cs" />
     <Compile Include="SubRoutines\ISubRoutine.cs" />
     <Compile Include="SubRoutines\SubRoutineBase.cs" />
-    <Compile Include="Wizard\ApplicationArguments.cs" />
-    <Compile Include="Wizard\ApplicationCommandLineArgumentParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -109,7 +109,7 @@ namespace Cloney.Core
 
         public static ISubRoutineLocator SubRoutineLocator
         {
-            get { return new LocalSubRoutineLocator(); }
+            get { return new SubRoutineLocator(); }
         }
 
         public static INamespaceResolver TargetNamespaceResolver
