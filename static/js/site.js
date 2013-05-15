@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 	function updateVersionInfo(version) {
 		$(".version-target").html(version);
-		$("a.download-button").attr("href", "downloads/" + version + ".zip");
+		$("a.download-button").attr("href", "downloads/Cloney." + version + ".zip");
 	}
 
 	setupExternalLinks();
