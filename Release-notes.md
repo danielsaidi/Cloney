@@ -1,3 +1,12 @@
+Cloney 0.99.1		2013-05-15
+==============================
+
+In this version, I have modified incorrect path handling. This
+will hopefully ensure that files will end up where they should.
+Hopefully...
+
+
+
 Cloney 0.99.0		2013-05-13
 ==============================
 
@@ -6,11 +15,6 @@ more unit tests, improved the overall model etc.
 
 Furthermore, the application base is more stable and will make
 it a lot easier to resolve the various reported issues.
-
-
-Updated to NSubstitute 1.6.0.0
-Updated to NUnit 2.6.2
-
 
 
 
