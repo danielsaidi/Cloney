@@ -10,7 +10,6 @@ h3 i { margin-right: 0.8em; }
 section { padding-top: 20px; }
 section + section { padding-top: 50px; }
 
-
 footer {
    background: #191919;
    color: white;
@@ -22,9 +21,15 @@ footer {
 footer i { margin-right: 1em; }
 
 
+a.brand.highlighted {
+   font-weight: bold;
+   color: white;
+   margin-top: -2px;
+}
+
 
 .jumbotron {
-   background: url(../img/bg-green.png) #4a699d;
+   background: url(../img/bg-green.png) #187575;
    color: white;
    padding-top: 40px;
    text-align: center;
@@ -78,9 +83,13 @@ footer i { margin-right: 1em; }
    margin-left: 1.2em;
 }
 
+.jumbotron .btn {
+   letter-spacing: 0.1em;
+}
+
 .btn-warning  {
-   text-shadow: -2px 0 0.08em #F89406, 0 2px 0.08em #F89406, 2px 0 0.08em #F89406, 0px -2px 0.08em #F89406;
    background: #f89406;
+   text-shadow: -1px 0 0.2em #e70, 0 1px 0.2em #e70, 1px 0 0.2em #e70, 0px -1px 0.2em #e70;
 }
 
 .btn-warning:hover  {
@@ -88,11 +97,20 @@ footer i { margin-right: 1em; }
 }
 
 .btn-inverse {
-   text-shadow: -2px 0 0.05em #055, 0 2px 0.05em #055, 2px 0 0.05em #055, 0px -2px 0.05em #055;
-   background: #066;
+   background: #111;
+   text-shadow: -1px 0 0.2em #000, 0 1px 0.25em #000, 1px 0 0.25em #000, 0px -1px 0.25em #000;
 }
 
 .btn-inverse:hover  {
+   background: #222;
+}
+
+.btn-info {
+   background: #066;
+   text-shadow: -1px 0 0.2em #044, 0 1px 0.25em #044, 1px 0 0.25em #044, 0px -1px 0.25em #044;
+}
+
+.btn-info:hover  {
    background: #167272;
 }
 
@@ -118,15 +136,16 @@ footer i { margin-right: 1em; }
 
 /* Testimonies */
 
-#testimonies {
+#testimonies .row {
+   margin-top: 40px;
    font-size: 1.3em;
 }
 
-#testimonies span {
+#testimonies .row span {
    text-align: center;
 }
 
-#testimonies span p + p {
+#testimonies .row span p + p {
    font-style: italic;
 }
 
