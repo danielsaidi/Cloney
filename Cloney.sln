@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+﻿Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloney.Wizard", "Cloney.Wizard\Cloney.Wizard.csproj", "{A85ED51B-2C39-4DB0-A15C-1F1205D49EB7}"
 EndProject
@@ -7,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloney.Core", "Cloney.Core\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{0655AF92-43E1-41DD-BC15-BE37CEE37766}"
 	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		build.boo = build.boo
 		License.txt = License.txt
 		README.md = README.md
 		Release-notes.md = Release-notes.md

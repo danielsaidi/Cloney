@@ -36,22 +36,19 @@ namespace Cloney.Core.Cloning
 
             var sourceNamespace = sourceNamespaceResolver.ResolveNamespace(solutionFilePath);
             var targetNamespace = targetNamespaceResolver.ResolveNamespace(targetFolderPath);
-            var sourceFolderPath = new FileInfo(solutionFilePath).Directory.ToString();
+            var sourceFolderPath = new FileInfo(solutionFilePath).Directory;
 
-            CloneSubFolders(sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
-            CloneFolderFiles(sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
+            CloneSubFolders(sourceFolderPath, sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
+            CloneFolderFiles(sourceFolderPath, sourceFolderPath, sourceNamespace, targetFolderPath, targetNamespace);
             CurrentPath = "";
 
             OnCloningEnded(new EventArgs());
         }
 
 
-        private void CloneFolderFiles(string folderPath, string sourceNamespace, string targetPath, string targetNamespace)
+        private void CloneFolderFiles(DirectoryInfo sourceFolderPath, DirectoryInfo sourceRootPath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            if (string.IsNullOrEmpty(folderPath))
-                return;
-
-            foreach (var filePath in Directory.GetFiles(folderPath))
+            foreach (var filePath in Directory.GetFiles(sourceFolderPath.ToString()))
             {
                 CurrentPath = filePath;
 
@@ -59,8 +56,8 @@ namespace Cloney.Core.Cloning
                 if (cloningBehavior.ShouldExcludeFile(fileName))
                     continue;
 
-                var adjustedFilePath = ReplaceNamespace(filePath, sourceNamespace, targetNamespace);
-                var targetFilePath = Path.Combine(targetPath, adjustedFilePath);
+                var adjustedTargetPath = GetAdjustedTargetPath(filePath, sourceRootPath, sourceNamespace, targetNamespace);
+                var targetFilePath = Path.Combine(targetPath, adjustedTargetPath);
 
                 if (cloningBehavior.ShouldPlainCopyFile(fileName))
                 {
@@ -90,28 +87,35 @@ namespace Cloney.Core.Cloning
             }
         }
 
-        private void CloneSubFolders(string parentFolderPath, string sourceNamespace, string targetPath, string targetNamespace)
+        private void CloneSubFolders(DirectoryInfo sourceFolderPath, DirectoryInfo sourceRootPath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            if (string.IsNullOrWhiteSpace(parentFolderPath))
-                return;
-
-            foreach (var directory in Directory.GetDirectories(parentFolderPath))
+            foreach (var directory in Directory.GetDirectories(sourceFolderPath.ToString()))
             {
                 CurrentPath = directory;
-
-                var folderName = new DirectoryInfo(directory).Name;
+                var folderInfo = new DirectoryInfo(directory);
+                var folderName = folderInfo.Name;
                 if (cloningBehavior.ShouldExcludeFolder(folderName))
                     continue;
 
-                var adjustedFolderPath = ReplaceNamespace(directory, sourceNamespace, targetNamespace);
-                var targetFolderPath = Path.Combine(targetPath, adjustedFolderPath);
+                var adjustedTargetPath = GetAdjustedTargetPath(directory, sourceRootPath, sourceNamespace, targetNamespace);
+                var targetFolderPath = Path.Combine(targetPath, adjustedTargetPath);
 
                 if (!Directory.Exists(targetFolderPath))
                     Directory.CreateDirectory(targetFolderPath);
 
-                CloneSubFolders(directory, sourceNamespace, targetPath, targetNamespace);
-                CloneFolderFiles(directory, sourceNamespace, targetPath, targetNamespace);
+                CloneSubFolders(folderInfo, sourceRootPath, sourceNamespace, targetPath, targetNamespace);
+                CloneFolderFiles(folderInfo, sourceRootPath, sourceNamespace, targetPath, targetNamespace);
             }
+        }
+
+        private static string GetAdjustedTargetPath(string filePath, FileSystemInfo sourceRootPath, string sourceNamespace, string targetNamespace)
+        {
+            var adjustedSourceRoot = ReplaceNamespace(sourceRootPath.FullName, sourceNamespace, targetNamespace);
+            var adjustedTargetPath = ReplaceNamespace(filePath, sourceNamespace, targetNamespace);
+            adjustedTargetPath = adjustedTargetPath.Replace(adjustedSourceRoot, "");
+            if (adjustedTargetPath.StartsWith("\\"))
+                adjustedTargetPath = adjustedTargetPath.Substring(1);
+            return adjustedTargetPath;
         }
 
         private static string ReplaceNamespace(string str, string sourceNamespace, string targetNamespace)

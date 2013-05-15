@@ -149,7 +149,6 @@ namespace Cloney.Wizard
             if (!CanClone)
                 return;
 
-            Topmost = true;
             Show();
             refreshTimer.Start();
 
