@@ -18,15 +18,15 @@ namespace Cloney.Core.Cloning
         private readonly INamespaceResolver sourceNamespaceResolver;
         private readonly INamespaceResolver targetNamespaceResolver;
         private readonly ISolutionClonerBehavior cloningBehavior;
-        private readonly IFileEncodingResolver fileEncodingResolver;
+        private readonly IFileEncodingDetector fileEncodingDetector;
 
 
-        public SolutionCloner(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver, ISolutionClonerBehavior cloningBehavior, IFileEncodingResolver fileEncodingResolver)
+        public SolutionCloner(INamespaceResolver sourceNamespaceResolver, INamespaceResolver targetNamespaceResolver, ISolutionClonerBehavior cloningBehavior, IFileEncodingDetector fileEncodingDetector)
         {
             this.sourceNamespaceResolver = sourceNamespaceResolver;
             this.targetNamespaceResolver = targetNamespaceResolver;
             this.cloningBehavior = cloningBehavior;
-            this.fileEncodingResolver = fileEncodingResolver;
+            this.fileEncodingDetector = fileEncodingDetector;
         }
 
 
@@ -66,17 +66,10 @@ namespace Cloney.Core.Cloning
                 }
 
                 //Detect the encoding and then apply it again when writing the new file
-                var encoding = fileEncodingResolver.ResolveFileEncoding(sourceFilePath);
-
-                var sourceStream = new StreamReader(sourceFilePath, encoding);
+                var sourceEncoding = fileEncodingDetector.ResolveFileEncoding(sourceFilePath);
+                var sourceStream = new StreamReader(sourceFilePath, sourceEncoding);
                 var sourceContent = sourceStream.ReadToEnd();
-
-
-                
-
-                //StreamReader can possibly use a different encoding than the one we provide; 
-                //but we want to write back with the same encoding that we used to read...
-                var sourceEncoding = sourceStream.CurrentEncoding;
+                var targetEncoding = sourceStream.CurrentEncoding;
                 sourceStream.Close();
 
                 if (!sourceContent.Contains(sourceNamespace))
@@ -85,7 +78,7 @@ namespace Cloney.Core.Cloning
                     continue;
                 }
 
-                var targetStream = new StreamWriter(new FileStream(targetFilePath, FileMode.CreateNew), sourceEncoding);
+                var targetStream = new StreamWriter(new FileStream(targetFilePath, FileMode.CreateNew), targetEncoding);
                 targetStream.Write(ReplaceNamespace(sourceContent, sourceNamespace, targetNamespace));
                 targetStream.Close();
             }

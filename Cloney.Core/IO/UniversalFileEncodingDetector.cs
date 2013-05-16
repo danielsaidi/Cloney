@@ -13,12 +13,12 @@ namespace Cloney.Core.IO
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/Cloney
     /// </remarks>
-    public class UniversalFileEncodingResolver : IFileEncodingResolver
+    public class UniversalFileEncodingDetector : IFileEncodingDetector
     {
         private readonly Encoding defaultEncoding;
 
 
-        public UniversalFileEncodingResolver(Encoding defaultEncoding)
+        public UniversalFileEncodingDetector(Encoding defaultEncoding)
         {
             this.defaultEncoding = defaultEncoding;
         }

@@ -10,7 +10,7 @@ namespace Cloney.Core.IO
     /// Author:     Daniel Saidi [daniel.saidi@gmail.com]
     /// Link:       http://danielsaidi.github.com/Cloney
     /// </remarks>
-    public interface IFileEncodingResolver
+    public interface IFileEncodingDetector
     {
         Encoding ResolveFileEncoding(string filePath);
     }

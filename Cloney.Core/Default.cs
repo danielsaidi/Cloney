@@ -61,9 +61,9 @@ namespace Cloney.Core
             get { return new FileFacade(); }
         }
 
-        public static IFileEncodingResolver FileEncodingResolver
+        public static IFileEncodingDetector FileEncodingDetector
         {
-            get { return new UniversalFileEncodingResolver(Encoding.UTF8); }
+            get { return new UniversalFileEncodingDetector(Encoding.UTF8); }
         }
 
         public static ISolutionClonerBehavior SolutionClonerBehavior
@@ -98,7 +98,7 @@ namespace Cloney.Core
         {
             get
             {
-                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, SolutionClonerBehavior, FileEncodingResolver);
+                return new SolutionCloner(SourceNamespaceResolver, TargetNamespaceResolver, SolutionClonerBehavior, FileEncodingDetector);
             }
         }
 
