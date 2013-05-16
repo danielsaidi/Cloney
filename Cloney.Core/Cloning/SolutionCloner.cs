@@ -46,29 +46,33 @@ namespace Cloney.Core.Cloning
         }
 
 
-        private void CloneFolderFiles(DirectoryInfo sourceFolderPath, DirectoryInfo sourceRootPath, string sourceNamespace, string targetPath, string targetNamespace)
+        private void CloneFolderFiles(DirectoryInfo sourceFolderPath, FileSystemInfo sourceRootPath, string sourceNamespace, string targetPath, string targetNamespace)
         {
-            foreach (var filePath in Directory.GetFiles(sourceFolderPath.ToString()))
+            foreach (var sourceFilePath in Directory.GetFiles(sourceFolderPath.ToString()))
             {
-                CurrentPath = filePath;
+                CurrentPath = sourceFilePath;
 
-                var fileName = new FileInfo(filePath).Name;
-                if (cloningBehavior.ShouldExcludeFile(fileName))
+                var sourceFileName = new FileInfo(sourceFilePath).Name;
+                if (cloningBehavior.ShouldExcludeFile(sourceFileName))
                     continue;
 
-                var adjustedTargetPath = GetAdjustedTargetPath(filePath, sourceRootPath, sourceNamespace, targetNamespace);
+                var adjustedTargetPath = GetAdjustedTargetPath(sourceFilePath, sourceRootPath, sourceNamespace, targetNamespace);
                 var targetFilePath = Path.Combine(targetPath, adjustedTargetPath);
 
-                if (cloningBehavior.ShouldPlainCopyFile(fileName))
+                if (cloningBehavior.ShouldPlainCopyFile(sourceFileName))
                 {
-                    File.Copy(filePath, targetFilePath, true);
+                    File.Copy(sourceFilePath, targetFilePath, true);
                     continue;
                 }
 
                 //Detect the encoding and then apply it again when writing the new file
-                var encoding = fileEncodingResolver.ResolveFileEncoding(filePath);
-                var sourceStream = new StreamReader(filePath, encoding);
+                var encoding = fileEncodingResolver.ResolveFileEncoding(sourceFilePath);
+
+                var sourceStream = new StreamReader(sourceFilePath, encoding);
                 var sourceContent = sourceStream.ReadToEnd();
+
+
+                
 
                 //StreamReader can possibly use a different encoding than the one we provide; 
                 //but we want to write back with the same encoding that we used to read...
@@ -77,7 +81,7 @@ namespace Cloney.Core.Cloning
 
                 if (!sourceContent.Contains(sourceNamespace))
                 {
-                    File.Copy(filePath, targetFilePath, true);
+                    File.Copy(sourceFilePath, targetFilePath, true);
                     continue;
                 }
 

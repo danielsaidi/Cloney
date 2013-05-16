@@ -63,7 +63,7 @@ namespace Cloney.Core
 
         public static IFileEncodingResolver FileEncodingResolver
         {
-            get { return new KlerksFileEncodingResolver(Encoding.UTF8); }
+            get { return new UniversalFileEncodingResolver(Encoding.UTF8); }
         }
 
         public static ISolutionClonerBehavior SolutionClonerBehavior

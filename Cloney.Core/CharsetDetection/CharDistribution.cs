@@ -40,8 +40,6 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-using System;
-
 namespace Mozilla.CharDet
 {
     internal class CharDistributionAnalysis
@@ -51,20 +49,18 @@ namespace Mozilla.CharDet
         //Feed a character with known length
         public void HandleOneChar(byte[] aStr, int aCharLen)
         {
-            int order;
-
             //we only care about 2-bytes character in our distribution analysis
-            order = (aCharLen == 2) ? GetOrder(aStr) : -1;
+            var order = (aCharLen == 2) ? GetOrder(aStr) : -1;
 
-            if (order >= 0)
+            if (order < 0)
+                return;
+
+            mTotalChars++;
+            //order is valid
+            if (order < mCharToFreqOrder.Length)
             {
-                mTotalChars++;
-                //order is valid
-                if (order < mCharToFreqOrder.Length)
-                {
-                    if (512 > mCharToFreqOrder[order])
-                        mFreqChars++;
-                }
+                if (512 > mCharToFreqOrder[order])
+                    mFreqChars++;
             }
         }
 
