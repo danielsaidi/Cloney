@@ -1,14 +1,16 @@
 Cloney 0.99.2		2013-05-16
 ==============================
 
-In this version, Cloney handles file encoding properly when it
-clones a file from one place to another. Previously, the files
-were always regarded as UTF-8 due to insufficient logic in the
-encoding detector being used.
+In this version, Cloney finally handles file encoding properly
+when cloning a file from one place to another. Previously, the
+files were always detected as UTF-8, due to the detector being
+used by Cloney. That detector has now been removed entirely.
 
 Cloney now uses a slightly modified version of a Mozilla clone
-that can be found at https://code.google.com/p/chardetsharp/ A
-big thanks goes to Greg for making it public.
+that can be found at https://code.google.com/p/chardetsharp/ I
+have created a new IFileEncodingDetector implementation, which
+uses the UniversalDetector class from the new CharsetDetection
+namespace.
 
 
 
