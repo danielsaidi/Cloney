@@ -43,7 +43,7 @@
 
 using System;
 
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     class UTF8Prober : AbstractCSProber
     {

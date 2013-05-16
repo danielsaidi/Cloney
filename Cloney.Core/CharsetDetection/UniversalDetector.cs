@@ -42,10 +42,9 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-using System;
 using System.Collections;
 
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     public enum InputState : int
     {
@@ -253,7 +252,7 @@ namespace Mozilla.CharDet
         public virtual void Report(string aCharset)
         {
             mDetectedCharset = aCharset;
-            Console.Out.WriteLine(aCharset);
+            System.Console.Out.WriteLine(aCharset);
         }
 
         public virtual void Reset()

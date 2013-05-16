@@ -41,7 +41,7 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     internal class CharDistributionAnalysis
     {

@@ -92,7 +92,7 @@ namespace Cloney.Wizard
 
         private void Refresh()
         {
-            lblCurrentPath.Content = string.Empty;
+            lblCurrentPath.Content = solutionCloner.CurrentPath;
             if (!sourcePathSelector.HasValidPath)
                 lblCurrentPath.Content = Wizard.Resources.Language.InvalidSource;
             else if (!targetPathSelector.HasValidPath)
@@ -149,13 +149,13 @@ namespace Cloney.Wizard
             if (!CanClone)
                 return;
 
-            Show();
-            refreshTimer.Start();
-
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerAsync();
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
+            Show();
+            refreshTimer.Start();
         }
 
 
@@ -176,8 +176,7 @@ namespace Cloney.Wizard
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            btnClone.IsEnabled = CanClone;
-            lblCurrentPath.Content = solutionCloner.CurrentPath;
+            Refresh();
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -187,6 +186,7 @@ namespace Cloney.Wizard
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            Refresh();
             refreshTimer.Stop();
             MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
 

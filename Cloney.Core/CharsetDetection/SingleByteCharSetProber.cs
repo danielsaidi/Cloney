@@ -42,9 +42,7 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-using System;
-
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     class SingleByteCharSetProber : AbstractCSProber
     {
@@ -195,7 +193,7 @@ namespace Mozilla.CharDet
 #if DEBUG
         internal void DumpStatus()
         {
-            Console.Out.WriteLine("  SBCS: {0:0.000} [{1}]", GetConfidence(), CharSetName);
+            System.Console.Out.WriteLine("  SBCS: {0:0.000} [{1}]", GetConfidence(), CharSetName);
         }
 #endif
     }

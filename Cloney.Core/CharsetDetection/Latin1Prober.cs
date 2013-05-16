@@ -42,9 +42,7 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-using System;
-
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     class Latin1Prober : AbstractCSProber
     {

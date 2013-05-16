@@ -1,6 +1,6 @@
 using System.IO;
 using System.Text;
-using Mozilla.CharDet;
+using Cloney.Core.CharsetDetection;
 
 namespace Cloney.Core.IO
 {

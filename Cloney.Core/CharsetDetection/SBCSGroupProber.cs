@@ -42,10 +42,9 @@
 // the terms of any one of the MPL, the GPL or the LGPL.
 #endregion
 
-using System;
 using System.Collections;
 
-namespace Mozilla.CharDet
+namespace Cloney.Core.CharsetDetection
 {
     class SBCSGroupProber: AbstractCSProber
     {
