@@ -1,3 +1,17 @@
+Cloney 0.99.2		2013-05-16
+==============================
+
+In this version, Cloney handles file encoding properly when it
+clones a file from one place to another. Previously, the files
+were always regarded as UTF-8 due to insufficient logic in the
+encoding detector being used.
+
+Cloney now uses a slightly modified version of a Mozilla clone
+that can be found at https://code.google.com/p/chardetsharp/ A
+big thanks goes to Greg for making it public.
+
+
+
 Cloney 0.99.1		2013-05-15
 ==============================
 
