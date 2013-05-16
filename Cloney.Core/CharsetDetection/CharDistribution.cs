@@ -1,5 +1,6 @@
 /* 
  * C# port of Mozilla Character Set Detector
+ * https://code.google.com/p/chardetsharp/
  * 
  * Original Mozilla License Block follows
  * 
@@ -96,7 +97,7 @@ namespace Mozilla.CharDet
         //Reset analyser, clear any state 
         public void Reset()
         {
-            mDone = false;
+            //mDone = false;
             mTotalChars = 0;
             mFreqChars = 0;
         }
@@ -115,7 +116,7 @@ namespace Mozilla.CharDet
         internal virtual int GetOrder(byte[] str) { return -1; }
 
         //If this flag is set to true, detection is done and conclusion has been made
-        private bool mDone;
+        //private bool mDone;
 
         //The number of characters whose frequency order is less than 512
         private int mFreqChars;

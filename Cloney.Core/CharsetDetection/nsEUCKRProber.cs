@@ -1,5 +1,6 @@
 /* 
  * C# port of Mozilla Character Set Detector
+ * https://code.google.com/p/chardetsharp/
  * 
  * Original Mozilla License Block follows
  * 

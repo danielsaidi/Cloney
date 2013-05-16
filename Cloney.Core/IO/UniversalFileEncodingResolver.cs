@@ -15,13 +15,11 @@ namespace Cloney.Core.IO
     /// </remarks>
     public class UniversalFileEncodingResolver : IFileEncodingResolver
     {
-        private readonly UniversalDetector baseEncoder;
         private readonly Encoding defaultEncoding;
 
 
         public UniversalFileEncodingResolver(Encoding defaultEncoding)
         {
-            baseEncoder = new UniversalDetector();
             this.defaultEncoding = defaultEncoding;
         }
 
@@ -29,9 +27,10 @@ namespace Cloney.Core.IO
         public Encoding ResolveFileEncoding(string filePath)
         {
             var bytes = File.ReadAllBytes(filePath);
-            baseEncoder.HandleData(bytes);
-            baseEncoder.DataEnd();
-            var charset = baseEncoder.DetectedCharsetName;
+            var encoder = new UniversalDetector();
+            encoder.HandleData(bytes);
+            encoder.DataEnd();
+            var charset = encoder.DetectedCharsetName;
 
             return charset == null ? defaultEncoding : Encoding.GetEncoding(charset);
         }

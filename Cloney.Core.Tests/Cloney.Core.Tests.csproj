@@ -70,7 +70,6 @@
     <Compile Include="Cloning\SolutionClonerBaseBehavior.cs" />
     <Compile Include="Console\CommandLineArgumentsBehavior.cs" />
     <Compile Include="ContextMenu\ContextMenuInstallerTests.cs" />
-    <Compile Include="IO\KlerksFileEncodingResolverBehavior.cs" />
     <Compile Include="IO\StreamReaderFileEncodingResolverBehavior.cs" />
     <Compile Include="IO\PathPatternMatcherBehavior.cs" />
     <Compile Include="Localization\HierarchicalResourceManagerTranslatorBehavior.cs" />
