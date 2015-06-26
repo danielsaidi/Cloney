@@ -1,8 +1,6 @@
 Cloney
 ======
 
-	Author:		Daniel Saidi [daniel.saidi@gmail.com]
-
 Cloney is a Windows application that lets you clone .NET
 solutions. It can be executed from the command prompt or
 as a GUI application.
