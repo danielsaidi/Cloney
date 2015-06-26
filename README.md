@@ -52,25 +52,25 @@ lot more options than when using the GUI.
 The following command-line commands are supported by the
 Cloney console app:
 
-	**cloney <no arguments>**
+	cloney <no arguments>
 	Launch cloney.exe without args to launch the GUI.
 		
-	**cloney --clone --source=x --target=y OR**
+	cloney --clone --source=x --target=y OR
 	Clone the solution in folder x to folder y.
 		
-	**cloney --help**
+	cloney --help
 	Display a help message about how to use Cloney.
 		
-	**cloney --install**
+	cloney --install
 	Install the Cloney Windows Explorer plugin.
 
-	**cloney --modal**
+	cloney --modal
 	Start the Cloney GUI in modal (quick) mode.
 		
-	**cloney --settings**
+	cloney --settings
 	Display the current Cloney settings.
 		
-	**cloney --uninstall**
+	cloney --uninstall
 	Uninstall the Cloney Windows Explorer plugin.
 
 Get in contact me if you have any ideas regarding how to
