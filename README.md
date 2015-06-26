@@ -13,22 +13,6 @@ in the Windows Explorer.
 
 
 
-Web resources
--------------
-
-You can find more info about Cloney at the following web
-resources:
-
-	Web site:	http://danielsaidi.github.com/Cloney
-	Project:	http://github.com/danielsaidi/Cloney
-	Downloads:	http://github.com/danielsaidi/Cloney/downloads
-	Issues:		http://github.com/danielsaidi/Cloney/issues
-	Blog:		http://danielsaidi.wordpress.com
-	
-If you have any questions, do not hesitate to contact me.
-
-
-
 Getting started
 ---------------
 
@@ -68,26 +52,26 @@ lot more options than when using the GUI.
 The following command-line commands are supported by the
 Cloney console app:
 
-	*	cloney <no arguments>
-		Launch cloney.exe without args to launch the GUI.
+	**cloney <no arguments>**
+	Launch cloney.exe without args to launch the GUI.
 		
-	*	cloney --clone --source=x --target=y OR
-		Clone the solution in folder x to folder y.
+	**cloney --clone --source=x --target=y OR**
+	Clone the solution in folder x to folder y.
 		
-	*	cloney --help
-		Display a help message about how to use Cloney.
+	**cloney --help**
+	Display a help message about how to use Cloney.
 		
-	*	cloney --install
-		Install the Cloney Windows Explorer plugin.
+	**cloney --install**
+	Install the Cloney Windows Explorer plugin.
 
-	*	cloney --modal
-		Start the Cloney GUI in modal (quick) mode.
+	**cloney --modal**
+	Start the Cloney GUI in modal (quick) mode.
 		
-	*	cloney --settings
-		Display the current Cloney settings.
+	**cloney --settings**
+	Display the current Cloney settings.
 		
-	*	cloney --uninstall
-		Uninstall the Cloney Windows Explorer plugin.
+	**cloney --uninstall**
+	Uninstall the Cloney Windows Explorer plugin.
 
 Get in contact me if you have any ideas regarding how to
 improve Cloney. A better GUI? More commands? Let me know!
@@ -109,20 +93,21 @@ this solution using Cloney". This will open up a minimal
 version of the GUI application. 
 
 
-
-License
+Contact
 -------
 
-Cloney is released under the MIT License. This basically
-means you can do much anything you want with it.
+For more info about this project and other things that I
+am working on:
 
-Read  http://www.opensource.org/licenses/mit-license.php
+	Web site:		http://danielsaidi.github.com/Cloney
+	Project:		http://github.com/danielsaidi/Cloney
+	Blog:			http://danielsaidi.wordpress.com
+	Twitter:		http://twitter.com/danielsaidi
+	
+Contributions to this project are more than welcome. The
+day you build the next great feature, fix a bug, improve
+a unit test etc., make sure to let me know!
 
-If you use Cloney and like it, please spread the word. A
-separate area at the web site is saved for user comments.
-
-If you take a class or interface out of Cloney, keep the
-author information in the source code.
 
 
 
