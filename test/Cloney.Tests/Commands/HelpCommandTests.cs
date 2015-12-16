@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 using Cloney.Commands;
+using Cloney.Tests.Commands.Fakes;
 
 namespace Cloney.Tests.Commands
 {
 	public class HelpCommandTests 
 	{
 		private ICommand _command;
+		private ICommandProvider _commandProvider;
 		
 		
 		public HelpCommandTests()
 		{
-			_command = new HelpCommand();
+			_commandProvider = new FakeCommandProvider();
+			_command = new HelpCommand(_commandProvider);
 		}
 		
 		

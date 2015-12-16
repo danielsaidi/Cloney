@@ -8,7 +8,7 @@ namespace Cloney.Commands
 		public IEnumerable<ICommand> GetAvailableCommands()
 		{
 			return new List<ICommand> {
-				new HelpCommand()
+				new HelpCommand(this)
 			};
 		}
 	}

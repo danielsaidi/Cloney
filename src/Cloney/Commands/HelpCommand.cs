@@ -6,11 +6,6 @@ namespace Cloney.Commands
 {
 	public class HelpCommand : CommandBase, ICommand 
 	{
-		public HelpCommand()
-			: this(new CommandProvider())
-		{
-		}
-		
 		public HelpCommand(ICommandProvider commandProvider)
 			: base("help")
 		{
