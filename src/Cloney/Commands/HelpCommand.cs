@@ -27,7 +27,11 @@ namespace Cloney.Commands
 		{ 
 			get 
 			{
-				return "cloney help <command>";
+				return @"
+cloney
+cloney help
+cloney help <command>
+";
 			} 
 		}
 		
