@@ -112,7 +112,7 @@ namespace Cloney.Tests.Commands
 		}
 		
 		
-		public class SingleInvalidArgument : HelpCommandTests
+		public class InvalidSingleArgument : HelpCommandTests
 		{
 			[Fact]
 			public void CanNotBeHandled()
@@ -146,7 +146,7 @@ namespace Cloney.Tests.Commands
 			}
 		}
 		
-		public class SingleValidArgument : HelpCommandTests
+		public class ValidSingleArgument : HelpCommandTests
 		{
 			[Fact]
 			public void CanBeHandled()
@@ -179,5 +179,73 @@ namespace Cloney.Tests.Commands
 				Assert.Equal(_console.WrittenLine, expectedOutput);
 			}
 		}
+		
+		public class InvalidTupleArgument : HelpCommandTests
+		{
+			[Fact]
+			public void CanNotBeHandled()
+			{
+				var args = new List<string> { "foo", "bar" };
+				
+				var result = _command.CanHandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public async Task IsNotHandled()
+			{
+				var args = new List<string> { "foo", "bar" };
+				
+				var result = await _command.HandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public async Task DoesNotPrintCommandHelpWhenHandled()
+			{
+				var args = new List<string> { "foo", "bar" };
+				var expectedOutput = _helpTextProvider.GetHelpTextForApplication();
+				
+				await _command.HandleArgs(args);
+				
+				Assert.NotEqual(_console.WrittenLine, expectedOutput);
+			}
+		}
+		/*
+		public class ValidSingleArgument : HelpCommandTests
+		{
+			[Fact]
+			public void CanBeHandled()
+			{
+				var args = new List<string> { "help" };
+				
+				var result = _command.CanHandleArgs(args);
+				
+				Assert.True(result);
+			}
+			
+			[Fact]
+			public async Task IsHandled()
+			{
+				var args = new List<string> { "help" };
+				
+				var result = await _command.HandleArgs(args);
+				
+				Assert.True(result);
+			}
+			
+			[Fact]
+			public async Task PrintsApplicationHelpWhenHandled()
+			{
+				var args = new List<string> { "help" };
+				var expectedOutput = _helpTextProvider.GetHelpTextForApplication();
+				
+				await _command.HandleArgs(args);
+				
+				Assert.Equal(_console.WrittenLine, expectedOutput);
+			}
+		}*/
 	}
 }
