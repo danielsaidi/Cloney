@@ -57,7 +57,7 @@ namespace Cloney.Commands
 				return Task.FromResult(true);
 			}
 			
-			if (!IsCommandHelpArguments(args)) 
+			if (IsCommandHelpArguments(args)) 
 			{
 				var helpText = _helpTextProvider.GetHelpTextForCommand(args[1]);
 				_console.WriteLine(helpText); 

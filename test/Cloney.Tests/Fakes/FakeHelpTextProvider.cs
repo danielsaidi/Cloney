@@ -10,7 +10,7 @@ namespace Cloney.Tests.Fakes
 			return "application help";
 		}
 		
-		public string GetHelpTextForApplicationForCommand(string command)
+		public string GetHelpTextForCommand(string command)
 		{
 			return "command help";
 		}

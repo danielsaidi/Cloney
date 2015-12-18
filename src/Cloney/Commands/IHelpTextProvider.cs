@@ -7,6 +7,6 @@ namespace Cloney.Commands
 	public interface IHelpTextProvider 
 	{
 		string GetHelpTextForApplication();
-		string GetHelpTextForApplicationForCommand(string command);
+		string GetHelpTextForCommand(string command);
 	}
 }
