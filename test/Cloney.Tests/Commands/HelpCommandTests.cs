@@ -48,7 +48,7 @@ namespace Cloney.Tests.Commands
 			}
 		}
 		
-		public class NullArguments : HelpCommandTests
+		public class NullArgument : HelpCommandTests
 		{
 			[Fact]
 			public void CanBeHandled()
@@ -59,7 +59,7 @@ namespace Cloney.Tests.Commands
 			}
 			
 			[Fact]
-			public async Task AreHandled()
+			public async Task IsHandled()
 			{
 				var result = await _command.HandleArgs(null);
 				
@@ -77,7 +77,7 @@ namespace Cloney.Tests.Commands
 			}
 		}
 		
-		public class EmptyArguments : HelpCommandTests
+		public class EmptyArgument : HelpCommandTests
 		{
 			[Fact]
 			public void CanBeHandled()
@@ -90,7 +90,7 @@ namespace Cloney.Tests.Commands
 			}
 			
 			[Fact]
-			public async Task AreHandled()
+			public async Task IsHandled()
 			{
 				var args = new List<string>();
 				
@@ -112,7 +112,41 @@ namespace Cloney.Tests.Commands
 		}
 		
 		
-		public class SingleArgument : HelpCommandTests
+		public class SingleInvalidArgument : HelpCommandTests
+		{
+			[Fact]
+			public void CanNotBeHandled()
+			{
+				var args = new List<string> { "foo" };
+				
+				var result = _command.CanHandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public async Task IsNotHandled()
+			{
+				var args = new List<string> { "foo" };
+				
+				var result = await _command.HandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public async Task DoesNotPrintApplicationHelpWhenHandled()
+			{
+				var args = new List<string> { "foo" };
+				var expectedOutput = _helpTextProvider.GetHelpTextForApplication();
+				
+				await _command.HandleArgs(args);
+				
+				Assert.NotEqual(_console.WrittenLine, expectedOutput);
+			}
+		}
+		
+		public class SingleValidArgument : HelpCommandTests
 		{
 			[Fact]
 			public void CanBeHandled()
@@ -125,7 +159,7 @@ namespace Cloney.Tests.Commands
 			}
 			
 			[Fact]
-			public async Task AreHandled()
+			public async Task IsHandled()
 			{
 				var args = new List<string> { "help" };
 				
@@ -145,56 +179,5 @@ namespace Cloney.Tests.Commands
 				Assert.Equal(_console.WrittenLine, expectedOutput);
 			}
 		}
-		/*
-		public class TupleArgument : HelpCommandTests
-		{
-			[Fact]
-			public void CanNotBeHandledIfFirstArgIsNotTest()
-			{
-				var args = new List<string> { "foo", "command" };
-				
-				var result = _command.CanHandleArgs(args);
-				
-				Assert.False(result);
-			}
-			
-			[Fact]
-			public void CanNotBeHandledIfFirstArgIsTestButTargetCommandDoesNotExist()
-			{
-				var args = new List<string> { "help", "command" };
-				
-				var result = _command.CanHandleArgs(args);
-				
-				Assert.False(result);
-			}
-			
-			[Fact]
-			public void CanBeHandledIfFirstArgIsTestAndTargetCommandDoesExist()
-			{
-				var args = new List<string> { "help", "command" };
-				var fakeCommand = new FakeCommand { Name = "command" };
-				_commandProvider.SetAvailableCommands(new [] { fakeCommand });
-				
-				var result = _command.CanHandleArgs(args);
-				
-				Assert.True(result);
-			}
-			
-			// TODO: What then?
-		}
-		
-		
-		
-		
-		
-		
-		[Fact]
-        public void CommandCanHandleEmptyArguments()
-        {
-			var args = new List<string>();
-			var result = _command.CanHandleArgs(args);
-			
-			Assert.True(result);
-        }*/
 	}
 }

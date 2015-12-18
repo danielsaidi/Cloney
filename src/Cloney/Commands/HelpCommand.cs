@@ -59,10 +59,12 @@ namespace Cloney.Commands
 			
 			if (!IsCommandHelpArguments(args)) 
 			{
-				//return Task.FromResult(true);
+				var helpText = _helpTextProvider.GetHelpTextForCommand(args[1]);
+				_console.WriteLine(helpText); 
+				return Task.FromResult(true);
 			}
 			
-			return Task.FromResult(true);
+			return Task.FromResult(false);
 		}
 		
 		
