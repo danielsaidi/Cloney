@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xunit;
 using Cloney.Commands;
 
-namespace Cloney.Tests.Commands.Fakes
+namespace Cloney.Tests.Fakes
 {
 	public class FakeCommand : ICommand
 	{
@@ -13,10 +12,7 @@ namespace Cloney.Tests.Commands.Fakes
 			get { return "fake"; } 
 		}
 		
-		public string Name 
-		{
-			get { return "A fake command"; }
-		}
+		public string Name { get; set; }
 		
 		public string Usage 
 		{ 

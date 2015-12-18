@@ -9,8 +9,9 @@ namespace Cloney.Commands
 		public IEnumerable<ICommand> GetAvailableCommands()
 		{
 			var console = new ConsoleWrapper();	//TODO: IoC
+			var helpTextProvider = (IHelpTextProvider)null;	//TODO: Real
 			return new List<ICommand> {
-				new HelpCommand(this, console)
+				new HelpCommand(this, console, helpTextProvider)
 			};
 		}
 	}
