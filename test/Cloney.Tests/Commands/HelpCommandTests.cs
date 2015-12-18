@@ -213,23 +213,60 @@ namespace Cloney.Tests.Commands
 				Assert.NotEqual(_console.WrittenLine, expectedOutput);
 			}
 		}
-		/*
-		public class ValidSingleArgument : HelpCommandTests
+		
+		public class ValidTupleArgument : HelpCommandTests
 		{
 			[Fact]
-			public void CanBeHandled()
+			public void CanNotBeHandledIfCommandDoesNotExist()
 			{
-				var args = new List<string> { "help" };
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "bar" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
+				
+				var result = _command.CanHandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public void CanBeHandledIfCommandExists()
+			{
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "command" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
 				
 				var result = _command.CanHandleArgs(args);
 				
 				Assert.True(result);
 			}
 			
+			
 			[Fact]
-			public async Task IsHandled()
+			public async Task IsNotHandledIfCommandDoesNotExist()
 			{
-				var args = new List<string> { "help" };
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "bar" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
+				
+				var result = await _command.HandleArgs(args);
+				
+				Assert.False(result);
+			}
+			
+			[Fact]
+			public async Task IsHandledIfCommandExists()
+			{
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "command" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
 				
 				var result = await _command.HandleArgs(args);
 				
@@ -237,15 +274,34 @@ namespace Cloney.Tests.Commands
 			}
 			
 			[Fact]
+			public async Task DoesNotPrintsApplicationHelpWhenNotHandled()
+			{
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "bar" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
+				var expectedOutput = _helpTextProvider.GetHelpTextForCommand("command");
+				
+				await _command.HandleArgs(args);
+				
+				Assert.NotEqual(_console.WrittenLine, expectedOutput);
+			}
+			
+			[Fact]
 			public async Task PrintsApplicationHelpWhenHandled()
 			{
-				var args = new List<string> { "help" };
-				var expectedOutput = _helpTextProvider.GetHelpTextForApplication();
+				var args = new List<string> { "help", "command" };
+				var command1 = new FakeCommand { Name = "foo" };
+				var command2 = new FakeCommand { Name = "command" };
+				var commands = new List<ICommand> { command1, command2 };
+				_commandProvider.SetAvailableCommands(commands);
+				var expectedOutput = _helpTextProvider.GetHelpTextForCommand("command");
 				
 				await _command.HandleArgs(args);
 				
 				Assert.Equal(_console.WrittenLine, expectedOutput);
 			}
-		}*/
+		}
 	}
 }

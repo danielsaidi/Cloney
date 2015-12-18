@@ -57,7 +57,7 @@ namespace Cloney.Commands
 				return Task.FromResult(true);
 			}
 			
-			if (IsCommandHelpArguments(args)) 
+			if (IsExistingCommandArguments(args)) 
 			{
 				var helpText = _helpTextProvider.GetHelpTextForCommand(args[1]);
 				_console.WriteLine(helpText); 
@@ -80,6 +80,11 @@ namespace Cloney.Commands
 		
 		private bool IsExistingCommandArguments(IList<string> args)
 		{
+			if (!IsCommandHelpArguments(args)) 
+			{
+				return false;
+			}
+			
 			var commandArg = args[1].ToLower();
 			var commands = _commandProvider.GetAvailableCommands();
 			return commands.Any(x => x.Name.ToLower() == commandArg);
