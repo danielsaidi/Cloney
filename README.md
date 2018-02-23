@@ -1,5 +1,6 @@
-Cloney
-======
+<p align="center">
+    <img src ="Resources/Images/Logo.png" width=400 />
+</p>
 
 Cloney is a Windows application that lets you clone .NET
 solutions. It can be executed from the command prompt or
