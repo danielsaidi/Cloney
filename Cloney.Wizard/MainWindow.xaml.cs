@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Windows;
 using System.Windows.Threading;
 using Cloney.Core;
 using Cloney.Core.Cloning;
 using Cloney.Core.Namespace;
-using Cloney.Wizard.Controls;
 using Cloney.Wizard.Properties;
+using PathType = Cloney.Wizard.Controls.PathType;
 
 namespace Cloney.Wizard
 {
@@ -188,7 +189,27 @@ namespace Cloney.Wizard
         {
             Refresh();
             refreshTimer.Stop();
-            MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+
+            if(e.Error == null)
+            {
+                MessageBox.Show(Wizard.Resources.Language.CloningEndedMessage, Wizard.Resources.Language.CloningEndedTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if(e.Error.GetType() == typeof(System.IO.IOException))
+            {
+                MessageBox.Show(
+                    Wizard.Resources.Language.CloningEndedWithIOErrorMessage + e.Error.Message,
+                    Wizard.Resources.Language.CloningEndedWithIOErrorTitle,
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show(
+                    Wizard.Resources.Language.CloningEndedWithErrorMessage + e.Error.Message,
+                    Wizard.Resources.Language.CloningEndedWithErrorTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
 
             if (App.IsModal)
                 Shutdown();
