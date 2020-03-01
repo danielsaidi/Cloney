@@ -12,3 +12,5 @@ _ReSharper*
 **/*.nupkg
 
 TestResult.xml
+.vs/
+packages/
